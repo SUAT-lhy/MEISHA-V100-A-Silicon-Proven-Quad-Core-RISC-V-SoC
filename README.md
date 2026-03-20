@@ -33,35 +33,35 @@ The MEISHA V100 is a silicon-proven SoC manufactured on a 40nm process. It integ
 - DTM: Debug and Trace Module
 
 Each MEISHA V100 SoC contains four 64-bit RISC-V RV64GC Rocket cores an in-order scalar processor with 5-stage pipeline. In order to accelerate processor prototyping and provide a flexible framework for hardware/software interface validation, the FPGA prototype based on MEISHA V100 is publicly released.
-<center> 
+<div align="center">
 
-![](https://tcs-devops.aliyuncs.com/storage/113s8e10d4e8d995df3c70336545596e8705?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3Mzk4NzQ4MSwiaWF0IjoxNzczMzgyNjgxLCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3M4ZTEwZDRlOGQ5OTVkZjNjNzAzMzY1NDU1OTZlODcwNSJ9.vsD66GI71D8niTRXk6TqlQGOjD5YZCaKSVmbB0pXs44&download=image.png "")
-</center> 
-<center style="font-size:14px;color:#000000;">Figure 1.FPGA Prototype Based on MEISHA V100</center> 
+![](https://tcs-devops.aliyuncs.com/storage/113sa455e67ba8ed53eee2eeb09f408efe00?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IjY4NWEyYzlhY2JmZmVlMWRlMmE2NDQ0OSIsImV4cCI6MTc3NDU4MDYwOCwiaWF0IjoxNzczOTc1ODA4LCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3NhNDU1ZTY3YmE4ZWQ1M2VlZTJlZWIwOWY0MDhlZmUwMCJ9.PwdqGu9zQKkFuJLH5fmkrNIpyuhWp3734sYcp_vuFE0&download=FPGA_Prototype_Based_on_MEISHA_V100.jpg "")
+</div> 
+<div align="center" style="font-size:14px;color:#000000;">Figure 1.FPGA Prototype Based on MEISHA V100</div> 
 
 # 2.MEISHA Test Board Overview
 The MEISHA hardware resource block diagram is as follows:
-<center> 
+<div align="center">
 
-![](https://tcs-devops.aliyuncs.com/storage/113rb1b4c2519cb3673cb85b46afcbb54ce4?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3Mzk4NzQ4MSwiaWF0IjoxNzczMzgyNjgxLCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3JiMWI0YzI1MTljYjM2NzNjYjg1YjQ2YWZjYmI1NGNlNCJ9.-TPGU-x3nSgoW47J7rv2mVTc3o6RSNRChiviAj4a5m8&download=image.png "")
-</center> 
-<center style="font-size:14px;color:#000000;">Figure 2.MEISHA Hardware Resource Block Diagram</center> <br>
+![](https://tcs-devops.aliyuncs.com/storage/113s883ba488a16b1b9edbf4f52ecc328ec9?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IjY4NWEyYzlhY2JmZmVlMWRlMmE2NDQ0OSIsImV4cCI6MTc3NDU3ODQ0OCwiaWF0IjoxNzczOTczNjQ4LCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3M4ODNiYTQ4OGExNmIxYjllZGJmNGY1MmVjYzMyOGVjOSJ9.FhjJzTeXJMcWVn0zTBCVce5eSGyVGrNauWGrOUNVn5U&download=%E7%A1%AC%E4%BB%B6%E8%B5%84%E6%BA%90%E6%A1%86%E5%9B%BE.png "")
+</div>
+<div align="center" style="font-size:14px;color:#000000;">Figure 2.MEISHA Hardware Resource Block Diagram</div> <br>
 
 PS (Processor System) is the hard processor system built into the chip, typically containing an ARM CPU and fixed peripherals, responsible for running software algorithms and system management; PL (Programmable Logic) is the programmable logic part of a traditional FPGA, which can be flexibly reconfigured according to requirements, mainly responsible for parallel computing, hardware acceleration, and custom interface implementation.
 
 The MEISHA development board adopts a design combining an SoC baseboard and an FPGA core board. The FPGA core board uses the ZYNQ7020 chip. The onboard resources of the SoC baseboard are shown in the following figure:
-<center> 
+<div align="center">
 
-![](https://tcs-devops.aliyuncs.com/storage/113r70f1d0d6b806b9b7131ac64b7b65baa3?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3Mzk4NzQ4MSwiaWF0IjoxNzczMzgyNjgxLCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3I3MGYxZDBkNmI4MDZiOWI3MTMxYWM2NGI3YjY1YmFhMyJ9.XhPzYmNvEfqnHxlFSLqweozcf_OKA8aOgu8bLTpNI2I&download=soc.png "")
-</center> 
-<center style="font-size:14px;color:#000000;">Figure 3.SoC Baseboard Onboard Resources</center> <br>
+![](https://tcs-devops.aliyuncs.com/storage/113sf1379aa23c361245021787ed7c02b3ef?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IjY4NWEyYzlhY2JmZmVlMWRlMmE2NDQ0OSIsImV4cCI6MTc3NDU3ODYxOSwiaWF0IjoxNzczOTczODE5LCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3NmMTM3OWFhMjNjMzYxMjQ1MDIxNzg3ZWQ3YzAyYjNlZiJ9.oGnR3yhyp1jUFGn2rZ0KztqDIHqaEjILu2hnMjdR4RM&download=%E6%9D%BF%E8%BD%BD%E8%B5%84%E6%BA%90.png "")
+</div> 
+<div align="center" style="font-size:14px;color:#000000;">Figure 3.SoC Baseboard Onboard Resources</div> <br>
 
 The FPGA core board used with the SoC baseboard is shown in the following figure:
-<center> 
+<div align="center"> 
 
 ![](https://tcs-devops.aliyuncs.com/storage/113r72d411a3a12038c69f99f88f0a902001?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3Mzk4NzQ4MSwiaWF0IjoxNzczMzgyNjgxLCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3I3MmQ0MTFhM2ExMjAzOGM2OWY5OWY4OGYwYTkwMjAwMSJ9.2HFRJtfoekqv3yEUTQsrWoc2NuQSTy_IGBNR27jeR5U&download=FPGA.png "")
-</center> 
-<center style="font-size:14px;color:#000000;">Figure 4.FPGA Core Board</center><br>
+</div> 
+<div align="center" style="font-size:14px;color:#000000;">Figure 4.FPGA Core Board</div><br>
 
 The onboard resources of the FPGA core board are as follows:
 - Main Chip: XC7Z020CLG484-1I
@@ -108,7 +108,7 @@ The detailed introduction of peripherals and interfaces is shown in the followin
 - FPGA_JTAG debug interface U16
 - FPGA expansion connectors CN1, CN2, CN5, CN6
 
-<center style="font-size:14px;color:#000000;">Table 1.memory map:</center>
+<div align="center" style="font-size:14px;color:#000000;">Table 1.memory map:</div>
 
 | Base               | Size（B）                                                                               | Description                                          | Notes                                                                                |
 | ------------------ | ------------------------------------------------------------------------------------- | ---------------------------------------------------- | ------------------------------------------------------------------------------------ |
@@ -134,7 +134,7 @@ The detailed introduction of peripherals and interfaces is shown in the followin
 | 0xC000_0000        | 1G                                                                                    | TIME_OUT                                             | Note: Access to this memory space is not allowed; attempting to do so may cause abnormal behavior.                                                             |
 | MIG_CHIPLINK_SLAVE | 1 MIG real space 0x8000_0000 - 0xC000_0000 can be remapped to the following space: 0x1000_0000 - 0xE000_0000 (13*256=3328M) | 1 slave port requires address remap, the highest 4 bits can be controlled, connected to SOC_LSYS, default highest 4 bits changed to 1| Integrate chiplink into meishav100 version for subsequent verification 1. Currently, the chiplink peer address is 1000_0000-3000_0000, needs adaptation to the peer chiplink controller |
 
-<center style="font-size:14px;color:#000000;">Table 2.Register Default Values Table:</center>
+<div align="center" style="font-size:14px;color:#000000;">Table 2.Register Default Values Table:</div>
 
 | Module    | Base Address | Register                                      | Address Offset | Default Value     |  Default Value       | Description                     |
 | -------- | ---------- | ---------------------------------------- | ----- | ---------- | ---------- | ----------------------- |
@@ -156,11 +156,11 @@ The detailed introduction of peripherals and interfaces is shown in the followin
 
 ## 2.1 Power-On Testing
 This chapter mainly introduces how to perform basic hardware and software tests on the board. The specific steps for power-on testing are shown in the following figure:
-<center> 
+<div align="center"> 
 
 ![](https://tcs-devops.aliyuncs.com/storage/113s8ee90698ebb26de93337274204705c38?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IjY4NWEyYzlhY2JmZmVlMWRlMmE2NDQ0OSIsImV4cCI6MTc3Mzk5NzU4MywiaWF0IjoxNzczMzkyNzgzLCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3M4ZWU5MDY5OGViYjI2ZGU5MzMzNzI3NDIwNDcwNWMzOCJ9.j2o_OJQd0eJbQ5VhpS7R7bj4kf7BxEdR4an5gBrL26o&download=%E4%B8%8A%E7%94%B5%E6%B5%8B%E8%AF%95%E6%AD%A5%E9%AA%A4.png "")
-</center> 
-<center style="font-size:14px;color:#000000;">Figure 5.Power-On Test Procedure Flowchart</center><br>
+</div> 
+<div align="center" style="font-size:14px;color:#000000;">Figure 5.Power-On Test Procedure Flowchart</div><br>
 
 The blue parts are purely hardware operations, while the yellow parts involve software operations.
 
@@ -170,111 +170,111 @@ The blue parts are purely hardware operations, while the yellow parts involve so
 
 ### 2.1.1 Hardware Operations
 First, when installing or removing the FPGA, align the connectors of the MEISHA board and the FPGA, and press down firmly vertically or pull it out. After the FPGA is correctly inserted, connect the necessary debugger according to the schematic diagram, power on, and the normal working effect is shown in the figure:
-<center> 
+<div align="center"> 
 
-![](https://tcs-devops.aliyuncs.com/storage/113r77dcafd9665023e4d3cbcfc82b1dc34c?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3Mzk4NzQ4MSwiaWF0IjoxNzczMzgyNjgxLCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3I3N2RjYWZkOTY2NTAyM2U0ZDNjYmNmYzgyYjFkYzM0YyJ9.2lmR6MyesVxog2qdLBO1rYCiOeRKzI4ZskzmTJF0Mhs&download=%E6%AD%A3%E5%B8%B8%E5%B7%A5%E4%BD%9C.jpg "")
-</center> 
-<center style="font-size:14px;color:#000000;">Figure 6.Board Normal Working Condition</center>
+![](https://tcs-devops.aliyuncs.com/storage/113sc5c571fe80e68a3f06af5b854c6a8d78?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IjY4NWEyYzlhY2JmZmVlMWRlMmE2NDQ0OSIsImV4cCI6MTc3NDU3NzEwMCwiaWF0IjoxNzczOTcyMzAwLCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3NjNWM1NzFmZTgwZTY4YTNmMDZhZjViODU0YzZhOGQ3OCJ9.lt7DDV5-jqb66va2SdyNpzOQ9M2oQdKvWMsE95yVZ2Q&download=%E6%AD%A3%E5%B8%B8%E5%B7%A5%E4%BD%9C.jpg "")
+</div> 
+<div align="center" style="font-size:14px;color:#000000;">Figure 6.Board Normal Working Condition</div>
 
 ### 2.1.2 SPI_SLAVE
 SPI_SLAVE is a debug module that directly accesses all accessible address spaces inside the chip through the bus. It is used to verify on-chip peripherals and conduct preliminary testing of the MEISHA chip.
-<center> 
+<div align="center"> 
 
 ![](https://tcs-devops.aliyuncs.com/storage/113re822a0f7e4860773aaf40d53dd9a89dc?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3Mzk4NzQ4MSwiaWF0IjoxNzczMzgyNjgxLCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3JlODIyYTBmN2U0ODYwNzczYWFmNDBkNTNkZDlhODlkYyJ9.bCIfXyqAv1Hfy2L7OVSx9_YPmsABIFMFDk2Hvcu1rds&download=SPI_SLAVE%E7%B3%BB%E7%BB%9F%E6%A1%86%E5%9B%BE.png "")
-</center> 
-<center style="font-size:14px;color:#000000;">Figure 7.SPI_SLAVE System Block Diagram</center>
+</div> 
+<div align="center" style="font-size:14px;color:#000000;">Figure 7.SPI_SLAVE System Block Diagram</div>
 
 #### SPI_SLAVE Board-Level Design
 The pins of SPI_SLAVE are SPI SCLK, SPI CS, SPI DATA[3:0].
-<center> 
+<div align="center"> 
 
-![](https://tcs-devops.aliyuncs.com/storage/113rfc1d44d8d75212e85fb499cbe3d890de?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3Mzk4NzQ4MSwiaWF0IjoxNzczMzgyNjgxLCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3JmYzFkNDRkOGQ3NTIxMmU4NWZiNDk5Y2JlM2Q4OTBkZSJ9.31J4wirvI8hccpDqYUM7evkKfUXw7dOiSP7UCiDSobc&download=SPI_SLAVE%E7%AE%A1%E8%84%9A.png "")
-</center> 
-<center style="font-size:14px;color:#000000;">Figure 8.SPI_SLAVE Pinout</center><br>
+![](https://tcs-devops.aliyuncs.com/storage/113scd1d850895fcd13f76f9bdc18b8b502c?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IjY4NWEyYzlhY2JmZmVlMWRlMmE2NDQ0OSIsImV4cCI6MTc3NDU3ODY3NywiaWF0IjoxNzczOTczODc3LCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3NjZDFkODUwODk1ZmNkMTNmNzZmOWJkYzE4YjhiNTAyYyJ9.lMZ7wAnGitmRwruG6gocVcHL0hwlCfJHZRAhDChDPyY&download=SPI_SLAVE%E7%AE%A1%E8%84%9A.png "")
+</div> 
+<div align="center" style="font-size:14px;color:#000000;">Figure 8.SPI_SLAVE Pinout</div><br>
 
 The SPI_SLAVE_TEST_MODE signal should default to 1; it seems it is not available as an input pin. When it is 1, SPI SCLK is used as the module clock. It needs to be configured to 0. Configuring it to 1 is for DFT SCAN mode, which is not actually used.
 
 By default, SPI dual-wire full-duplex mode is used, so only SPI SCLK, SPI CS, SPI DATA0, and SPI DATA1 are used. SPI DATA0 corresponds to SPI DO (MOSI), and SPI DATA1 corresponds to SPI DI (MISO). The SPI_SLAVE pins of the MEISHA chip are directly connected to a voltage level translator chip (SN74AXC4T774PWR), which converts the core's 1.8V to the FT2232's 3.3V.
-<center> 
+<div align="center"> 
 
 ![](https://tcs-devops.aliyuncs.com/storage/113r137b8156ff9cd19ec253964aaf6b2aab?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3Mzk4NzQ4MSwiaWF0IjoxNzczMzgyNjgxLCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3IxMzdiODE1NmZmOWNkMTllYzI1Mzk2NGFhZjZiMmFhYiJ9.SFBnYDwdv7TSCGnMROdTvjsM04gkdcZ0ThbHFRnuN5k&download=SPI_SLAVE%E7%94%B5%E5%B9%B3%E8%BD%AC%E6%8D%A2.png "")
-</center> 
-<center style="font-size:14px;color:#000000;">Figure 9.SPI_SLAVE Level Shifting Circuit</center><br>
+</div> 
+<div align="center" style="font-size:14px;color:#000000;">Figure 9.SPI_SLAVE Level Shifting Circuit</div><br>
 
 The corresponding channel signals are level-shifted through the voltage level translator chip (A1 corresponds to B1). SPI_DATA0 (core 1.8V) is converted to SPI_DO_U (3.3V connected to FT2232).
 
 Then, DIP switch SW23 is used to select whether to connect to the onboard FT2232 chip or to connect to an external FT2232 via the H60 pins. When connected to the onboard FT2232, H60 can be connected to a logic analyzer to capture SPI signals for debugging, etc.
-<center> 
+<div align="center"> 
 
 ![](https://tcs-devops.aliyuncs.com/storage/113r2462ebe991e5c4d09a10acbbcb1647cf?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3Mzk4NzQ4MSwiaWF0IjoxNzczMzgyNjgxLCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3IyNDYyZWJlOTkxZTVjNGQwOWExMGFjYmJjYjE2NDdjZiJ9.6izwu99F3qXaiHH0U6MIeYSgtIOt6piYgfTr_sGH9Jw&download=SPI_SLAVE%E6%8B%A8%E7%A0%81%E5%BC%80%E5%85%B3.png "")
-</center> 
-<center style="font-size:14px;color:#000000;">Figure 10.SPI_SLAVE DIP Switch Connection</center><br>
+</div> 
+<div align="center" style="font-size:14px;color:#000000;">Figure 10.SPI_SLAVE DIP Switch Connection</div><br>
 
 The SPI_DO_U signal is connected via DIP switch SW23 to SPI DO, which is connected to the BDBUS channel of the FT2232HQ. Therefore, the BDBUS channel of the FT2232HQ needs to be configured as an SPI interface. For details, see "FT2232 Development Board User Manual.pdf".
 
 The onboard FT2232HQ is equipped with a 93AA56BT-I/OT EEPROM as non-volatile memory. To program the FT2232HQ, the board must be powered on to supply power to the FT2232HQ, as the USB interface alone does not power it.
-<center> 
+<div align="center"> 
 
 ![](https://tcs-devops.aliyuncs.com/storage/113r2420b90fc578a8e5b1a9e73d69f12a10?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3Mzk4NzQ4MSwiaWF0IjoxNzczMzgyNjgxLCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3IyNDIwYjkwZmM1NzhhOGU1YjFhOWU3M2Q2OWYxMmExMCJ9.A4QfgPfIYtYOS8-ss9aSbIqw1WBvVKwlEw9Pn0KF7SU&download=FT2232HQ.png "")
-</center> 
-<center style="font-size:14px;color:#000000;">Figure 11.FT2232HQ Chip</center><br>
+</div> 
+<div align="center" style="font-size:14px;color:#000000;">Figure 11.FT2232HQ Chip</div><br>
 
 For more flexible use of the SPI chip select signal, the FT2232 BDBUS hardware SPI CS (BDBUS3) is not used; instead, a GPIO (BDBUS4) is used as the chip select signal. When programming the FT2232 SPI, the chip select signal is manually operated via GPIO to meet command requirements.
 
 ### 2.1.3 Clock and PLL
 The onboard crystal oscillator clock is 40MHz, single-ended input to MEISHA, connected to SYS CLOCK P.
-<center>
+<div align="center">
 
-![](https://tcs-devops.aliyuncs.com/storage/113r33a0a46355bfe11e1d46bf3880a0e2a2?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3Mzk4NzQ4MSwiaWF0IjoxNzczMzgyNjgxLCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3IzM2EwYTQ2MzU1YmZlMTFlMWQ0NmJmMzg4MGEwZTJhMiJ9.EBv2K5bRc2ytzUKuYEIV4sSVvPSn9da8Zy2ikFBM7pk&download=SYS_CLOCK_P.png "")
-</center> 
-<center style="font-size:14px;color:#000000;">Figure 12.SYS_CLOCK_P Input Connection</center><br>
+![](https://tcs-devops.aliyuncs.com/storage/113sce69faececcd6296ce573d9109207155?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IjY4NWEyYzlhY2JmZmVlMWRlMmE2NDQ0OSIsImV4cCI6MTc3NDU3ODg0MiwiaWF0IjoxNzczOTc0MDQyLCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3NjZTY5ZmFlY2VjY2Q2Mjk2Y2U1NzNkOTEwOTIwNzE1NSJ9.rzQcgZC6WVVj8cn0h5ezgQJgql4ffH3jC_VGy3fvP_k&download=SYS_CLOCK_P.png "")
+</div> 
+<div align="center" style="font-size:14px;color:#000000;">Figure 12.SYS_CLOCK_P Input Connection</div><br>
 
-The entire SoC system is divided into four clock domains: <font color=Chocolate>CPU (RocketTile)</font>, <font color=gold>main</font>, <font color=green>chiplink</font>, and <font color=blue>ddr</font>. 
-<center> 
+The entire SoC system is divided into four clock domains: 🔴 CPU (RocketTile), 🟡 main, 🟢 chiplink, 🔵 ddr.
+<div align="center"> 
 
-![](https://tcs-devops.aliyuncs.com/storage/113r97fafcf8fa55418c0ae2b0081143377e?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3Mzk4NzQ4MSwiaWF0IjoxNzczMzgyNjgxLCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3I5N2ZhZmNmOGZhNTU0MThjMGFlMmIwMDgxMTQzMzc3ZSJ9.iBYxR_3Dm4OyNNkUEkDILcjI7o3rQj7NoDhrYYxy9c4&download=image.png "")
-</center> 
-<center style="font-size:14px;color:#000000;">Figure 13.SoC Clock Domain Partition</center><br>
+![](https://tcs-devops.aliyuncs.com/storage/113s3e857985ae45b5a9eb541d75eca73ea3?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IjY4NWEyYzlhY2JmZmVlMWRlMmE2NDQ0OSIsImV4cCI6MTc3NDU3ODg4NywiaWF0IjoxNzczOTc0MDg3LCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3MzZTg1Nzk4NWFlNDViNWE5ZWI1NDFkNzVlY2E3M2VhMyJ9.tLZE9mHwqMMtFJE2JMsb4eLVNW7L_1W-bgEp5j5b-Ew&download=image.png "")
+</div> 
+<div align="center" style="font-size:14px;color:#000000;">Figure 13.SoC Clock Domain Partition</div><br>
 
 Refer to this diagram for details; additionally, the DDR clock domain is not marked, used for the SDR SDRAM chip and the SDRAM controller. The CPU domain mainly consists of the 4 CPU cores. The main clock domain contains most of the sub-modules, system bus, various peripherals, IRAM, etc. The chiplink clock domain is the chiplink bus for communication with the FPGA subsystem. The DDR clock domain is the clock domain for the SDRAM controller and the SDR SDRAM chip.
 
 The crystal oscillator inputs 40MHz as ref_clk into the PLL. The PLL has three registers that can be configured. Finally, three clock domain outputs are generated through frequency division: cpu, main, chiplink. The DDR clock is directly connected to the chiplink clock.
-<center> 
+<div align="center"> 
 
 ![](https://tcs-devops.aliyuncs.com/storage/113r9a7699c575e47ab798f2c6b8d67f6ad2?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3Mzk4NzQ4MSwiaWF0IjoxNzczMzgyNjgxLCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3I5YTc2OTljNTc1ZTQ3YWI3OThmMmM2YjhkNjdmNmFkMiJ9.2_U8U8IpG1JqofQOKkwYkRaBUKPiD5ANl9Kl57IvbtA&download=a0f54a74da93b9e0e45316ca5480eb17.png "")
-</center> 
-<center style="font-size:14px;color:#000000;">Figure 14.PLL Structure Diagram</center>
+</div> 
+<div align="center" style="font-size:14px;color:#000000;">Figure 14.PLL Structure Diagram</div>
 
 
 ### 2.1.4 JTAG Debugging
-<center> 
+<div align="center"> 
 
 ![](https://tcs-devops.aliyuncs.com/storage/113rec2af9df2a5cba128e0928171cf21585?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3Mzk4NzQ4MSwiaWF0IjoxNzczMzgyNjgxLCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3JlYzJhZjlkZjJhNWNiYTEyOGUwOTI4MTcxY2YyMTU4NSJ9.zih16CjXOW6FPCzTt2UmGR6Z06ta-PTPQK0ad_RFpJg&download=JTAG%E8%BF%9E%E7%BA%BF%E5%9B%BE.png "")
-</center> 
-<center style="font-size:14px;color:#000000;">Figure 15.JTAG Connection Diagram</center><br>
+</div> 
+<div align="center" style="font-size:14px;color:#000000;">Figure 15.JTAG Connection Diagram</div><br>
 
 Connect the chip to the JTAG debugger as shown in the wiring diagram. Pin 9 of output U58 corresponds to the DEBUG_SYSTEM_TDI signal, pin 5 corresponds to the DEBUG_SYSTEM_TMS signal, pin 3 corresponds to the DEBUG_SYSTEM_TDO signal, pin 1 corresponds to the DEBUG_SYSTEM_CLK signal, and pin 10 is connected to ground.
 
 Connect the JTAG debugger to the computer. In the JTAG folder, open Windows cmd and enter `openocd -f freedom.cfg` to start the openocd debugger, as shown in the figure:
-<center> 
+<div align="center"> 
 
 ![](https://tcs-devops.aliyuncs.com/storage/113r2c01242cdcc6225381e41d3ebd53b2fe?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3Mzk4NzQ4MSwiaWF0IjoxNzczMzgyNjgxLCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3IyYzAxMjQyY2RjYzYyMjUzODFlNDFkM2ViZDUzYjJmZSJ9.zW3HRVhQwnWsyKizufonauiMQ6nOqtr8JoQeFkSFSck&download=openocd.png "")
-</center> 
-<center style="font-size:14px;color:#000000;">Figure 16.OpenOCD Startup Interface</center><br>
+</div> 
+<div align="center" style="font-size:14px;color:#000000;">Figure 16.OpenOCD Startup Interface</div><br>
 
 Open MobaXterm and open a Telnet connection to localhost:4444 to connect to the board, as shown in the figure:
-<center> 
+<div align="center"> 
 
 ![](https://tcs-devops.aliyuncs.com/storage/113rb9f315e5817a1efb84085a40922ae1f2?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3Mzk4NzQ4MSwiaWF0IjoxNzczMzgyNjgxLCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3JiOWYzMTVlNTgxN2ExZWZiODQwODVhNDA5MjJhZTFmMiJ9.NwxurEgPudb1GiUTJIqlVrDjU5wTR2gW4t6MrNXStM8&download=GDB.png "")
-</center> 
-<center style="font-size:14px;color:#000000;">Figure 17.GDB Connection Interface</center><br>
+</div> 
+<div align="center" style="font-size:14px;color:#000000;">Figure 17.GDB Connection Interface</div><br>
 
 Before executing instructions, the `halt` command is needed to pause the core for test reads and writes.
-<center> 
+<div align="center"> 
 
-![](https://tcs-devops.aliyuncs.com/storage/113rf5f2edc3776f68e68c838e28c522c6c8?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3Mzk4NzQ4MSwiaWF0IjoxNzczMzgyNjgxLCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3JmNWYyZWRjMzc3NmY2OGU2OGM4MzhlMjhjNTIyYzZjOCJ9.qd5qUUd9fmbK645Wq_ozUxB99-nf6SBAwXKVvvvcNHk&download=%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4.png "")
-</center> 
-<center style="font-size:14px;color:#000000;">Figure 18.OpenOCD Common Commands</center>
+![](https://tcs-devops.aliyuncs.com/storage/113se891ef8a6e33f729ec40ca2046f3e934?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IjY4NWEyYzlhY2JmZmVlMWRlMmE2NDQ0OSIsImV4cCI6MTc3NDU3ODk4MiwiaWF0IjoxNzczOTc0MTgyLCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3NlODkxZWY4YTZlMzNmNzI5ZWM0MGNhMjA0NmYzZTkzNCJ9.A4FfbaLiMGY-Ia0PCXii2oPebkosA3flP_WucxM4R_8&download=%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4.png "")
+</div> 
+<div align="center" style="font-size:14px;color:#000000;">Figure 18.OpenOCD Common Commands</div>
 
 ### 2.1.5 SRAM Program Execution Test
 To boot from SRAM, the following conditions must be met:
@@ -283,40 +283,40 @@ To boot from SRAM, the following conditions must be met:
 - The boot code must jump to that SRAM address for execution.
 
 In the `sdboot.elf.lds` file, modify the target memory region for the .text section from `maskrom_mem` to `memory_mem`, so that the program generates instructions based on the SRAM address during linking.
-<center> 
+<div align="center"> 
 
 ![](https://tcs-devops.aliyuncs.com/storage/113r3bd71948ba1a174c51166681a006cc47?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3Mzk4NzQ4MSwiaWF0IjoxNzczMzgyNjgxLCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3IzYmQ3MTk0OGJhMWExNzRjNTExNjY2ODFhMDA2Y2M0NyJ9.bpg0jhSsFNIJvVY2LO2X90-cmXQdQDotS1kAqbUW3_0&download=%E9%93%BE%E6%8E%A5%E5%9C%B0%E5%9D%80.png "")
-</center> 
-<center style="font-size:14px;color:#000000;">Figure 19.Linker Script Modification Example</center><br>
+</div> 
+<div align="center" style="font-size:14px;color:#000000;">Figure 19.Linker Script Modification Example</div><br>
 
 The boot code specifies the execution start address of the user program via `PAYLOAD_DEST`. Set `PAYLOAD_DEST` in `head.s` to the SRAM start physical address, so that the processor fetches and executes the user program from SRAM.
-<center> 
+<div align="center"> 
 
 ![](https://tcs-devops.aliyuncs.com/storage/113r7768337a331c28f11c6a2217b23dd5db?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3Mzk4NzQ4MSwiaWF0IjoxNzczMzgyNjgxLCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3I3NzY4MzM3YTMzMWMyOGYxMWM2YTIyMTdiMjNkZDVkYiJ9.CikO63dZYileDSJ1DXpzWiPPbRnfsrA_QMocFUbFnUU&download=%E5%90%AF%E5%8A%A8%E5%9C%B0%E5%9D%80.png "")
-</center> 
-<center style="font-size:14px;color:#000000;">Figure 20.Boot Address Setting</center><br>
+</div> 
+<div align="center" style="font-size:14px;color:#000000;">Figure 20.Boot Address Setting</div><br>
 
 During testing, first ensure DEBUG_MODE_SEL is set to 1, corresponding to the core not being released from reset. After reset release, it defaults to booting from ON CHIP SRAM. Write 1 to the reset register sft_rst_reg to keep the core in reset and not running. Modify the head.s and sdboot.elf.lds files, compile and generate a hex file, and burn the hex file to the corresponding SRAM address. Then change the reset register value to 0, and observe the output in the serial port assistant to see if it meets expectations.
-<center>
+<div align="center">
 
 ![](https://tcs-devops.aliyuncs.com/storage/113r4c3a2dd0443ed71afeacea30d950f975?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3Mzk4NzQ4MSwiaWF0IjoxNzczMzgyNjgxLCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3I0YzNhMmRkMDQ0M2VkNzFhZmVhY2VhMzBkOTUwZjk3NSJ9.xvHnjkRo8Aie_-AeBHB7m9wrZwaU8rit7U-V3WX3lCs&download=SW25.png "")
-</center> 
-<center style="font-size:14px;color:#000000;">Figure 21.DIP Switch SW25 Setting (Boot Mode)</center>
+</div> 
+<div align="center" style="font-size:14px;color:#000000;">Figure 21.DIP Switch SW25 Setting (Boot Mode)</div>
 
 ### 2.1.6 UART Debugging
 Check if the `DEBUG_MODE_CONFIG` on DIP switch SW25 corresponds to 1 (which means using the 40MHz clock). According to the formula:
 $f_{baud}=\frac{f_{in}}{div+1}$
 where f_baud is 115200, calculate the current UART div and modify the register to ensure the UART can sample correctly.
-<center> 
+<div align="center"> 
 
 ![](https://tcs-devops.aliyuncs.com/storage/113r3c4cfe0ac7820151ac4ee5a4415f00b6?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3Mzk4NzQ4MSwiaWF0IjoxNzczMzgyNjgxLCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3IzYzRjZmUwYWM3ODIwMTUxYWM0ZWU1YTQ0MTVmMDBiNiJ9.WUtGsu-3AkUUaMahSUZyVRSGA0JG4f8FzMXN126CrzI&download=SW25.png "")
-</center> 
-<center style="font-size:14px;color:#000000;">Figure 22.DIP Switch SW25 Setting (UART Debug)</center>
-<center> 
+</div> 
+<div align="center" style="font-size:14px;color:#000000;">Figure 22.DIP Switch SW25 Setting (UART Debug)</div>
+<div align="center"> 
 
 ![](https://tcs-devops.aliyuncs.com/storage/113rdaad68c74a39f0e255863bde9b1c7d98?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3Mzk4NzQ4MSwiaWF0IjoxNzczMzgyNjgxLCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3JkYWFkNjhjNzRhMzlmMGUyNTU4NjNiZGU5YjFjN2Q5OCJ9.0OmYaqiJm_-S5B8H1o5RdirUCECIvBEtBNcbuPKjenE&download=UART%E5%AF%84%E5%AD%98%E5%99%A8.png "")
-</center> 
-<center style="font-size:14px;color:#000000;">Figure 23.UART Registers</center>
+</div> 
+<div align="center" style="font-size:14px;color:#000000;">Figure 23.UART Registers</div>
 
 ### 2.1.7 SD Card Data Read Debugging
 #### 1. Writing Data to SD Card
@@ -330,20 +330,20 @@ Refer to the logic in `sd.c` and rewrite the SD card control program `SD.py` in 
 Hardware Configuration:
 - DEBUG_MODE_SEL is set to 1, core does not boot.
 - DEBUG_MODE_CONFIG is set to 3, uses 40MHz reference clock.
-<center> 
+<div align="center"> 
 
 ![](https://tcs-devops.aliyuncs.com/storage/113qef8cc965239315913aa18e4197bd8033?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3Mzk4NzQ4MSwiaWF0IjoxNzczMzgyNjgxLCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3FlZjhjYzk2NTIzOTMxNTkxM2FhMThlNDE5N2JkODAzMyJ9.j_zup3mLbpT7R5DPcLt8CQH2ng4qPVr0uR8mTB1Ajsg&download=image-1.png "")
-</center> 
-<center style="font-size:14px;color:#000000;">Figure 24.USD Card Debug Hardware Configuration</center><br>
+</div> 
+<div align="center" style="font-size:14px;color:#000000;">Figure 24.USD Card Debug Hardware Configuration</div><br>
 
 The software driver actually operates the pins of the auto_spi module.
 
 Check the hardware power supply of the external SD module and adjust its power to a stable 3.3V.
-<center> 
+<div align="center"> 
 
 ![](https://tcs-devops.aliyuncs.com/storage/113qa54f167f1b943a4202322efa3737f760?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3Mzk4NzQ4MSwiaWF0IjoxNzczMzgyNjgxLCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3FhNTRmMTY3ZjFiOTQzYTQyMDIzMjJlZmEzNzM3Zjc2MCJ9.rIsICV7pVoBqgh3IkDo4rrfxY5o_p23tXY0k4mrdvPk&download=image.png "")
-</center> 
-<center style="font-size:14px;color:#000000;">Figure 25.SD Card Module Power Supply Check</center><br>
+</div> 
+<div align="center" style="font-size:14px;color:#000000;">Figure 25.SD Card Module Power Supply Check</div><br>
 
 Considering that SD initialization is sensitive to timing, adjust the clock division parameters of the SPI module so that the SCK clock does not exceed 20MHz, ensuring the SCK frequency during the initialization phase is within the acceptable range for the SD card.
 
@@ -356,14 +356,14 @@ Specify the sector address to read. The SD card returns a response and sends the
 Write data `AABBCCDDEEFF` to address 0 of sector 0 in advance. The code runs the commands normally and reads the 512 bytes of data from that sector.
 
 The overall initialization process runs smoothly, and the SD card read/write test is finally successful.
-<center> 
+<div align="center"> 
 
 ![](https://tcs-devops.aliyuncs.com/storage/113qb8b5022708065c4a059b478f893a7eb9?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3Mzk4NzQ4MSwiaWF0IjoxNzczMzgyNjgxLCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3FiOGI1MDIyNzA4MDY1YzRhMDU5YjQ3OGY4OTNhN2ViOSJ9.WjFKrjhORu_Ld2_QPFCZexYExyTzHlMTyFaN00PEOus&download=image-2.png "")
-<center style="font-size:14px;color:#000000;">Figure 26.SD Card Read/Write Test Success Screenshot 1</center><br>
+<div align="center" style="font-size:14px;color:#000000;">Figure 26.SD Card Read/Write Test Success Screenshot 1</div><br>
 
 ![](https://tcs-devops.aliyuncs.com/storage/113q8e1ba7c0aa536681c8c23e9cbafc1f4a?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3Mzk4NzQ4MSwiaWF0IjoxNzczMzgyNjgxLCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3E4ZTFiYTdjMGFhNTM2NjgxYzhjMjNlOWNiYWZjMWY0YSJ9.vteMmnV91g-7Uw45N4fHZZkNmXqEFvVbJQtAsdtObQU&download=image-3.png "")
-</center> 
-<center style="font-size:14px;color:#000000;">Figure 27.SD Card Read/Write Test Success Screenshot 2</center>
+</div> 
+<div align="center" style="font-size:14px;color:#000000;">Figure 27.SD Card Read/Write Test Success Screenshot 2</div>
 
 ### 2.1.8 Installing Serial Port Driver
 The board currently uses the FT2232, a USB to serial and parallel interface converter. PyFTDI is a pure Python library for controlling FTDI devices, allowing easy control of FT232H, FT4232H, FT2232H, and other USB-to-serial chips via Python, enabling UART, SPI, I2C, GPIO, and other interface communications. Installation method is as follows:
@@ -376,28 +376,28 @@ Serial debugging software is needed to monitor the board's output. There are man
 ### 2.1.10 Chiplink
 There is not much detailed introduction about Chiplink, and its usage mainly refers to the FPGA development section of the "One Life One Chip" board.
 https://ysyx.oscc.cc/chip/board/official/boards/board-3/#%E7%A1%AC%E4%BB%B6%E8%AE%BE%E8%AE%A1
-<center> 
+<div align="center"> 
 
 ![](https://tcs-devops.aliyuncs.com/storage/113s5e34656a8a6235ffea86d3be2131df9e?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3NDIyODg4NywiaWF0IjoxNzczNjI0MDg3LCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3M1ZTM0NjU2YThhNjIzNWZmZWE4NmQzYmUyMTMxZGY5ZSJ9.w6dbftWPOMN9tMt0Ibdt56xcuFe0Clj908PflM9D-As&download=_cgi-bin_mmwebwx-bin_webwxgetmsgimg__%26MsgID%3D3120467347145370429%26skey%3D%40crypt_fef886f8_7376ce2cb911e98d18527fe6f9edfd6a%26mmweb_appid%3Dwx_webfilehelper.jpg "")
-</center> 
-<center style="font-size:14px;color:#000000;">Figure 28.Chiplink System Block Design Overview</center><br>
+</div> 
+<div align="center" style="font-size:14px;color:#000000;">Figure 28.Chiplink System Block Design Overview</div><br>
 When building the system according to the block diagram above, the following four points need attention:
 
 - The UART1 interface must be enabled in the ZYNQ7 Processing System; otherwise, the Vitis project for "Hello World" cannot be created.
 
 - The ZYNQ7 Processing System should output two clocks: a 10MHz clock for the Chiplink module (must not exceed 25MHz) and a 100MHz clock for the ZYNQ7 Processing System itself.
-<center>
+<div align="center">
 
 ![](https://tcs-devops.aliyuncs.com/storage/113sb29a5e161d11a212d924f70b5d6ad113?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3NDIyODg4NywiaWF0IjoxNzczNjI0MDg3LCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3NiMjlhNWUxNjFkMTFhMjEyZDkyNGY3MGI1ZDZhZDExMyJ9.GUVUMZrhTxoURaDxNd5-wo9jayxaNz2r8SLBtRBdQWQ&download=_cgi-bin_mmwebwx-bin_webwxgetmsgimg__%26MsgID%3D2464704669439385186%26skey%3D%40crypt_fef886f8_7376ce2cb911e98d18527fe6f9edfd6a%26mmweb_appid%3Dwx_webfilehelper.jpg "")
-</center> 
-<center style="font-size:14px;color:#000000;">Figure 29.ZYNQ7 Processing System Clock Configuration</center><br>
+</div> 
+<div align="center" style="font-size:14px;color:#000000;">Figure 29.ZYNQ7 Processing System Clock Configuration</div><br>
 
 - The DDR memory model must be modified to the correct one.
-<center>
+<div align="center">
 
 ![](https://tcs-devops.aliyuncs.com/storage/113s4db255812fe19e64fcd142bc6b877f89?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3NDIyODg4NywiaWF0IjoxNzczNjI0MDg3LCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3M0ZGIyNTU4MTJmZTE5ZTY0ZmNkMTQyYmM2Yjg3N2Y4OSJ9.-FeB9DNU5rh8Tdk6GdllTqQArN0cdzE_QBhb_qTVipo&download=_cgi-bin_mmwebwx-bin_webwxgetmsgimg__%26MsgID%3D4945181983439798140%26skey%3D%40crypt_fef886f8_7376ce2cb911e98d18527fe6f9edfd6a%26mmweb_appid%3Dwx_webfilehelper.jpg "")
-</center> 
-<center style="font-size:14px;color:#000000;">Figure 30.DDR Memory Part Number Configuration</center><br>
+</div> 
+<div align="center" style="font-size:14px;color:#000000;">Figure 30.DDR Memory Part Number Configuration</div><br>
 
 - Pin constraints need to be added:
 ```none
@@ -515,10 +515,10 @@ BOOT
 bbl loader  
 
 MEISHAV100, INC.  
-<center> 
+<div align="center"> 
 
 ![](https://tcs-devops.aliyuncs.com/storage/113s324d2b0b65616dece89572061c3bcd2e?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IjY4NWEyYzlhY2JmZmVlMWRlMmE2NDQ0OSIsImV4cCI6MTc3NDQyMTUwMywiaWF0IjoxNzczODE2NzAzLCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3MzMjRkMmIwYjY1NjE2ZGVjZTg5NTcyMDYxYzNiY2QyZSJ9.2fH3owa3I43ncr50ZjMoO1H1HPVsUy9NhckKccU9RN8&download=image-1.png "")
-</center> 
+</div> 
 
 MEISHAV100 RISC-V Coreplex
 
