@@ -35,7 +35,7 @@ The MEISHA V100 is a silicon-proven SoC manufactured on a 40nm process. It integ
 Each MEISHA V100 SoC contains four 64-bit RISC-V RV64GC Rocket cores an in-order scalar processor with 5-stage pipeline. In order to accelerate processor prototyping and provide a flexible framework for hardware/software interface validation, the FPGA prototype based on MEISHA V100 is publicly released.
 <div align="center">
 
-![](https://tcs-devops.aliyuncs.com/storage/113sa455e67ba8ed53eee2eeb09f408efe00?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IjY4NWEyYzlhY2JmZmVlMWRlMmE2NDQ0OSIsImV4cCI6MTc3NDU4MDYwOCwiaWF0IjoxNzczOTc1ODA4LCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3NhNDU1ZTY3YmE4ZWQ1M2VlZTJlZWIwOWY0MDhlZmUwMCJ9.PwdqGu9zQKkFuJLH5fmkrNIpyuhWp3734sYcp_vuFE0&download=FPGA_Prototype_Based_on_MEISHA_V100.jpg "")
+![](pic/FPGA_Prototype_Based_on_MEISHA_V100.jpg)
 </div> 
 <div align="center" style="font-size:14px;color:#000000;">Figure 1.FPGA Prototype Based on MEISHA V100</div> 
 
@@ -43,7 +43,7 @@ Each MEISHA V100 SoC contains four 64-bit RISC-V RV64GC Rocket cores an in-order
 The MEISHA hardware resource block diagram is as follows:
 <div align="center">
 
-![](https://tcs-devops.aliyuncs.com/storage/113s883ba488a16b1b9edbf4f52ecc328ec9?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IjY4NWEyYzlhY2JmZmVlMWRlMmE2NDQ0OSIsImV4cCI6MTc3NDU3ODQ0OCwiaWF0IjoxNzczOTczNjQ4LCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3M4ODNiYTQ4OGExNmIxYjllZGJmNGY1MmVjYzMyOGVjOSJ9.FhjJzTeXJMcWVn0zTBCVce5eSGyVGrNauWGrOUNVn5U&download=%E7%A1%AC%E4%BB%B6%E8%B5%84%E6%BA%90%E6%A1%86%E5%9B%BE.png "")
+![](pic/硬件资源框图.png)
 </div>
 <div align="center" style="font-size:14px;color:#000000;">Figure 2.MEISHA Hardware Resource Block Diagram</div> <br>
 
@@ -52,14 +52,14 @@ PS (Processor System) is the hard processor system built into the chip, typicall
 The MEISHA development board adopts a design combining an SoC baseboard and an FPGA core board. The FPGA core board uses the ZYNQ7020 chip. The onboard resources of the SoC baseboard are shown in the following figure:
 <div align="center">
 
-![](https://tcs-devops.aliyuncs.com/storage/113sf1379aa23c361245021787ed7c02b3ef?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IjY4NWEyYzlhY2JmZmVlMWRlMmE2NDQ0OSIsImV4cCI6MTc3NDU3ODYxOSwiaWF0IjoxNzczOTczODE5LCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3NmMTM3OWFhMjNjMzYxMjQ1MDIxNzg3ZWQ3YzAyYjNlZiJ9.oGnR3yhyp1jUFGn2rZ0KztqDIHqaEjILu2hnMjdR4RM&download=%E6%9D%BF%E8%BD%BD%E8%B5%84%E6%BA%90.png "")
+![](pic/板载资源.png)
 </div> 
 <div align="center" style="font-size:14px;color:#000000;">Figure 3.SoC Baseboard Onboard Resources</div> <br>
 
 The FPGA core board used with the SoC baseboard is shown in the following figure:
 <div align="center"> 
 
-![](https://tcs-devops.aliyuncs.com/storage/113r72d411a3a12038c69f99f88f0a902001?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3Mzk4NzQ4MSwiaWF0IjoxNzczMzgyNjgxLCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3I3MmQ0MTFhM2ExMjAzOGM2OWY5OWY4OGYwYTkwMjAwMSJ9.2HFRJtfoekqv3yEUTQsrWoc2NuQSTy_IGBNR27jeR5U&download=FPGA.png "")
+<img src="pic/FPGA.png" style="width:80%; max-width:700px; border: 1px solid #ddd; border-radius: 4px;">
 </div> 
 <div align="center" style="font-size:14px;color:#000000;">Figure 4.FPGA Core Board</div><br>
 
@@ -136,29 +136,163 @@ The detailed introduction of peripherals and interfaces is shown in the followin
 
 <div align="center" style="font-size:14px;color:#000000;">Table 2.Register Default Values Table:</div>
 
-| Module    | Base Address | Register                                      | Address Offset | Default Value     |  Default Value       | Description                     |
-| -------- | ---------- | ---------------------------------------- | ----- | ---------- | ---------- | ----------------------- |
-| serial   | 0x64000000 | txdata                                   | 0x00  | 0x0        |            |                         |
-|          |            | rxdata                                   | 0x04  | 0x80000000 |            |                         |
-|          |            | txctrl                                   | 0x08  | 0x0        |            |                         |
-|          |            | rxctrl                                   | 0x0C  | 0x0        |            |                         |
-|          |            | div                                      | 0x18  | 0x1b2      |            |                         |
-| pll      | 0x51000000 | DEBUG_MODE_CONFIG                        | /     | 0          | 1          | DIP switch SW25, its value affects the default values of some registers |
-|          |            | unlock_reg                               | 0x00  | 0x1        | 0x1        |                         |
-|          |            | pll_cfg_reg[31:0] (pll_cfg_reg_frac)     | 0x08  | 0x1        | 0x1        |  `pll_cfg_reg_frac[4:0]` serves as the pre-divider, denoted as coefficient M, which divides the reference clock `ref_clk`. Its value ranges from 1 to 31.<br>`pll_cfg_reg_frac[28:5]` is used as the fractional part (`frac`) to achieve finer fractional division ratio configuration. Currently, MEISHA does not support fractional division mode.        |
-|          |            | pll_cfg_reg[63:32] (pll_cfg_reg_postdiv) | 0x10  | 0xc98663   | 0xc98663   |  The output clock frequency is given by **Fvco = Fref × NI ÷ M**, where Fref is the reference clock frequency (40 MHz), NI (`pll_cfg_reg_postdiv[29:18]`) is the feedback divider integer ratio (`fbdiv`) used for frequency multiplication, and M (`pll_cfg_reg_frac[4:0]`) is the pre-divider.<br>Then, post-division is applied: `pll_cfg_reg_postdiv[17:15]` as Q0_0, `[14:12]` as Q1_0, `[11:9]` as Q0_1, `[8:6]` as Q1_1, `[5:3]` as Q0_2, and `[2:0]` as Q1_2. Each Q ranges from 1 to 8, corresponding to the stored value plus 1. The three output clocks are: `pll_cpu_clk (clko0)`, `pll_main_clk (clko1)`, and `pll_chiplink_clk (clko2)`. Their frequencies are calculated as, e.g., **Fclko0 = Fvco ÷ Q0_0 ÷ Q1_0**.            |
-|          |            |                 pll_cfg_mix[31]                        | 0x100  | 0x1   | 0x1        | The MSB of this register, `pll_cfg_mix[31]`, acts as the power-down (pd) signal. To enable the PLL, this bit must be set to 0; otherwise, the PLL will not output a clock. To modify the PLL configuration registers at power-on, first switch to the reference clock, assert the pd bit to 1, modify the configuration, wait at least 1 µs, then set the pd bit to 0, and finally switch back to using the PLL clock.               |
-|          |            |use_which_clk_reg                        | 0x18  | 0x95000    | 0x0        |   `use_which_clk` selects the final clock source (PLL clock, divided PLL clock, reference clock, or divided reference clock). For `cpu_clk`, when `use_which_clk` is set to 0–31, it selects from `{clk_out_ref_temp[MAX_DIV_CNT-1:0], clk_out_cpu_temp[MAX_DIV_CNT-1:0], pll_output_clk_cpu, clk_in1}`. For example, `use_which_clk = 0` selects the `reference clock`; `=2` selects `pll_output_clk_cpu`; values 2–16 correspond to reference clock divided by 2,4,6,…,30; values 17–31 correspond to pll_cpu_clk divided by 2,4,6,…,30. **Note**: This selection only takes effect when use_which_clk[4:0] (for the CPU domain) is non-zero; otherwise, all clock domains use the 40 MHz reference clock.                      |
-|          |            | pll_state_reg                            | 0x20  | 0x40000001 | 0x80000000 |                         |
-| chiplink |            | chiplink tx                              | 0xB0  | 0x318c6305 |            |                         |
-|          |            | chiplink rx                              | 0xB8  | 0x318c6305 |            |                         |
-|          |            | mig_slave_base_addr_msb_4_reg            | 0x40  | 0x8        |            |                         |
+<table style="width:100%; border-collapse:collapse; font-size:12px; line-height:1.3;">
+<thead>
+<tr style="background-color:#f0f0f0;">
+<th style="width:6%; border:1px solid #ddd; padding:3px; text-align:left; word-wrap:break-word; overflow-wrap:break-word;">Module</th>
+<th style="width:6%; border:1px solid #ddd; padding:3px; text-align:left; font-size:11px; word-wrap:break-word; overflow-wrap:break-word;">Base Addr</th>
+<th style="width:11%; border:1px solid #ddd; padding:3px; text-align:left; word-wrap:break-word; overflow-wrap:break-word;">Register</th>
+<th style="width:6%; border:1px solid #ddd; padding:3px; text-align:center;">Offset</th>
+<th style="width:6%; border:1px solid #ddd; padding:3px; text-align:center;">Dflt1</th>
+<th style="width:6%; border:1px solid #ddd; padding:3px; text-align:center;">Dflt2</th>
+<th style="width:39%; border:1px solid #ddd; padding:3px; text-align:left; word-wrap:break-word; overflow-wrap:break-word;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="width:6%; border:1px solid #ddd; padding:3px; word-wrap:break-word;">serial</td>
+<td style="width:6%; border:1px solid #ddd; padding:3px; font-size:10px;">0x640000</td>
+<td style="width:11%; border:1px solid #ddd; padding:3px; word-wrap:break-word;">txdata</td>
+<td style="width:6%; border:1px solid #ddd; padding:3px; text-align:center;">0x00</td>
+<td style="width:6%; border:1px solid #ddd; padding:3px; text-align:center;">0x0</td>
+<td style="width:6%; border:1px solid #ddd; padding:3px;"></td>
+<td style="width:39%; border:1px solid #ddd; padding:3px;"></td>
+</tr>
+<tr>
+<td style="width:6%; border:1px solid #ddd; padding:3px;"></td>
+<td style="width:6%; border:1px solid #ddd; padding:3px;"></td>
+<td style="width:11%; border:1px solid #ddd; padding:3px; word-wrap:break-word;">rxdata</td>
+<td style="width:6%; border:1px solid #ddd; padding:3px; text-align:center;">0x04</td>
+<td style="width:6%; border:1px solid #ddd; padding:3px; text-align:center;">0x80000000</td>
+<td style="width:6%; border:1px solid #ddd; padding:3px;"></td>
+<td style="width:39%; border:1px solid #ddd; padding:3px;"></td>
+</tr>
+<tr>
+<td style="width:6%; border:1px solid #ddd; padding:3px;"></td>
+<td style="width:6%; border:1px solid #ddd; padding:3px;"></td>
+<td style="width:11%; border:1px solid #ddd; padding:3px; word-wrap:break-word;">txctrl</td>
+<td style="width:6%; border:1px solid #ddd; padding:3px; text-align:center;">0x08</td>
+<td style="width:6%; border:1px solid #ddd; padding:3px; text-align:center;">0x0</td>
+<td style="width:6%; border:1px solid #ddd; padding:3px;"></td>
+<td style="width:39%; border:1px solid #ddd; padding:3px;"></td>
+</tr>
+<tr>
+<td style="width:6%; border:1px solid #ddd; padding:3px;"></td>
+<td style="width:6%; border:1px solid #ddd; padding:3px;"></td>
+<td style="width:11%; border:1px solid #ddd; padding:3px; word-wrap:break-word;">rxctrl</td>
+<td style="width:6%; border:1px solid #ddd; padding:3px; text-align:center;">0x0C</td>
+<td style="width:6%; border:1px solid #ddd; padding:3px; text-align:center;">0x0</td>
+<td style="width:6%; border:1px solid #ddd; padding:3px;"></td>
+<td style="width:39%; border:1px solid #ddd; padding:3px;"></td>
+</tr>
+<tr>
+<td style="width:6%; border:1px solid #ddd; padding:3px;"></td>
+<td style="width:6%; border:1px solid #ddd; padding:3px;"></td>
+<td style="width:11%; border:1px solid #ddd; padding:3px; word-wrap:break-word;">div</td>
+<td style="width:6%; border:1px solid #ddd; padding:3px; text-align:center;">0x18</td>
+<td style="width:6%; border:1px solid #ddd; padding:3px; text-align:center;">0x1b2</td>
+<td style="width:6%; border:1px solid #ddd; padding:3px;"></td>
+<td style="width:39%; border:1px solid #ddd; padding:3px;"></td>
+</tr>
+<tr>
+<td style="width:6%; border:1px solid #ddd; padding:3px;">pll</td>
+<td style="width:6%; border:1px solid #ddd; padding:3px; font-size:10px;">0x510000</td>
+<td style="width:11%; border:1px solid #ddd; padding:3px; word-wrap:break-word;">DEBUG_<br>MODE_<br>CONFIG</td>
+<td style="width:6%; border:1px solid #ddd; padding:3px; text-align:center;">/</td>
+<td style="width:6%; border:1px solid #ddd; padding:3px; text-align:center;">0</td>
+<td style="width:6%; border:1px solid #ddd; padding:3px; text-align:center;">1</td>
+<td style="width:39%; border:1px solid #ddd; padding:3px;">DIP SW25 affects register defaults</td>
+</tr>
+<tr>
+<td style="width:6%; border:1px solid #ddd; padding:3px;"></td>
+<td style="width:6%; border:1px solid #ddd; padding:3px;"></td>
+<td style="width:11%; border:1px solid #ddd; padding:3px; word-wrap:break-word;">unlock_<br>reg</td>
+<td style="width:6%; border:1px solid #ddd; padding:3px; text-align:center;">0x00</td>
+<td style="width:6%; border:1px solid #ddd; padding:3px; text-align:center;">0x1</td>
+<td style="width:6%; border:1px solid #ddd; padding:3px; text-align:center;">0x1</td>
+<td style="width:39%; border:1px solid #ddd; padding:3px;"></td>
+</tr>
+<tr>
+<td style="width:6%; border:1px solid #ddd; padding:3px;"></td>
+<td style="width:6%; border:1px solid #ddd; padding:3px;"></td>
+<td style="width:11%; border:1px solid #ddd; padding:3px; word-wrap:break-word;">pll_cfg<br>_reg<br>[31:0]</td>
+<td style="width:6%; border:1px solid #ddd; padding:3px; text-align:center;">0x08</td>
+<td style="width:6%; border:1px solid #ddd; padding:3px; text-align:center;">0x1</td>
+<td style="width:6%; border:1px solid #ddd; padding:3px; text-align:center;">0x1</td>
+<td style="width:39%; border:1px solid #ddd; padding:3px; font-size:11px;"><code>[4:0]</code>pre-div M(1-31), <code>[28:5]</code>frac(n/a)</td>
+</tr>
+<tr>
+<td style="width:6%; border:1px solid #ddd; padding:3px;"></td>
+<td style="width:6%; border:1px solid #ddd; padding:3px;"></td>
+<td style="width:11%; border:1px solid #ddd; padding:3px; word-wrap:break-word;">pll_cfg<br>_reg<br>[63:32]</td>
+<td style="width:6%; border:1px solid #ddd; padding:3px; text-align:center;">0x10</td>
+<td style="width:6%; border:1px solid #ddd; padding:3px; text-align:center;">0xc98663</td>
+<td style="width:6%; border:1px solid #ddd; padding:3px; text-align:center;">0xc98663</td>
+<td style="width:39%; border:1px solid #ddd; padding:3px; font-size:11px;">Fvco=Fref×NI÷M. Q0_0/Q1_0/Q0_1/Q1_1/Q0_2/Q1_2 (1-8 each)</td>
+</tr>
+<tr>
+<td style="width:6%; border:1px solid #ddd; padding:3px;"></td>
+<td style="width:6%; border:1px solid #ddd; padding:3px;"></td>
+<td style="width:11%; border:1px solid #ddd; padding:3px; word-wrap:break-word;">pll_cfg<br>_mix[31]</td>
+<td style="width:6%; border:1px solid #ddd; padding:3px; text-align:center;">0x100</td>
+<td style="width:6%; border:1px solid #ddd; padding:3px; text-align:center;">0x1</td>
+<td style="width:6%; border:1px solid #ddd; padding:3px; text-align:center;">0x1</td>
+<td style="width:39%; border:1px solid #ddd; padding:3px; font-size:11px;">Power-down. Set 0→enable. Modify: switch ref_clk, pd=1, wait ≥1µs, pd=0</td>
+</tr>
+<tr>
+<td style="width:6%; border:1px solid #ddd; padding:3px;"></td>
+<td style="width:6%; border:1px solid #ddd; padding:3px;"></td>
+<td style="width:11%; border:1px solid #ddd; padding:3px; word-wrap:break-word;">use_<br>which_<br>clk_reg</td>
+<td style="width:6%; border:1px solid #ddd; padding:3px; text-align:center;">0x18</td>
+<td style="width:6%; border:1px solid #ddd; padding:3px; text-align:center;">0x95000</td>
+<td style="width:6%; border:1px solid #ddd; padding:3px; text-align:center;">0x0</td>
+<td style="width:39%; border:1px solid #ddd; padding:3px; font-size:11px;">0=ref,2-16=ref÷2/4/.../30, 17-31=pll÷2/.../30. NZ for CPU</td>
+</tr>
+<tr>
+<td style="width:6%; border:1px solid #ddd; padding:3px;"></td>
+<td style="width:6%; border:1px solid #ddd; padding:3px;"></td>
+<td style="width:11%; border:1px solid #ddd; padding:3px; word-wrap:break-word;">pll_<br>state_<br>reg</td>
+<td style="width:6%; border:1px solid #ddd; padding:3px; text-align:center;">0x20</td>
+<td style="width:6%; border:1px solid #ddd; padding:3px; text-align:center;">0x40000001</td>
+<td style="width:6%; border:1px solid #ddd; padding:3px; text-align:center;">0x80000000</td>
+<td style="width:39%; border:1px solid #ddd; padding:3px;"></td>
+</tr>
+<tr>
+<td style="width:6%; border:1px solid #ddd; padding:3px;">chiplink</td>
+<td style="width:6%; border:1px solid #ddd; padding:3px;"></td>
+<td style="width:11%; border:1px solid #ddd; padding:3px; word-wrap:break-word;">chiplink<br>tx</td>
+<td style="width:6%; border:1px solid #ddd; padding:3px; text-align:center;">0xB0</td>
+<td style="width:6%; border:1px solid #ddd; padding:3px; text-align:center;">0x318c6305</td>
+<td style="width:6%; border:1px solid #ddd; padding:3px;"></td>
+<td style="width:39%; border:1px solid #ddd; padding:3px;"></td>
+</tr>
+<tr>
+<td style="width:6%; border:1px solid #ddd; padding:3px;"></td>
+<td style="width:6%; border:1px solid #ddd; padding:3px;"></td>
+<td style="width:11%; border:1px solid #ddd; padding:3px; word-wrap:break-word;">chiplink<br>rx</td>
+<td style="width:6%; border:1px solid #ddd; padding:3px; text-align:center;">0xB8</td>
+<td style="width:6%; border:1px solid #ddd; padding:3px; text-align:center;">0x318c6305</td>
+<td style="width:6%; border:1px solid #ddd; padding:3px;"></td>
+<td style="width:39%; border:1px solid #ddd; padding:3px;"></td>
+</tr>
+<tr>
+<td style="width:6%; border:1px solid #ddd; padding:3px;"></td>
+<td style="width:6%; border:1px solid #ddd; padding:3px;"></td>
+<td style="width:11%; border:1px solid #ddd; padding:3px; word-wrap:break-word;">mig_slave<br>_base_<br>addr_<br>msb_4</td>
+<td style="width:6%; border:1px solid #ddd; padding:3px; text-align:center;">0x40</td>
+<td style="width:6%; border:1px solid #ddd; padding:3px; text-align:center;">0x8</td>
+<td style="width:6%; border:1px solid #ddd; padding:3px;"></td>
+<td style="width:39%; border:1px solid #ddd; padding:3px;"></td>
+</tr>
+</tbody>
+
+</table>
 
 ## 2.1 Power-On Testing
 This chapter mainly introduces how to perform basic hardware and software tests on the board. The specific steps for power-on testing are shown in the following figure:
 <div align="center"> 
 
-![](https://tcs-devops.aliyuncs.com/storage/113s8ee90698ebb26de93337274204705c38?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IjY4NWEyYzlhY2JmZmVlMWRlMmE2NDQ0OSIsImV4cCI6MTc3Mzk5NzU4MywiaWF0IjoxNzczMzkyNzgzLCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3M4ZWU5MDY5OGViYjI2ZGU5MzMzNzI3NDIwNDcwNWMzOCJ9.j2o_OJQd0eJbQ5VhpS7R7bj4kf7BxEdR4an5gBrL26o&download=%E4%B8%8A%E7%94%B5%E6%B5%8B%E8%AF%95%E6%AD%A5%E9%AA%A4.png "")
+![](pic/上电测试步骤.png)
 </div> 
 <div align="center" style="font-size:14px;color:#000000;">Figure 5.Power-On Test Procedure Flowchart</div><br>
 
@@ -172,7 +306,7 @@ The blue parts are purely hardware operations, while the yellow parts involve so
 First, when installing or removing the FPGA, align the connectors of the MEISHA board and the FPGA, and press down firmly vertically or pull it out. After the FPGA is correctly inserted, connect the necessary debugger according to the schematic diagram, power on, and the normal working effect is shown in the figure:
 <div align="center"> 
 
-![](https://tcs-devops.aliyuncs.com/storage/113sc5c571fe80e68a3f06af5b854c6a8d78?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IjY4NWEyYzlhY2JmZmVlMWRlMmE2NDQ0OSIsImV4cCI6MTc3NDU3NzEwMCwiaWF0IjoxNzczOTcyMzAwLCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3NjNWM1NzFmZTgwZTY4YTNmMDZhZjViODU0YzZhOGQ3OCJ9.lt7DDV5-jqb66va2SdyNpzOQ9M2oQdKvWMsE95yVZ2Q&download=%E6%AD%A3%E5%B8%B8%E5%B7%A5%E4%BD%9C.jpg "")
+<img src="pic/正常工作.jpg" style="width:70%; max-width:600px; border: 1px solid #ddd; border-radius: 4px;">
 </div> 
 <div align="center" style="font-size:14px;color:#000000;">Figure 6.Board Normal Working Condition</div>
 
@@ -180,7 +314,7 @@ First, when installing or removing the FPGA, align the connectors of the MEISHA 
 SPI_SLAVE is a debug module that directly accesses all accessible address spaces inside the chip through the bus. It is used to verify on-chip peripherals and conduct preliminary testing of the MEISHA chip.
 <div align="center"> 
 
-![](https://tcs-devops.aliyuncs.com/storage/113re822a0f7e4860773aaf40d53dd9a89dc?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3Mzk4NzQ4MSwiaWF0IjoxNzczMzgyNjgxLCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3JlODIyYTBmN2U0ODYwNzczYWFmNDBkNTNkZDlhODlkYyJ9.bCIfXyqAv1Hfy2L7OVSx9_YPmsABIFMFDk2Hvcu1rds&download=SPI_SLAVE%E7%B3%BB%E7%BB%9F%E6%A1%86%E5%9B%BE.png "")
+<img src="pic/SPI_SLAVE系统框图.png" style="width:85%; max-width:750px; border: 1px solid #ddd; border-radius: 4px;">
 </div> 
 <div align="center" style="font-size:14px;color:#000000;">Figure 7.SPI_SLAVE System Block Diagram</div>
 
@@ -188,7 +322,7 @@ SPI_SLAVE is a debug module that directly accesses all accessible address spaces
 The pins of SPI_SLAVE are SPI SCLK, SPI CS, SPI DATA[3:0].
 <div align="center"> 
 
-![](https://tcs-devops.aliyuncs.com/storage/113scd1d850895fcd13f76f9bdc18b8b502c?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IjY4NWEyYzlhY2JmZmVlMWRlMmE2NDQ0OSIsImV4cCI6MTc3NDU3ODY3NywiaWF0IjoxNzczOTczODc3LCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3NjZDFkODUwODk1ZmNkMTNmNzZmOWJkYzE4YjhiNTAyYyJ9.lMZ7wAnGitmRwruG6gocVcHL0hwlCfJHZRAhDChDPyY&download=SPI_SLAVE%E7%AE%A1%E8%84%9A.png "")
+<img src="pic/SPI_SLAVE管脚.png" style="width:75%; max-width:650px; border: 1px solid #ddd; border-radius: 4px;">
 </div> 
 <div align="center" style="font-size:14px;color:#000000;">Figure 8.SPI_SLAVE Pinout</div><br>
 
@@ -197,7 +331,7 @@ The SPI_SLAVE_TEST_MODE signal should default to 1; it seems it is not available
 By default, SPI dual-wire full-duplex mode is used, so only SPI SCLK, SPI CS, SPI DATA0, and SPI DATA1 are used. SPI DATA0 corresponds to SPI DO (MOSI), and SPI DATA1 corresponds to SPI DI (MISO). The SPI_SLAVE pins of the MEISHA chip are directly connected to a voltage level translator chip (SN74AXC4T774PWR), which converts the core's 1.8V to the FT2232's 3.3V.
 <div align="center"> 
 
-![](https://tcs-devops.aliyuncs.com/storage/113r137b8156ff9cd19ec253964aaf6b2aab?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3Mzk4NzQ4MSwiaWF0IjoxNzczMzgyNjgxLCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3IxMzdiODE1NmZmOWNkMTllYzI1Mzk2NGFhZjZiMmFhYiJ9.SFBnYDwdv7TSCGnMROdTvjsM04gkdcZ0ThbHFRnuN5k&download=SPI_SLAVE%E7%94%B5%E5%B9%B3%E8%BD%AC%E6%8D%A2.png "")
+![](pic/SPI_SLAVE电平转换.png)
 </div> 
 <div align="center" style="font-size:14px;color:#000000;">Figure 9.SPI_SLAVE Level Shifting Circuit</div><br>
 
@@ -206,7 +340,7 @@ The corresponding channel signals are level-shifted through the voltage level tr
 Then, DIP switch SW23 is used to select whether to connect to the onboard FT2232 chip or to connect to an external FT2232 via the H60 pins. When connected to the onboard FT2232, H60 can be connected to a logic analyzer to capture SPI signals for debugging, etc.
 <div align="center"> 
 
-![](https://tcs-devops.aliyuncs.com/storage/113r2462ebe991e5c4d09a10acbbcb1647cf?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3Mzk4NzQ4MSwiaWF0IjoxNzczMzgyNjgxLCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3IyNDYyZWJlOTkxZTVjNGQwOWExMGFjYmJjYjE2NDdjZiJ9.6izwu99F3qXaiHH0U6MIeYSgtIOt6piYgfTr_sGH9Jw&download=SPI_SLAVE%E6%8B%A8%E7%A0%81%E5%BC%80%E5%85%B3.png "")
+![](pic/SPI_SLAVE拨码开关.png)
 </div> 
 <div align="center" style="font-size:14px;color:#000000;">Figure 10.SPI_SLAVE DIP Switch Connection</div><br>
 
@@ -215,7 +349,7 @@ The SPI_DO_U signal is connected via DIP switch SW23 to SPI DO, which is connect
 The onboard FT2232HQ is equipped with a 93AA56BT-I/OT EEPROM as non-volatile memory. To program the FT2232HQ, the board must be powered on to supply power to the FT2232HQ, as the USB interface alone does not power it.
 <div align="center"> 
 
-![](https://tcs-devops.aliyuncs.com/storage/113r2420b90fc578a8e5b1a9e73d69f12a10?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3Mzk4NzQ4MSwiaWF0IjoxNzczMzgyNjgxLCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3IyNDIwYjkwZmM1NzhhOGU1YjFhOWU3M2Q2OWYxMmExMCJ9.A4QfgPfIYtYOS8-ss9aSbIqw1WBvVKwlEw9Pn0KF7SU&download=FT2232HQ.png "")
+![](pic/FT2232HQ.png)
 </div> 
 <div align="center" style="font-size:14px;color:#000000;">Figure 11.FT2232HQ Chip</div><br>
 
@@ -225,14 +359,14 @@ For more flexible use of the SPI chip select signal, the FT2232 BDBUS hardware S
 The onboard crystal oscillator clock is 40MHz, single-ended input to MEISHA, connected to SYS CLOCK P.
 <div align="center">
 
-![](https://tcs-devops.aliyuncs.com/storage/113sce69faececcd6296ce573d9109207155?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IjY4NWEyYzlhY2JmZmVlMWRlMmE2NDQ0OSIsImV4cCI6MTc3NDU3ODg0MiwiaWF0IjoxNzczOTc0MDQyLCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3NjZTY5ZmFlY2VjY2Q2Mjk2Y2U1NzNkOTEwOTIwNzE1NSJ9.rzQcgZC6WVVj8cn0h5ezgQJgql4ffH3jC_VGy3fvP_k&download=SYS_CLOCK_P.png "")
+<img src="pic/SYS_CLOCK_P.png" style="width:85%; max-width:650px; border: 1px solid #ddd; border-radius: 4px;">
 </div> 
 <div align="center" style="font-size:14px;color:#000000;">Figure 12.SYS_CLOCK_P Input Connection</div><br>
 
 The entire SoC system is divided into four clock domains: 🔴 CPU (RocketTile), 🟡 main, 🟢 chiplink, 🔵 ddr.
 <div align="center"> 
 
-![](https://tcs-devops.aliyuncs.com/storage/113s3e857985ae45b5a9eb541d75eca73ea3?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IjY4NWEyYzlhY2JmZmVlMWRlMmE2NDQ0OSIsImV4cCI6MTc3NDU3ODg4NywiaWF0IjoxNzczOTc0MDg3LCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3MzZTg1Nzk4NWFlNDViNWE5ZWI1NDFkNzVlY2E3M2VhMyJ9.tLZE9mHwqMMtFJE2JMsb4eLVNW7L_1W-bgEp5j5b-Ew&download=image.png "")
+![](pic/image.png)
 </div> 
 <div align="center" style="font-size:14px;color:#000000;">Figure 13.SoC Clock Domain Partition</div><br>
 
@@ -241,7 +375,7 @@ Refer to this diagram for details; additionally, the DDR clock domain is not mar
 The crystal oscillator inputs 40MHz as ref_clk into the PLL. The PLL has three registers that can be configured. Finally, three clock domain outputs are generated through frequency division: cpu, main, chiplink. The DDR clock is directly connected to the chiplink clock.
 <div align="center"> 
 
-![](https://tcs-devops.aliyuncs.com/storage/113r9a7699c575e47ab798f2c6b8d67f6ad2?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3Mzk4NzQ4MSwiaWF0IjoxNzczMzgyNjgxLCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3I5YTc2OTljNTc1ZTQ3YWI3OThmMmM2YjhkNjdmNmFkMiJ9.2_U8U8IpG1JqofQOKkwYkRaBUKPiD5ANl9Kl57IvbtA&download=a0f54a74da93b9e0e45316ca5480eb17.png "")
+<img src="pic/PLL模块图.png" style="width:85%; max-width:750px; border: 1px solid #ddd; border-radius: 4px;">
 </div> 
 <div align="center" style="font-size:14px;color:#000000;">Figure 14.PLL Structure Diagram</div>
 
@@ -249,7 +383,7 @@ The crystal oscillator inputs 40MHz as ref_clk into the PLL. The PLL has three r
 ### 2.1.4 JTAG Debugging
 <div align="center"> 
 
-![](https://tcs-devops.aliyuncs.com/storage/113rec2af9df2a5cba128e0928171cf21585?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3Mzk4NzQ4MSwiaWF0IjoxNzczMzgyNjgxLCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3JlYzJhZjlkZjJhNWNiYTEyOGUwOTI4MTcxY2YyMTU4NSJ9.zih16CjXOW6FPCzTt2UmGR6Z06ta-PTPQK0ad_RFpJg&download=JTAG%E8%BF%9E%E7%BA%BF%E5%9B%BE.png "")
+![](pic/JTAG连线图.png)
 </div> 
 <div align="center" style="font-size:14px;color:#000000;">Figure 15.JTAG Connection Diagram</div><br>
 
@@ -258,21 +392,21 @@ Connect the chip to the JTAG debugger as shown in the wiring diagram. Pin 9 of o
 Connect the JTAG debugger to the computer. In the JTAG folder, open Windows cmd and enter `openocd -f freedom.cfg` to start the openocd debugger, as shown in the figure:
 <div align="center"> 
 
-![](https://tcs-devops.aliyuncs.com/storage/113r2c01242cdcc6225381e41d3ebd53b2fe?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3Mzk4NzQ4MSwiaWF0IjoxNzczMzgyNjgxLCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3IyYzAxMjQyY2RjYzYyMjUzODFlNDFkM2ViZDUzYjJmZSJ9.zW3HRVhQwnWsyKizufonauiMQ6nOqtr8JoQeFkSFSck&download=openocd.png "")
+![](pic/openocd.png)
 </div> 
 <div align="center" style="font-size:14px;color:#000000;">Figure 16.OpenOCD Startup Interface</div><br>
 
 Open MobaXterm and open a Telnet connection to localhost:4444 to connect to the board, as shown in the figure:
 <div align="center"> 
 
-![](https://tcs-devops.aliyuncs.com/storage/113rb9f315e5817a1efb84085a40922ae1f2?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3Mzk4NzQ4MSwiaWF0IjoxNzczMzgyNjgxLCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3JiOWYzMTVlNTgxN2ExZWZiODQwODVhNDA5MjJhZTFmMiJ9.NwxurEgPudb1GiUTJIqlVrDjU5wTR2gW4t6MrNXStM8&download=GDB.png "")
+<img src="pic/GDB.png" style="width:85%; max-width:750px; border: 1px solid #ddd; border-radius: 4px;">
 </div> 
 <div align="center" style="font-size:14px;color:#000000;">Figure 17.GDB Connection Interface</div><br>
 
 Before executing instructions, the `halt` command is needed to pause the core for test reads and writes.
 <div align="center"> 
 
-![](https://tcs-devops.aliyuncs.com/storage/113se891ef8a6e33f729ec40ca2046f3e934?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IjY4NWEyYzlhY2JmZmVlMWRlMmE2NDQ0OSIsImV4cCI6MTc3NDU3ODk4MiwiaWF0IjoxNzczOTc0MTgyLCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3NlODkxZWY4YTZlMzNmNzI5ZWM0MGNhMjA0NmYzZTkzNCJ9.A4FfbaLiMGY-Ia0PCXii2oPebkosA3flP_WucxM4R_8&download=%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4.png "")
+<img src="pic/常用命令.png" style="width:85%; max-width:750px; border: 1px solid #ddd; border-radius: 4px;">
 </div> 
 <div align="center" style="font-size:14px;color:#000000;">Figure 18.OpenOCD Common Commands</div>
 
@@ -285,21 +419,21 @@ To boot from SRAM, the following conditions must be met:
 In the `sdboot.elf.lds` file, modify the target memory region for the .text section from `maskrom_mem` to `memory_mem`, so that the program generates instructions based on the SRAM address during linking.
 <div align="center"> 
 
-![](https://tcs-devops.aliyuncs.com/storage/113r3bd71948ba1a174c51166681a006cc47?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3Mzk4NzQ4MSwiaWF0IjoxNzczMzgyNjgxLCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3IzYmQ3MTk0OGJhMWExNzRjNTExNjY2ODFhMDA2Y2M0NyJ9.bpg0jhSsFNIJvVY2LO2X90-cmXQdQDotS1kAqbUW3_0&download=%E9%93%BE%E6%8E%A5%E5%9C%B0%E5%9D%80.png "")
+![](pic/链接地址.png)
 </div> 
 <div align="center" style="font-size:14px;color:#000000;">Figure 19.Linker Script Modification Example</div><br>
 
 The boot code specifies the execution start address of the user program via `PAYLOAD_DEST`. Set `PAYLOAD_DEST` in `head.s` to the SRAM start physical address, so that the processor fetches and executes the user program from SRAM.
 <div align="center"> 
 
-![](https://tcs-devops.aliyuncs.com/storage/113r7768337a331c28f11c6a2217b23dd5db?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3Mzk4NzQ4MSwiaWF0IjoxNzczMzgyNjgxLCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3I3NzY4MzM3YTMzMWMyOGYxMWM2YTIyMTdiMjNkZDVkYiJ9.CikO63dZYileDSJ1DXpzWiPPbRnfsrA_QMocFUbFnUU&download=%E5%90%AF%E5%8A%A8%E5%9C%B0%E5%9D%80.png "")
+<img src="pic/启动地址.png" style="width:80%; max-width:700px; border: 1px solid #ddd; border-radius: 4px;">
 </div> 
 <div align="center" style="font-size:14px;color:#000000;">Figure 20.Boot Address Setting</div><br>
 
 During testing, first ensure DEBUG_MODE_SEL is set to 1, corresponding to the core not being released from reset. After reset release, it defaults to booting from ON CHIP SRAM. Write 1 to the reset register sft_rst_reg to keep the core in reset and not running. Modify the head.s and sdboot.elf.lds files, compile and generate a hex file, and burn the hex file to the corresponding SRAM address. Then change the reset register value to 0, and observe the output in the serial port assistant to see if it meets expectations.
 <div align="center">
 
-![](https://tcs-devops.aliyuncs.com/storage/113r4c3a2dd0443ed71afeacea30d950f975?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3Mzk4NzQ4MSwiaWF0IjoxNzczMzgyNjgxLCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3I0YzNhMmRkMDQ0M2VkNzFhZmVhY2VhMzBkOTUwZjk3NSJ9.xvHnjkRo8Aie_-AeBHB7m9wrZwaU8rit7U-V3WX3lCs&download=SW25.png "")
+![](pic/SW25.png)
 </div> 
 <div align="center" style="font-size:14px;color:#000000;">Figure 21.DIP Switch SW25 Setting (Boot Mode)</div>
 
@@ -309,12 +443,12 @@ $f_{baud}=\frac{f_{in}}{div+1}$
 where f_baud is 115200, calculate the current UART div and modify the register to ensure the UART can sample correctly.
 <div align="center"> 
 
-![](https://tcs-devops.aliyuncs.com/storage/113r3c4cfe0ac7820151ac4ee5a4415f00b6?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3Mzk4NzQ4MSwiaWF0IjoxNzczMzgyNjgxLCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3IzYzRjZmUwYWM3ODIwMTUxYWM0ZWU1YTQ0MTVmMDBiNiJ9.WUtGsu-3AkUUaMahSUZyVRSGA0JG4f8FzMXN126CrzI&download=SW25.png "")
+![](pic/SW25.png)
 </div> 
 <div align="center" style="font-size:14px;color:#000000;">Figure 22.DIP Switch SW25 Setting (UART Debug)</div>
 <div align="center"> 
 
-![](https://tcs-devops.aliyuncs.com/storage/113rdaad68c74a39f0e255863bde9b1c7d98?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3Mzk4NzQ4MSwiaWF0IjoxNzczMzgyNjgxLCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3JkYWFkNjhjNzRhMzlmMGUyNTU4NjNiZGU5YjFjN2Q5OCJ9.0OmYaqiJm_-S5B8H1o5RdirUCECIvBEtBNcbuPKjenE&download=UART%E5%AF%84%E5%AD%98%E5%99%A8.png "")
+<img src="pic/UART寄存器.png" style="width:85%; max-width:750px; border: 1px solid #ddd; border-radius: 4px;">
 </div> 
 <div align="center" style="font-size:14px;color:#000000;">Figure 23.UART Registers</div>
 
@@ -332,7 +466,7 @@ Hardware Configuration:
 - DEBUG_MODE_CONFIG is set to 3, uses 40MHz reference clock.
 <div align="center"> 
 
-![](https://tcs-devops.aliyuncs.com/storage/113qef8cc965239315913aa18e4197bd8033?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3Mzk4NzQ4MSwiaWF0IjoxNzczMzgyNjgxLCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3FlZjhjYzk2NTIzOTMxNTkxM2FhMThlNDE5N2JkODAzMyJ9.j_zup3mLbpT7R5DPcLt8CQH2ng4qPVr0uR8mTB1Ajsg&download=image-1.png "")
+![](pic/SW25.png)
 </div> 
 <div align="center" style="font-size:14px;color:#000000;">Figure 24.USD Card Debug Hardware Configuration</div><br>
 
@@ -341,7 +475,7 @@ The software driver actually operates the pins of the auto_spi module.
 Check the hardware power supply of the external SD module and adjust its power to a stable 3.3V.
 <div align="center"> 
 
-![](https://tcs-devops.aliyuncs.com/storage/113qa54f167f1b943a4202322efa3737f760?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3Mzk4NzQ4MSwiaWF0IjoxNzczMzgyNjgxLCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3FhNTRmMTY3ZjFiOTQzYTQyMDIzMjJlZmEzNzM3Zjc2MCJ9.rIsICV7pVoBqgh3IkDo4rrfxY5o_p23tXY0k4mrdvPk&download=image.png "")
+![](pic/H61.png)
 </div> 
 <div align="center" style="font-size:14px;color:#000000;">Figure 25.SD Card Module Power Supply Check</div><br>
 
@@ -358,10 +492,10 @@ Write data `AABBCCDDEEFF` to address 0 of sector 0 in advance. The code runs the
 The overall initialization process runs smoothly, and the SD card read/write test is finally successful.
 <div align="center"> 
 
-![](https://tcs-devops.aliyuncs.com/storage/113qb8b5022708065c4a059b478f893a7eb9?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3Mzk4NzQ4MSwiaWF0IjoxNzczMzgyNjgxLCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3FiOGI1MDIyNzA4MDY1YzRhMDU5YjQ3OGY4OTNhN2ViOSJ9.WjFKrjhORu_Ld2_QPFCZexYExyTzHlMTyFaN00PEOus&download=image-2.png "")
+<img src="pic/SD读写成功.png" style="width:85%; max-width:750px; border: 1px solid #ddd; border-radius: 4px;">
 <div align="center" style="font-size:14px;color:#000000;">Figure 26.SD Card Read/Write Test Success Screenshot 1</div><br>
 
-![](https://tcs-devops.aliyuncs.com/storage/113q8e1ba7c0aa536681c8c23e9cbafc1f4a?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3Mzk4NzQ4MSwiaWF0IjoxNzczMzgyNjgxLCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3E4ZTFiYTdjMGFhNTM2NjgxYzhjMjNlOWNiYWZjMWY0YSJ9.vteMmnV91g-7Uw45N4fHZZkNmXqEFvVbJQtAsdtObQU&download=image-3.png "")
+<img src="pic/SD读写成功2.png" style="width:85%; max-width:750px; border: 1px solid #ddd; border-radius: 4px;">
 </div> 
 <div align="center" style="font-size:14px;color:#000000;">Figure 27.SD Card Read/Write Test Success Screenshot 2</div>
 
@@ -378,7 +512,7 @@ There is not much detailed introduction about Chiplink, and its usage mainly ref
 https://ysyx.oscc.cc/chip/board/official/boards/board-3/#%E7%A1%AC%E4%BB%B6%E8%AE%BE%E8%AE%A1
 <div align="center"> 
 
-![](https://tcs-devops.aliyuncs.com/storage/113s5e34656a8a6235ffea86d3be2131df9e?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3NDIyODg4NywiaWF0IjoxNzczNjI0MDg3LCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3M1ZTM0NjU2YThhNjIzNWZmZWE4NmQzYmUyMTMxZGY5ZSJ9.w6dbftWPOMN9tMt0Ibdt56xcuFe0Clj908PflM9D-As&download=_cgi-bin_mmwebwx-bin_webwxgetmsgimg__%26MsgID%3D3120467347145370429%26skey%3D%40crypt_fef886f8_7376ce2cb911e98d18527fe6f9edfd6a%26mmweb_appid%3Dwx_webfilehelper.jpg "")
+![](pic/chiplink板卡.jpg)
 </div> 
 <div align="center" style="font-size:14px;color:#000000;">Figure 28.Chiplink System Block Design Overview</div><br>
 When building the system according to the block diagram above, the following four points need attention:
@@ -388,14 +522,14 @@ When building the system according to the block diagram above, the following fou
 - The ZYNQ7 Processing System should output two clocks: a 10MHz clock for the Chiplink module (must not exceed 25MHz) and a 100MHz clock for the ZYNQ7 Processing System itself.
 <div align="center">
 
-![](https://tcs-devops.aliyuncs.com/storage/113sb29a5e161d11a212d924f70b5d6ad113?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3NDIyODg4NywiaWF0IjoxNzczNjI0MDg3LCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3NiMjlhNWUxNjFkMTFhMjEyZDkyNGY3MGI1ZDZhZDExMyJ9.GUVUMZrhTxoURaDxNd5-wo9jayxaNz2r8SLBtRBdQWQ&download=_cgi-bin_mmwebwx-bin_webwxgetmsgimg__%26MsgID%3D2464704669439385186%26skey%3D%40crypt_fef886f8_7376ce2cb911e98d18527fe6f9edfd6a%26mmweb_appid%3Dwx_webfilehelper.jpg "")
+<img src="pic/zynq配置" style="width:85%; max-width:750px; border: 1px solid #ddd; border-radius: 4px;">
 </div> 
 <div align="center" style="font-size:14px;color:#000000;">Figure 29.ZYNQ7 Processing System Clock Configuration</div><br>
 
 - The DDR memory model must be modified to the correct one.
 <div align="center">
 
-![](https://tcs-devops.aliyuncs.com/storage/113s4db255812fe19e64fcd142bc6b877f89?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3NDIyODg4NywiaWF0IjoxNzczNjI0MDg3LCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3M0ZGIyNTU4MTJmZTE5ZTY0ZmNkMTQyYmM2Yjg3N2Y4OSJ9.-FeB9DNU5rh8Tdk6GdllTqQArN0cdzE_QBhb_qTVipo&download=_cgi-bin_mmwebwx-bin_webwxgetmsgimg__%26MsgID%3D4945181983439798140%26skey%3D%40crypt_fef886f8_7376ce2cb911e98d18527fe6f9edfd6a%26mmweb_appid%3Dwx_webfilehelper.jpg "")
+<img src="pic/管脚约束.jpg" style="width:85%; max-width:750px; border: 1px solid #ddd; border-radius: 4px;">
 </div> 
 <div align="center" style="font-size:14px;color:#000000;">Figure 30.DDR Memory Part Number Configuration</div><br>
 
