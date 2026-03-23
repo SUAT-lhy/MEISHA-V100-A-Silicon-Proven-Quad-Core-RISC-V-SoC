@@ -1,0 +1,16 @@
+# OS files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# IDE files
+.vscode/
+.idea/
+*.suo
+*.iml
+
+# Others
+.git/
+node_modules/
+.env
