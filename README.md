@@ -458,7 +458,7 @@ where f_baud is 115200, calculate the current UART div and modify the register t
 <div align="center" style="font-size:14px;color:#000000;">Figure 22.DIP Switch SW25 Setting (UART Debug)</div>
 <div align="center"> 
 
-<img src="pic/UART寄存器.png" style="width:85%; max-width:750px; border: 1px solid #ddd; border-radius: 4px;">
+<img src="pic/UART寄存器.png" style="width:60%; max-width:750px; border: 1px solid #ddd; border-radius: 4px;">
 </div> 
 <div align="center" style="font-size:14px;color:#000000;">Figure 23.UART Registers</div>
 
@@ -502,10 +502,10 @@ Write data `AABBCCDDEEFF` to address 0 of sector 0 in advance. The code runs the
 The overall initialization process runs smoothly, and the SD card read/write test is finally successful.
 <div align="center"> 
 
-<img src="pic/SD读写成功.png" style="width:85%; max-width:750px; border: 1px solid #ddd; border-radius: 4px;">
+<img src="pic/SD读写成功.png" style="width:50%; max-width:750px; border: 1px solid #ddd; border-radius: 4px;">
 <div align="center" style="font-size:14px;color:#000000;">Figure 26.SD Card Read/Write Test Success Screenshot 1</div><br>
 
-<img src="pic/SD读写成功2.png" style="width:85%; max-width:750px; border: 1px solid #ddd; border-radius: 4px;">
+<img src="pic/SD读写成功2.png" style="width:50%; max-width:750px; border: 1px solid #ddd; border-radius: 4px;">
 </div> 
 <div align="center" style="font-size:14px;color:#000000;">Figure 27.SD Card Read/Write Test Success Screenshot 2</div>
 
