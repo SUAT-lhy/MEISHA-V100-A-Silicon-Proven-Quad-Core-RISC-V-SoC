@@ -43,10 +43,10 @@ Each MEISHA V100 SoC contains four 64-bit RISC-V RV64GC Rocket cores an in-order
 ## 1.2 Project Contributors
 RISC-V Group, Faculty of Computing Microelectronics, SUAT
 
-Group Leader: Li HY, Mark
-Module Design: Huang XC, Mark
-FPGA Verification: Huang XC, Deng YF, Jiang J
-Documentation: Jiang J, Deng YF
+- Group Leader & Arch Design: Li HY, Mark
+- Module Design: Huang XC, Mark
+- SoC on Board Test: Huang XC, Deng YF, Jiang J
+- Documentation: Jiang J, Deng YF, Huang XC
 This guide aims to provide users with comprehensive instructions from hardware setup to software development, enabling rapid understanding and utilization of the MEISHA V100 platform for development purposes.
 
 # 2.MEISHA Test Board Overview
