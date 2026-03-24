@@ -1,4 +1,5 @@
 # 1.Introduction to MEISHA Chip
+## 1.1 Overview
 The MEISHA V100 is a silicon-proven SoC manufactured on a 40nm process. It integrates four 64-bit RISC-V RV64GC Rocket cores featuring a 5-stage in-order scalar pipeline with a clock speed of up to 1.0GHz. For AI workloads, the chip features an embedded NVIDIA DLA providing 0.5 TOPS of computing power. Equipped with comprehensive peripherals and interfaces, the platform fully supports the Linux operating system.
 
 **Processing Units**
@@ -38,6 +39,15 @@ Each MEISHA V100 SoC contains four 64-bit RISC-V RV64GC Rocket cores an in-order
 ![](pic/FPGA_Prototype_Based_on_MEISHA_V100.jpg)
 </div> 
 <div align="center" style="font-size:14px;color:#000000;">Figure 1.FPGA Prototype Based on MEISHA V100</div> 
+
+## 1.2 Project Contributors
+RISC-V Group, Faculty of Computing Microelectronics, SUAT
+
+Group Leader: Li HY, Mark
+Module Design: Huang XC, Mark
+FPGA Verification: Huang XC, Deng YF, Jiang J
+Documentation: Jiang J, Deng YF
+This guide aims to provide users with comprehensive instructions from hardware setup to software development, enabling rapid understanding and utilization of the MEISHA V100 platform for development purposes.
 
 # 2.MEISHA Test Board Overview
 The MEISHA hardware resource block diagram is as follows:
