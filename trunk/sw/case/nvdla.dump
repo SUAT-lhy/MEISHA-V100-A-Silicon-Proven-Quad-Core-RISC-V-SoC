@@ -1,0 +1,2479 @@
+
+nvdla.elf:     file format elf64-littleriscv
+nvdla.elf
+architecture: riscv:rv64, flags 0x00000112:
+EXEC_P, HAS_SYMS, D_PAGED
+start address 0x0000000080000000
+
+Program Header:
+    LOAD off    0x0000000000001000 vaddr 0x0000000080000000 paddr 0x0000000080000000 align 2**12
+         filesz 0x0000000000001c58 memsz 0x0000000000001c58 flags r-x
+    LOAD off    0x0000000000002c58 vaddr 0x0000000080001c58 paddr 0x0000000080001c58 align 2**12
+         filesz 0x0000000000000118 memsz 0x0000000000000118 flags rw-
+    LOAD off    0x0000000000003000 vaddr 0x0000000080000000 paddr 0x0000000080000000 align 2**12
+         filesz 0x0000000000000000 memsz 0x0000000000000000 flags rw-
+
+Sections:
+Idx Name          Size      VMA               LMA               File off  Algn
+  0 .text         00001c58  0000000080000000  0000000080000000  00001000  2**2
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .rodata       000000f8  0000000080001c58  0000000080001c58  00002c58  2**3
+                  CONTENTS, ALLOC, LOAD, READONLY, DATA
+  2 .sdata        00000020  0000000080001d50  0000000080001d50  00002d50  2**3
+                  CONTENTS, ALLOC, LOAD, DATA
+  3 .bss          00000000  0000000080000000  0000000080000000  00003000  2**3
+                  ALLOC
+  4 .debug_line   00000d92  0000000000000000  0000000000000000  00002d70  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   00000475  0000000000000000  0000000000000000  00003b02  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 000001da  0000000000000000  0000000000000000  00003f77  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_aranges 00000090  0000000000000000  0000000000000000  00004160  2**4
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_str    000001b6  0000000000000000  0000000000000000  000041f0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .comment      00000011  0000000000000000  0000000000000000  000043a6  2**0
+                  CONTENTS, READONLY
+ 10 .debug_frame  00000170  0000000000000000  0000000000000000  000043b8  2**3
+                  CONTENTS, READONLY, DEBUGGING
+SYMBOL TABLE:
+0000000080000000 l    d  .text	0000000000000000 .text
+0000000080001c58 l    d  .rodata	0000000000000000 .rodata
+0000000080001d50 l    d  .sdata	0000000000000000 .sdata
+0000000080000000 l    d  .bss	0000000000000000 .bss
+0000000000000000 l    d  .debug_line	0000000000000000 .debug_line
+0000000000000000 l    d  .debug_info	0000000000000000 .debug_info
+0000000000000000 l    d  .debug_abbrev	0000000000000000 .debug_abbrev
+0000000000000000 l    d  .debug_aranges	0000000000000000 .debug_aranges
+0000000000000000 l    d  .debug_str	0000000000000000 .debug_str
+0000000000000000 l    d  .comment	0000000000000000 .comment
+0000000000000000 l    d  .debug_frame	0000000000000000 .debug_frame
+0000000000000000 l    df *ABS*	0000000000000000 nvdla.c
+0000000080001d50 l     O .sdata	0000000000000008 uart
+0000000080001d58 l     O .sdata	0000000000000008 SHUTDOWN_FLAG_STR
+0000000000000000 l    df *ABS*	0000000000000000 kprintf.c
+0000000080001d60 l     O .sdata	0000000000000008 uart
+0000000080001d68 l     O .sdata	0000000000000008 SHUTDOWN_FLAG_STR
+00000000800018f8 l     F .text	000000000000004c kputc
+0000000080001944 l     F .text	000000000000005c _kputs
+0000000080000000 g       .bss	0000000000000000 _ebss
+0000000080100000 g       *ABS*	0000000000000000 _sp
+0000000080000000 g       .text	0000000000000000 _prog_start
+0000000080000060 g     F .text	0000000000000060 cfg_pll_para
+0000000080000118 g     F .text	00000000000017e0 main
+00000000800019a0 g     F .text	0000000000000040 kputs
+00000000800000c0 g     F .text	0000000000000058 cfg_nvdla_rst
+00000000800019e0 g     F .text	0000000000000238 kprintf
+
+
+
+Disassembly of section .text:
+
+0000000080000000 <_prog_start>:
+_prog_start:
+  //li t1, 0x10000
+  //jr t1
+  //smp_pause(s1, s2) # used in bootrom.hex
+  //li sp, (PAYLOAD_DEST + 0x7fff000)  # used in bootrom.hex
+  call main
+    80000000:	118000ef          	jal	ra,80000118 <main>
+  smp_resume(s1, s2)
+    80000004:	020004b7          	lui	s1,0x2000
+    80000008:	00100913          	li	s2,1
+    8000000c:	0124a023          	sw	s2,0(s1) # 2000000 <_prog_start-0x7e000000>
+    80000010:	00448493          	addi	s1,s1,4
+    80000014:	02000937          	lui	s2,0x2000
+    80000018:	0809091b          	addiw	s2,s2,128
+    8000001c:	ff24c6e3          	blt	s1,s2,80000008 <_prog_start+0x8>
+    80000020:	10500073          	wfi
+    80000024:	34402973          	csrr	s2,mip
+    80000028:	00897913          	andi	s2,s2,8
+    8000002c:	fe090ae3          	beqz	s2,80000020 <_prog_start+0x20>
+    80000030:	020004b7          	lui	s1,0x2000
+    80000034:	f1402973          	csrr	s2,mhartid
+    80000038:	00291913          	slli	s2,s2,0x2
+    8000003c:	00990933          	add	s2,s2,s1
+    80000040:	00092023          	sw	zero,0(s2) # 2000000 <_prog_start-0x7e000000>
+    80000044:	0004a903          	lw	s2,0(s1) # 2000000 <_prog_start-0x7e000000>
+    80000048:	fe091ee3          	bnez	s2,80000044 <_prog_start+0x44>
+    8000004c:	00448493          	addi	s1,s1,4
+    80000050:	02000937          	lui	s2,0x2000
+    80000054:	0809091b          	addiw	s2,s2,128
+    80000058:	ff24c6e3          	blt	s1,s2,80000044 <_prog_start+0x44>
+  csrr a0, mhartid
+    8000005c:	f1402573          	csrr	a0,mhartid
+
+0000000080000060 <cfg_pll_para>:
+
+#define reg_write(addr,val) _REG32(NVDLA_BASE,addr)=val
+#define reg_read(addr) _REG32(NVDLA_BASE,addr)
+
+
+void cfg_pll_para(int cfg) {
+    80000060:	fe010113          	addi	sp,sp,-32
+    80000064:	00113c23          	sd	ra,24(sp)
+    80000068:	00813823          	sd	s0,16(sp)
+    8000006c:	02010413          	addi	s0,sp,32
+    80000070:	00050793          	mv	a5,a0
+    80000074:	fef42623          	sw	a5,-20(s0)
+
+	kprintf("Info: test pll state index: 0x%x", _REG32(_AC(0x51000000, UL), 0x20));
+    80000078:	510007b7          	lui	a5,0x51000
+    8000007c:	02078793          	addi	a5,a5,32 # 51000020 <_prog_start-0x2effffe0>
+    80000080:	0007a783          	lw	a5,0(a5)
+    80000084:	0007879b          	sext.w	a5,a5
+    80000088:	00078593          	mv	a1,a5
+    8000008c:	00002517          	auipc	a0,0x2
+    80000090:	be450513          	addi	a0,a0,-1052 # 80001c70 <kprintf+0x290>
+    80000094:	14d010ef          	jal	ra,800019e0 <kprintf>
+
+    _REG32(_AC(0x51000000, UL), 0x18) = (0x1 << 15) + (0x1 << 10) + (0x1 << 5) + (0x1);  // SOC_LSYS cfg pll cfg, use pll output default clk
+    80000098:	510007b7          	lui	a5,0x51000
+    8000009c:	01878793          	addi	a5,a5,24 # 51000018 <_prog_start-0x2effffe8>
+    800000a0:	00008737          	lui	a4,0x8
+    800000a4:	4217071b          	addiw	a4,a4,1057
+    800000a8:	00e7a023          	sw	a4,0(a5)
+}
+    800000ac:	00000013          	nop
+    800000b0:	01813083          	ld	ra,24(sp)
+    800000b4:	01013403          	ld	s0,16(sp)
+    800000b8:	02010113          	addi	sp,sp,32
+    800000bc:	00008067          	ret
+
+00000000800000c0 <cfg_nvdla_rst>:
+
+
+void cfg_nvdla_rst(int cfg) {
+    800000c0:	fe010113          	addi	sp,sp,-32
+    800000c4:	00113c23          	sd	ra,24(sp)
+    800000c8:	00813823          	sd	s0,16(sp)
+    800000cc:	02010413          	addi	s0,sp,32
+    800000d0:	00050793          	mv	a5,a0
+    800000d4:	fef42623          	sw	a5,-20(s0)
+    _REG32(_AC(0x51000000, UL), 0x30) = (0x0 << 1) + (0x0 << 0);
+    800000d8:	510007b7          	lui	a5,0x51000
+    800000dc:	03078793          	addi	a5,a5,48 # 51000030 <_prog_start-0x2effffd0>
+    800000e0:	0007a023          	sw	zero,0(a5)
+	kprintf("Info: release nvdla ip rst 0x%x", _REG32(_AC(0x51000000, UL), 0x30));
+    800000e4:	510007b7          	lui	a5,0x51000
+    800000e8:	03078793          	addi	a5,a5,48 # 51000030 <_prog_start-0x2effffd0>
+    800000ec:	0007a783          	lw	a5,0(a5)
+    800000f0:	0007879b          	sext.w	a5,a5
+    800000f4:	00078593          	mv	a1,a5
+    800000f8:	00002517          	auipc	a0,0x2
+    800000fc:	ba050513          	addi	a0,a0,-1120 # 80001c98 <kprintf+0x2b8>
+    80000100:	0e1010ef          	jal	ra,800019e0 <kprintf>
+}
+    80000104:	00000013          	nop
+    80000108:	01813083          	ld	ra,24(sp)
+    8000010c:	01013403          	ld	s0,16(sp)
+    80000110:	02010113          	addi	sp,sp,32
+    80000114:	00008067          	ret
+
+0000000080000118 <main>:
+
+
+int main(void)
+{
+    80000118:	fc010113          	addi	sp,sp,-64
+    8000011c:	02113c23          	sd	ra,56(sp)
+    80000120:	02813823          	sd	s0,48(sp)
+    80000124:	02913423          	sd	s1,40(sp)
+    80000128:	04010413          	addi	s0,sp,64
+    kprintf("Info: test pll state index: 0x%x", _REG32(_AC(0x51000000, UL), 0x20));
+    8000012c:	510007b7          	lui	a5,0x51000
+    80000130:	02078793          	addi	a5,a5,32 # 51000020 <_prog_start-0x2effffe0>
+    80000134:	0007a783          	lw	a5,0(a5)
+    80000138:	0007879b          	sext.w	a5,a5
+    8000013c:	00078593          	mv	a1,a5
+    80000140:	00002517          	auipc	a0,0x2
+    80000144:	b3050513          	addi	a0,a0,-1232 # 80001c70 <kprintf+0x290>
+    80000148:	099010ef          	jal	ra,800019e0 <kprintf>
+
+    _REG32(_AC(0x51000000, UL), 0x18) = (0x1 << 15) + (0x1 << 10) + (0x1 << 5) + (0x1);  // SOC_LSYS cfg
+    8000014c:	510007b7          	lui	a5,0x51000
+    80000150:	01878793          	addi	a5,a5,24 # 51000018 <_prog_start-0x2effffe8>
+    80000154:	00008737          	lui	a4,0x8
+    80000158:	4217071b          	addiw	a4,a4,1057
+    8000015c:	00e7a023          	sw	a4,0(a5)
+    //cfg_nvdla_rst(0);
+    _REG32(_AC(0x51000000, UL), 0x30) = (0x0 << 1) + (0x0 << 0);
+    80000160:	510007b7          	lui	a5,0x51000
+    80000164:	03078793          	addi	a5,a5,48 # 51000030 <_prog_start-0x2effffd0>
+    80000168:	0007a023          	sw	zero,0(a5)
+	kprintf("Info: release nvdla ip rst 0x%x", _REG32(_AC(0x51000000, UL), 0x30));
+    8000016c:	510007b7          	lui	a5,0x51000
+    80000170:	03078793          	addi	a5,a5,48 # 51000030 <_prog_start-0x2effffd0>
+    80000174:	0007a783          	lw	a5,0(a5)
+    80000178:	0007879b          	sext.w	a5,a5
+    8000017c:	00078593          	mv	a1,a5
+    80000180:	00002517          	auipc	a0,0x2
+    80000184:	b1850513          	addi	a0,a0,-1256 # 80001c98 <kprintf+0x2b8>
+    80000188:	059010ef          	jal	ra,800019e0 <kprintf>
+    //----------## Layer:CDP_0: cross layer dependency, begin----------
+    //----------## Layer:CDP_0: cross layer dependency, end----------
+    //----------## Layer:CDP_0: set producer pointer, begin----------
+    reg_write(CDP_S_POINTER_0, 0);
+    8000018c:	5300d7b7          	lui	a5,0x5300d
+    80000190:	00478793          	addi	a5,a5,4 # 5300d004 <_prog_start-0x2cff2ffc>
+    80000194:	0007a023          	sw	zero,0(a5)
+    reg_write(CDP_RDMA_S_POINTER_0, 0);
+    80000198:	5300c7b7          	lui	a5,0x5300c
+    8000019c:	00478793          	addi	a5,a5,4 # 5300c004 <_prog_start-0x2cff3ffc>
+    800001a0:	0007a023          	sw	zero,0(a5)
+    //----------## Layer:CDP_0: set producer pointer, end----------
+    //----------## Layer:CDP_0: LUT programming, begin----------
+    reg_write(CDP_S_LUT_ACCESS_CFG_0, 0x30000);
+    800001a4:	5300d7b7          	lui	a5,0x5300d
+    800001a8:	00878793          	addi	a5,a5,8 # 5300d008 <_prog_start-0x2cff2ff8>
+    800001ac:	00030737          	lui	a4,0x30
+    800001b0:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x0);
+    800001b4:	5300d7b7          	lui	a5,0x5300d
+    800001b8:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    800001bc:	0007a023          	sw	zero,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x1);
+    800001c0:	5300d7b7          	lui	a5,0x5300d
+    800001c4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    800001c8:	00100713          	li	a4,1
+    800001cc:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x2);
+    800001d0:	5300d7b7          	lui	a5,0x5300d
+    800001d4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    800001d8:	00200713          	li	a4,2
+    800001dc:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x3);
+    800001e0:	5300d7b7          	lui	a5,0x5300d
+    800001e4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    800001e8:	00300713          	li	a4,3
+    800001ec:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x4);
+    800001f0:	5300d7b7          	lui	a5,0x5300d
+    800001f4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    800001f8:	00400713          	li	a4,4
+    800001fc:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x5);
+    80000200:	5300d7b7          	lui	a5,0x5300d
+    80000204:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000208:	00500713          	li	a4,5
+    8000020c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x6);
+    80000210:	5300d7b7          	lui	a5,0x5300d
+    80000214:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000218:	00600713          	li	a4,6
+    8000021c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x7);
+    80000220:	5300d7b7          	lui	a5,0x5300d
+    80000224:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000228:	00700713          	li	a4,7
+    8000022c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x8);
+    80000230:	5300d7b7          	lui	a5,0x5300d
+    80000234:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000238:	00800713          	li	a4,8
+    8000023c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x9);
+    80000240:	5300d7b7          	lui	a5,0x5300d
+    80000244:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000248:	00900713          	li	a4,9
+    8000024c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xa);
+    80000250:	5300d7b7          	lui	a5,0x5300d
+    80000254:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000258:	00a00713          	li	a4,10
+    8000025c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xb);
+    80000260:	5300d7b7          	lui	a5,0x5300d
+    80000264:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000268:	00b00713          	li	a4,11
+    8000026c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xc);
+    80000270:	5300d7b7          	lui	a5,0x5300d
+    80000274:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000278:	00c00713          	li	a4,12
+    8000027c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xd);
+    80000280:	5300d7b7          	lui	a5,0x5300d
+    80000284:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000288:	00d00713          	li	a4,13
+    8000028c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xe);
+    80000290:	5300d7b7          	lui	a5,0x5300d
+    80000294:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000298:	00e00713          	li	a4,14
+    8000029c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xf);
+    800002a0:	5300d7b7          	lui	a5,0x5300d
+    800002a4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    800002a8:	00f00713          	li	a4,15
+    800002ac:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x10);
+    800002b0:	5300d7b7          	lui	a5,0x5300d
+    800002b4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    800002b8:	01000713          	li	a4,16
+    800002bc:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x11);
+    800002c0:	5300d7b7          	lui	a5,0x5300d
+    800002c4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    800002c8:	01100713          	li	a4,17
+    800002cc:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x12);
+    800002d0:	5300d7b7          	lui	a5,0x5300d
+    800002d4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    800002d8:	01200713          	li	a4,18
+    800002dc:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x13);
+    800002e0:	5300d7b7          	lui	a5,0x5300d
+    800002e4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    800002e8:	01300713          	li	a4,19
+    800002ec:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x14);
+    800002f0:	5300d7b7          	lui	a5,0x5300d
+    800002f4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    800002f8:	01400713          	li	a4,20
+    800002fc:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x15);
+    80000300:	5300d7b7          	lui	a5,0x5300d
+    80000304:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000308:	01500713          	li	a4,21
+    8000030c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x16);
+    80000310:	5300d7b7          	lui	a5,0x5300d
+    80000314:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000318:	01600713          	li	a4,22
+    8000031c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x17);
+    80000320:	5300d7b7          	lui	a5,0x5300d
+    80000324:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000328:	01700713          	li	a4,23
+    8000032c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x18);
+    80000330:	5300d7b7          	lui	a5,0x5300d
+    80000334:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000338:	01800713          	li	a4,24
+    8000033c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x19);
+    80000340:	5300d7b7          	lui	a5,0x5300d
+    80000344:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000348:	01900713          	li	a4,25
+    8000034c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x1a);
+    80000350:	5300d7b7          	lui	a5,0x5300d
+    80000354:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000358:	01a00713          	li	a4,26
+    8000035c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x1b);
+    80000360:	5300d7b7          	lui	a5,0x5300d
+    80000364:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000368:	01b00713          	li	a4,27
+    8000036c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x1c);
+    80000370:	5300d7b7          	lui	a5,0x5300d
+    80000374:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000378:	01c00713          	li	a4,28
+    8000037c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x1d);
+    80000380:	5300d7b7          	lui	a5,0x5300d
+    80000384:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000388:	01d00713          	li	a4,29
+    8000038c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x1e);
+    80000390:	5300d7b7          	lui	a5,0x5300d
+    80000394:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000398:	01e00713          	li	a4,30
+    8000039c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x1f);
+    800003a0:	5300d7b7          	lui	a5,0x5300d
+    800003a4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    800003a8:	01f00713          	li	a4,31
+    800003ac:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x20);
+    800003b0:	5300d7b7          	lui	a5,0x5300d
+    800003b4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    800003b8:	02000713          	li	a4,32
+    800003bc:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x21);
+    800003c0:	5300d7b7          	lui	a5,0x5300d
+    800003c4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    800003c8:	02100713          	li	a4,33
+    800003cc:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x22);
+    800003d0:	5300d7b7          	lui	a5,0x5300d
+    800003d4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    800003d8:	02200713          	li	a4,34
+    800003dc:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x23);
+    800003e0:	5300d7b7          	lui	a5,0x5300d
+    800003e4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    800003e8:	02300713          	li	a4,35
+    800003ec:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x24);
+    800003f0:	5300d7b7          	lui	a5,0x5300d
+    800003f4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    800003f8:	02400713          	li	a4,36
+    800003fc:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x25);
+    80000400:	5300d7b7          	lui	a5,0x5300d
+    80000404:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000408:	02500713          	li	a4,37
+    8000040c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x26);
+    80000410:	5300d7b7          	lui	a5,0x5300d
+    80000414:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000418:	02600713          	li	a4,38
+    8000041c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x27);
+    80000420:	5300d7b7          	lui	a5,0x5300d
+    80000424:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000428:	02700713          	li	a4,39
+    8000042c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x28);
+    80000430:	5300d7b7          	lui	a5,0x5300d
+    80000434:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000438:	02800713          	li	a4,40
+    8000043c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x29);
+    80000440:	5300d7b7          	lui	a5,0x5300d
+    80000444:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000448:	02900713          	li	a4,41
+    8000044c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x2a);
+    80000450:	5300d7b7          	lui	a5,0x5300d
+    80000454:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000458:	02a00713          	li	a4,42
+    8000045c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x2b);
+    80000460:	5300d7b7          	lui	a5,0x5300d
+    80000464:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000468:	02b00713          	li	a4,43
+    8000046c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x2c);
+    80000470:	5300d7b7          	lui	a5,0x5300d
+    80000474:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000478:	02c00713          	li	a4,44
+    8000047c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x2d);
+    80000480:	5300d7b7          	lui	a5,0x5300d
+    80000484:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000488:	02d00713          	li	a4,45
+    8000048c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x2e);
+    80000490:	5300d7b7          	lui	a5,0x5300d
+    80000494:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000498:	02e00713          	li	a4,46
+    8000049c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x2f);
+    800004a0:	5300d7b7          	lui	a5,0x5300d
+    800004a4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    800004a8:	02f00713          	li	a4,47
+    800004ac:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x30);
+    800004b0:	5300d7b7          	lui	a5,0x5300d
+    800004b4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    800004b8:	03000713          	li	a4,48
+    800004bc:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x31);
+    800004c0:	5300d7b7          	lui	a5,0x5300d
+    800004c4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    800004c8:	03100713          	li	a4,49
+    800004cc:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x32);
+    800004d0:	5300d7b7          	lui	a5,0x5300d
+    800004d4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    800004d8:	03200713          	li	a4,50
+    800004dc:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x33);
+    800004e0:	5300d7b7          	lui	a5,0x5300d
+    800004e4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    800004e8:	03300713          	li	a4,51
+    800004ec:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x34);
+    800004f0:	5300d7b7          	lui	a5,0x5300d
+    800004f4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    800004f8:	03400713          	li	a4,52
+    800004fc:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x35);
+    80000500:	5300d7b7          	lui	a5,0x5300d
+    80000504:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000508:	03500713          	li	a4,53
+    8000050c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x36);
+    80000510:	5300d7b7          	lui	a5,0x5300d
+    80000514:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000518:	03600713          	li	a4,54
+    8000051c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x37);
+    80000520:	5300d7b7          	lui	a5,0x5300d
+    80000524:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000528:	03700713          	li	a4,55
+    8000052c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x38);
+    80000530:	5300d7b7          	lui	a5,0x5300d
+    80000534:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000538:	03800713          	li	a4,56
+    8000053c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x39);
+    80000540:	5300d7b7          	lui	a5,0x5300d
+    80000544:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000548:	03900713          	li	a4,57
+    8000054c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x3a);
+    80000550:	5300d7b7          	lui	a5,0x5300d
+    80000554:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000558:	03a00713          	li	a4,58
+    8000055c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x3b);
+    80000560:	5300d7b7          	lui	a5,0x5300d
+    80000564:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000568:	03b00713          	li	a4,59
+    8000056c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x3c);
+    80000570:	5300d7b7          	lui	a5,0x5300d
+    80000574:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000578:	03c00713          	li	a4,60
+    8000057c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x3d);
+    80000580:	5300d7b7          	lui	a5,0x5300d
+    80000584:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000588:	03d00713          	li	a4,61
+    8000058c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x3e);
+    80000590:	5300d7b7          	lui	a5,0x5300d
+    80000594:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000598:	03e00713          	li	a4,62
+    8000059c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x3f);
+    800005a0:	5300d7b7          	lui	a5,0x5300d
+    800005a4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    800005a8:	03f00713          	li	a4,63
+    800005ac:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x40);
+    800005b0:	5300d7b7          	lui	a5,0x5300d
+    800005b4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    800005b8:	04000713          	li	a4,64
+    800005bc:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x41);
+    800005c0:	5300d7b7          	lui	a5,0x5300d
+    800005c4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    800005c8:	04100713          	li	a4,65
+    800005cc:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x42);
+    800005d0:	5300d7b7          	lui	a5,0x5300d
+    800005d4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    800005d8:	04200713          	li	a4,66
+    800005dc:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x43);
+    800005e0:	5300d7b7          	lui	a5,0x5300d
+    800005e4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    800005e8:	04300713          	li	a4,67
+    800005ec:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x44);
+    800005f0:	5300d7b7          	lui	a5,0x5300d
+    800005f4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    800005f8:	04400713          	li	a4,68
+    800005fc:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x45);
+    80000600:	5300d7b7          	lui	a5,0x5300d
+    80000604:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000608:	04500713          	li	a4,69
+    8000060c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x46);
+    80000610:	5300d7b7          	lui	a5,0x5300d
+    80000614:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000618:	04600713          	li	a4,70
+    8000061c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x47);
+    80000620:	5300d7b7          	lui	a5,0x5300d
+    80000624:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000628:	04700713          	li	a4,71
+    8000062c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x48);
+    80000630:	5300d7b7          	lui	a5,0x5300d
+    80000634:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000638:	04800713          	li	a4,72
+    8000063c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x49);
+    80000640:	5300d7b7          	lui	a5,0x5300d
+    80000644:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000648:	04900713          	li	a4,73
+    8000064c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x4a);
+    80000650:	5300d7b7          	lui	a5,0x5300d
+    80000654:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000658:	04a00713          	li	a4,74
+    8000065c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x4b);
+    80000660:	5300d7b7          	lui	a5,0x5300d
+    80000664:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000668:	04b00713          	li	a4,75
+    8000066c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x4c);
+    80000670:	5300d7b7          	lui	a5,0x5300d
+    80000674:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000678:	04c00713          	li	a4,76
+    8000067c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x4d);
+    80000680:	5300d7b7          	lui	a5,0x5300d
+    80000684:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000688:	04d00713          	li	a4,77
+    8000068c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x4e);
+    80000690:	5300d7b7          	lui	a5,0x5300d
+    80000694:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000698:	04e00713          	li	a4,78
+    8000069c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x4f);
+    800006a0:	5300d7b7          	lui	a5,0x5300d
+    800006a4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    800006a8:	04f00713          	li	a4,79
+    800006ac:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x50);
+    800006b0:	5300d7b7          	lui	a5,0x5300d
+    800006b4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    800006b8:	05000713          	li	a4,80
+    800006bc:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x51);
+    800006c0:	5300d7b7          	lui	a5,0x5300d
+    800006c4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    800006c8:	05100713          	li	a4,81
+    800006cc:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x52);
+    800006d0:	5300d7b7          	lui	a5,0x5300d
+    800006d4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    800006d8:	05200713          	li	a4,82
+    800006dc:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x53);
+    800006e0:	5300d7b7          	lui	a5,0x5300d
+    800006e4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    800006e8:	05300713          	li	a4,83
+    800006ec:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x54);
+    800006f0:	5300d7b7          	lui	a5,0x5300d
+    800006f4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    800006f8:	05400713          	li	a4,84
+    800006fc:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x55);
+    80000700:	5300d7b7          	lui	a5,0x5300d
+    80000704:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000708:	05500713          	li	a4,85
+    8000070c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x56);
+    80000710:	5300d7b7          	lui	a5,0x5300d
+    80000714:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000718:	05600713          	li	a4,86
+    8000071c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x57);
+    80000720:	5300d7b7          	lui	a5,0x5300d
+    80000724:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000728:	05700713          	li	a4,87
+    8000072c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x58);
+    80000730:	5300d7b7          	lui	a5,0x5300d
+    80000734:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000738:	05800713          	li	a4,88
+    8000073c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x59);
+    80000740:	5300d7b7          	lui	a5,0x5300d
+    80000744:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000748:	05900713          	li	a4,89
+    8000074c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x5a);
+    80000750:	5300d7b7          	lui	a5,0x5300d
+    80000754:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000758:	05a00713          	li	a4,90
+    8000075c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x5b);
+    80000760:	5300d7b7          	lui	a5,0x5300d
+    80000764:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000768:	05b00713          	li	a4,91
+    8000076c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x5c);
+    80000770:	5300d7b7          	lui	a5,0x5300d
+    80000774:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000778:	05c00713          	li	a4,92
+    8000077c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x5d);
+    80000780:	5300d7b7          	lui	a5,0x5300d
+    80000784:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000788:	05d00713          	li	a4,93
+    8000078c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x5e);
+    80000790:	5300d7b7          	lui	a5,0x5300d
+    80000794:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000798:	05e00713          	li	a4,94
+    8000079c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x5f);
+    800007a0:	5300d7b7          	lui	a5,0x5300d
+    800007a4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    800007a8:	05f00713          	li	a4,95
+    800007ac:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x60);
+    800007b0:	5300d7b7          	lui	a5,0x5300d
+    800007b4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    800007b8:	06000713          	li	a4,96
+    800007bc:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x61);
+    800007c0:	5300d7b7          	lui	a5,0x5300d
+    800007c4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    800007c8:	06100713          	li	a4,97
+    800007cc:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x62);
+    800007d0:	5300d7b7          	lui	a5,0x5300d
+    800007d4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    800007d8:	06200713          	li	a4,98
+    800007dc:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x63);
+    800007e0:	5300d7b7          	lui	a5,0x5300d
+    800007e4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    800007e8:	06300713          	li	a4,99
+    800007ec:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x64);
+    800007f0:	5300d7b7          	lui	a5,0x5300d
+    800007f4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    800007f8:	06400713          	li	a4,100
+    800007fc:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x65);
+    80000800:	5300d7b7          	lui	a5,0x5300d
+    80000804:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000808:	06500713          	li	a4,101
+    8000080c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x66);
+    80000810:	5300d7b7          	lui	a5,0x5300d
+    80000814:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000818:	06600713          	li	a4,102
+    8000081c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x67);
+    80000820:	5300d7b7          	lui	a5,0x5300d
+    80000824:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000828:	06700713          	li	a4,103
+    8000082c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x68);
+    80000830:	5300d7b7          	lui	a5,0x5300d
+    80000834:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000838:	06800713          	li	a4,104
+    8000083c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x69);
+    80000840:	5300d7b7          	lui	a5,0x5300d
+    80000844:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000848:	06900713          	li	a4,105
+    8000084c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x6a);
+    80000850:	5300d7b7          	lui	a5,0x5300d
+    80000854:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000858:	06a00713          	li	a4,106
+    8000085c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x6b);
+    80000860:	5300d7b7          	lui	a5,0x5300d
+    80000864:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000868:	06b00713          	li	a4,107
+    8000086c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x6c);
+    80000870:	5300d7b7          	lui	a5,0x5300d
+    80000874:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000878:	06c00713          	li	a4,108
+    8000087c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x6d);
+    80000880:	5300d7b7          	lui	a5,0x5300d
+    80000884:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000888:	06d00713          	li	a4,109
+    8000088c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x6e);
+    80000890:	5300d7b7          	lui	a5,0x5300d
+    80000894:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000898:	06e00713          	li	a4,110
+    8000089c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x6f);
+    800008a0:	5300d7b7          	lui	a5,0x5300d
+    800008a4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    800008a8:	06f00713          	li	a4,111
+    800008ac:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x70);
+    800008b0:	5300d7b7          	lui	a5,0x5300d
+    800008b4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    800008b8:	07000713          	li	a4,112
+    800008bc:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x71);
+    800008c0:	5300d7b7          	lui	a5,0x5300d
+    800008c4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    800008c8:	07100713          	li	a4,113
+    800008cc:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x72);
+    800008d0:	5300d7b7          	lui	a5,0x5300d
+    800008d4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    800008d8:	07200713          	li	a4,114
+    800008dc:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x73);
+    800008e0:	5300d7b7          	lui	a5,0x5300d
+    800008e4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    800008e8:	07300713          	li	a4,115
+    800008ec:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x74);
+    800008f0:	5300d7b7          	lui	a5,0x5300d
+    800008f4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    800008f8:	07400713          	li	a4,116
+    800008fc:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x75);
+    80000900:	5300d7b7          	lui	a5,0x5300d
+    80000904:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000908:	07500713          	li	a4,117
+    8000090c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x76);
+    80000910:	5300d7b7          	lui	a5,0x5300d
+    80000914:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000918:	07600713          	li	a4,118
+    8000091c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x77);
+    80000920:	5300d7b7          	lui	a5,0x5300d
+    80000924:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000928:	07700713          	li	a4,119
+    8000092c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x78);
+    80000930:	5300d7b7          	lui	a5,0x5300d
+    80000934:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000938:	07800713          	li	a4,120
+    8000093c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x79);
+    80000940:	5300d7b7          	lui	a5,0x5300d
+    80000944:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000948:	07900713          	li	a4,121
+    8000094c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x7a);
+    80000950:	5300d7b7          	lui	a5,0x5300d
+    80000954:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000958:	07a00713          	li	a4,122
+    8000095c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x7b);
+    80000960:	5300d7b7          	lui	a5,0x5300d
+    80000964:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000968:	07b00713          	li	a4,123
+    8000096c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x7c);
+    80000970:	5300d7b7          	lui	a5,0x5300d
+    80000974:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000978:	07c00713          	li	a4,124
+    8000097c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x7d);
+    80000980:	5300d7b7          	lui	a5,0x5300d
+    80000984:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000988:	07d00713          	li	a4,125
+    8000098c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x7e);
+    80000990:	5300d7b7          	lui	a5,0x5300d
+    80000994:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000998:	07e00713          	li	a4,126
+    8000099c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x7f);
+    800009a0:	5300d7b7          	lui	a5,0x5300d
+    800009a4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    800009a8:	07f00713          	li	a4,127
+    800009ac:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x80);
+    800009b0:	5300d7b7          	lui	a5,0x5300d
+    800009b4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    800009b8:	08000713          	li	a4,128
+    800009bc:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x81);
+    800009c0:	5300d7b7          	lui	a5,0x5300d
+    800009c4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    800009c8:	08100713          	li	a4,129
+    800009cc:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x82);
+    800009d0:	5300d7b7          	lui	a5,0x5300d
+    800009d4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    800009d8:	08200713          	li	a4,130
+    800009dc:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x83);
+    800009e0:	5300d7b7          	lui	a5,0x5300d
+    800009e4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    800009e8:	08300713          	li	a4,131
+    800009ec:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x84);
+    800009f0:	5300d7b7          	lui	a5,0x5300d
+    800009f4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    800009f8:	08400713          	li	a4,132
+    800009fc:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x85);
+    80000a00:	5300d7b7          	lui	a5,0x5300d
+    80000a04:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000a08:	08500713          	li	a4,133
+    80000a0c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x86);
+    80000a10:	5300d7b7          	lui	a5,0x5300d
+    80000a14:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000a18:	08600713          	li	a4,134
+    80000a1c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x87);
+    80000a20:	5300d7b7          	lui	a5,0x5300d
+    80000a24:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000a28:	08700713          	li	a4,135
+    80000a2c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x88);
+    80000a30:	5300d7b7          	lui	a5,0x5300d
+    80000a34:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000a38:	08800713          	li	a4,136
+    80000a3c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x89);
+    80000a40:	5300d7b7          	lui	a5,0x5300d
+    80000a44:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000a48:	08900713          	li	a4,137
+    80000a4c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x8a);
+    80000a50:	5300d7b7          	lui	a5,0x5300d
+    80000a54:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000a58:	08a00713          	li	a4,138
+    80000a5c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x8b);
+    80000a60:	5300d7b7          	lui	a5,0x5300d
+    80000a64:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000a68:	08b00713          	li	a4,139
+    80000a6c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x8c);
+    80000a70:	5300d7b7          	lui	a5,0x5300d
+    80000a74:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000a78:	08c00713          	li	a4,140
+    80000a7c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x8d);
+    80000a80:	5300d7b7          	lui	a5,0x5300d
+    80000a84:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000a88:	08d00713          	li	a4,141
+    80000a8c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x8e);
+    80000a90:	5300d7b7          	lui	a5,0x5300d
+    80000a94:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000a98:	08e00713          	li	a4,142
+    80000a9c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x8f);
+    80000aa0:	5300d7b7          	lui	a5,0x5300d
+    80000aa4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000aa8:	08f00713          	li	a4,143
+    80000aac:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x90);
+    80000ab0:	5300d7b7          	lui	a5,0x5300d
+    80000ab4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000ab8:	09000713          	li	a4,144
+    80000abc:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x91);
+    80000ac0:	5300d7b7          	lui	a5,0x5300d
+    80000ac4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000ac8:	09100713          	li	a4,145
+    80000acc:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x92);
+    80000ad0:	5300d7b7          	lui	a5,0x5300d
+    80000ad4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000ad8:	09200713          	li	a4,146
+    80000adc:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x93);
+    80000ae0:	5300d7b7          	lui	a5,0x5300d
+    80000ae4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000ae8:	09300713          	li	a4,147
+    80000aec:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x94);
+    80000af0:	5300d7b7          	lui	a5,0x5300d
+    80000af4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000af8:	09400713          	li	a4,148
+    80000afc:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x95);
+    80000b00:	5300d7b7          	lui	a5,0x5300d
+    80000b04:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000b08:	09500713          	li	a4,149
+    80000b0c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x96);
+    80000b10:	5300d7b7          	lui	a5,0x5300d
+    80000b14:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000b18:	09600713          	li	a4,150
+    80000b1c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x97);
+    80000b20:	5300d7b7          	lui	a5,0x5300d
+    80000b24:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000b28:	09700713          	li	a4,151
+    80000b2c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x98);
+    80000b30:	5300d7b7          	lui	a5,0x5300d
+    80000b34:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000b38:	09800713          	li	a4,152
+    80000b3c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x99);
+    80000b40:	5300d7b7          	lui	a5,0x5300d
+    80000b44:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000b48:	09900713          	li	a4,153
+    80000b4c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x9a);
+    80000b50:	5300d7b7          	lui	a5,0x5300d
+    80000b54:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000b58:	09a00713          	li	a4,154
+    80000b5c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x9b);
+    80000b60:	5300d7b7          	lui	a5,0x5300d
+    80000b64:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000b68:	09b00713          	li	a4,155
+    80000b6c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x9c);
+    80000b70:	5300d7b7          	lui	a5,0x5300d
+    80000b74:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000b78:	09c00713          	li	a4,156
+    80000b7c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x9d);
+    80000b80:	5300d7b7          	lui	a5,0x5300d
+    80000b84:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000b88:	09d00713          	li	a4,157
+    80000b8c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x9e);
+    80000b90:	5300d7b7          	lui	a5,0x5300d
+    80000b94:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000b98:	09e00713          	li	a4,158
+    80000b9c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x9f);
+    80000ba0:	5300d7b7          	lui	a5,0x5300d
+    80000ba4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000ba8:	09f00713          	li	a4,159
+    80000bac:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xa0);
+    80000bb0:	5300d7b7          	lui	a5,0x5300d
+    80000bb4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000bb8:	0a000713          	li	a4,160
+    80000bbc:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xa1);
+    80000bc0:	5300d7b7          	lui	a5,0x5300d
+    80000bc4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000bc8:	0a100713          	li	a4,161
+    80000bcc:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xa2);
+    80000bd0:	5300d7b7          	lui	a5,0x5300d
+    80000bd4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000bd8:	0a200713          	li	a4,162
+    80000bdc:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xa3);
+    80000be0:	5300d7b7          	lui	a5,0x5300d
+    80000be4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000be8:	0a300713          	li	a4,163
+    80000bec:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xa4);
+    80000bf0:	5300d7b7          	lui	a5,0x5300d
+    80000bf4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000bf8:	0a400713          	li	a4,164
+    80000bfc:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xa5);
+    80000c00:	5300d7b7          	lui	a5,0x5300d
+    80000c04:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000c08:	0a500713          	li	a4,165
+    80000c0c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xa6);
+    80000c10:	5300d7b7          	lui	a5,0x5300d
+    80000c14:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000c18:	0a600713          	li	a4,166
+    80000c1c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xa7);
+    80000c20:	5300d7b7          	lui	a5,0x5300d
+    80000c24:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000c28:	0a700713          	li	a4,167
+    80000c2c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xa8);
+    80000c30:	5300d7b7          	lui	a5,0x5300d
+    80000c34:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000c38:	0a800713          	li	a4,168
+    80000c3c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xa9);
+    80000c40:	5300d7b7          	lui	a5,0x5300d
+    80000c44:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000c48:	0a900713          	li	a4,169
+    80000c4c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xaa);
+    80000c50:	5300d7b7          	lui	a5,0x5300d
+    80000c54:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000c58:	0aa00713          	li	a4,170
+    80000c5c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xab);
+    80000c60:	5300d7b7          	lui	a5,0x5300d
+    80000c64:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000c68:	0ab00713          	li	a4,171
+    80000c6c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xac);
+    80000c70:	5300d7b7          	lui	a5,0x5300d
+    80000c74:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000c78:	0ac00713          	li	a4,172
+    80000c7c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xad);
+    80000c80:	5300d7b7          	lui	a5,0x5300d
+    80000c84:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000c88:	0ad00713          	li	a4,173
+    80000c8c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xae);
+    80000c90:	5300d7b7          	lui	a5,0x5300d
+    80000c94:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000c98:	0ae00713          	li	a4,174
+    80000c9c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xaf);
+    80000ca0:	5300d7b7          	lui	a5,0x5300d
+    80000ca4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000ca8:	0af00713          	li	a4,175
+    80000cac:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xb0);
+    80000cb0:	5300d7b7          	lui	a5,0x5300d
+    80000cb4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000cb8:	0b000713          	li	a4,176
+    80000cbc:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xb1);
+    80000cc0:	5300d7b7          	lui	a5,0x5300d
+    80000cc4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000cc8:	0b100713          	li	a4,177
+    80000ccc:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xb2);
+    80000cd0:	5300d7b7          	lui	a5,0x5300d
+    80000cd4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000cd8:	0b200713          	li	a4,178
+    80000cdc:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xb3);
+    80000ce0:	5300d7b7          	lui	a5,0x5300d
+    80000ce4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000ce8:	0b300713          	li	a4,179
+    80000cec:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xb4);
+    80000cf0:	5300d7b7          	lui	a5,0x5300d
+    80000cf4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000cf8:	0b400713          	li	a4,180
+    80000cfc:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xb5);
+    80000d00:	5300d7b7          	lui	a5,0x5300d
+    80000d04:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000d08:	0b500713          	li	a4,181
+    80000d0c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xb6);
+    80000d10:	5300d7b7          	lui	a5,0x5300d
+    80000d14:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000d18:	0b600713          	li	a4,182
+    80000d1c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xb7);
+    80000d20:	5300d7b7          	lui	a5,0x5300d
+    80000d24:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000d28:	0b700713          	li	a4,183
+    80000d2c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xb8);
+    80000d30:	5300d7b7          	lui	a5,0x5300d
+    80000d34:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000d38:	0b800713          	li	a4,184
+    80000d3c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xb9);
+    80000d40:	5300d7b7          	lui	a5,0x5300d
+    80000d44:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000d48:	0b900713          	li	a4,185
+    80000d4c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xba);
+    80000d50:	5300d7b7          	lui	a5,0x5300d
+    80000d54:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000d58:	0ba00713          	li	a4,186
+    80000d5c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xbb);
+    80000d60:	5300d7b7          	lui	a5,0x5300d
+    80000d64:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000d68:	0bb00713          	li	a4,187
+    80000d6c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xbc);
+    80000d70:	5300d7b7          	lui	a5,0x5300d
+    80000d74:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000d78:	0bc00713          	li	a4,188
+    80000d7c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xbd);
+    80000d80:	5300d7b7          	lui	a5,0x5300d
+    80000d84:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000d88:	0bd00713          	li	a4,189
+    80000d8c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xbe);
+    80000d90:	5300d7b7          	lui	a5,0x5300d
+    80000d94:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000d98:	0be00713          	li	a4,190
+    80000d9c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xbf);
+    80000da0:	5300d7b7          	lui	a5,0x5300d
+    80000da4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000da8:	0bf00713          	li	a4,191
+    80000dac:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xc0);
+    80000db0:	5300d7b7          	lui	a5,0x5300d
+    80000db4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000db8:	0c000713          	li	a4,192
+    80000dbc:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xc1);
+    80000dc0:	5300d7b7          	lui	a5,0x5300d
+    80000dc4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000dc8:	0c100713          	li	a4,193
+    80000dcc:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xc2);
+    80000dd0:	5300d7b7          	lui	a5,0x5300d
+    80000dd4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000dd8:	0c200713          	li	a4,194
+    80000ddc:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xc3);
+    80000de0:	5300d7b7          	lui	a5,0x5300d
+    80000de4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000de8:	0c300713          	li	a4,195
+    80000dec:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xc4);
+    80000df0:	5300d7b7          	lui	a5,0x5300d
+    80000df4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000df8:	0c400713          	li	a4,196
+    80000dfc:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xc5);
+    80000e00:	5300d7b7          	lui	a5,0x5300d
+    80000e04:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000e08:	0c500713          	li	a4,197
+    80000e0c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xc6);
+    80000e10:	5300d7b7          	lui	a5,0x5300d
+    80000e14:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000e18:	0c600713          	li	a4,198
+    80000e1c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xc7);
+    80000e20:	5300d7b7          	lui	a5,0x5300d
+    80000e24:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000e28:	0c700713          	li	a4,199
+    80000e2c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xc8);
+    80000e30:	5300d7b7          	lui	a5,0x5300d
+    80000e34:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000e38:	0c800713          	li	a4,200
+    80000e3c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xc9);
+    80000e40:	5300d7b7          	lui	a5,0x5300d
+    80000e44:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000e48:	0c900713          	li	a4,201
+    80000e4c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xca);
+    80000e50:	5300d7b7          	lui	a5,0x5300d
+    80000e54:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000e58:	0ca00713          	li	a4,202
+    80000e5c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xcb);
+    80000e60:	5300d7b7          	lui	a5,0x5300d
+    80000e64:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000e68:	0cb00713          	li	a4,203
+    80000e6c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xcc);
+    80000e70:	5300d7b7          	lui	a5,0x5300d
+    80000e74:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000e78:	0cc00713          	li	a4,204
+    80000e7c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xcd);
+    80000e80:	5300d7b7          	lui	a5,0x5300d
+    80000e84:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000e88:	0cd00713          	li	a4,205
+    80000e8c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xce);
+    80000e90:	5300d7b7          	lui	a5,0x5300d
+    80000e94:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000e98:	0ce00713          	li	a4,206
+    80000e9c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xcf);
+    80000ea0:	5300d7b7          	lui	a5,0x5300d
+    80000ea4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000ea8:	0cf00713          	li	a4,207
+    80000eac:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xd0);
+    80000eb0:	5300d7b7          	lui	a5,0x5300d
+    80000eb4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000eb8:	0d000713          	li	a4,208
+    80000ebc:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xd1);
+    80000ec0:	5300d7b7          	lui	a5,0x5300d
+    80000ec4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000ec8:	0d100713          	li	a4,209
+    80000ecc:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xd2);
+    80000ed0:	5300d7b7          	lui	a5,0x5300d
+    80000ed4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000ed8:	0d200713          	li	a4,210
+    80000edc:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xd3);
+    80000ee0:	5300d7b7          	lui	a5,0x5300d
+    80000ee4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000ee8:	0d300713          	li	a4,211
+    80000eec:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xd4);
+    80000ef0:	5300d7b7          	lui	a5,0x5300d
+    80000ef4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000ef8:	0d400713          	li	a4,212
+    80000efc:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xd5);
+    80000f00:	5300d7b7          	lui	a5,0x5300d
+    80000f04:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000f08:	0d500713          	li	a4,213
+    80000f0c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xd6);
+    80000f10:	5300d7b7          	lui	a5,0x5300d
+    80000f14:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000f18:	0d600713          	li	a4,214
+    80000f1c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xd7);
+    80000f20:	5300d7b7          	lui	a5,0x5300d
+    80000f24:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000f28:	0d700713          	li	a4,215
+    80000f2c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xd8);
+    80000f30:	5300d7b7          	lui	a5,0x5300d
+    80000f34:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000f38:	0d800713          	li	a4,216
+    80000f3c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xd9);
+    80000f40:	5300d7b7          	lui	a5,0x5300d
+    80000f44:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000f48:	0d900713          	li	a4,217
+    80000f4c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xda);
+    80000f50:	5300d7b7          	lui	a5,0x5300d
+    80000f54:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000f58:	0da00713          	li	a4,218
+    80000f5c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xdb);
+    80000f60:	5300d7b7          	lui	a5,0x5300d
+    80000f64:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000f68:	0db00713          	li	a4,219
+    80000f6c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xdc);
+    80000f70:	5300d7b7          	lui	a5,0x5300d
+    80000f74:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000f78:	0dc00713          	li	a4,220
+    80000f7c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xdd);
+    80000f80:	5300d7b7          	lui	a5,0x5300d
+    80000f84:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000f88:	0dd00713          	li	a4,221
+    80000f8c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xde);
+    80000f90:	5300d7b7          	lui	a5,0x5300d
+    80000f94:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000f98:	0de00713          	li	a4,222
+    80000f9c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xdf);
+    80000fa0:	5300d7b7          	lui	a5,0x5300d
+    80000fa4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000fa8:	0df00713          	li	a4,223
+    80000fac:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xe0);
+    80000fb0:	5300d7b7          	lui	a5,0x5300d
+    80000fb4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000fb8:	0e000713          	li	a4,224
+    80000fbc:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xe1);
+    80000fc0:	5300d7b7          	lui	a5,0x5300d
+    80000fc4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000fc8:	0e100713          	li	a4,225
+    80000fcc:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xe2);
+    80000fd0:	5300d7b7          	lui	a5,0x5300d
+    80000fd4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000fd8:	0e200713          	li	a4,226
+    80000fdc:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xe3);
+    80000fe0:	5300d7b7          	lui	a5,0x5300d
+    80000fe4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000fe8:	0e300713          	li	a4,227
+    80000fec:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xe4);
+    80000ff0:	5300d7b7          	lui	a5,0x5300d
+    80000ff4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80000ff8:	0e400713          	li	a4,228
+    80000ffc:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xe5);
+    80001000:	5300d7b7          	lui	a5,0x5300d
+    80001004:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80001008:	0e500713          	li	a4,229
+    8000100c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xe6);
+    80001010:	5300d7b7          	lui	a5,0x5300d
+    80001014:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80001018:	0e600713          	li	a4,230
+    8000101c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xe7);
+    80001020:	5300d7b7          	lui	a5,0x5300d
+    80001024:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80001028:	0e700713          	li	a4,231
+    8000102c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xe8);
+    80001030:	5300d7b7          	lui	a5,0x5300d
+    80001034:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80001038:	0e800713          	li	a4,232
+    8000103c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xe9);
+    80001040:	5300d7b7          	lui	a5,0x5300d
+    80001044:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80001048:	0e900713          	li	a4,233
+    8000104c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xea);
+    80001050:	5300d7b7          	lui	a5,0x5300d
+    80001054:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80001058:	0ea00713          	li	a4,234
+    8000105c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xeb);
+    80001060:	5300d7b7          	lui	a5,0x5300d
+    80001064:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80001068:	0eb00713          	li	a4,235
+    8000106c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xec);
+    80001070:	5300d7b7          	lui	a5,0x5300d
+    80001074:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80001078:	0ec00713          	li	a4,236
+    8000107c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xed);
+    80001080:	5300d7b7          	lui	a5,0x5300d
+    80001084:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80001088:	0ed00713          	li	a4,237
+    8000108c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xee);
+    80001090:	5300d7b7          	lui	a5,0x5300d
+    80001094:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80001098:	0ee00713          	li	a4,238
+    8000109c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xef);
+    800010a0:	5300d7b7          	lui	a5,0x5300d
+    800010a4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    800010a8:	0ef00713          	li	a4,239
+    800010ac:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xf0);
+    800010b0:	5300d7b7          	lui	a5,0x5300d
+    800010b4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    800010b8:	0f000713          	li	a4,240
+    800010bc:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xf1);
+    800010c0:	5300d7b7          	lui	a5,0x5300d
+    800010c4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    800010c8:	0f100713          	li	a4,241
+    800010cc:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xf2);
+    800010d0:	5300d7b7          	lui	a5,0x5300d
+    800010d4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    800010d8:	0f200713          	li	a4,242
+    800010dc:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xf3);
+    800010e0:	5300d7b7          	lui	a5,0x5300d
+    800010e4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    800010e8:	0f300713          	li	a4,243
+    800010ec:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xf4);
+    800010f0:	5300d7b7          	lui	a5,0x5300d
+    800010f4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    800010f8:	0f400713          	li	a4,244
+    800010fc:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xf5);
+    80001100:	5300d7b7          	lui	a5,0x5300d
+    80001104:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80001108:	0f500713          	li	a4,245
+    8000110c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xf6);
+    80001110:	5300d7b7          	lui	a5,0x5300d
+    80001114:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80001118:	0f600713          	li	a4,246
+    8000111c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xf7);
+    80001120:	5300d7b7          	lui	a5,0x5300d
+    80001124:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80001128:	0f700713          	li	a4,247
+    8000112c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xf8);
+    80001130:	5300d7b7          	lui	a5,0x5300d
+    80001134:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80001138:	0f800713          	li	a4,248
+    8000113c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xf9);
+    80001140:	5300d7b7          	lui	a5,0x5300d
+    80001144:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80001148:	0f900713          	li	a4,249
+    8000114c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xfa);
+    80001150:	5300d7b7          	lui	a5,0x5300d
+    80001154:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80001158:	0fa00713          	li	a4,250
+    8000115c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xfb);
+    80001160:	5300d7b7          	lui	a5,0x5300d
+    80001164:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80001168:	0fb00713          	li	a4,251
+    8000116c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xfc);
+    80001170:	5300d7b7          	lui	a5,0x5300d
+    80001174:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80001178:	0fc00713          	li	a4,252
+    8000117c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xfd);
+    80001180:	5300d7b7          	lui	a5,0x5300d
+    80001184:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80001188:	0fd00713          	li	a4,253
+    8000118c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xfe);
+    80001190:	5300d7b7          	lui	a5,0x5300d
+    80001194:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80001198:	0fe00713          	li	a4,254
+    8000119c:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xff);
+    800011a0:	5300d7b7          	lui	a5,0x5300d
+    800011a4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    800011a8:	0ff00713          	li	a4,255
+    800011ac:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x100);
+    800011b0:	5300d7b7          	lui	a5,0x5300d
+    800011b4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    800011b8:	10000713          	li	a4,256
+    800011bc:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_CFG_0, 0x20000);
+    800011c0:	5300d7b7          	lui	a5,0x5300d
+    800011c4:	00878793          	addi	a5,a5,8 # 5300d008 <_prog_start-0x2cff2ff8>
+    800011c8:	00020737          	lui	a4,0x20
+    800011cc:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x0);
+    800011d0:	5300d7b7          	lui	a5,0x5300d
+    800011d4:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    800011d8:	0007a023          	sw	zero,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x1);
+    800011dc:	5300d7b7          	lui	a5,0x5300d
+    800011e0:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    800011e4:	00100713          	li	a4,1
+    800011e8:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x2);
+    800011ec:	5300d7b7          	lui	a5,0x5300d
+    800011f0:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    800011f4:	00200713          	li	a4,2
+    800011f8:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x3);
+    800011fc:	5300d7b7          	lui	a5,0x5300d
+    80001200:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80001204:	00300713          	li	a4,3
+    80001208:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x4);
+    8000120c:	5300d7b7          	lui	a5,0x5300d
+    80001210:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80001214:	00400713          	li	a4,4
+    80001218:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x5);
+    8000121c:	5300d7b7          	lui	a5,0x5300d
+    80001220:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80001224:	00500713          	li	a4,5
+    80001228:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x6);
+    8000122c:	5300d7b7          	lui	a5,0x5300d
+    80001230:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80001234:	00600713          	li	a4,6
+    80001238:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x7);
+    8000123c:	5300d7b7          	lui	a5,0x5300d
+    80001240:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80001244:	00700713          	li	a4,7
+    80001248:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x8);
+    8000124c:	5300d7b7          	lui	a5,0x5300d
+    80001250:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80001254:	00800713          	li	a4,8
+    80001258:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x9);
+    8000125c:	5300d7b7          	lui	a5,0x5300d
+    80001260:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80001264:	00900713          	li	a4,9
+    80001268:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xa);
+    8000126c:	5300d7b7          	lui	a5,0x5300d
+    80001270:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80001274:	00a00713          	li	a4,10
+    80001278:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xb);
+    8000127c:	5300d7b7          	lui	a5,0x5300d
+    80001280:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80001284:	00b00713          	li	a4,11
+    80001288:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xc);
+    8000128c:	5300d7b7          	lui	a5,0x5300d
+    80001290:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80001294:	00c00713          	li	a4,12
+    80001298:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xd);
+    8000129c:	5300d7b7          	lui	a5,0x5300d
+    800012a0:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    800012a4:	00d00713          	li	a4,13
+    800012a8:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xe);
+    800012ac:	5300d7b7          	lui	a5,0x5300d
+    800012b0:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    800012b4:	00e00713          	li	a4,14
+    800012b8:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0xf);
+    800012bc:	5300d7b7          	lui	a5,0x5300d
+    800012c0:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    800012c4:	00f00713          	li	a4,15
+    800012c8:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x10);
+    800012cc:	5300d7b7          	lui	a5,0x5300d
+    800012d0:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    800012d4:	01000713          	li	a4,16
+    800012d8:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x11);
+    800012dc:	5300d7b7          	lui	a5,0x5300d
+    800012e0:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    800012e4:	01100713          	li	a4,17
+    800012e8:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x12);
+    800012ec:	5300d7b7          	lui	a5,0x5300d
+    800012f0:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    800012f4:	01200713          	li	a4,18
+    800012f8:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x13);
+    800012fc:	5300d7b7          	lui	a5,0x5300d
+    80001300:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80001304:	01300713          	li	a4,19
+    80001308:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x14);
+    8000130c:	5300d7b7          	lui	a5,0x5300d
+    80001310:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80001314:	01400713          	li	a4,20
+    80001318:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x15);
+    8000131c:	5300d7b7          	lui	a5,0x5300d
+    80001320:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80001324:	01500713          	li	a4,21
+    80001328:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x16);
+    8000132c:	5300d7b7          	lui	a5,0x5300d
+    80001330:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80001334:	01600713          	li	a4,22
+    80001338:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x17);
+    8000133c:	5300d7b7          	lui	a5,0x5300d
+    80001340:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80001344:	01700713          	li	a4,23
+    80001348:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x18);
+    8000134c:	5300d7b7          	lui	a5,0x5300d
+    80001350:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80001354:	01800713          	li	a4,24
+    80001358:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x19);
+    8000135c:	5300d7b7          	lui	a5,0x5300d
+    80001360:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80001364:	01900713          	li	a4,25
+    80001368:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x1a);
+    8000136c:	5300d7b7          	lui	a5,0x5300d
+    80001370:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80001374:	01a00713          	li	a4,26
+    80001378:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x1b);
+    8000137c:	5300d7b7          	lui	a5,0x5300d
+    80001380:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80001384:	01b00713          	li	a4,27
+    80001388:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x1c);
+    8000138c:	5300d7b7          	lui	a5,0x5300d
+    80001390:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80001394:	01c00713          	li	a4,28
+    80001398:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x1d);
+    8000139c:	5300d7b7          	lui	a5,0x5300d
+    800013a0:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    800013a4:	01d00713          	li	a4,29
+    800013a8:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x1e);
+    800013ac:	5300d7b7          	lui	a5,0x5300d
+    800013b0:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    800013b4:	01e00713          	li	a4,30
+    800013b8:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x1f);
+    800013bc:	5300d7b7          	lui	a5,0x5300d
+    800013c0:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    800013c4:	01f00713          	li	a4,31
+    800013c8:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x20);
+    800013cc:	5300d7b7          	lui	a5,0x5300d
+    800013d0:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    800013d4:	02000713          	li	a4,32
+    800013d8:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x21);
+    800013dc:	5300d7b7          	lui	a5,0x5300d
+    800013e0:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    800013e4:	02100713          	li	a4,33
+    800013e8:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x22);
+    800013ec:	5300d7b7          	lui	a5,0x5300d
+    800013f0:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    800013f4:	02200713          	li	a4,34
+    800013f8:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x23);
+    800013fc:	5300d7b7          	lui	a5,0x5300d
+    80001400:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80001404:	02300713          	li	a4,35
+    80001408:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x24);
+    8000140c:	5300d7b7          	lui	a5,0x5300d
+    80001410:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80001414:	02400713          	li	a4,36
+    80001418:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x25);
+    8000141c:	5300d7b7          	lui	a5,0x5300d
+    80001420:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80001424:	02500713          	li	a4,37
+    80001428:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x26);
+    8000142c:	5300d7b7          	lui	a5,0x5300d
+    80001430:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80001434:	02600713          	li	a4,38
+    80001438:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x27);
+    8000143c:	5300d7b7          	lui	a5,0x5300d
+    80001440:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80001444:	02700713          	li	a4,39
+    80001448:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x28);
+    8000144c:	5300d7b7          	lui	a5,0x5300d
+    80001450:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80001454:	02800713          	li	a4,40
+    80001458:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x29);
+    8000145c:	5300d7b7          	lui	a5,0x5300d
+    80001460:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80001464:	02900713          	li	a4,41
+    80001468:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x2a);
+    8000146c:	5300d7b7          	lui	a5,0x5300d
+    80001470:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80001474:	02a00713          	li	a4,42
+    80001478:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x2b);
+    8000147c:	5300d7b7          	lui	a5,0x5300d
+    80001480:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80001484:	02b00713          	li	a4,43
+    80001488:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x2c);
+    8000148c:	5300d7b7          	lui	a5,0x5300d
+    80001490:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80001494:	02c00713          	li	a4,44
+    80001498:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x2d);
+    8000149c:	5300d7b7          	lui	a5,0x5300d
+    800014a0:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    800014a4:	02d00713          	li	a4,45
+    800014a8:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x2e);
+    800014ac:	5300d7b7          	lui	a5,0x5300d
+    800014b0:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    800014b4:	02e00713          	li	a4,46
+    800014b8:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x2f);
+    800014bc:	5300d7b7          	lui	a5,0x5300d
+    800014c0:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    800014c4:	02f00713          	li	a4,47
+    800014c8:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x30);
+    800014cc:	5300d7b7          	lui	a5,0x5300d
+    800014d0:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    800014d4:	03000713          	li	a4,48
+    800014d8:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x31);
+    800014dc:	5300d7b7          	lui	a5,0x5300d
+    800014e0:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    800014e4:	03100713          	li	a4,49
+    800014e8:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x32);
+    800014ec:	5300d7b7          	lui	a5,0x5300d
+    800014f0:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    800014f4:	03200713          	li	a4,50
+    800014f8:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x33);
+    800014fc:	5300d7b7          	lui	a5,0x5300d
+    80001500:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80001504:	03300713          	li	a4,51
+    80001508:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x34);
+    8000150c:	5300d7b7          	lui	a5,0x5300d
+    80001510:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80001514:	03400713          	li	a4,52
+    80001518:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x35);
+    8000151c:	5300d7b7          	lui	a5,0x5300d
+    80001520:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80001524:	03500713          	li	a4,53
+    80001528:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x36);
+    8000152c:	5300d7b7          	lui	a5,0x5300d
+    80001530:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80001534:	03600713          	li	a4,54
+    80001538:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x37);
+    8000153c:	5300d7b7          	lui	a5,0x5300d
+    80001540:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80001544:	03700713          	li	a4,55
+    80001548:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x38);
+    8000154c:	5300d7b7          	lui	a5,0x5300d
+    80001550:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80001554:	03800713          	li	a4,56
+    80001558:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x39);
+    8000155c:	5300d7b7          	lui	a5,0x5300d
+    80001560:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80001564:	03900713          	li	a4,57
+    80001568:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x3a);
+    8000156c:	5300d7b7          	lui	a5,0x5300d
+    80001570:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80001574:	03a00713          	li	a4,58
+    80001578:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x3b);
+    8000157c:	5300d7b7          	lui	a5,0x5300d
+    80001580:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80001584:	03b00713          	li	a4,59
+    80001588:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x3c);
+    8000158c:	5300d7b7          	lui	a5,0x5300d
+    80001590:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    80001594:	03c00713          	li	a4,60
+    80001598:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x3d);
+    8000159c:	5300d7b7          	lui	a5,0x5300d
+    800015a0:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    800015a4:	03d00713          	li	a4,61
+    800015a8:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x3e);
+    800015ac:	5300d7b7          	lui	a5,0x5300d
+    800015b0:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    800015b4:	03e00713          	li	a4,62
+    800015b8:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x3f);
+    800015bc:	5300d7b7          	lui	a5,0x5300d
+    800015c0:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    800015c4:	03f00713          	li	a4,63
+    800015c8:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x40);
+    800015cc:	5300d7b7          	lui	a5,0x5300d
+    800015d0:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    800015d4:	04000713          	li	a4,64
+    800015d8:	00e7a023          	sw	a4,0(a5)
+    reg_write(CDP_S_LUT_LE_START_LOW_0, 0x0);
+    800015dc:	5300d7b7          	lui	a5,0x5300d
+    800015e0:	01878793          	addi	a5,a5,24 # 5300d018 <_prog_start-0x2cff2fe8>
+    800015e4:	0007a023          	sw	zero,0(a5)
+    // CDP_S_LUT_LE_START_LOW_0.LUT_LE_START_LOW:0x0
+    reg_write(CDP_S_LUT_LO_END_LOW_0, 0x100);
+    800015e8:	5300d7b7          	lui	a5,0x5300d
+    800015ec:	03078793          	addi	a5,a5,48 # 5300d030 <_prog_start-0x2cff2fd0>
+    800015f0:	10000713          	li	a4,256
+    800015f4:	00e7a023          	sw	a4,0(a5)
+    // CDP_S_LUT_LO_END_LOW_0.LUT_LO_END_LOW:0x100
+    reg_write(CDP_S_LUT_ACCESS_CFG_0, 0x0);
+    800015f8:	5300d7b7          	lui	a5,0x5300d
+    800015fc:	00878793          	addi	a5,a5,8 # 5300d008 <_prog_start-0x2cff2ff8>
+    80001600:	0007a023          	sw	zero,0(a5)
+    // CDP_S_LUT_ACCESS_CFG_0.LUT_ACCESS_TYPE:READ : 0x0
+    // CDP_S_LUT_ACCESS_CFG_0.LUT_TABLE_ID:LE : 0x0
+    // CDP_S_LUT_ACCESS_CFG_0.LUT_ADDR:0x0
+    reg_write(CDP_S_LUT_ACCESS_DATA_0, 0x0);
+    80001604:	5300d7b7          	lui	a5,0x5300d
+    80001608:	00c78793          	addi	a5,a5,12 # 5300d00c <_prog_start-0x2cff2ff4>
+    8000160c:	0007a023          	sw	zero,0(a5)
+    // CDP_S_LUT_ACCESS_DATA_0.LUT_DATA:0x0
+    reg_write(CDP_S_LUT_LE_START_HIGH_0, 0x0);
+    80001610:	5300d7b7          	lui	a5,0x5300d
+    80001614:	01c78793          	addi	a5,a5,28 # 5300d01c <_prog_start-0x2cff2fe4>
+    80001618:	0007a023          	sw	zero,0(a5)
+    // CDP_S_LUT_LE_START_HIGH_0.LUT_LE_START_HIGH:0x0
+    reg_write(CDP_S_LUT_LO_END_HIGH_0, 0x0);
+    8000161c:	5300d7b7          	lui	a5,0x5300d
+    80001620:	03478793          	addi	a5,a5,52 # 5300d034 <_prog_start-0x2cff2fcc>
+    80001624:	0007a023          	sw	zero,0(a5)
+    // CDP_S_LUT_LO_END_HIGH_0.LUT_LO_END_HIGH:0x0
+    reg_write(CDP_S_LUT_CFG_0, 0x1);
+    80001628:	5300d7b7          	lui	a5,0x5300d
+    8000162c:	01078793          	addi	a5,a5,16 # 5300d010 <_prog_start-0x2cff2ff0>
+    80001630:	00100713          	li	a4,1
+    80001634:	00e7a023          	sw	a4,0(a5)
+    // CDP_S_LUT_CFG_0.LUT_UFLOW_PRIORITY:LE : 0x0
+    // CDP_S_LUT_CFG_0.LUT_OFLOW_PRIORITY:LE : 0x0
+    // CDP_S_LUT_CFG_0.LUT_HYBRID_PRIORITY:LE : 0x0
+    // CDP_S_LUT_CFG_0.LUT_LE_FUNCTION:LINEAR : 0x1
+    reg_write(CDP_S_LUT_LE_SLOPE_SHIFT_0, 0x0);
+    80001638:	5300d7b7          	lui	a5,0x5300d
+    8000163c:	03c78793          	addi	a5,a5,60 # 5300d03c <_prog_start-0x2cff2fc4>
+    80001640:	0007a023          	sw	zero,0(a5)
+    // CDP_S_LUT_LE_SLOPE_SHIFT_0.LUT_LE_SLOPE_OFLOW_SHIFT:0x0
+    // CDP_S_LUT_LE_SLOPE_SHIFT_0.LUT_LE_SLOPE_UFLOW_SHIFT:0x0
+    reg_write(CDP_S_LUT_LE_SLOPE_SCALE_0, 0x0);
+    80001644:	5300d7b7          	lui	a5,0x5300d
+    80001648:	03878793          	addi	a5,a5,56 # 5300d038 <_prog_start-0x2cff2fc8>
+    8000164c:	0007a023          	sw	zero,0(a5)
+    // CDP_S_LUT_LE_SLOPE_SCALE_0.LUT_LE_SLOPE_UFLOW_SCALE:0x0
+    // CDP_S_LUT_LE_SLOPE_SCALE_0.LUT_LE_SLOPE_OFLOW_SCALE:0x0
+    reg_write(CDP_S_LUT_INFO_0, 0x0);
+    80001650:	5300d7b7          	lui	a5,0x5300d
+    80001654:	01478793          	addi	a5,a5,20 # 5300d014 <_prog_start-0x2cff2fec>
+    80001658:	0007a023          	sw	zero,0(a5)
+    // CDP_S_LUT_INFO_0.LUT_LE_INDEX_SELECT:0x0
+    // CDP_S_LUT_INFO_0.LUT_LE_INDEX_OFFSET:0x0
+    // CDP_S_LUT_INFO_0.LUT_LO_INDEX_SELECT:0x0
+    reg_write(CDP_S_LUT_LE_END_LOW_0, 0x40);
+    8000165c:	5300d7b7          	lui	a5,0x5300d
+    80001660:	02078793          	addi	a5,a5,32 # 5300d020 <_prog_start-0x2cff2fe0>
+    80001664:	04000713          	li	a4,64
+    80001668:	00e7a023          	sw	a4,0(a5)
+    // CDP_S_LUT_LE_END_LOW_0.LUT_LE_END_LOW:0x40
+    reg_write(CDP_S_LUT_LO_SLOPE_SCALE_0, 0x0);
+    8000166c:	5300d7b7          	lui	a5,0x5300d
+    80001670:	04078793          	addi	a5,a5,64 # 5300d040 <_prog_start-0x2cff2fc0>
+    80001674:	0007a023          	sw	zero,0(a5)
+    // CDP_S_LUT_LO_SLOPE_SCALE_0.LUT_LO_SLOPE_OFLOW_SCALE:0x0
+    // CDP_S_LUT_LO_SLOPE_SCALE_0.LUT_LO_SLOPE_UFLOW_SCALE:0x0
+    reg_write(CDP_S_LUT_LE_END_HIGH_0, 0x0);
+    80001678:	5300d7b7          	lui	a5,0x5300d
+    8000167c:	02478793          	addi	a5,a5,36 # 5300d024 <_prog_start-0x2cff2fdc>
+    80001680:	0007a023          	sw	zero,0(a5)
+    // CDP_S_LUT_LE_END_HIGH_0.LUT_LE_END_HIGH:0x0
+    reg_write(CDP_S_LUT_LO_START_HIGH_0, 0x0);
+    80001684:	5300d7b7          	lui	a5,0x5300d
+    80001688:	02c78793          	addi	a5,a5,44 # 5300d02c <_prog_start-0x2cff2fd4>
+    8000168c:	0007a023          	sw	zero,0(a5)
+    // CDP_S_LUT_LO_START_HIGH_0.LUT_LO_START_HIGH:0x0
+    reg_write(CDP_S_LUT_LO_START_LOW_0, 0x0);
+    80001690:	5300d7b7          	lui	a5,0x5300d
+    80001694:	02878793          	addi	a5,a5,40 # 5300d028 <_prog_start-0x2cff2fd8>
+    80001698:	0007a023          	sw	zero,0(a5)
+    // CDP_S_LUT_LO_START_LOW_0.LUT_LO_START_LOW:0x0
+    reg_write(CDP_S_LUT_LO_SLOPE_SHIFT_0, 0x0);
+    8000169c:	5300d7b7          	lui	a5,0x5300d
+    800016a0:	04478793          	addi	a5,a5,68 # 5300d044 <_prog_start-0x2cff2fbc>
+    800016a4:	0007a023          	sw	zero,0(a5)
+    // CDP_S_LUT_LO_SLOPE_SHIFT_0.LUT_LO_SLOPE_UFLOW_SHIFT:0x0
+    // CDP_S_LUT_LO_SLOPE_SHIFT_0.LUT_LO_SLOPE_OFLOW_SHIFT:0x0
+    //----------## Layer:CDP_0: LUT programming, end----------
+    //----------## Layer:CDP_0: configuraion, begin----------
+    reg_write(CDP_D_DATOUT_OFFSET_0, 0x80);
+    800016a8:	5300d7b7          	lui	a5,0x5300d
+    800016ac:	08078793          	addi	a5,a5,128 # 5300d080 <_prog_start-0x2cff2f80>
+    800016b0:	08000713          	li	a4,128
+    800016b4:	00e7a023          	sw	a4,0(a5)
+    // CDP_D_DATOUT_OFFSET_0.DATOUT_OFFSET:0x80
+    reg_write(CDP_D_DST_SURFACE_STRIDE_0, 0x800);
+    800016b8:	5300d7b7          	lui	a5,0x5300d
+    800016bc:	05c78793          	addi	a5,a5,92 # 5300d05c <_prog_start-0x2cff2fa4>
+    800016c0:	00001737          	lui	a4,0x1
+    800016c4:	8007071b          	addiw	a4,a4,-2048
+    800016c8:	00e7a023          	sw	a4,0(a5)
+    // CDP_D_DST_SURFACE_STRIDE_0.DST_SURFACE_STRIDE:0x40
+    reg_write(CDP_RDMA_D_SRC_BASE_ADDR_LOW_0, 0x90000000);
+    800016cc:	5300c7b7          	lui	a5,0x5300c
+    800016d0:	01878793          	addi	a5,a5,24 # 5300c018 <_prog_start-0x2cff3fe8>
+    800016d4:	90000737          	lui	a4,0x90000
+    800016d8:	00e7a023          	sw	a4,0(a5)
+    // CDP_RDMA_D_SRC_BASE_ADDR_LOW_0.SRC_BASE_ADDR_LOW:0x4000000
+    reg_write(CDP_D_DST_DMA_CFG_0, 0x1);
+    800016dc:	5300d7b7          	lui	a5,0x5300d
+    800016e0:	06078793          	addi	a5,a5,96 # 5300d060 <_prog_start-0x2cff2fa0>
+    800016e4:	00100713          	li	a4,1
+    800016e8:	00e7a023          	sw	a4,0(a5)
+    // CDP_D_DST_DMA_CFG_0.DST_RAM_TYPE:MC : 0x1
+    reg_write(CDP_RDMA_D_DATA_CUBE_WIDTH_0, 0x7);
+    800016ec:	5300c7b7          	lui	a5,0x5300c
+    800016f0:	00c78793          	addi	a5,a5,12 # 5300c00c <_prog_start-0x2cff3ff4>
+    800016f4:	00700713          	li	a4,7
+    800016f8:	00e7a023          	sw	a4,0(a5)
+    // CDP_RDMA_D_DATA_CUBE_WIDTH_0.WIDTH:0x7
+    reg_write(CDP_RDMA_D_DATA_FORMAT_0, 0x0);
+    800016fc:	5300c7b7          	lui	a5,0x5300c
+    80001700:	03478793          	addi	a5,a5,52 # 5300c034 <_prog_start-0x2cff3fcc>
+    80001704:	0007a023          	sw	zero,0(a5)
+    // CDP_RDMA_D_DATA_FORMAT_0.INPUT_DATA:INT8 : 0x0
+    reg_write(CDP_D_DATIN_SCALE_0, 0x1);
+    80001708:	5300d7b7          	lui	a5,0x5300d
+    8000170c:	07878793          	addi	a5,a5,120 # 5300d078 <_prog_start-0x2cff2f88>
+    80001710:	00100713          	li	a4,1
+    80001714:	00e7a023          	sw	a4,0(a5)
+    // CDP_D_DATIN_SCALE_0.DATIN_SCALE:0x1
+    reg_write(CDP_D_DATOUT_SHIFTER_0, 0x0);
+    80001718:	5300d7b7          	lui	a5,0x5300d
+    8000171c:	08878793          	addi	a5,a5,136 # 5300d088 <_prog_start-0x2cff2f78>
+    80001720:	0007a023          	sw	zero,0(a5)
+    // CDP_D_DATOUT_SHIFTER_0.DATOUT_SHIFTER:0x0
+    reg_write(CDP_D_CYA_0, 0x0);
+    80001724:	5300d7b7          	lui	a5,0x5300d
+    80001728:	0b878793          	addi	a5,a5,184 # 5300d0b8 <_prog_start-0x2cff2f48>
+    8000172c:	0007a023          	sw	zero,0(a5)
+    // CDP_D_CYA_0.CYA:0x0
+    reg_write(CDP_RDMA_D_PERF_ENABLE_0, 0x0);
+    80001730:	5300c7b7          	lui	a5,0x5300c
+    80001734:	03878793          	addi	a5,a5,56 # 5300c038 <_prog_start-0x2cff3fc8>
+    80001738:	0007a023          	sw	zero,0(a5)
+    // CDP_RDMA_D_PERF_ENABLE_0.DMA_EN:DISABLE : 0x0
+    reg_write(CDP_D_LRN_CFG_0, 0x0);
+    8000173c:	5300d7b7          	lui	a5,0x5300d
+    80001740:	07078793          	addi	a5,a5,112 # 5300d070 <_prog_start-0x2cff2f90>
+    80001744:	0007a023          	sw	zero,0(a5)
+    // CDP_D_LRN_CFG_0.NORMALZ_LEN:LEN3 : 0x0
+    reg_write(CDP_RDMA_D_DATA_CUBE_CHANNEL_0, 0x1f);
+    80001748:	5300c7b7          	lui	a5,0x5300c
+    8000174c:	01478793          	addi	a5,a5,20 # 5300c014 <_prog_start-0x2cff3fec>
+    80001750:	01f00713          	li	a4,31
+    80001754:	00e7a023          	sw	a4,0(a5)
+    // CDP_RDMA_D_DATA_CUBE_CHANNEL_0.CHANNEL:0x1f
+    reg_write(CDP_D_DATA_FORMAT_0, 0x0);
+    80001758:	5300d7b7          	lui	a5,0x5300d
+    8000175c:	06878793          	addi	a5,a5,104 # 5300d068 <_prog_start-0x2cff2f98>
+    80001760:	0007a023          	sw	zero,0(a5)
+    // CDP_D_DATA_FORMAT_0.INPUT_DATA_TYPE:INT8 : 0x0
+    reg_write(CDP_D_DATIN_SHIFTER_0, 0x0);
+    80001764:	5300d7b7          	lui	a5,0x5300d
+    80001768:	07c78793          	addi	a5,a5,124 # 5300d07c <_prog_start-0x2cff2f84>
+    8000176c:	0007a023          	sw	zero,0(a5)
+    // CDP_D_DATIN_SHIFTER_0.DATIN_SHIFTER:0x0
+    reg_write(CDP_D_PERF_ENABLE_0, 0x0);
+    80001770:	5300d7b7          	lui	a5,0x5300d
+    80001774:	09c78793          	addi	a5,a5,156 # 5300d09c <_prog_start-0x2cff2f64>
+    80001778:	0007a023          	sw	zero,0(a5)
+    // CDP_D_PERF_ENABLE_0.LUT_EN:DISABLE : 0x0
+    // CDP_D_PERF_ENABLE_0.DMA_EN:DISABLE : 0x0
+    reg_write(CDP_RDMA_D_SRC_BASE_ADDR_HIGH_0, 0x0);
+    8000177c:	5300c7b7          	lui	a5,0x5300c
+    80001780:	01c78793          	addi	a5,a5,28 # 5300c01c <_prog_start-0x2cff3fe4>
+    80001784:	0007a023          	sw	zero,0(a5)
+    // CDP_RDMA_D_SRC_BASE_ADDR_HIGH_0.SRC_BASE_ADDR_HIGH:0x0
+    reg_write(CDP_D_DST_BASE_ADDR_HIGH_0, 0x0);
+    80001788:	5300d7b7          	lui	a5,0x5300d
+    8000178c:	05478793          	addi	a5,a5,84 # 5300d054 <_prog_start-0x2cff2fac>
+    80001790:	0007a023          	sw	zero,0(a5)
+    // CDP_D_DST_BASE_ADDR_HIGH_0.DST_BASE_ADDR_HIGH:0x0
+    reg_write(CDP_RDMA_D_SRC_DMA_CFG_0, 0x1);
+    80001794:	5300c7b7          	lui	a5,0x5300c
+    80001798:	02878793          	addi	a5,a5,40 # 5300c028 <_prog_start-0x2cff3fd8>
+    8000179c:	00100713          	li	a4,1
+    800017a0:	00e7a023          	sw	a4,0(a5)
+    // CDP_RDMA_D_SRC_DMA_CFG_0.SRC_RAM_TYPE:MC : 0x1
+    reg_write(CDP_D_DATOUT_SCALE_0, 0x1);
+    800017a4:	5300d7b7          	lui	a5,0x5300d
+    800017a8:	08478793          	addi	a5,a5,132 # 5300d084 <_prog_start-0x2cff2f7c>
+    800017ac:	00100713          	li	a4,1
+    800017b0:	00e7a023          	sw	a4,0(a5)
+    // CDP_D_DATOUT_SCALE_0.DATOUT_SCALE:0x1
+    reg_write(CDP_D_DATIN_OFFSET_0, 0x80);
+    800017b4:	5300d7b7          	lui	a5,0x5300d
+    800017b8:	07478793          	addi	a5,a5,116 # 5300d074 <_prog_start-0x2cff2f8c>
+    800017bc:	08000713          	li	a4,128
+    800017c0:	00e7a023          	sw	a4,0(a5)
+    // CDP_D_DATIN_OFFSET_0.DATIN_OFFSET:0x80
+    reg_write(CDP_D_NAN_FLUSH_TO_ZERO_0, 0x0);
+    800017c4:	5300d7b7          	lui	a5,0x5300d
+    800017c8:	06c78793          	addi	a5,a5,108 # 5300d06c <_prog_start-0x2cff2f94>
+    800017cc:	0007a023          	sw	zero,0(a5)
+    // CDP_D_NAN_FLUSH_TO_ZERO_0.NAN_TO_ZERO:DISABLE : 0x0
+    reg_write(CDP_D_FUNC_BYPASS_0, 0x3);
+    800017d0:	5300d7b7          	lui	a5,0x5300d
+    800017d4:	04c78793          	addi	a5,a5,76 # 5300d04c <_prog_start-0x2cff2fb4>
+    800017d8:	00300713          	li	a4,3
+    800017dc:	00e7a023          	sw	a4,0(a5)
+    // CDP_D_FUNC_BYPASS_0.SQSUM_BYPASS:ENABLE : 0x1
+    // CDP_D_FUNC_BYPASS_0.MUL_BYPASS:ENABLE : 0x1
+    reg_write(CDP_D_DST_BASE_ADDR_LOW_0, 0x90080000);
+    800017e0:	5300d7b7          	lui	a5,0x5300d
+    800017e4:	05078793          	addi	a5,a5,80 # 5300d050 <_prog_start-0x2cff2fb0>
+    800017e8:	90080737          	lui	a4,0x90080
+    800017ec:	00e7a023          	sw	a4,0(a5)
+    // CDP_D_DST_BASE_ADDR_LOW_0.DST_BASE_ADDR_LOW:0x4004000
+    reg_write(CDP_RDMA_D_CYA_0, 0x0);
+    800017f0:	5300c7b7          	lui	a5,0x5300c
+    800017f4:	04078793          	addi	a5,a5,64 # 5300c040 <_prog_start-0x2cff3fc0>
+    800017f8:	0007a023          	sw	zero,0(a5)
+    // CDP_RDMA_D_CYA_0.CYA:0x0
+    reg_write(CDP_RDMA_D_SRC_SURFACE_STRIDE_0, 0x800);
+    800017fc:	5300c7b7          	lui	a5,0x5300c
+    80001800:	02478793          	addi	a5,a5,36 # 5300c024 <_prog_start-0x2cff3fdc>
+    80001804:	00001737          	lui	a4,0x1
+    80001808:	8007071b          	addiw	a4,a4,-2048
+    8000180c:	00e7a023          	sw	a4,0(a5)
+    // CDP_RDMA_D_SRC_SURFACE_STRIDE_0.SRC_SURFACE_STRIDE:0x40
+    reg_write(CDP_D_DST_LINE_STRIDE_0, 0x100);
+    80001810:	5300d7b7          	lui	a5,0x5300d
+    80001814:	05878793          	addi	a5,a5,88 # 5300d058 <_prog_start-0x2cff2fa8>
+    80001818:	10000713          	li	a4,256
+    8000181c:	00e7a023          	sw	a4,0(a5)
+    // CDP_D_DST_LINE_STRIDE_0.DST_LINE_STRIDE:0x8
+    reg_write(CDP_RDMA_D_SRC_LINE_STRIDE_0, 0x100);
+    80001820:	5300c7b7          	lui	a5,0x5300c
+    80001824:	02078793          	addi	a5,a5,32 # 5300c020 <_prog_start-0x2cff3fe0>
+    80001828:	10000713          	li	a4,256
+    8000182c:	00e7a023          	sw	a4,0(a5)
+    // CDP_RDMA_D_SRC_LINE_STRIDE_0.SRC_LINE_STRIDE:0x8
+    reg_write(CDP_RDMA_D_DATA_CUBE_HEIGHT_0, 0x7);
+    80001830:	5300c7b7          	lui	a5,0x5300c
+    80001834:	01078793          	addi	a5,a5,16 # 5300c010 <_prog_start-0x2cff3ff0>
+    80001838:	00700713          	li	a4,7
+    8000183c:	00e7a023          	sw	a4,0(a5)
+    // CDP_RDMA_D_DATA_CUBE_HEIGHT_0.HEIGHT:0x7
+    //----------## Layer:CDP_0: configuraion, end----------
+    //----------## Layer:CDP_0: operation enable, begin----------
+    //----------#### Layer:CDP_0: operation enable, block:NVDLA_CDP_RDMA, begin --
+    reg_write(CDP_RDMA_D_OP_ENABLE_0,0x1);
+    80001840:	5300c7b7          	lui	a5,0x5300c
+    80001844:	00878793          	addi	a5,a5,8 # 5300c008 <_prog_start-0x2cff3ff8>
+    80001848:	00100713          	li	a4,1
+    8000184c:	00e7a023          	sw	a4,0(a5)
+    //----------#### Layer:CDP_0: operation enable, block:NVDLA_CDP_RDMA, end   --
+    //----------#### Layer:CDP_0: operation enable, block:NVDLA_CDP, begin --
+    reg_write(CDP_D_OP_ENABLE_0,0x1);
+    80001850:	5300d7b7          	lui	a5,0x5300d
+    80001854:	04878793          	addi	a5,a5,72 # 5300d048 <_prog_start-0x2cff2fb8>
+    80001858:	00100713          	li	a4,1
+    8000185c:	00e7a023          	sw	a4,0(a5)
+    //----------#### Layer:CDP_0: operation enable, block:NVDLA_CDP, end   --
+    //----------## Layer:CDP_0: operation enable, end----------
+
+    register uint64_t cycle1 = rdcycle();
+    80001860:	c00027f3          	rdcycle	a5
+    80001864:	fcf43c23          	sd	a5,-40(s0)
+    80001868:	fd843783          	ld	a5,-40(s0)
+    8000186c:	00078493          	mv	s1,a5
+
+    for (register int idx = 0; idx < 32767; idx++) {
+    80001870:	00000093          	li	ra,0
+    80001874:	0200006f          	j	80001894 <main+0x177c>
+        if (reg_read(GLB_S_INTR_STATUS_0) != 0)
+    80001878:	530017b7          	lui	a5,0x53001
+    8000187c:	00c78793          	addi	a5,a5,12 # 5300100c <_prog_start-0x2cffeff4>
+    80001880:	0007a783          	lw	a5,0(a5)
+    80001884:	0007879b          	sext.w	a5,a5
+    80001888:	02079063          	bnez	a5,800018a8 <main+0x1790>
+    for (register int idx = 0; idx < 32767; idx++) {
+    8000188c:	0010879b          	addiw	a5,ra,1
+    80001890:	0007809b          	sext.w	ra,a5
+    80001894:	00008713          	mv	a4,ra
+    80001898:	000087b7          	lui	a5,0x8
+    8000189c:	ffe78793          	addi	a5,a5,-2 # 7ffe <_prog_start-0x7fff8002>
+    800018a0:	fce7dce3          	ble	a4,a5,80001878 <main+0x1760>
+    800018a4:	0080006f          	j	800018ac <main+0x1794>
+            break;
+    800018a8:	00000013          	nop
+    }
+
+    uint64_t cycle2 = rdcycle();
+    800018ac:	c00027f3          	rdcycle	a5
+    800018b0:	fcf43823          	sd	a5,-48(s0)
+    800018b4:	fd043783          	ld	a5,-48(s0)
+    800018b8:	fcf43423          	sd	a5,-56(s0)
+    //printf("cycle1: %lu, cycle2: %lu, diff: %lu\n", cycle1, cycle2, cycle2 - cycle1 );
+    kprintf("cycle1: %x, cycle2: %x, diff: %x\n", cycle1, cycle2, cycle2 - cycle1 );
+    800018bc:	fc843783          	ld	a5,-56(s0)
+    800018c0:	409787b3          	sub	a5,a5,s1
+    800018c4:	00078693          	mv	a3,a5
+    800018c8:	fc843603          	ld	a2,-56(s0)
+    800018cc:	00048593          	mv	a1,s1
+    800018d0:	00000517          	auipc	a0,0x0
+    800018d4:	3e850513          	addi	a0,a0,1000 # 80001cb8 <kprintf+0x2d8>
+    800018d8:	108000ef          	jal	ra,800019e0 <kprintf>
+
+    return 0;
+    800018dc:	00000793          	li	a5,0
+}
+    800018e0:	00078513          	mv	a0,a5
+    800018e4:	03813083          	ld	ra,56(sp)
+    800018e8:	03013403          	ld	s0,48(sp)
+    800018ec:	02813483          	ld	s1,40(sp)
+    800018f0:	04010113          	addi	sp,sp,64
+    800018f4:	00008067          	ret
+
+00000000800018f8 <kputc>:
+#endif
+static volatile uint32_t * const uart = (void *)(UART_CTRL_ADDR);
+static char * const SHUTDOWN_FLAG_STR = "ST Simulation Ended!";
+
+static inline void kputc(char c)
+{
+    800018f8:	fd010113          	addi	sp,sp,-48
+    800018fc:	02813423          	sd	s0,40(sp)
+    80001900:	03010413          	addi	s0,sp,48
+    80001904:	00050793          	mv	a5,a0
+    80001908:	fcf40fa3          	sb	a5,-33(s0)
+  //volatile uint32_t temp_value;
+	volatile uint32_t *tx = &REG32(uart, UART_REG_TXFIFO);
+    8000190c:	640007b7          	lui	a5,0x64000
+    80001910:	fef43423          	sd	a5,-24(s0)
+#ifdef __riscv_atomic
+	int32_t r;
+	do {
+		__asm__ __volatile__ (
+    80001914:	fe843683          	ld	a3,-24(s0)
+    80001918:	fdf44783          	lbu	a5,-33(s0)
+    8000191c:	fe843703          	ld	a4,-24(s0)
+    80001920:	40f6a7af          	amoor.w	a5,a5,(a3)
+    80001924:	fef42223          	sw	a5,-28(s0)
+			"amoor.w %0, %2, %1\n"
+			: "=r" (r), "+A" (*tx)
+			: "r" (c));
+	} while (r < 0);
+    80001928:	fe442783          	lw	a5,-28(s0)
+    8000192c:	0007879b          	sext.w	a5,a5
+    80001930:	fe07c2e3          	bltz	a5,80001914 <kputc+0x1c>
+  //   temp_value = REG32(uart, UART_REG_TXFIFO);
+  // }
+  while ((int32_t)(*tx) < 0);
+	*tx = c;
+#endif
+}
+    80001934:	00000013          	nop
+    80001938:	02813403          	ld	s0,40(sp)
+    8000193c:	03010113          	addi	sp,sp,48
+    80001940:	00008067          	ret
+
+0000000080001944 <_kputs>:
+#include <stdbool.h>
+
+#include "kprintf.h"
+
+static inline void _kputs(const char *s)
+{
+    80001944:	fd010113          	addi	sp,sp,-48
+    80001948:	02113423          	sd	ra,40(sp)
+    8000194c:	02813023          	sd	s0,32(sp)
+    80001950:	03010413          	addi	s0,sp,48
+    80001954:	fca43c23          	sd	a0,-40(s0)
+	char c;
+	for (; (c = *s) != '\0'; s++)
+    80001958:	01c0006f          	j	80001974 <_kputs+0x30>
+		kputc(c);
+    8000195c:	fef44783          	lbu	a5,-17(s0)
+    80001960:	00078513          	mv	a0,a5
+    80001964:	f95ff0ef          	jal	ra,800018f8 <kputc>
+	for (; (c = *s) != '\0'; s++)
+    80001968:	fd843783          	ld	a5,-40(s0)
+    8000196c:	00178793          	addi	a5,a5,1 # 64000001 <_prog_start-0x1bffffff>
+    80001970:	fcf43c23          	sd	a5,-40(s0)
+    80001974:	fd843783          	ld	a5,-40(s0)
+    80001978:	0007c783          	lbu	a5,0(a5)
+    8000197c:	fef407a3          	sb	a5,-17(s0)
+    80001980:	fef44783          	lbu	a5,-17(s0)
+    80001984:	0ff7f793          	andi	a5,a5,255
+    80001988:	fc079ae3          	bnez	a5,8000195c <_kputs+0x18>
+}
+    8000198c:	00000013          	nop
+    80001990:	02813083          	ld	ra,40(sp)
+    80001994:	02013403          	ld	s0,32(sp)
+    80001998:	03010113          	addi	sp,sp,48
+    8000199c:	00008067          	ret
+
+00000000800019a0 <kputs>:
+
+void kputs(const char *s)
+{
+    800019a0:	fe010113          	addi	sp,sp,-32
+    800019a4:	00113c23          	sd	ra,24(sp)
+    800019a8:	00813823          	sd	s0,16(sp)
+    800019ac:	02010413          	addi	s0,sp,32
+    800019b0:	fea43423          	sd	a0,-24(s0)
+	_kputs(s);
+    800019b4:	fe843503          	ld	a0,-24(s0)
+    800019b8:	f8dff0ef          	jal	ra,80001944 <_kputs>
+	kputc('\r');
+    800019bc:	00d00513          	li	a0,13
+    800019c0:	f39ff0ef          	jal	ra,800018f8 <kputc>
+	kputc('\n');
+    800019c4:	00a00513          	li	a0,10
+    800019c8:	f31ff0ef          	jal	ra,800018f8 <kputc>
+}
+    800019cc:	00000013          	nop
+    800019d0:	01813083          	ld	ra,24(sp)
+    800019d4:	01013403          	ld	s0,16(sp)
+    800019d8:	02010113          	addi	sp,sp,32
+    800019dc:	00008067          	ret
+
+00000000800019e0 <kprintf>:
+
+void kprintf(const char *fmt, ...)
+{
+    800019e0:	f7010113          	addi	sp,sp,-144
+    800019e4:	04113423          	sd	ra,72(sp)
+    800019e8:	04813023          	sd	s0,64(sp)
+    800019ec:	05010413          	addi	s0,sp,80
+    800019f0:	faa43c23          	sd	a0,-72(s0)
+    800019f4:	00b43423          	sd	a1,8(s0)
+    800019f8:	00c43823          	sd	a2,16(s0)
+    800019fc:	00d43c23          	sd	a3,24(s0)
+    80001a00:	02e43023          	sd	a4,32(s0)
+    80001a04:	02f43423          	sd	a5,40(s0)
+    80001a08:	03043823          	sd	a6,48(s0)
+    80001a0c:	03143c23          	sd	a7,56(s0)
+	va_list vl;
+	bool is_format, is_long, is_char;
+	char c;
+
+	va_start(vl, fmt);
+    80001a10:	04040793          	addi	a5,s0,64
+    80001a14:	fc878793          	addi	a5,a5,-56
+    80001a18:	fcf43023          	sd	a5,-64(s0)
+	is_format = false;
+    80001a1c:	fe0407a3          	sb	zero,-17(s0)
+	is_long = false;
+    80001a20:	fe040723          	sb	zero,-18(s0)
+	is_char = false;
+    80001a24:	fe0406a3          	sb	zero,-19(s0)
+	
+	while ((c = *fmt++) != '\0') {
+    80001a28:	1b40006f          	j	80001bdc <kprintf+0x1fc>
+		if (is_format) {
+    80001a2c:	fef44783          	lbu	a5,-17(s0)
+    80001a30:	0ff7f793          	andi	a5,a5,255
+    80001a34:	18078063          	beqz	a5,80001bb4 <kprintf+0x1d4>
+			switch (c) {
+    80001a38:	fd744783          	lbu	a5,-41(s0)
+    80001a3c:	0007879b          	sext.w	a5,a5
+    80001a40:	f9d7869b          	addiw	a3,a5,-99
+    80001a44:	0006871b          	sext.w	a4,a3
+    80001a48:	01500793          	li	a5,21
+    80001a4c:	14e7ec63          	bltu	a5,a4,80001ba4 <kprintf+0x1c4>
+    80001a50:	02069793          	slli	a5,a3,0x20
+    80001a54:	0207d793          	srli	a5,a5,0x20
+    80001a58:	00279713          	slli	a4,a5,0x2
+    80001a5c:	00000797          	auipc	a5,0x0
+    80001a60:	29c78793          	addi	a5,a5,668 # 80001cf8 <kprintf+0x318>
+    80001a64:	00f707b3          	add	a5,a4,a5
+    80001a68:	0007a783          	lw	a5,0(a5)
+    80001a6c:	0007871b          	sext.w	a4,a5
+    80001a70:	00000797          	auipc	a5,0x0
+    80001a74:	28878793          	addi	a5,a5,648 # 80001cf8 <kprintf+0x318>
+    80001a78:	00f707b3          	add	a5,a4,a5
+    80001a7c:	00078067          	jr	a5
+			case 'l':
+				is_long = true;
+    80001a80:	00100793          	li	a5,1
+    80001a84:	fef40723          	sb	a5,-18(s0)
+				continue;
+    80001a88:	1540006f          	j	80001bdc <kprintf+0x1fc>
+			case 'h':
+				is_char = true;
+    80001a8c:	00100793          	li	a5,1
+    80001a90:	fef406a3          	sb	a5,-19(s0)
+				continue;
+    80001a94:	1480006f          	j	80001bdc <kprintf+0x1fc>
+			case 'x': {
+				unsigned long n;
+				long i;
+				if (is_long) {
+    80001a98:	fee44783          	lbu	a5,-18(s0)
+    80001a9c:	0ff7f793          	andi	a5,a5,255
+    80001aa0:	02078263          	beqz	a5,80001ac4 <kprintf+0xe4>
+					n = va_arg(vl, unsigned long);
+    80001aa4:	fc043783          	ld	a5,-64(s0)
+    80001aa8:	00878713          	addi	a4,a5,8
+    80001aac:	fce43023          	sd	a4,-64(s0)
+    80001ab0:	0007b783          	ld	a5,0(a5)
+    80001ab4:	fef43023          	sd	a5,-32(s0)
+					i = (sizeof(unsigned long) << 3) - 4;
+    80001ab8:	03c00793          	li	a5,60
+    80001abc:	fcf43c23          	sd	a5,-40(s0)
+    80001ac0:	09c0006f          	j	80001b5c <kprintf+0x17c>
+				} else {
+					n = va_arg(vl, unsigned int);
+    80001ac4:	fc043783          	ld	a5,-64(s0)
+    80001ac8:	00878713          	addi	a4,a5,8
+    80001acc:	fce43023          	sd	a4,-64(s0)
+    80001ad0:	0007a783          	lw	a5,0(a5)
+    80001ad4:	02079793          	slli	a5,a5,0x20
+    80001ad8:	0207d793          	srli	a5,a5,0x20
+    80001adc:	fef43023          	sd	a5,-32(s0)
+					i = is_char ? 4 : (sizeof(unsigned int) << 3) - 4;
+    80001ae0:	fed44783          	lbu	a5,-19(s0)
+    80001ae4:	0ff7f793          	andi	a5,a5,255
+    80001ae8:	00078663          	beqz	a5,80001af4 <kprintf+0x114>
+    80001aec:	00400793          	li	a5,4
+    80001af0:	0080006f          	j	80001af8 <kprintf+0x118>
+    80001af4:	01c00793          	li	a5,28
+    80001af8:	fcf43c23          	sd	a5,-40(s0)
+				}
+				for (; i >= 0; i -= 4) {
+    80001afc:	0600006f          	j	80001b5c <kprintf+0x17c>
+					long d;
+					d = (n >> i) & 0xF;
+    80001b00:	fd843783          	ld	a5,-40(s0)
+    80001b04:	0007879b          	sext.w	a5,a5
+    80001b08:	fe043703          	ld	a4,-32(s0)
+    80001b0c:	00f757b3          	srl	a5,a4,a5
+    80001b10:	00f7f793          	andi	a5,a5,15
+    80001b14:	fcf43423          	sd	a5,-56(s0)
+					kputc(d < 10 ? '0' + d : 'a' + d - 10);
+    80001b18:	fc843703          	ld	a4,-56(s0)
+    80001b1c:	00900793          	li	a5,9
+    80001b20:	00e7cc63          	blt	a5,a4,80001b38 <kprintf+0x158>
+    80001b24:	fc843783          	ld	a5,-56(s0)
+    80001b28:	0ff7f793          	andi	a5,a5,255
+    80001b2c:	0307879b          	addiw	a5,a5,48
+    80001b30:	0ff7f793          	andi	a5,a5,255
+    80001b34:	0140006f          	j	80001b48 <kprintf+0x168>
+    80001b38:	fc843783          	ld	a5,-56(s0)
+    80001b3c:	0ff7f793          	andi	a5,a5,255
+    80001b40:	0577879b          	addiw	a5,a5,87
+    80001b44:	0ff7f793          	andi	a5,a5,255
+    80001b48:	00078513          	mv	a0,a5
+    80001b4c:	dadff0ef          	jal	ra,800018f8 <kputc>
+				for (; i >= 0; i -= 4) {
+    80001b50:	fd843783          	ld	a5,-40(s0)
+    80001b54:	ffc78793          	addi	a5,a5,-4
+    80001b58:	fcf43c23          	sd	a5,-40(s0)
+    80001b5c:	fd843783          	ld	a5,-40(s0)
+    80001b60:	fa07d0e3          	bgez	a5,80001b00 <kprintf+0x120>
+				}
+				break;
+    80001b64:	0400006f          	j	80001ba4 <kprintf+0x1c4>
+			}
+			case 's':
+				//kputc('s');
+				_kputs(va_arg(vl, const char *));
+    80001b68:	fc043783          	ld	a5,-64(s0)
+    80001b6c:	00878713          	addi	a4,a5,8
+    80001b70:	fce43023          	sd	a4,-64(s0)
+    80001b74:	0007b783          	ld	a5,0(a5)
+    80001b78:	00078513          	mv	a0,a5
+    80001b7c:	dc9ff0ef          	jal	ra,80001944 <_kputs>
+				break;
+    80001b80:	0240006f          	j	80001ba4 <kprintf+0x1c4>
+			case 'c':
+				kputc(va_arg(vl, int));
+    80001b84:	fc043783          	ld	a5,-64(s0)
+    80001b88:	00878713          	addi	a4,a5,8
+    80001b8c:	fce43023          	sd	a4,-64(s0)
+    80001b90:	0007a783          	lw	a5,0(a5)
+    80001b94:	0ff7f793          	andi	a5,a5,255
+    80001b98:	00078513          	mv	a0,a5
+    80001b9c:	d5dff0ef          	jal	ra,800018f8 <kputc>
+				break;
+    80001ba0:	00000013          	nop
+			}
+			is_format = false;
+    80001ba4:	fe0407a3          	sb	zero,-17(s0)
+			is_long = false;
+    80001ba8:	fe040723          	sb	zero,-18(s0)
+			is_char = false;
+    80001bac:	fe0406a3          	sb	zero,-19(s0)
+    80001bb0:	02c0006f          	j	80001bdc <kprintf+0x1fc>
+		} else if (c == '%') {
+    80001bb4:	fd744783          	lbu	a5,-41(s0)
+    80001bb8:	0ff7f713          	andi	a4,a5,255
+    80001bbc:	02500793          	li	a5,37
+    80001bc0:	00f71863          	bne	a4,a5,80001bd0 <kprintf+0x1f0>
+			is_format = true;
+    80001bc4:	00100793          	li	a5,1
+    80001bc8:	fef407a3          	sb	a5,-17(s0)
+    80001bcc:	0100006f          	j	80001bdc <kprintf+0x1fc>
+		} else {
+			kputc(c);
+    80001bd0:	fd744783          	lbu	a5,-41(s0)
+    80001bd4:	00078513          	mv	a0,a5
+    80001bd8:	d21ff0ef          	jal	ra,800018f8 <kputc>
+	while ((c = *fmt++) != '\0') {
+    80001bdc:	fb843783          	ld	a5,-72(s0)
+    80001be0:	00178713          	addi	a4,a5,1
+    80001be4:	fae43c23          	sd	a4,-72(s0)
+    80001be8:	0007c783          	lbu	a5,0(a5)
+    80001bec:	fcf40ba3          	sb	a5,-41(s0)
+    80001bf0:	fd744783          	lbu	a5,-41(s0)
+    80001bf4:	0ff7f793          	andi	a5,a5,255
+    80001bf8:	e2079ae3          	bnez	a5,80001a2c <kprintf+0x4c>
+		}
+	}
+	kputc('\n');
+    80001bfc:	00a00513          	li	a0,10
+    80001c00:	cf9ff0ef          	jal	ra,800018f8 <kputc>
+	va_end(vl);
+}
+    80001c04:	00000013          	nop
+    80001c08:	04813083          	ld	ra,72(sp)
+    80001c0c:	04013403          	ld	s0,64(sp)
+    80001c10:	09010113          	addi	sp,sp,144
+    80001c14:	00008067          	ret
+	...

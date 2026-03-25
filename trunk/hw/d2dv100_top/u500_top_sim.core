@@ -1,0 +1,138 @@
+CAPI=2:
+# Copyright lowRISC contributors.
+# Licensed under the Apache License, Version 2.0, see LICENSE for details.
+# SPDX-License-Identifier: Apache-2.0
+name: "lowrisc:dv:u500_top_sim:0.1"
+description: "Technology-independent Earl Grey toplevel"
+filesets:
+  files_rtl:
+    depend:
+      #- lowrisc:ip:u500_top
+    files:
+    file_type: systemVerilogSource
+  files_dv:
+    depend:
+      #- lowrisc:dv:axi_xbar_bind:0.1
+      #- lowrisc:dv:axi_xbar_test:0.1
+      # - lowrisc:dv:axi_bind:0.1
+      # - lowrisc:dv:axi_xbar_sva
+      - lowrisc:dv:u500_top_bind
+      - lowrisc:dv:tlul_test
+      - lowrisc:dv:spi0_test:0.1
+      - lowrisc:dv:uarta_test:0.1
+      - lowrisc:dv:jtaga_test:0.1
+      - lowrisc:dv:spi_slave_test:0.1
+      - lowrisc:dv:spi1_test:0.1
+      #- lowrisc:dv:mem_bkdr_util
+    files:
+      #- tb/dut.sv: {is_include_file: true}
+      - dv/dut_MEISHAV100_TOP_wrapper.sv
+    file_type: systemVerilogSource
+
+  files_verilator_waiver:
+    depend:
+      # common waivers
+      #- lowrisc:lint:common
+      #- lowrisc:lint:comportable
+    files:
+      - lint/tb.vlt
+    file_type: vlt
+
+  files_ascentlint_waiver:
+    depend:
+      # common waivers
+      #- lowrisc:lint:common
+      #- lowrisc:lint:comportable
+    files:
+      - lint/tb.waiver
+    file_type: waiver
+
+  files_veriblelint_waiver:
+    depend:
+      # common waivers
+      #- lowrisc:lint:common
+      #- lowrisc:lint:comportable
+
+
+parameters:
+  SYNTHESIS:
+    datatype: bool
+    paramtype: vlogdefine
+
+targets:
+  sim: &sim_target
+    default_tool: vcs
+    filesets:
+      - files_rtl
+      - files_dv
+    toplevel: tb
+    tools:
+      vcs:
+        vcs_options:
+          - +define+VCS 
+          - +define+STOP_COND=0 
+          - +define+PRINTF_COND=0 
+          - +define+RANDOMIZE_DELAY=0.1
+          - +define+RANDOMIZE_MEM_INIT
+          - +define+MEM_INIT_ZERO
+          - +define+UVM 
+          - +define+UVM_NO_DEPRECATED 
+          - +define+UVM_REGEX_NO_DPI 
+          - +define+UVM_REG_ADDR_WIDTH=38 
+          - +define+UVM_REG_DATA_WIDTH=32 
+          - +define+UVM_REG_BYTENABLE_WIDTH=4 
+          - +define+SIMULATION
+          - +define+BUS_SZW=3
+          - -licqueue -kdb -ntb_opts uvm-1.2 
+          - -timescale=1ns/1ps
+          - -lca
+          - -assert svaext 
+          - -xlrm uniq_prior_final 
+          - -CFLAGS --std=c++11 -LDFLAGS -Wl,--no-as-needed 
+          - -debug_access+all -debug_region=cell+lib 
+          - +nospecify +notimingcheck 
+          #- +incdir+../../../../../scratch/$GIT_VERSION/u500_top-sim-vcs/default
+          - +warn=SV-NFIVC 
+          - +warn=noUII-L 
+          - +warn=noLCA_FEATURES_ENABLED
+          - -error=IPDW 
+          - -error=UPF_ISPND 
+          - -error=IGPA 
+          - -error=PCSRMIO 
+          - -error=AOUP 
+          - -error=ELW_UNBOUND 
+          - -error=IUWI 
+          - -error=INAV 
+          - -error=SV-ISC 
+          - -error=OSVF-NPVIUFPI 
+          - -error=DPIMI 
+          - -error=IPDASP 
+          - -error=CM-HIER-FNF 
+          - -error=CWUC 
+          - -error=MATN 
+          - -error=STASKW_NDTAZ1 
+          - -error=TMPO 
+          - -error=SV-OHCM 
+          - +error+10000
+          - -error=IOPCWM 
+          - +lint=TFIPC-L
+          - +vcs+initreg+config+../../../../../util/common/initfile
+          - -l build.log 
+          - -f ../../../../../hw/d2dv100_top/rtl/meishav100_common_lib.lst
+          - -f ../../../../../hw/d2dv100_top/rtl/soc_iram.lst
+          - -f ../../../../../hw/d2dv100_top/rtl/nvdla.lst
+          - -f ../../../../../hw/d2dv100_top/rtl/top/RocketTile.lst
+          - -f ../../../../../hw/d2dv100_top/rtl/meishav100_top.lst
+        run_options:
+          - +UVM_NO_RELNOTES
+          - +UVM_VERBOSITY=$(pl)
+          - -licqueue 
+          - -ucli -do ../../../../../hw/dv/tools/sim.tcl 
+          - +ntb_random_seed=$(seed)
+          - -assert nopostproc
+          - +UVM_TESTNAME=$(uvm_test)
+          - +UVM_TEST_SEQ=$(uvm_test_seq)
+          - +vcs+initreg+config+../../../../../util/common/initfile
+          - +BOOT_ROM_HEX_FILE=../../../../../sw/bootrom/bootrom.hex
+          - +OUT_SRAM_HEX_FILE=../../../../../sw/case/test_demo.hex
+          - +spi_stim_hex_file=../../../../../hw/d2dv100_top/dv/ip_test/spi_slave/spi_stim.txt

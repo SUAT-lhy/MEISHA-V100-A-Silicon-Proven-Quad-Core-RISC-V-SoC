@@ -1,0 +1,27 @@
+CAPI=2:
+# Vendor 		: 
+# Author 		: ling
+# Filename 	:  
+# Date Created: 2022.04.26 
+# Version		: V1.0
+# File description	:
+# Revision History :
+name: "lowrisc:dv:uart_bind:0.1"
+description: "axi bind DV UVM test"
+filesets:
+  files_rtl:
+    depend:
+      - lowrisc:ip:uart
+  files_dv:
+    depend:
+      - lowrisc:dut:top_pkg:0.1
+      - lowrisc:dv:bind_abs
+      - lowrisc:dv:uart_bind_lib
+    files:
+      - uart_bind.sv
+    file_type: systemVerilogSource
+
+targets:
+  default:
+    filesets:
+      - files_dv

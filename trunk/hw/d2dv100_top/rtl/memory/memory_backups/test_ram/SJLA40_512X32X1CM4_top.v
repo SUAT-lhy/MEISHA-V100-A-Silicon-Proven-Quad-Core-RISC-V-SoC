@@ -1,0 +1,86 @@
+module SJLA40_512X32X1CM4_top
+(
+    input   wire            CKA,        
+    input   wire            CKB,       
+    input   wire            CSAN,      
+    input   wire            CSBN,      
+    input   wire            WEAN,      
+    input   wire            WEBN,      
+    input   wire            NAP,       
+    input   wire            DVSE,      
+    input   wire    [3:0]   DVS,       
+    input   wire    [8:0]  Addr_A,     
+    input   wire    [8:0]  Addr_B,     
+    input   wire    [31:0]  Data_inA,  
+    input   wire    [31:0]  Data_inB,  
+    output  wire    [31:0]  Data_outA, 
+    output  wire    [31:0]  Data_outB  
+);
+
+
+SJLA40_512X32X1CM4 u_SJLA40_512X32X1CM4
+(
+    .CKA(CKA),              // 时钟A
+    .CKB(CKB),              // 时钟B
+    .CSAN(CSAN),            // 片选信号A
+    .CSBN(CSBN),            // 片选信号B
+    .NAP(NAP),              // 低功耗模式
+    .DVSE(DVSE),            // 动态电压调节使能
+    .DVS0(DVS[0]),          // 动态电压调节选择0
+    .DVS1(DVS[1]),          // 动态电压调节选择1
+    .DVS2(DVS[2]),          // 动态电压调节选择2
+    .DVS3(DVS[3]),          // 动态电压调节选择3
+    .WEAN(WEAN),
+    .WEBN(WEBN),
+    
+    .A0(Addr_A[0]), .A1(Addr_A[1]), .A2(Addr_A[2]), .A3(Addr_A[3]),
+    .A4(Addr_A[4]), .A5(Addr_A[5]), .A6(Addr_A[6]), .A7(Addr_A[7]),
+    .A8(Addr_A[8]), 
+
+    .B0(Addr_B[0]), .B1(Addr_B[1]), .B2(Addr_B[2]), .B3(Addr_B[3]),
+    .B4(Addr_B[4]), .B5(Addr_B[5]), .B6(Addr_B[6]), .B7(Addr_B[7]),
+    .B8(Addr_B[8]), 
+
+    
+
+  
+    .DIA0(Data_inA[0]), .DIA1(Data_inA[1]), .DIA2(Data_inA[2]), .DIA3(Data_inA[3]),
+    .DIA4(Data_inA[4]), .DIA5(Data_inA[5]), .DIA6(Data_inA[6]), .DIA7(Data_inA[7]),
+    .DIA8(Data_inA[8]), .DIA9(Data_inA[9]), .DIA10(Data_inA[10]), .DIA11(Data_inA[11]),
+    .DIA12(Data_inA[12]), .DIA13(Data_inA[13]), .DIA14(Data_inA[14]), .DIA15(Data_inA[15]),
+    .DIA16(Data_inA[16]), .DIA17(Data_inA[17]), .DIA18(Data_inA[18]), .DIA19(Data_inA[19]),
+    .DIA20(Data_inA[20]), .DIA21(Data_inA[21]), .DIA22(Data_inA[22]), .DIA23(Data_inA[23]),
+    .DIA24(Data_inA[24]), .DIA25(Data_inA[25]), .DIA26(Data_inA[26]), .DIA27(Data_inA[27]),
+    .DIA28(Data_inA[28]), .DIA29(Data_inA[29]), .DIA30(Data_inA[30]), .DIA31(Data_inA[31]),
+   
+    
+    .DIB0(Data_inB[0]), .DIB1(Data_inB[1]), .DIB2(Data_inB[2]), .DIB3(Data_inB[3]),
+    .DIB4(Data_inB[4]), .DIB5(Data_inB[5]), .DIB6(Data_inB[6]), .DIB7(Data_inB[7]),
+    .DIB8(Data_inB[8]), .DIB9(Data_inB[9]), .DIB10(Data_inB[10]), .DIB11(Data_inB[11]),
+    .DIB12(Data_inB[12]), .DIB13(Data_inB[13]), .DIB14(Data_inB[14]), .DIB15(Data_inB[15]),
+    .DIB16(Data_inB[16]), .DIB17(Data_inB[17]), .DIB18(Data_inB[18]), .DIB19(Data_inB[19]),
+    .DIB20(Data_inB[20]), .DIB21(Data_inB[21]), .DIB22(Data_inB[22]), .DIB23(Data_inB[23]),
+    .DIB24(Data_inB[24]), .DIB25(Data_inB[25]), .DIB26(Data_inB[26]), .DIB27(Data_inB[27]),
+    .DIB28(Data_inB[28]), .DIB29(Data_inB[29]), .DIB30(Data_inB[30]), .DIB31(Data_inB[31]),
+    
+    .DOA0(Data_outA[0]), .DOA1(Data_outA[1]), .DOA2(Data_outA[2]), .DOA3(Data_outA[3]),
+    .DOA4(Data_outA[4]), .DOA5(Data_outA[5]), .DOA6(Data_outA[6]), .DOA7(Data_outA[7]),
+    .DOA8(Data_outA[8]), .DOA9(Data_outA[9]), .DOA10(Data_outA[10]), .DOA11(Data_outA[11]),
+    .DOA12(Data_outA[12]), .DOA13(Data_outA[13]), .DOA14(Data_outA[14]), .DOA15(Data_outA[15]),
+    .DOA16(Data_outA[16]), .DOA17(Data_outA[17]), .DOA18(Data_outA[18]), .DOA19(Data_outA[19]),
+    .DOA20(Data_outA[20]), .DOA21(Data_outA[21]), .DOA22(Data_outA[22]), .DOA23(Data_outA[23]),
+    .DOA24(Data_outA[24]), .DOA25(Data_outA[25]), .DOA26(Data_outA[26]), .DOA27(Data_outA[27]),
+    .DOA28(Data_outA[28]), .DOA29(Data_outA[29]), .DOA30(Data_outA[30]), .DOA31(Data_outA[31]),
+    
+
+    .DOB0(Data_outB[0]), .DOB1(Data_outB[1]), .DOB2(Data_outB[2]), .DOB3(Data_outB[3]),
+    .DOB4(Data_outB[4]), .DOB5(Data_outB[5]), .DOB6(Data_outB[6]), .DOB7(Data_outB[7]),
+    .DOB8(Data_outB[8]), .DOB9(Data_outB[9]), .DOB10(Data_outB[10]), .DOB11(Data_outB[11]),
+    .DOB12(Data_outB[12]), .DOB13(Data_outB[13]), .DOB14(Data_outB[14]), .DOB15(Data_outB[15]),
+    .DOB16(Data_outB[16]), .DOB17(Data_outB[17]), .DOB18(Data_outB[18]), .DOB19(Data_outB[19]),
+    .DOB20(Data_outB[20]), .DOB21(Data_outB[21]), .DOB22(Data_outB[22]), .DOB23(Data_outB[23]),
+    .DOB24(Data_outB[24]), .DOB25(Data_outB[25]), .DOB26(Data_outB[26]), .DOB27(Data_outB[27]),
+    .DOB28(Data_outB[28]), .DOB29(Data_outB[29]), .DOB30(Data_outB[30]), .DOB31(Data_outB[31])
+);    
+
+endmodule

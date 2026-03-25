@@ -1,0 +1,91 @@
+command: cd vmod/nvdla/rubik;make PROJECT=nv_small 
+make[1]: Entering directory '/work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/nvdla/rubik'
+../../../tools/bin/vcp -i NV_NVDLA_rubik.v -o ../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_rubik.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_rubik.v ../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_rubik.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_RUBIK_dma.v -o ../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_dma.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_dma.v ../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_dma.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_RUBIK_dr2drc.v -o ../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_dr2drc.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_dr2drc.v ../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_dr2drc.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_RUBIK_dual_reg.v -o ../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_dual_reg.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_dual_reg.v ../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_dual_reg.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_RUBIK_fifo.v -o ../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_fifo.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_fifo.v ../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_fifo.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_RUBIK_intr.v -o ../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_intr.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_intr.v ../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_intr.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_RUBIK_regfile.v -o ../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_regfile.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_regfile.v ../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_regfile.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_RUBIK_rf_core.v -o ../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_rf_core.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_rf_core.v ../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_rf_core.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_RUBIK_rf_ctrl.v -o ../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_rf_ctrl.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_rf_ctrl.v ../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_rf_ctrl.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_RUBIK_rf_rcmd.v -o ../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_rf_rcmd.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_rf_rcmd.v ../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_rf_rcmd.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_RUBIK_rf_wcmd.v -o ../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_rf_wcmd.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_rf_wcmd.v ../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_rf_wcmd.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_RUBIK_seq_gen.v -o ../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_seq_gen.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_seq_gen.v ../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_seq_gen.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_RUBIK_single_reg.v -o ../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_single_reg.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_single_reg.v ../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_single_reg.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_RUBIK_slcg.v -o ../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_slcg.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_slcg.v ../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_slcg.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_RUBIK_wrdma_cmd.v -o ../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_wrdma_cmd.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_wrdma_cmd.v ../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_wrdma_cmd.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_RUBIK_wrdma_data.v -o ../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_wrdma_data.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_wrdma_data.v ../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_wrdma_data.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_RUBIK_wr_req.v -o ../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_wr_req.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_wr_req.v ../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_wr_req.v.vcp 
+==============================================
+files are generated under /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/outdir/nv_small/vmod/nvdla/rubik
+==============================================
+make[1]: Leaving directory '/work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/nvdla/rubik'
+Processing NV_NVDLA_rubik.v into ../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_rubik.v.vcp
+../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_rubik.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_rubik.v modified.
+Processing NV_NVDLA_RUBIK_dma.v into ../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_dma.v.vcp
+../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_dma.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_dma.v modified.
+Processing NV_NVDLA_RUBIK_dr2drc.v into ../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_dr2drc.v.vcp
+../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_dr2drc.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_dr2drc.v modified.
+Processing NV_NVDLA_RUBIK_dual_reg.v into ../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_dual_reg.v.vcp
+../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_dual_reg.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_dual_reg.v modified.
+Processing NV_NVDLA_RUBIK_fifo.v into ../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_fifo.v.vcp
+../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_fifo.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_fifo.v modified.
+Processing NV_NVDLA_RUBIK_intr.v into ../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_intr.v.vcp
+../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_intr.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_intr.v modified.
+Processing NV_NVDLA_RUBIK_regfile.v into ../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_regfile.v.vcp
+../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_regfile.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_regfile.v modified.
+Processing NV_NVDLA_RUBIK_rf_core.v into ../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_rf_core.v.vcp
+../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_rf_core.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_rf_core.v modified.
+Processing NV_NVDLA_RUBIK_rf_ctrl.v into ../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_rf_ctrl.v.vcp
+../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_rf_ctrl.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_rf_ctrl.v modified.
+Processing NV_NVDLA_RUBIK_rf_rcmd.v into ../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_rf_rcmd.v.vcp
+../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_rf_rcmd.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_rf_rcmd.v modified.
+Processing NV_NVDLA_RUBIK_rf_wcmd.v into ../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_rf_wcmd.v.vcp
+../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_rf_wcmd.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_rf_wcmd.v modified.
+Processing NV_NVDLA_RUBIK_seq_gen.v into ../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_seq_gen.v.vcp
+../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_seq_gen.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_seq_gen.v modified.
+Processing NV_NVDLA_RUBIK_single_reg.v into ../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_single_reg.v.vcp
+../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_single_reg.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_single_reg.v modified.
+Processing NV_NVDLA_RUBIK_slcg.v into ../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_slcg.v.vcp
+../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_slcg.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_slcg.v modified.
+Processing NV_NVDLA_RUBIK_wrdma_cmd.v into ../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_wrdma_cmd.v.vcp
+../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_wrdma_cmd.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_wrdma_cmd.v modified.
+Processing NV_NVDLA_RUBIK_wrdma_data.v into ../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_wrdma_data.v.vcp
+../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_wrdma_data.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_wrdma_data.v modified.
+Processing NV_NVDLA_RUBIK_wr_req.v into ../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_wr_req.v.vcp
+../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_wr_req.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/rubik/NV_NVDLA_RUBIK_wr_req.v modified.

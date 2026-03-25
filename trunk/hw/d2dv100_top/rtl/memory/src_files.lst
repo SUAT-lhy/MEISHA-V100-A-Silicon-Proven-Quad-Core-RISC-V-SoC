@@ -1,0 +1,12 @@
+//${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/memory/SJLA40_8192X8X8CM8.v
+//${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/memory/SZLB40_512X8X4CM4.v
+//${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/memory/SYLB40_512X8X8CM4.v
+//${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/memory/SPLB40_2048X32BM1A.v
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/memory/latest/SPLB40_2048X32BM1b1A.v
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/memory/latest/SQLVTLG40_64X21X4CM2b1.v
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/memory/latest/SQLVTLG40_256X8X4CM2b1.v
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/memory/latest/SQLVTLG40_256X8X8CM2b1.v
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/memory/latest/SQLVTLG40_512X8X4CM4b1.v
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/memory/latest/SQLVTLG40_512X8X8CM4b1.v
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/memory/latest/SQLVTLG40_512X32X4CM2b1.v
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/memory/latest/SHLVTLB40_8192X8X8CM8b1.v

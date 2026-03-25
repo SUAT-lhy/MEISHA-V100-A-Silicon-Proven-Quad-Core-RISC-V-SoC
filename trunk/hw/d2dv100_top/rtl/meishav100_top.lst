@@ -1,0 +1,67 @@
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/top/MEISHAV100_DEFINE.v
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/cbb/pulse_expander.v
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/cbb/syncReg.sv
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/cbb/CHIPLINK_PREFIX_ram_ext.v
+-f ${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/cbb/tech_cells_generic/src_files.lst
+-f ${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/ip/common_cells-1.31.1/src_files.lst
+//-f ${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/ip/axi_slice-1.1.4/src_files.lst
+//-f ${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/ip/axi-0.39.3/src_files.lst
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/cbb/AsyncResetRegVec_para.v
+//-f ${MEISHAV100_ROOT}/hw/ip/block-nvdla-sifive/vsrc/ram_model_u40/output_verilog/src_files.lst
+-f ${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/memory/memory_wrapper.lst
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/cbb/sp_sram_wrapper.v
+-f ${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/cbb/buffer/src_files.lst
+-f ${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/ip/sdram_controller/src_files.lst
+-f ${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/ip/axi_slice_dc/src_files.lst
+-f ${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/ip/axi_spi_master-0.1.1/src_files.lst
+-f ${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/ip/axi_spi_slave/src_files.lst
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/cbb/tl_a_async_bridge.v
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/cbb/tl_b_async_bridge.v
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/cbb/tl_c_async_bridge.v
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/cbb/tl_d_async_bridge.v
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/cbb/tl_e_async_bridge.v
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/cbb/tl_async_bridge.v
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/top/subsystem/Bus/Simple_Tile_X2X.v
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/ip/TLError_Queue_Param.v
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/ip/TLError_Param.v
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/ip/TLMaskROM.v
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/ip/ResetGenWrangler_FSM.v
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/ip/signal_valid_record.v
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/ip/SOC_LSYS.v
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/cbb/TLSourceShrinker_Param.v
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/ip/CHIPLINK_PREFIX_TLToAXI4.v
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/ip/chiplink.v
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/ip/CHIPLINK_PREFIX_ChipLinkMaster.v
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/cbb/axi_a_async_bridge.v
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/cbb/axi_b_async_bridge.v
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/cbb/axi_w_async_bridge.v
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/cbb/axi_r_async_bridge.v
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/cbb/axi4_async_bridge.v
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/cbb/tl_uh_async_bridge.v
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/ip/sdram_wrapper.v
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/ip/vc707mig1gb_chiplink.v
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/ip/plusarg_reader.v
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/ip/BootROM.v
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/ip/corePLL.v
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/ip/vc707axi_to_pcie_x1.v
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/top/D2D_SUB/amba_axi_m3s2.v
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/top/D2D_SUB/amba_axi_m2s4.v
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/cbb/axi_to_apb_s3.v
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/top/D2D_SUB/AMBA_XBAR_M2S2.v
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/cbb/QueueCompatibility_axi4UserYanker.v
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/cbb/AXI4ToTL_Param_Queue_15.v
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/cbb/AXI4ToTL_Param_Queue_16.v
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/cbb/AXI4ToTL_Param.v
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/cbb/AXI4UserYanker_Param.v
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/cbb/AXI4IdIndexer_Param.v
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/cbb/Queue_Fragmenter_17.v
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/cbb/Queue_Fragmenter_19.v
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/cbb/AXI4Fragmenter_Param.v
+
+${MEISHAV100_ROOT}/hw/ip/block-nvdla-sifive/vsrc/small/vmod/nvdla/apb2csb/NV_NVDLA_apb2csb.v
+//${MEISHAV100_ROOT}/hw/ip/block-nvdla-sifive/vsrc/small/vmod/nvdla/top/NV_nvdla.v
+${MEISHAV100_ROOT}/hw/ip/block-nvdla-sifive/vsrc/small/nvdla_small.v
+
+-f ${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/top/DevKitDesign.scr
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/top/MEISHAV100_IO_SUB.v
+

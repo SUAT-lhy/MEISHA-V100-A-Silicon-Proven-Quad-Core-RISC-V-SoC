@@ -1,0 +1,510 @@
+/*
+
+Copyright (c) 2018 Alex Forencich
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+
+*/
+
+// Language: Verilog 2001
+
+// define log2 option
+`define     log2(VALUE)		\
+			(VALUE) < ( 1 ) ? 0 : \
+			(VALUE) < ( 2 ) ? 1 : \
+			(VALUE) < ( 4 ) ? 2 : \
+			(VALUE) < ( 8 ) ? 3 : \
+			(VALUE) < ( 16 )  ? 4 : \
+			(VALUE) < ( 32 )  ? 5 : \
+			(VALUE) < ( 64 )  ? 6 : \
+			(VALUE) < ( 128 ) ? 7 : \
+			(VALUE) < ( 256 ) ? 8 : \
+			(VALUE) < ( 512 ) ? 9 : \
+			(VALUE) < ( 1024 ) ? 10 : \
+			(VALUE) < ( 2048 ) ? 11 : \
+			(VALUE) < ( 4096 ) ? 12 : \
+			(VALUE) < ( 8192 ) ? 13 : \
+			(VALUE) < ( 16384 ) ? 14 : \
+			(VALUE) < ( 32768 ) ? 15 : \
+			(VALUE) < ( 65536 ) ? 16 : \
+			(VALUE) < ( 131072 ) ? 17 : \
+			(VALUE) < ( 262144 ) ? 18 : \
+			(VALUE) < ( 524288 ) ? 19 : \
+			(VALUE) < ( 1048576 ) ? 20 : \
+			(VALUE) < ( 1048576 * 2 ) ? 21 : \
+			(VALUE) < ( 1048576 * 4 ) ? 22 : \
+			(VALUE) < ( 1048576 * 8 ) ? 23 : \
+			(VALUE) < ( 1048576 * 16 ) ? 24 : \
+			(VALUE) < ( 1048576 * 32 ) ? 25 : \
+			(VALUE) < ( 1048576 * 64 ) ? 26 : \
+			(VALUE) < ( 1048576 * 128 ) ? 27 : \
+			(VALUE) < ( 1048576 * 256 ) ? 28 : \
+			(VALUE) < ( 1048576 * 512 ) ? 29 : \
+			(VALUE) < ( 1048576 * 1024 ) ? 30 : \
+			(VALUE) < ( 1048576 * 2048 ) ? 31 : -1
+
+/*
+ * AXI4 RAM
+ */
+module pcie_lsys #
+(
+    // Width of data bus in bits
+    parameter DATA_WIDTH = 32,
+    // Width of address bus in bits
+    parameter ADDR_WIDTH = 16,
+    // Width of wstrb (width of data bus in words)
+    parameter STRB_WIDTH = (DATA_WIDTH/8),
+    // Width of ID signal
+    parameter ID_WIDTH = 8,
+    // Extra pipeline register on output
+    parameter PIPELINE_OUTPUT = 0
+)
+(
+    input  wire                   clk,
+    input  wire                   rst,
+
+    output wire [DATA_WIDTH-1:0]  pcie_master_base_awaddr,
+    output wire [DATA_WIDTH-1:0]  pcie_master_base_araddr,
+
+    input  wire [ID_WIDTH-1:0]    s_axi_awid,
+    input  wire [ADDR_WIDTH-1:0]  s_axi_awaddr,
+    input  wire [7:0]             s_axi_awlen,
+    input  wire [2:0]             s_axi_awsize,
+    input  wire [1:0]             s_axi_awburst,
+    input  wire                   s_axi_awlock,
+    input  wire [3:0]             s_axi_awcache,
+    input  wire [2:0]             s_axi_awprot,
+    input  wire                   s_axi_awvalid,
+    output wire                   s_axi_awready,
+    input  wire [DATA_WIDTH-1:0]  s_axi_wdata,
+    input  wire [STRB_WIDTH-1:0]  s_axi_wstrb,
+    input  wire                   s_axi_wlast,
+    input  wire                   s_axi_wvalid,
+    output wire                   s_axi_wready,
+    output wire [ID_WIDTH-1:0]    s_axi_bid,
+    output wire [1:0]             s_axi_bresp,
+    output wire                   s_axi_bvalid,
+    input  wire                   s_axi_bready,
+    input  wire [ID_WIDTH-1:0]    s_axi_arid,
+    input  wire [ADDR_WIDTH-1:0]  s_axi_araddr,
+    input  wire [7:0]             s_axi_arlen,
+    input  wire [2:0]             s_axi_arsize,
+    input  wire [1:0]             s_axi_arburst,
+    input  wire                   s_axi_arlock,
+    input  wire [3:0]             s_axi_arcache,
+    input  wire [2:0]             s_axi_arprot,
+    input  wire                   s_axi_arvalid,
+    output wire                   s_axi_arready,
+    output wire [ID_WIDTH-1:0]    s_axi_rid,
+    output wire [DATA_WIDTH-1:0]  s_axi_rdata,
+    output wire [1:0]             s_axi_rresp,
+    output wire                   s_axi_rlast,
+    output wire                   s_axi_rvalid,
+    input  wire                   s_axi_rready
+);
+
+parameter VALID_ADDR_WIDTH = ADDR_WIDTH - `log2(STRB_WIDTH);
+parameter WORD_WIDTH = STRB_WIDTH;
+parameter WORD_SIZE = DATA_WIDTH/WORD_WIDTH;
+
+// bus width assertions
+initial begin
+    if (WORD_SIZE * STRB_WIDTH != DATA_WIDTH) begin
+        $error("Error: AXI data width not evenly divisble (instance %m)");
+        $finish;
+    end
+
+    if (2**`log2(WORD_WIDTH) != WORD_WIDTH) begin
+        $error("Error: AXI word width must be even power of two (instance %m)");
+        $finish;
+    end
+end
+
+localparam [0:0]
+    READ_STATE_IDLE = 1'd0,
+    READ_STATE_BURST = 1'd1;
+
+reg [0:0] read_state_reg = READ_STATE_IDLE, read_state_next;
+
+localparam [1:0]
+    WRITE_STATE_IDLE = 2'd0,
+    WRITE_STATE_BURST = 2'd1,
+    WRITE_STATE_RESP = 2'd2;
+
+reg [1:0] write_state_reg = WRITE_STATE_IDLE, write_state_next;
+
+// `mem_rd_en` and `mem_wr_en` can only use one signal.
+// 所以可以利用这两个信号控制sleep和chip-select
+reg mem_wr_en;
+reg mem_rd_en;
+
+reg [ID_WIDTH-1:0] read_id_reg = {ID_WIDTH{1'b0}}, read_id_next;
+reg [ADDR_WIDTH-1:0] read_addr_reg = {ADDR_WIDTH{1'b0}}, read_addr_next;
+reg [7:0] read_count_reg = 8'd0, read_count_next;
+reg [2:0] read_size_reg = 3'd0, read_size_next;
+reg [1:0] read_burst_reg = 2'd0, read_burst_next;
+reg [ID_WIDTH-1:0] write_id_reg = {ID_WIDTH{1'b0}}, write_id_next;
+reg [ADDR_WIDTH-1:0] write_addr_reg = {ADDR_WIDTH{1'b0}}, write_addr_next;
+reg [7:0] write_count_reg = 8'd0, write_count_next;
+reg [2:0] write_size_reg = 3'd0, write_size_next;
+reg [1:0] write_burst_reg = 2'd0, write_burst_next;
+
+reg s_axi_awready_reg = 1'b0, s_axi_awready_next;
+reg s_axi_wready_reg = 1'b0, s_axi_wready_next;
+reg [ID_WIDTH-1:0] s_axi_bid_reg = {ID_WIDTH{1'b0}}, s_axi_bid_next;
+reg s_axi_bvalid_reg = 1'b0, s_axi_bvalid_next;
+reg s_axi_arready_reg = 1'b0, s_axi_arready_next;
+reg [ID_WIDTH-1:0] s_axi_rid_reg = {ID_WIDTH{1'b0}}, s_axi_rid_next;
+reg [DATA_WIDTH-1:0] s_axi_rdata_reg = {DATA_WIDTH{1'b0}}, s_axi_rdata_next;
+reg s_axi_rlast_reg = 1'b0, s_axi_rlast_next;
+reg s_axi_rvalid_reg = 1'b0, s_axi_rvalid_next;
+reg [ID_WIDTH-1:0] s_axi_rid_pipe_reg = {ID_WIDTH{1'b0}};
+reg [DATA_WIDTH-1:0] s_axi_rdata_pipe_reg = {DATA_WIDTH{1'b0}};
+reg s_axi_rlast_pipe_reg = 1'b0;
+reg s_axi_rvalid_pipe_reg = 1'b0;
+
+// (* RAM_STYLE="BLOCK" *)
+// 这种语法其实是不可综合的。后面主要关注如何对reg部分进行修改。
+// reg [DATA_WIDTH-1:0] mem[(2**VALID_ADDR_WIDTH)-1:0];
+
+wire [VALID_ADDR_WIDTH-1:0] s_axi_awaddr_valid = s_axi_awaddr >> (ADDR_WIDTH - VALID_ADDR_WIDTH);
+wire [VALID_ADDR_WIDTH-1:0] s_axi_araddr_valid = s_axi_araddr >> (ADDR_WIDTH - VALID_ADDR_WIDTH);
+wire [VALID_ADDR_WIDTH-1:0] read_addr_valid = read_addr_reg >> (ADDR_WIDTH - VALID_ADDR_WIDTH);
+wire [VALID_ADDR_WIDTH-1:0] write_addr_valid = write_addr_reg >> (ADDR_WIDTH - VALID_ADDR_WIDTH);
+
+assign s_axi_awready = s_axi_awready_reg;
+assign s_axi_wready = s_axi_wready_reg;
+assign s_axi_bid = s_axi_bid_reg;
+assign s_axi_bresp = 2'b00;
+assign s_axi_bvalid = s_axi_bvalid_reg;
+assign s_axi_arready = s_axi_arready_reg;
+assign s_axi_rid = PIPELINE_OUTPUT ? s_axi_rid_pipe_reg : s_axi_rid_reg;
+assign s_axi_rdata = PIPELINE_OUTPUT ? s_axi_rdata_pipe_reg : s_axi_rdata_reg;
+assign s_axi_rresp = 2'b00;
+assign s_axi_rlast = PIPELINE_OUTPUT ? s_axi_rlast_pipe_reg : s_axi_rlast_reg;
+assign s_axi_rvalid = PIPELINE_OUTPUT ? s_axi_rvalid_pipe_reg : s_axi_rvalid_reg;
+
+integer i, j;
+
+// 对 tsmc28hp Dual Port SRAM 的例化(begin)
+reg		[DATA_WIDTH-1:0]	mdata_i_reg, mdata_o_reg;	// for SRAM I/O reg
+reg		[ADDR_WIDTH-1:0]	maddr_reg;					// for SRAM Row Decoder reg
+reg		[DATA_WIDTH-1:0]	bl_sel_reg;					// for SRAM Column Decoder reg
+wire	[DATA_WIDTH-1:0]	mdata_i, mdata_o;			// for SRAM I/O
+wire	[ADDR_WIDTH-1:0]	maddr;						// for SRAM Row Decoder
+wire	[DATA_WIDTH-1:0]	bl_sel;						// for SRAM Column Decoder
+wire					  	r_w_ctrl;	    			// read and write control
+// 由于目前只用一个通道，所以 sleep chip-select 和 shut-down 均由 ssc_en 控制。
+wire						ssc_en;
+assign	mdata_i = mdata_i_reg;
+assign	mdata_o = mdata_o_reg;
+assign	maddr = maddr_reg;
+assign	ssc_en = mem_rd_en ^ mem_wr_en;
+assign	r_w_ctrl = ssc_en & mem_rd_en;
+// Block Diagram of Dual Port SRAM
+tsn28hpcpdpsram_20120200_130a u1_block_dp_sram	#(
+    .M(ADDR_WIDTH),	// Address Width
+    .N(DATA_WIDTH)	// Data Width
+)(
+	//.VDD(1),
+    //.VSS(0),
+    // 节能模式信号的设置
+    .SLP(ssc_en),		// SLP信号是为节能准备的，在没用到SRAM时暂时关闭
+    .SD(ssc_en),		// SD信号控制SRAM的开关机状态，和sys_clk相关
+    // 我们此处只使用port-A
+    .AA(maddr),			// Address on Port A
+    .DA(mdata_i),		// Data-in on Port A
+    // BWEBA: 选择哪些bitline打开
+    .BWEBA(bl_sel),		// Bit-Line Enable Group Bar on Port A
+    // WEBA: 在tsmc28hp中，high为读，low为写
+    .WEBA(r_w_ctrl),	// Write Enable on Port A
+    .CEBA(ssc_en),		// Enable of Port A
+    .CLKA(clk),			// Clock of Port A
+    .QA(mdata_o),		// Data-out on Port A
+    // 将port-B的enable关断
+    .AB(),
+    .DB(),
+    .BWEBB(),
+    .WEBB(),
+    .CEBB(1),			// high is off & low is on
+    .CLKB(),
+    .QB(),
+    // 将BIST模式关断
+    //	- Port-A
+    .AMA(),
+    .DMA(),
+    .BWEBMA(),
+    .WEBMA(),
+    .CEBMA(),
+    //	- Port-B
+    .AMB(),
+    .DMB(),
+    .BWEBMB(),
+    .WEBMB(),
+    .CEBMB(),
+    //	- else(select signal)
+    /*
+    	RTSEL, WTSEL, VS, VG 的组合只与 Debug 相关，故此处先设置为默认值。
+    */
+    .RTSEL(2'b01),	// Default 2'b01
+    .WTSEL(2'b01),	// Default 2'b01
+    .VS(1),			// Default 1
+    .VG(1),			// Default 1
+    .AWT(0),		// Default 0
+    .BIST(0),		// Default 0
+    .CLKM()
+)
+// assign pcie_master_base_awaddr = mem[1];
+// assign pcie_master_base_araddr = mem[2];
+always@(posedge clk or posedge rst)	begin
+	if(rst)	begin
+		pcie_master_base_awaddr <= 0;
+		pcie_master_base_araddr <= 0;
+	end
+	else	begin
+		mem_wr_en <= 0;
+		mem_rd_en <= 1;
+		maddr <= 1;
+		pcie_master_base_awaddr <= mdata_o;
+		maddr <= 0;
+		pcie_master_base_araddr <= mdata_o;
+	end
+end
+// 对 tsmc28hp Dual Port SRAM 的例化(end)
+
+/*
+assign pcie_master_base_awaddr = mem[1];
+assign pcie_master_base_araddr = mem[2];
+initial begin
+    // two nested loops for smaller number of iterations per loop
+    // workaround for synthesizer complaints about large loop counts
+    for (i = 0; i < 2**VALID_ADDR_WIDTH; i = i + 2**(VALID_ADDR_WIDTH/2)) begin
+        for (j = i; j < i + 2**(VALID_ADDR_WIDTH/2); j = j + 1) begin
+            mem[j] = 0;
+        end
+    end
+end
+*/
+
+always @* begin
+    write_state_next = WRITE_STATE_IDLE;
+
+    mem_wr_en = 1'b0;
+
+    write_id_next = write_id_reg;
+    write_addr_next = write_addr_reg;
+    write_count_next = write_count_reg;
+    write_size_next = write_size_reg;
+    write_burst_next = write_burst_reg;
+
+    s_axi_awready_next = 1'b0;
+    s_axi_wready_next = 1'b0;
+    s_axi_bid_next = s_axi_bid_reg;
+    s_axi_bvalid_next = s_axi_bvalid_reg && !s_axi_bready;
+
+    case (write_state_reg)
+        WRITE_STATE_IDLE: begin
+            s_axi_awready_next = 1'b1;
+
+            if (s_axi_awready && s_axi_awvalid) begin
+                write_id_next = s_axi_awid;
+                write_addr_next = s_axi_awaddr;
+                write_count_next = s_axi_awlen;
+                write_size_next = s_axi_awsize < `log2(STRB_WIDTH) ? s_axi_awsize : `log2(STRB_WIDTH);
+                write_burst_next = s_axi_awburst;
+
+                s_axi_awready_next = 1'b0;
+                s_axi_wready_next = 1'b1;
+                write_state_next = WRITE_STATE_BURST;
+            end else begin
+                write_state_next = WRITE_STATE_IDLE;
+            end
+        end
+        WRITE_STATE_BURST: begin
+            s_axi_wready_next = 1'b1;
+
+            if (s_axi_wready && s_axi_wvalid) begin
+                mem_wr_en = 1'b1;
+                if (write_burst_reg != 2'b00) begin
+                    write_addr_next = write_addr_reg + (1 << write_size_reg);
+                end
+                write_count_next = write_count_reg - 1;
+                if (write_count_reg > 0) begin
+                    write_state_next = WRITE_STATE_BURST;
+                end else begin
+                    s_axi_wready_next = 1'b0;
+                    if (s_axi_bready || !s_axi_bvalid) begin
+                        s_axi_bid_next = write_id_reg;
+                        s_axi_bvalid_next = 1'b1;
+                        s_axi_awready_next = 1'b1;
+                        write_state_next = WRITE_STATE_IDLE;
+                    end else begin
+                        write_state_next = WRITE_STATE_RESP;
+                    end
+                end
+            end else begin
+                write_state_next = WRITE_STATE_BURST;
+            end
+        end
+        WRITE_STATE_RESP: begin
+            if (s_axi_bready || !s_axi_bvalid) begin
+                s_axi_bid_next = write_id_reg;
+                s_axi_bvalid_next = 1'b1;
+                s_axi_awready_next = 1'b1;
+                write_state_next = WRITE_STATE_IDLE;
+            end else begin
+                write_state_next = WRITE_STATE_RESP;
+            end
+        end
+    endcase
+end
+
+always @(posedge clk) begin
+    write_state_reg <= write_state_next;
+
+    write_id_reg <= write_id_next;
+    write_addr_reg <= write_addr_next;
+    write_count_reg <= write_count_next;
+    write_size_reg <= write_size_next;
+    write_burst_reg <= write_burst_next;
+
+    s_axi_awready_reg <= s_axi_awready_next;
+    s_axi_wready_reg <= s_axi_wready_next;
+    s_axi_bid_reg <= s_axi_bid_next;
+    s_axi_bvalid_reg <= s_axi_bvalid_next;
+
+	// always块的写入过程分三步走(begin)
+    for (i = 0; i < WORD_WIDTH; i = i + 1) begin
+        if (mem_wr_en & s_axi_wstrb[i]) begin
+            // mem[write_addr_valid][WORD_SIZE*i +: WORD_SIZE] <= s_axi_wdata[WORD_SIZE*i +: WORD_SIZE];
+			maddr_reg <= write_addr_valid;
+			bl_sel_reg[WORD_SIZE*i +: WORD_SIZE] <= {WORD_SIZE{1'b1}};
+			mdata_i_reg <= s_axi_wdata[WORD_SIZE*i +: WORD_SIZE];
+		end
+    end
+	// always块的写入过程分三步走(end)
+
+    if (rst) begin
+        write_state_reg <= WRITE_STATE_IDLE;
+
+        s_axi_awready_reg <= 1'b0;
+        s_axi_wready_reg <= 1'b0;
+        s_axi_bvalid_reg <= 1'b0;
+    end
+end
+
+always @* begin
+    read_state_next = READ_STATE_IDLE;
+
+    mem_rd_en = 1'b0;
+
+    s_axi_rid_next = s_axi_rid_reg;
+    s_axi_rlast_next = s_axi_rlast_reg;
+    s_axi_rvalid_next = s_axi_rvalid_reg && !(s_axi_rready || (PIPELINE_OUTPUT && !s_axi_rvalid_pipe_reg));
+
+    read_id_next = read_id_reg;
+    read_addr_next = read_addr_reg;
+    read_count_next = read_count_reg;
+    read_size_next = read_size_reg;
+    read_burst_next = read_burst_reg;
+
+    s_axi_arready_next = 1'b0;
+
+    case (read_state_reg)
+        READ_STATE_IDLE: begin
+            s_axi_arready_next = 1'b1;
+
+            if (s_axi_arready && s_axi_arvalid) begin
+                read_id_next = s_axi_arid;
+                read_addr_next = s_axi_araddr;
+                read_count_next = s_axi_arlen;
+                read_size_next = s_axi_arsize < `log2(STRB_WIDTH) ? s_axi_arsize : `log2(STRB_WIDTH);
+                read_burst_next = s_axi_arburst;
+
+                s_axi_arready_next = 1'b0;
+                read_state_next = READ_STATE_BURST;
+            end else begin
+                read_state_next = READ_STATE_IDLE;
+            end
+        end
+        READ_STATE_BURST: begin
+            if (s_axi_rready || (PIPELINE_OUTPUT && !s_axi_rvalid_pipe_reg) || !s_axi_rvalid_reg) begin
+                mem_rd_en = 1'b1;
+                s_axi_rvalid_next = 1'b1;
+                s_axi_rid_next = read_id_reg;
+                s_axi_rlast_next = read_count_reg == 0;
+                if (read_burst_reg != 2'b00) begin
+                    read_addr_next = read_addr_reg + (1 << read_size_reg);
+                end
+                read_count_next = read_count_reg - 1;
+                if (read_count_reg > 0) begin
+                    read_state_next = READ_STATE_BURST;
+                end else begin
+                    s_axi_arready_next = 1'b1;
+                    read_state_next = READ_STATE_IDLE;
+                end
+            end else begin
+                read_state_next = READ_STATE_BURST;
+            end
+        end
+    endcase
+end
+
+always @(posedge clk) begin
+    read_state_reg <= read_state_next;
+
+    read_id_reg <= read_id_next;
+    read_addr_reg <= read_addr_next;
+    read_count_reg <= read_count_next;
+    read_size_reg <= read_size_next;
+    read_burst_reg <= read_burst_next;
+
+    s_axi_arready_reg <= s_axi_arready_next;
+    s_axi_rid_reg <= s_axi_rid_next;
+    s_axi_rlast_reg <= s_axi_rlast_next;
+    s_axi_rvalid_reg <= s_axi_rvalid_next;
+
+	// always块的读值过程分三步走(begin)
+    if (mem_rd_en) begin
+        // s_axi_rdata_reg <= mem[read_addr_valid];
+		maddr_reg <= read_addr_valid;
+		bl_sel_reg <= {DATA_WIDTH{1'b1}};
+		s_axi_rdata_reg <= mdata_o_reg;
+    end
+	// always块的读值过程分三步走(end)
+
+    if (!s_axi_rvalid_pipe_reg || s_axi_rready) begin
+        s_axi_rid_pipe_reg <= s_axi_rid_reg;
+        s_axi_rdata_pipe_reg <= s_axi_rdata_reg;
+        s_axi_rlast_pipe_reg <= s_axi_rlast_reg;
+        s_axi_rvalid_pipe_reg <= s_axi_rvalid_reg;
+    end
+
+    if (rst) begin
+        read_state_reg <= READ_STATE_IDLE;
+
+        s_axi_arready_reg <= 1'b0;
+        s_axi_rvalid_reg <= 1'b0;
+        s_axi_rvalid_pipe_reg <= 1'b0;
+    end
+end
+
+endmodule
+
+`resetall

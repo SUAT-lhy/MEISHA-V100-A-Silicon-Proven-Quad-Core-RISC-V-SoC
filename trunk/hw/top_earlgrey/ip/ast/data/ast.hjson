@@ -1,0 +1,83 @@
+// Copyright lowRISC contributors.
+// Licensed under the Apache License, Version 2.0, see LICENSE for details.
+// SPDX-License-Identifier: Apache-2.0
+//#############################################################################
+// *Name: ast
+// *Module Description: Analog Sensors Top Registers
+//#############################################################################
+{ name: "ast",
+  clock_primary: "clk_i",
+  reset_primary: "rst_ni",
+  bus_interfaces: [
+    { protocol: "tlul", direction: "device" }
+  ],
+  param_list: [
+    { name:    "NumRegsA",
+      type:    "int",
+      default: "50",
+      desc: "Number of registers in the array",
+      local:   "true",
+    },
+    { name:    "NumRegsB",
+      type:    "int",
+      default: "10",
+      desc: "Number of registers in the array",
+      local:   "true",
+    },
+  ],
+  regwidth: "32",
+  registers: [
+    { name: "REVID",
+      desc: '''
+	    AST Revision Identification Register <br>
+	    Reset: TLUL Reset
+	    '''
+      swaccess: "ro",
+      hwaccess: "hro",
+      fields: [
+        { bits: "7:0",
+          desc: "Revision",
+          resval: "0x01",
+	},
+	//
+        // bits: "31:8", Reserved
+	//
+      ],
+    },
+    { multireg:
+      {
+        name: "REGA",
+        desc: "AST Registers Array-A for OTP/ROM Write Testing",
+        count: "NumRegsA",
+        cname: "REGA",
+        swaccess: "rw",
+        hwaccess: "hro",
+        fields: [
+          { bits: "31:0", 
+            name: "reg32", 
+	    desc: "32-bit Register",
+            resval: "0",
+          },
+        ],
+      },
+    },
+    { skipto: "0x200" }
+    { multireg:
+      {
+        name: "REGB",
+        desc: "AST Registers Array-B",
+        count: "NumRegsB",
+        cname: "REGB",
+        swaccess: "rw",
+        hwaccess: "hrw",
+        fields: [
+          { bits: "31:0", 
+            name: "reg32", 
+	    desc: "32-bit Register",
+            resval: "0",
+          },
+        ],
+      },
+    },
+  ],
+}

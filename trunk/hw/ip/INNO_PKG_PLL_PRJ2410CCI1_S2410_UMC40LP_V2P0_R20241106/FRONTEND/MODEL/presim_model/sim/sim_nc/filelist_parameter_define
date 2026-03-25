@@ -1,0 +1,4 @@
+../../testbench/test_top.v
+
+// rtl
+../../rtl/nc/INNO_FNPLL_TOP.vp

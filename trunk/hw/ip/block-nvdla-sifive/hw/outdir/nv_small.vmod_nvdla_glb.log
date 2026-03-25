@@ -1,0 +1,31 @@
+command: cd vmod/nvdla/glb;make PROJECT=nv_small 
+make[1]: Entering directory '/work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/nvdla/glb'
+../../../tools/bin/vcp -i NV_NVDLA_glb.v -o ../../../outdir/nv_small/vmod/nvdla/glb/NV_NVDLA_glb.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/glb/NV_NVDLA_glb.v ../../../outdir/nv_small/vmod/nvdla/glb/NV_NVDLA_glb.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_GLB_csb.v -o ../../../outdir/nv_small/vmod/nvdla/glb/NV_NVDLA_GLB_csb.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/glb/NV_NVDLA_GLB_csb.v ../../../outdir/nv_small/vmod/nvdla/glb/NV_NVDLA_GLB_csb.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_GLB_CSB_reg.v -o ../../../outdir/nv_small/vmod/nvdla/glb/NV_NVDLA_GLB_CSB_reg.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/glb/NV_NVDLA_GLB_CSB_reg.v ../../../outdir/nv_small/vmod/nvdla/glb/NV_NVDLA_GLB_CSB_reg.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_GLB_fc.v -o ../../../outdir/nv_small/vmod/nvdla/glb/NV_NVDLA_GLB_fc.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/glb/NV_NVDLA_GLB_fc.v ../../../outdir/nv_small/vmod/nvdla/glb/NV_NVDLA_GLB_fc.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_GLB_ic.v -o ../../../outdir/nv_small/vmod/nvdla/glb/NV_NVDLA_GLB_ic.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/glb/NV_NVDLA_GLB_ic.v ../../../outdir/nv_small/vmod/nvdla/glb/NV_NVDLA_GLB_ic.v.vcp 
+==============================================
+files are generated under /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/outdir/nv_small/vmod/nvdla/glb
+==============================================
+make[1]: Leaving directory '/work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/nvdla/glb'
+Processing NV_NVDLA_glb.v into ../../../outdir/nv_small/vmod/nvdla/glb/NV_NVDLA_glb.v.vcp
+../../../outdir/nv_small/vmod/nvdla/glb/NV_NVDLA_glb.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/glb/NV_NVDLA_glb.v modified.
+Processing NV_NVDLA_GLB_csb.v into ../../../outdir/nv_small/vmod/nvdla/glb/NV_NVDLA_GLB_csb.v.vcp
+../../../outdir/nv_small/vmod/nvdla/glb/NV_NVDLA_GLB_csb.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/glb/NV_NVDLA_GLB_csb.v modified.
+Processing NV_NVDLA_GLB_CSB_reg.v into ../../../outdir/nv_small/vmod/nvdla/glb/NV_NVDLA_GLB_CSB_reg.v.vcp
+../../../outdir/nv_small/vmod/nvdla/glb/NV_NVDLA_GLB_CSB_reg.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/glb/NV_NVDLA_GLB_CSB_reg.v modified.
+Processing NV_NVDLA_GLB_fc.v into ../../../outdir/nv_small/vmod/nvdla/glb/NV_NVDLA_GLB_fc.v.vcp
+../../../outdir/nv_small/vmod/nvdla/glb/NV_NVDLA_GLB_fc.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/glb/NV_NVDLA_GLB_fc.v modified.
+Processing NV_NVDLA_GLB_ic.v into ../../../outdir/nv_small/vmod/nvdla/glb/NV_NVDLA_GLB_ic.v.vcp
+../../../outdir/nv_small/vmod/nvdla/glb/NV_NVDLA_GLB_ic.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/glb/NV_NVDLA_GLB_ic.v modified.

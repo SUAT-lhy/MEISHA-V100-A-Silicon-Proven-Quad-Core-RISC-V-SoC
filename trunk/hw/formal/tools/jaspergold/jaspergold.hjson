@@ -1,0 +1,14 @@
+// Copyright lowRISC contributors.
+// Licensed under the Apache License, Version 2.0, see LICENSE for details.
+// SPDX-License-Identifier: Apache-2.0
+{
+  build_cmd: "{job_prefix} jg"
+  build_opts: ["-batch {formal_root}/tools/{tool}/{sub_flow}.tcl",
+               "-proj jgproject",
+               "-allow_unsupported_OS",
+               "-command exit"]
+
+  exports: [
+    {COMMON_MSG_TCL_PATH: "{formal_root}/tools/{tool}/jaspergold_common_message_process.tcl"}
+  ]
+}

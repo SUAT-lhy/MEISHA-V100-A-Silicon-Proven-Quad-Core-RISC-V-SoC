@@ -1,0 +1,11 @@
+command: cd vmod/nvdla/apb2csb;make PROJECT=nv_small 
+make[1]: Entering directory '/work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/nvdla/apb2csb'
+../../../tools/bin/vcp -i NV_NVDLA_apb2csb.v -o ../../../outdir/nv_small/vmod/nvdla/apb2csb/NV_NVDLA_apb2csb.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/apb2csb/NV_NVDLA_apb2csb.v ../../../outdir/nv_small/vmod/nvdla/apb2csb/NV_NVDLA_apb2csb.v.vcp 
+==============================================
+files are generated under /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/outdir/nv_small/vmod/nvdla/apb2csb
+==============================================
+make[1]: Leaving directory '/work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/nvdla/apb2csb'
+Processing NV_NVDLA_apb2csb.v into ../../../outdir/nv_small/vmod/nvdla/apb2csb/NV_NVDLA_apb2csb.v.vcp
+../../../outdir/nv_small/vmod/nvdla/apb2csb/NV_NVDLA_apb2csb.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/apb2csb/NV_NVDLA_apb2csb.v modified.

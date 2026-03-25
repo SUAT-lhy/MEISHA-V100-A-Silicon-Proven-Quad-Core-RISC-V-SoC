@@ -1,0 +1,15 @@
+module RRArbiter_1( // @[:sifive.freedom.unleashed.DevKitU500FPGADesign_WithDevKit50MHz.fir@304764.2]
+  output        io_in_0_ready, // @[:sifive.freedom.unleashed.DevKitU500FPGADesign_WithDevKit50MHz.fir@304767.4]
+  input         io_in_0_valid, // @[:sifive.freedom.unleashed.DevKitU500FPGADesign_WithDevKit50MHz.fir@304767.4]
+  input  [4:0]  io_in_0_bits_rd, // @[:sifive.freedom.unleashed.DevKitU500FPGADesign_WithDevKit50MHz.fir@304767.4]
+  input  [63:0] io_in_0_bits_data, // @[:sifive.freedom.unleashed.DevKitU500FPGADesign_WithDevKit50MHz.fir@304767.4]
+  input         io_out_ready, // @[:sifive.freedom.unleashed.DevKitU500FPGADesign_WithDevKit50MHz.fir@304767.4]
+  output        io_out_valid, // @[:sifive.freedom.unleashed.DevKitU500FPGADesign_WithDevKit50MHz.fir@304767.4]
+  output [4:0]  io_out_bits_rd, // @[:sifive.freedom.unleashed.DevKitU500FPGADesign_WithDevKit50MHz.fir@304767.4]
+  output [63:0] io_out_bits_data // @[:sifive.freedom.unleashed.DevKitU500FPGADesign_WithDevKit50MHz.fir@304767.4]
+);
+  assign io_in_0_ready = io_out_ready; // @[Arbiter.scala 60:16:sifive.freedom.unleashed.DevKitU500FPGADesign_WithDevKit50MHz.fir@304786.4]
+  assign io_out_valid = io_in_0_valid; // @[Arbiter.scala 41:16:sifive.freedom.unleashed.DevKitU500FPGADesign_WithDevKit50MHz.fir@304772.4]
+  assign io_out_bits_rd = io_in_0_bits_rd; // @[Arbiter.scala 42:15:sifive.freedom.unleashed.DevKitU500FPGADesign_WithDevKit50MHz.fir@304774.4]
+  assign io_out_bits_data = io_in_0_bits_data; // @[Arbiter.scala 42:15:sifive.freedom.unleashed.DevKitU500FPGADesign_WithDevKit50MHz.fir@304773.4]
+endmodule

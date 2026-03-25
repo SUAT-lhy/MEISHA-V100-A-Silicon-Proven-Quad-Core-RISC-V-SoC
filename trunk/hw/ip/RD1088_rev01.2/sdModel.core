@@ -1,0 +1,22 @@
+CAPI=2:
+# Vendor 		: 
+# Author 		: ling
+# Filename 	:  
+# Date Created: 2022.04.26 
+# Version		: V1.0
+# File description	:
+# Revision History :
+name: "new_soc:meisha:sdModel:0.1"
+description: ""
+filesets:
+  files_dv:
+    depend:
+    files:
+      - Testbench/verilog/sdModel.v
+      - Source/verilog/SD_defines.v: {is_include_file: true}
+    file_type: systemVerilogSource
+
+targets:
+  default:
+    filesets:
+      - files_dv

@@ -1,0 +1,1095 @@
+
+manycore_rocc/manycore_rocc.elf:     file format elf64-littleriscv
+manycore_rocc/manycore_rocc.elf
+architecture: riscv:rv64, flags 0x00000112:
+EXEC_P, HAS_SYMS, D_PAGED
+start address 0x0000000080000000
+
+Program Header:
+    LOAD off    0x0000000000001000 vaddr 0x0000000080000000 paddr 0x0000000080000000 align 2**12
+         filesz 0x0000000000000b40 memsz 0x0000000000000b40 flags r-x
+    LOAD off    0x0000000000002b40 vaddr 0x0000000080000b40 paddr 0x0000000080000b40 align 2**12
+         filesz 0x00000000000034f0 memsz 0x00000000000034f0 flags rw-
+    LOAD off    0x0000000000007000 vaddr 0x0000000080000000 paddr 0x0000000080000000 align 2**12
+         filesz 0x0000000000000000 memsz 0x0000000000000048 flags rw-
+
+Sections:
+Idx Name          Size      VMA               LMA               File off  Algn
+  0 .text         00000b40  0000000080000000  0000000080000000  00001000  2**2
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .rodata       00000170  0000000080000b40  0000000080000b40  00002b40  2**3
+                  CONTENTS, ALLOC, LOAD, READONLY, DATA
+  2 .data         00003350  0000000080000cb0  0000000080000cb0  00002cb0  2**13
+                  CONTENTS, ALLOC, LOAD, DATA
+  3 .sdata        00000030  0000000080004000  0000000080004000  00006000  2**3
+                  CONTENTS, ALLOC, LOAD, DATA
+  4 .bss          00000048  0000000080000000  0000000080000000  00007000  2**3
+                  ALLOC
+  5 .debug_line   00000743  0000000000000000  0000000000000000  00006030  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   000011fd  0000000000000000  0000000000000000  00006773  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 00000379  0000000000000000  0000000000000000  00007970  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_aranges 00000090  0000000000000000  0000000000000000  00007cf0  2**4
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    000007ac  0000000000000000  0000000000000000  00007d80  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .comment      00000011  0000000000000000  0000000000000000  0000852c  2**0
+                  CONTENTS, READONLY
+ 11 .debug_frame  00000260  0000000000000000  0000000000000000  00008540  2**3
+                  CONTENTS, READONLY, DEBUGGING
+SYMBOL TABLE:
+0000000080000000 l    d  .text	0000000000000000 .text
+0000000080000b40 l    d  .rodata	0000000000000000 .rodata
+0000000080000cb0 l    d  .data	0000000000000000 .data
+0000000080004000 l    d  .sdata	0000000000000000 .sdata
+0000000080000000 l    d  .bss	0000000000000000 .bss
+0000000000000000 l    d  .debug_line	0000000000000000 .debug_line
+0000000000000000 l    d  .debug_info	0000000000000000 .debug_info
+0000000000000000 l    d  .debug_abbrev	0000000000000000 .debug_abbrev
+0000000000000000 l    d  .debug_aranges	0000000000000000 .debug_aranges
+0000000000000000 l    d  .debug_str	0000000000000000 .debug_str
+0000000000000000 l    d  .comment	0000000000000000 .comment
+0000000000000000 l    d  .debug_frame	0000000000000000 .debug_frame
+0000000000000000 l    df *ABS*	0000000000000000 manycore_rocc.c
+0000000080004000 l     O .sdata	0000000000000008 uart
+0000000080004008 l     O .sdata	0000000000000008 SHUTDOWN_FLAG_STR
+0000000000000000 l    df *ABS*	0000000000000000 kprintf.c
+0000000080004020 l     O .sdata	0000000000000008 uart
+0000000080004028 l     O .sdata	0000000000000008 SHUTDOWN_FLAG_STR
+00000000800007e0 l     F .text	000000000000004c kputc
+000000008000082c l     F .text	000000000000005c _kputs
+0000000080000000 g     O .bss	0000000000000048 manycore_data_s
+0000000080000674 g     F .text	00000000000000f0 init_source
+00000000800000c4 g     F .text	0000000000000160 bsg_rocc_load_manycore
+0000000080000224 g     F .text	00000000000000bc bsg_rocc_load_manycore_len
+0000000080004018 g     O .sdata	0000000000000004 IMEM_INIT_LEN
+0000000080000438 g     F .text	0000000000000084 bsg_rocc_poll_task
+0000000080000048 g       .bss	0000000000000000 _ebss
+0000000080000764 g     F .text	000000000000007c check_result
+000000008000036c g     F .text	00000000000000cc bsg_rocc_dma_load_x_manycore_nb
+00000000800002e0 g     F .text	000000000000008c bsg_rocc_dma_load_manycore_nb
+0000000080100048 g       *ABS*	0000000000000000 _sp
+0000000080000000 g       .text	0000000000000000 _prog_start
+00000000800004bc g     F .text	00000000000001b8 main
+0000000080002000 g     O .data	0000000000002000 manycore_mem_vect
+0000000080000060 g     F .text	0000000000000064 bsg_rocc_dma_xfer_nb
+0000000080000888 g     F .text	0000000000000040 kputs
+0000000080004014 g     O .sdata	0000000000000004 waiting_cycle_limit
+00000000800008c8 g     F .text	0000000000000238 kprintf
+000000008000401c g     O .sdata	0000000000000004 DMEM_INIT_LEN
+0000000080004010 g     O .sdata	0000000000000004 bsg_rocc_manycore_mem_words
+
+
+
+Disassembly of section .text:
+
+0000000080000000 <_prog_start>:
+_prog_start:
+  //li t1, 0x10000
+  //jr t1
+  //smp_pause(s1, s2) # used in bootrom.hex
+  //li sp, (PAYLOAD_DEST + 0x7fff000)  # used in bootrom.hex
+  call main
+    80000000:	4bc000ef          	jal	ra,800004bc <main>
+  smp_resume(s1, s2)
+    80000004:	020004b7          	lui	s1,0x2000
+    80000008:	00100913          	li	s2,1
+    8000000c:	0124a023          	sw	s2,0(s1) # 2000000 <_prog_start-0x7e000000>
+    80000010:	00448493          	addi	s1,s1,4
+    80000014:	02000937          	lui	s2,0x2000
+    80000018:	0809091b          	addiw	s2,s2,128
+    8000001c:	ff24c6e3          	blt	s1,s2,80000008 <_prog_start+0x8>
+    80000020:	10500073          	wfi
+    80000024:	34402973          	csrr	s2,mip
+    80000028:	00897913          	andi	s2,s2,8
+    8000002c:	fe090ae3          	beqz	s2,80000020 <_prog_start+0x20>
+    80000030:	020004b7          	lui	s1,0x2000
+    80000034:	f1402973          	csrr	s2,mhartid
+    80000038:	00291913          	slli	s2,s2,0x2
+    8000003c:	00990933          	add	s2,s2,s1
+    80000040:	00092023          	sw	zero,0(s2) # 2000000 <_prog_start-0x7e000000>
+    80000044:	0004a903          	lw	s2,0(s1) # 2000000 <_prog_start-0x7e000000>
+    80000048:	fe091ee3          	bnez	s2,80000044 <_prog_start+0x44>
+    8000004c:	00448493          	addi	s1,s1,4
+    80000050:	02000937          	lui	s2,0x2000
+    80000054:	0809091b          	addiw	s2,s2,128
+    80000058:	ff24c6e3          	blt	s1,s2,80000044 <_prog_start+0x44>
+  csrr a0, mhartid
+    8000005c:	f1402573          	csrr	a0,mhartid
+
+0000000080000060 <bsg_rocc_dma_xfer_nb>:
+void bsg_rocc_dma_xfer_nb(int *rocket_addr,
+                                int *manycore_addr,
+                                uint64_t rocket_skip,
+                                uint64_t manycore_skip,
+                                uint64_t run_bytes,
+                                uint64_t repeats) {
+    80000060:	fc010113          	addi	sp,sp,-64
+    80000064:	02813c23          	sd	s0,56(sp)
+    80000068:	04010413          	addi	s0,sp,64
+    8000006c:	fea43423          	sd	a0,-24(s0)
+    80000070:	feb43023          	sd	a1,-32(s0)
+    80000074:	fcc43c23          	sd	a2,-40(s0)
+    80000078:	fcd43823          	sd	a3,-48(s0)
+    8000007c:	fce43423          	sd	a4,-56(s0)
+    80000080:	fcf43023          	sd	a5,-64(s0)
+    asm volatile("fence");
+    80000084:	0ff0000f          	fence
+    
+    ROCC_INSTRUCTION_SS(0, manycore_addr, rocket_addr, 2);
+    80000088:	fe043783          	ld	a5,-32(s0)
+    8000008c:	00078593          	mv	a1,a5
+    80000090:	fe843783          	ld	a5,-24(s0)
+    80000094:	00078613          	mv	a2,a5
+    80000098:	04c5b00b          	0x4c5b00b
+    ROCC_INSTRUCTION_SS(0, manycore_skip, rocket_skip, 3);
+    8000009c:	fd043583          	ld	a1,-48(s0)
+    800000a0:	fd843603          	ld	a2,-40(s0)
+    800000a4:	06c5b00b          	0x6c5b00b
+    ROCC_INSTRUCTION_SS(0, run_bytes, repeats, 4);
+    800000a8:	fc843583          	ld	a1,-56(s0)
+    800000ac:	fc043603          	ld	a2,-64(s0)
+    800000b0:	08c5b00b          	0x8c5b00b
+}
+    800000b4:	00000013          	nop
+    800000b8:	03813403          	ld	s0,56(sp)
+    800000bc:	04010113          	addi	sp,sp,64
+    800000c0:	00008067          	ret
+
+00000000800000c4 <bsg_rocc_load_manycore>:
+//the IMEM_INIT_LEN is defined in Makefile.
+//the DMEM_INIT_LEN is defined in Makefile.
+int IMEM_INIT_LEN=0x1000;
+int DMEM_INIT_LEN=0x1000;
+
+void bsg_rocc_load_manycore(int y_cord, int x_cord ){
+    800000c4:	fd010113          	addi	sp,sp,-48
+    800000c8:	02813423          	sd	s0,40(sp)
+    800000cc:	03010413          	addi	s0,sp,48
+    800000d0:	00050793          	mv	a5,a0
+    800000d4:	00058713          	mv	a4,a1
+    800000d8:	fcf42e23          	sw	a5,-36(s0)
+    800000dc:	00070793          	mv	a5,a4
+    800000e0:	fcf42c23          	sw	a5,-40(s0)
+    int i;
+    int DM_START_ADDR= ( 0x1000 >> 2 );
+    800000e4:	40000793          	li	a5,1024
+    800000e8:	fef42423          	sw	a5,-24(s0)
+    for( i=0; i< ( IMEM_INIT_LEN >>2 ); i++)
+    800000ec:	fe042623          	sw	zero,-20(s0)
+    800000f0:	0680006f          	j	80000158 <bsg_rocc_load_manycore+0x94>
+        bsg_rocc_write( y_cord, x_cord, i*4,  manycore_mem_vect[i]);
+    800000f4:	fdc42783          	lw	a5,-36(s0)
+    800000f8:	03179713          	slli	a4,a5,0x31
+    800000fc:	fd842783          	lw	a5,-40(s0)
+    80000100:	02179793          	slli	a5,a5,0x21
+    80000104:	00f76733          	or	a4,a4,a5
+    80000108:	fec42783          	lw	a5,-20(s0)
+    8000010c:	0027979b          	slliw	a5,a5,0x2
+    80000110:	0007879b          	sext.w	a5,a5
+    80000114:	00078693          	mv	a3,a5
+    80000118:	fff00793          	li	a5,-1
+    8000011c:	0207d793          	srli	a5,a5,0x20
+    80000120:	00f6f7b3          	and	a5,a3,a5
+    80000124:	00f767b3          	or	a5,a4,a5
+    80000128:	00078593          	mv	a1,a5
+    8000012c:	00002717          	auipc	a4,0x2
+    80000130:	ed470713          	addi	a4,a4,-300 # 80002000 <manycore_mem_vect>
+    80000134:	fec42783          	lw	a5,-20(s0)
+    80000138:	00279793          	slli	a5,a5,0x2
+    8000013c:	00f707b3          	add	a5,a4,a5
+    80000140:	0007a783          	lw	a5,0(a5)
+    80000144:	00078613          	mv	a2,a5
+    80000148:	00c5b00b          	0xc5b00b
+    for( i=0; i< ( IMEM_INIT_LEN >>2 ); i++)
+    8000014c:	fec42783          	lw	a5,-20(s0)
+    80000150:	0017879b          	addiw	a5,a5,1
+    80000154:	fef42623          	sw	a5,-20(s0)
+    80000158:	00004797          	auipc	a5,0x4
+    8000015c:	ec078793          	addi	a5,a5,-320 # 80004018 <IMEM_INIT_LEN>
+    80000160:	0007a783          	lw	a5,0(a5)
+    80000164:	4027d79b          	sraiw	a5,a5,0x2
+    80000168:	0007871b          	sext.w	a4,a5
+    8000016c:	fec42783          	lw	a5,-20(s0)
+    80000170:	0007879b          	sext.w	a5,a5
+    80000174:	f8e7c0e3          	blt	a5,a4,800000f4 <bsg_rocc_load_manycore+0x30>
+
+    for( i=DM_START_ADDR; i< DM_START_ADDR + (IMEM_INIT_LEN>>2); i++)
+    80000178:	fe842783          	lw	a5,-24(s0)
+    8000017c:	fef42623          	sw	a5,-20(s0)
+    80000180:	0680006f          	j	800001e8 <bsg_rocc_load_manycore+0x124>
+        bsg_rocc_write( y_cord, x_cord, i*4,  manycore_mem_vect[i]);
+    80000184:	fdc42783          	lw	a5,-36(s0)
+    80000188:	03179713          	slli	a4,a5,0x31
+    8000018c:	fd842783          	lw	a5,-40(s0)
+    80000190:	02179793          	slli	a5,a5,0x21
+    80000194:	00f76733          	or	a4,a4,a5
+    80000198:	fec42783          	lw	a5,-20(s0)
+    8000019c:	0027979b          	slliw	a5,a5,0x2
+    800001a0:	0007879b          	sext.w	a5,a5
+    800001a4:	00078693          	mv	a3,a5
+    800001a8:	fff00793          	li	a5,-1
+    800001ac:	0207d793          	srli	a5,a5,0x20
+    800001b0:	00f6f7b3          	and	a5,a3,a5
+    800001b4:	00f767b3          	or	a5,a4,a5
+    800001b8:	00078593          	mv	a1,a5
+    800001bc:	00002717          	auipc	a4,0x2
+    800001c0:	e4470713          	addi	a4,a4,-444 # 80002000 <manycore_mem_vect>
+    800001c4:	fec42783          	lw	a5,-20(s0)
+    800001c8:	00279793          	slli	a5,a5,0x2
+    800001cc:	00f707b3          	add	a5,a4,a5
+    800001d0:	0007a783          	lw	a5,0(a5)
+    800001d4:	00078613          	mv	a2,a5
+    800001d8:	00c5b00b          	0xc5b00b
+    for( i=DM_START_ADDR; i< DM_START_ADDR + (IMEM_INIT_LEN>>2); i++)
+    800001dc:	fec42783          	lw	a5,-20(s0)
+    800001e0:	0017879b          	addiw	a5,a5,1
+    800001e4:	fef42623          	sw	a5,-20(s0)
+    800001e8:	00004797          	auipc	a5,0x4
+    800001ec:	e3078793          	addi	a5,a5,-464 # 80004018 <IMEM_INIT_LEN>
+    800001f0:	0007a783          	lw	a5,0(a5)
+    800001f4:	4027d79b          	sraiw	a5,a5,0x2
+    800001f8:	0007879b          	sext.w	a5,a5
+    800001fc:	fe842703          	lw	a4,-24(s0)
+    80000200:	00f707bb          	addw	a5,a4,a5
+    80000204:	0007871b          	sext.w	a4,a5
+    80000208:	fec42783          	lw	a5,-20(s0)
+    8000020c:	0007879b          	sext.w	a5,a5
+    80000210:	f6e7cae3          	blt	a5,a4,80000184 <bsg_rocc_load_manycore+0xc0>
+}
+    80000214:	00000013          	nop
+    80000218:	02813403          	ld	s0,40(sp)
+    8000021c:	03010113          	addi	sp,sp,48
+    80000220:	00008067          	ret
+
+0000000080000224 <bsg_rocc_load_manycore_len>:
+
+// load part of the memory content into the manycore tile( y_cord, x_cord)
+void bsg_rocc_load_manycore_len(int y_cord, int x_cord, int word_len ){
+    80000224:	fd010113          	addi	sp,sp,-48
+    80000228:	02813423          	sd	s0,40(sp)
+    8000022c:	03010413          	addi	s0,sp,48
+    80000230:	00050793          	mv	a5,a0
+    80000234:	00058693          	mv	a3,a1
+    80000238:	00060713          	mv	a4,a2
+    8000023c:	fcf42e23          	sw	a5,-36(s0)
+    80000240:	00068793          	mv	a5,a3
+    80000244:	fcf42c23          	sw	a5,-40(s0)
+    80000248:	00070793          	mv	a5,a4
+    8000024c:	fcf42a23          	sw	a5,-44(s0)
+    int i;
+    for( i=0; i< word_len ; i++)
+    80000250:	fe042623          	sw	zero,-20(s0)
+    80000254:	0680006f          	j	800002bc <bsg_rocc_load_manycore_len+0x98>
+        bsg_rocc_write( y_cord, x_cord, i*4,  manycore_mem_vect[i]);
+    80000258:	fdc42783          	lw	a5,-36(s0)
+    8000025c:	03179713          	slli	a4,a5,0x31
+    80000260:	fd842783          	lw	a5,-40(s0)
+    80000264:	02179793          	slli	a5,a5,0x21
+    80000268:	00f76733          	or	a4,a4,a5
+    8000026c:	fec42783          	lw	a5,-20(s0)
+    80000270:	0027979b          	slliw	a5,a5,0x2
+    80000274:	0007879b          	sext.w	a5,a5
+    80000278:	00078693          	mv	a3,a5
+    8000027c:	fff00793          	li	a5,-1
+    80000280:	0207d793          	srli	a5,a5,0x20
+    80000284:	00f6f7b3          	and	a5,a3,a5
+    80000288:	00f767b3          	or	a5,a4,a5
+    8000028c:	00078593          	mv	a1,a5
+    80000290:	00002717          	auipc	a4,0x2
+    80000294:	d7070713          	addi	a4,a4,-656 # 80002000 <manycore_mem_vect>
+    80000298:	fec42783          	lw	a5,-20(s0)
+    8000029c:	00279793          	slli	a5,a5,0x2
+    800002a0:	00f707b3          	add	a5,a4,a5
+    800002a4:	0007a783          	lw	a5,0(a5)
+    800002a8:	00078613          	mv	a2,a5
+    800002ac:	00c5b00b          	0xc5b00b
+    for( i=0; i< word_len ; i++)
+    800002b0:	fec42783          	lw	a5,-20(s0)
+    800002b4:	0017879b          	addiw	a5,a5,1
+    800002b8:	fef42623          	sw	a5,-20(s0)
+    800002bc:	fec42703          	lw	a4,-20(s0)
+    800002c0:	fd442783          	lw	a5,-44(s0)
+    800002c4:	0007071b          	sext.w	a4,a4
+    800002c8:	0007879b          	sext.w	a5,a5
+    800002cc:	f8f746e3          	blt	a4,a5,80000258 <bsg_rocc_load_manycore_len+0x34>
+}
+    800002d0:	00000013          	nop
+    800002d4:	02813403          	ld	s0,40(sp)
+    800002d8:	03010113          	addi	sp,sp,48
+    800002dc:	00008067          	ret
+
+00000000800002e0 <bsg_rocc_dma_load_manycore_nb>:
+//load the memory content into the manycore tile( y_cord, x_cord)
+//using dma functions. 
+//this is a non-block function, user has to issue fence instuction to check the completion 
+void bsg_rocc_dma_load_manycore_nb(int y_cord, int x_cord ){
+    800002e0:	fd010113          	addi	sp,sp,-48
+    800002e4:	02113423          	sd	ra,40(sp)
+    800002e8:	02813023          	sd	s0,32(sp)
+    800002ec:	03010413          	addi	s0,sp,48
+    800002f0:	00050793          	mv	a5,a0
+    800002f4:	00058713          	mv	a4,a1
+    800002f8:	fcf42e23          	sw	a5,-36(s0)
+    800002fc:	00070793          	mv	a5,a4
+    80000300:	fcf42c23          	sw	a5,-40(s0)
+
+int * rocket_addr   = manycore_mem_vect ;
+    80000304:	00002797          	auipc	a5,0x2
+    80000308:	cfc78793          	addi	a5,a5,-772 # 80002000 <manycore_mem_vect>
+    8000030c:	fef43423          	sd	a5,-24(s0)
+int * manycore_addr = (int *) bsg_rocc_manycore_addr( y_cord, x_cord, 0x0);
+    80000310:	fdc42783          	lw	a5,-36(s0)
+    80000314:	03179713          	slli	a4,a5,0x31
+    80000318:	fd842783          	lw	a5,-40(s0)
+    8000031c:	02179793          	slli	a5,a5,0x21
+    80000320:	00f767b3          	or	a5,a4,a5
+    80000324:	fef43023          	sd	a5,-32(s0)
+bsg_rocc_dma_xfer_nb( rocket_addr                       ,
+                      manycore_addr                     ,
+                      0                                 ,
+                      0,
+                      (bsg_rocc_manycore_mem_words*4)   ,
+    80000328:	00004797          	auipc	a5,0x4
+    8000032c:	ce878793          	addi	a5,a5,-792 # 80004010 <bsg_rocc_manycore_mem_words>
+    80000330:	0007a783          	lw	a5,0(a5)
+    80000334:	0027979b          	slliw	a5,a5,0x2
+    80000338:	0007879b          	sext.w	a5,a5
+bsg_rocc_dma_xfer_nb( rocket_addr                       ,
+    8000033c:	00078713          	mv	a4,a5
+    80000340:	00100793          	li	a5,1
+    80000344:	00000693          	li	a3,0
+    80000348:	00000613          	li	a2,0
+    8000034c:	fe043583          	ld	a1,-32(s0)
+    80000350:	fe843503          	ld	a0,-24(s0)
+    80000354:	d0dff0ef          	jal	ra,80000060 <bsg_rocc_dma_xfer_nb>
+                      1);
+}
+    80000358:	00000013          	nop
+    8000035c:	02813083          	ld	ra,40(sp)
+    80000360:	02013403          	ld	s0,32(sp)
+    80000364:	03010113          	addi	sp,sp,48
+    80000368:	00008067          	ret
+
+000000008000036c <bsg_rocc_dma_load_x_manycore_nb>:
+
+//load the memory content into the multile manycore tiles
+void bsg_rocc_dma_load_x_manycore_nb(int y_cord      ,
+                                     int x_cord_start, int x_cord_end ){
+    8000036c:	fb010113          	addi	sp,sp,-80
+    80000370:	04113423          	sd	ra,72(sp)
+    80000374:	04813023          	sd	s0,64(sp)
+    80000378:	05010413          	addi	s0,sp,80
+    8000037c:	00050793          	mv	a5,a0
+    80000380:	00058693          	mv	a3,a1
+    80000384:	00060713          	mv	a4,a2
+    80000388:	faf42e23          	sw	a5,-68(s0)
+    8000038c:	00068793          	mv	a5,a3
+    80000390:	faf42c23          	sw	a5,-72(s0)
+    80000394:	00070793          	mv	a5,a4
+    80000398:	faf42a23          	sw	a5,-76(s0)
+
+int * rocket_addr   = manycore_mem_vect ;
+    8000039c:	00002797          	auipc	a5,0x2
+    800003a0:	c6478793          	addi	a5,a5,-924 # 80002000 <manycore_mem_vect>
+    800003a4:	fef43423          	sd	a5,-24(s0)
+int * manycore_addr = (int *) bsg_rocc_manycore_addr( y_cord, x_cord_start, 0x0);
+    800003a8:	fbc42783          	lw	a5,-68(s0)
+    800003ac:	03179713          	slli	a4,a5,0x31
+    800003b0:	fb842783          	lw	a5,-72(s0)
+    800003b4:	02179793          	slli	a5,a5,0x21
+    800003b8:	00f767b3          	or	a5,a4,a5
+    800003bc:	fef43023          	sd	a5,-32(s0)
+
+int         x_tiles_num   = x_cord_end - x_cord_start + 1;
+    800003c0:	fb442703          	lw	a4,-76(s0)
+    800003c4:	fb842783          	lw	a5,-72(s0)
+    800003c8:	40f707bb          	subw	a5,a4,a5
+    800003cc:	0007879b          	sext.w	a5,a5
+    800003d0:	0017879b          	addiw	a5,a5,1
+    800003d4:	fcf42e23          	sw	a5,-36(s0)
+int64_t    mem_byte_size = bsg_rocc_manycore_mem_words * 0x4UL                 ;
+    800003d8:	00004797          	auipc	a5,0x4
+    800003dc:	c3878793          	addi	a5,a5,-968 # 80004010 <bsg_rocc_manycore_mem_words>
+    800003e0:	0007a783          	lw	a5,0(a5)
+    800003e4:	00279793          	slli	a5,a5,0x2
+    800003e8:	fcf43823          	sd	a5,-48(s0)
+int64_t    mem_x_distance= ( 0x1UL << bsg_rocc_x_cord_shift  ) - mem_byte_size  ;
+    800003ec:	fd043783          	ld	a5,-48(s0)
+    800003f0:	00100713          	li	a4,1
+    800003f4:	02171713          	slli	a4,a4,0x21
+    800003f8:	40f707b3          	sub	a5,a4,a5
+    800003fc:	fcf43423          	sd	a5,-56(s0)
+bsg_rocc_dma_xfer_nb( rocket_addr                           ,
+                      manycore_addr                         ,
+                      -mem_byte_size                        ,
+    80000400:	fd043783          	ld	a5,-48(s0)
+    80000404:	40f007b3          	neg	a5,a5
+bsg_rocc_dma_xfer_nb( rocket_addr                           ,
+    80000408:	00078613          	mv	a2,a5
+    8000040c:	fc843683          	ld	a3,-56(s0)
+    80000410:	fd043703          	ld	a4,-48(s0)
+    80000414:	fdc42783          	lw	a5,-36(s0)
+    80000418:	fe043583          	ld	a1,-32(s0)
+    8000041c:	fe843503          	ld	a0,-24(s0)
+    80000420:	c41ff0ef          	jal	ra,80000060 <bsg_rocc_dma_xfer_nb>
+                      mem_x_distance                        ,
+                      mem_byte_size                         ,
+                      x_tiles_num                           );
+}                     
+    80000424:	00000013          	nop
+    80000428:	04813083          	ld	ra,72(sp)
+    8000042c:	04013403          	ld	s0,64(sp)
+    80000430:	05010113          	addi	sp,sp,80
+    80000434:	00008067          	ret
+
+0000000080000438 <bsg_rocc_poll_task>:
+
+//wait the task done.
+int  bsg_rocc_poll_task( volatile manycore_task_s *pRocketViewTask, int waiting_cycle_limit) {
+    80000438:	fd010113          	addi	sp,sp,-48
+    8000043c:	02813423          	sd	s0,40(sp)
+    80000440:	03010413          	addi	s0,sp,48
+    80000444:	fca43c23          	sd	a0,-40(s0)
+    80000448:	00058793          	mv	a5,a1
+    8000044c:	fcf42a23          	sw	a5,-44(s0)
+    int volatile *pDone = &( pRocketViewTask-> done);                                                                    
+    80000450:	fd843783          	ld	a5,-40(s0)
+    80000454:	02478793          	addi	a5,a5,36
+    80000458:	fef43023          	sd	a5,-32(s0)
+    int i=0;
+    8000045c:	fe042623          	sw	zero,-20(s0)
+    do { 
+        asm volatile( "fence ");
+    80000460:	0ff0000f          	fence
+        i++;
+    80000464:	fec42783          	lw	a5,-20(s0)
+    80000468:	0017879b          	addiw	a5,a5,1
+    8000046c:	fef42623          	sw	a5,-20(s0)
+      }while( (i< waiting_cycle_limit ) & ( *pDone == 0x0) );
+    80000470:	fec42703          	lw	a4,-20(s0)
+    80000474:	fd442783          	lw	a5,-44(s0)
+    80000478:	0007071b          	sext.w	a4,a4
+    8000047c:	0007879b          	sext.w	a5,a5
+    80000480:	00f727b3          	slt	a5,a4,a5
+    80000484:	0ff7f713          	andi	a4,a5,255
+    80000488:	fe043783          	ld	a5,-32(s0)
+    8000048c:	0007a783          	lw	a5,0(a5)
+    80000490:	0007879b          	sext.w	a5,a5
+    80000494:	0017b793          	seqz	a5,a5
+    80000498:	0ff7f793          	andi	a5,a5,255
+    8000049c:	00f777b3          	and	a5,a4,a5
+    800004a0:	0ff7f793          	andi	a5,a5,255
+    800004a4:	fa079ee3          	bnez	a5,80000460 <bsg_rocc_poll_task+0x28>
+ 
+    return i;
+    800004a8:	fec42783          	lw	a5,-20(s0)
+}
+    800004ac:	00078513          	mv	a0,a5
+    800004b0:	02813403          	ld	s0,40(sp)
+    800004b4:	03010113          	addi	sp,sp,48
+    800004b8:	00008067          	ret
+
+00000000800004bc <main>:
+
+
+int main(void)
+{
+    800004bc:	fd010113          	addi	sp,sp,-48
+    800004c0:	02113423          	sd	ra,40(sp)
+    800004c4:	02813023          	sd	s0,32(sp)
+    800004c8:	03010413          	addi	s0,sp,48
+  
+  //REG32(uart, UART_REG_DIV) = 271;  // 
+  REG32(uart, UART_REG_DIV) = 1;
+    800004cc:	640007b7          	lui	a5,0x64000
+    800004d0:	01878793          	addi	a5,a5,24 # 64000018 <_prog_start-0x1bffffe8>
+    800004d4:	00100713          	li	a4,1
+    800004d8:	00e7a023          	sw	a4,0(a5)
+  REG32(uart, UART_REG_RXCTRL) = UART_TXEN;
+    800004dc:	640007b7          	lui	a5,0x64000
+    800004e0:	00c78793          	addi	a5,a5,12 # 6400000c <_prog_start-0x1bfffff4>
+    800004e4:	00100713          	li	a4,1
+    800004e8:	00e7a023          	sw	a4,0(a5)
+  REG32(uart, UART_REG_TXCTRL) = UART_RXEN;  // donot delete
+    800004ec:	640007b7          	lui	a5,0x64000
+    800004f0:	00878793          	addi	a5,a5,8 # 64000008 <_prog_start-0x1bfffff8>
+    800004f4:	00100713          	li	a4,1
+    800004f8:	00e7a023          	sw	a4,0(a5)
+  _REG32(_AC(0x51000000, UL), 0x18) = (0x3 << 20) + (0x2 << 10) + (0x1);  // SOC_LSYS cfg pll cfg
+    800004fc:	510007b7          	lui	a5,0x51000
+    80000500:	01878793          	addi	a5,a5,24 # 51000018 <_prog_start-0x2effffe8>
+    80000504:	00301737          	lui	a4,0x301
+    80000508:	8017071b          	addiw	a4,a4,-2047
+    8000050c:	00e7a023          	sw	a4,0(a5)
+
+	kprintf("Test begin ! @ core: 0x%x, compiler date: %s, time: %s", read_csr(mhartid), __DATE__,__TIME__);
+    80000510:	f14027f3          	csrr	a5,mhartid
+    80000514:	fef43423          	sd	a5,-24(s0)
+    80000518:	fe843783          	ld	a5,-24(s0)
+    8000051c:	00000697          	auipc	a3,0x0
+    80000520:	63c68693          	addi	a3,a3,1596 # 80000b58 <kprintf+0x290>
+    80000524:	00000617          	auipc	a2,0x0
+    80000528:	64460613          	addi	a2,a2,1604 # 80000b68 <kprintf+0x2a0>
+    8000052c:	00078593          	mv	a1,a5
+    80000530:	00000517          	auipc	a0,0x0
+    80000534:	64850513          	addi	a0,a0,1608 # 80000b78 <kprintf+0x2b0>
+    80000538:	390000ef          	jal	ra,800008c8 <kprintf>
+
+    int i=0;
+    8000053c:	fe042223          	sw	zero,-28(s0)
+    volatile manycore_task_s * pRocketViewTask = \
+            ( volatile manycore_task_s*) (   (uint64_t)(&manycore_data_s)  \
+    80000540:	00000717          	auipc	a4,0x0
+    80000544:	ac070713          	addi	a4,a4,-1344 # 80000000 <_prog_start>
+                                        + (uint64_t)(manycore_mem_vect) \
+    80000548:	00002797          	auipc	a5,0x2
+    8000054c:	ab878793          	addi	a5,a5,-1352 # 80002000 <manycore_mem_vect>
+    80000550:	00f707b3          	add	a5,a4,a5
+    volatile manycore_task_s * pRocketViewTask = \
+    80000554:	fcf43c23          	sd	a5,-40(s0)
+                                        );
+
+    //setup the segment address
+    bsg_rocc_seg_addr(  manycore_mem_vect );
+    80000558:	00002797          	auipc	a5,0x2
+    8000055c:	aa878793          	addi	a5,a5,-1368 # 80002000 <manycore_mem_vect>
+    80000560:	00078593          	mv	a1,a5
+    80000564:	0205a00b          	0x205a00b
+    80000568:	0a00000b          	0xa00000b
+    //reset the manycore
+    bsg_rocc_reset_manycore();
+
+    //load the manycore image.
+    #ifndef DMA_LOAD
+        bsg_rocc_load_manycore(0, 0);
+    8000056c:	00000593          	li	a1,0
+    80000570:	00000513          	li	a0,0
+    80000574:	b51ff0ef          	jal	ra,800000c4 <bsg_rocc_load_manycore>
+        bsg_rocc_dma_load_manycore_nb(0, 0);
+        bsg_rocket_fence( );
+    #endif
+
+    //initial the source data for manycore
+    init_source(0,0, &manycore_data_s, pRocketViewTask);
+    80000578:	fd843683          	ld	a3,-40(s0)
+    8000057c:	00000617          	auipc	a2,0x0
+    80000580:	a8460613          	addi	a2,a2,-1404 # 80000000 <_prog_start>
+    80000584:	00000593          	li	a1,0
+    80000588:	00000513          	li	a0,0
+    8000058c:	0e8000ef          	jal	ra,80000674 <init_source>
+
+    //start the manycore
+    bsg_rocc_unfreeze( 0x0, 0x0);
+    80000590:	00100793          	li	a5,1
+    80000594:	02079593          	slli	a1,a5,0x20
+    80000598:	00000613          	li	a2,0
+    8000059c:	00c5b00b          	0xc5b00b
+
+    //wait the result
+    i = bsg_rocc_poll_task( pRocketViewTask, waiting_cycle_limit );
+    800005a0:	00004797          	auipc	a5,0x4
+    800005a4:	a7478793          	addi	a5,a5,-1420 # 80004014 <waiting_cycle_limit>
+    800005a8:	0007a783          	lw	a5,0(a5)
+    800005ac:	00078593          	mv	a1,a5
+    800005b0:	fd843503          	ld	a0,-40(s0)
+    800005b4:	e85ff0ef          	jal	ra,80000438 <bsg_rocc_poll_task>
+    800005b8:	00050793          	mv	a5,a0
+    800005bc:	fef42223          	sw	a5,-28(s0)
+
+    if( i == waiting_cycle_limit )
+    800005c0:	00004797          	auipc	a5,0x4
+    800005c4:	a5478793          	addi	a5,a5,-1452 # 80004014 <waiting_cycle_limit>
+    800005c8:	0007a703          	lw	a4,0(a5)
+    800005cc:	fe442783          	lw	a5,-28(s0)
+    800005d0:	0007879b          	sext.w	a5,a5
+    800005d4:	02e79263          	bne	a5,a4,800005f8 <main+0x13c>
+        kprintf(" ==> FAIL ! wait %d but not result return", waiting_cycle_limit );
+    800005d8:	00004797          	auipc	a5,0x4
+    800005dc:	a3c78793          	addi	a5,a5,-1476 # 80004014 <waiting_cycle_limit>
+    800005e0:	0007a783          	lw	a5,0(a5)
+    800005e4:	00078593          	mv	a1,a5
+    800005e8:	00000517          	auipc	a0,0x0
+    800005ec:	5c850513          	addi	a0,a0,1480 # 80000bb0 <kprintf+0x2e8>
+    800005f0:	2d8000ef          	jal	ra,800008c8 <kprintf>
+    800005f4:	0300006f          	j	80000624 <main+0x168>
+    else if( check_result( pRocketViewTask ) )
+    800005f8:	fd843503          	ld	a0,-40(s0)
+    800005fc:	168000ef          	jal	ra,80000764 <check_result>
+    80000600:	00050793          	mv	a5,a0
+    80000604:	00078a63          	beqz	a5,80000618 <main+0x15c>
+        kprintf(" ==> FAIL ! received data is not correct");
+    80000608:	00000517          	auipc	a0,0x0
+    8000060c:	5d850513          	addi	a0,a0,1496 # 80000be0 <kprintf+0x318>
+    80000610:	2b8000ef          	jal	ra,800008c8 <kprintf>
+    80000614:	0100006f          	j	80000624 <main+0x168>
+    else
+    kprintf(" ==> PASS !");
+    80000618:	00000517          	auipc	a0,0x0
+    8000061c:	5f850513          	addi	a0,a0,1528 # 80000c10 <kprintf+0x348>
+    80000620:	2a8000ef          	jal	ra,800008c8 <kprintf>
+	
+	kprintf("Test end ! @ core: 0x%x", read_csr(mhartid));
+    80000624:	f14027f3          	csrr	a5,mhartid
+    80000628:	fcf43823          	sd	a5,-48(s0)
+    8000062c:	fd043783          	ld	a5,-48(s0)
+    80000630:	00078593          	mv	a1,a5
+    80000634:	00000517          	auipc	a0,0x0
+    80000638:	5ec50513          	addi	a0,a0,1516 # 80000c20 <kprintf+0x358>
+    8000063c:	28c000ef          	jal	ra,800008c8 <kprintf>
+
+	if (1){
+		kprintf("PASS");
+    80000640:	00000517          	auipc	a0,0x0
+    80000644:	5f850513          	addi	a0,a0,1528 # 80000c38 <kprintf+0x370>
+    80000648:	280000ef          	jal	ra,800008c8 <kprintf>
+	}
+	else{
+		kprintf("FAIL");
+	}
+
+	kprintf(SHUTDOWN_FLAG_STR);  // donnot delete
+    8000064c:	00000797          	auipc	a5,0x0
+    80000650:	4f478793          	addi	a5,a5,1268 # 80000b40 <kprintf+0x278>
+    80000654:	00078513          	mv	a0,a5
+    80000658:	270000ef          	jal	ra,800008c8 <kprintf>
+
+	return 0;
+    8000065c:	00000793          	li	a5,0
+}
+    80000660:	00078513          	mv	a0,a5
+    80000664:	02813083          	ld	ra,40(sp)
+    80000668:	02013403          	ld	s0,32(sp)
+    8000066c:	03010113          	addi	sp,sp,48
+    80000670:	00008067          	ret
+
+0000000080000674 <init_source>:
+
+// /////////////////////////////////////////////////////////////
+//init the source data
+void init_source( int y_cord, int x_cord, \
+            volatile manycore_task_s * pMCViewTask,  \
+            volatile manycore_task_s * pRocketViewTask){
+    80000674:	fc010113          	addi	sp,sp,-64
+    80000678:	02813c23          	sd	s0,56(sp)
+    8000067c:	04010413          	addi	s0,sp,64
+    80000680:	00050793          	mv	a5,a0
+    80000684:	00058713          	mv	a4,a1
+    80000688:	fcc43823          	sd	a2,-48(s0)
+    8000068c:	fcd43423          	sd	a3,-56(s0)
+    80000690:	fcf42e23          	sw	a5,-36(s0)
+    80000694:	00070793          	mv	a5,a4
+    80000698:	fcf42c23          	sw	a5,-40(s0)
+  int i;
+  for(i=0; i< MANYCORE_SRC_BUF_LEN; i++)
+    8000069c:	fe042623          	sw	zero,-20(s0)
+    800006a0:	05c0006f          	j	800006fc <init_source+0x88>
+        bsg_rocc_write( y_cord, x_cord, &(pMCViewTask->source[i]),  i);
+    800006a4:	fdc42783          	lw	a5,-36(s0)
+    800006a8:	03179713          	slli	a4,a5,0x31
+    800006ac:	fd842783          	lw	a5,-40(s0)
+    800006b0:	02179793          	slli	a5,a5,0x21
+    800006b4:	00f76733          	or	a4,a4,a5
+    800006b8:	fec42783          	lw	a5,-20(s0)
+    800006bc:	00279793          	slli	a5,a5,0x2
+    800006c0:	fd043683          	ld	a3,-48(s0)
+    800006c4:	00f687b3          	add	a5,a3,a5
+    800006c8:	00478793          	addi	a5,a5,4
+    800006cc:	00078693          	mv	a3,a5
+    800006d0:	fff00793          	li	a5,-1
+    800006d4:	0207d793          	srli	a5,a5,0x20
+    800006d8:	00f6f7b3          	and	a5,a3,a5
+    800006dc:	00f767b3          	or	a5,a4,a5
+    800006e0:	00078593          	mv	a1,a5
+    800006e4:	fec42783          	lw	a5,-20(s0)
+    800006e8:	00078613          	mv	a2,a5
+    800006ec:	00c5b00b          	0xc5b00b
+  for(i=0; i< MANYCORE_SRC_BUF_LEN; i++)
+    800006f0:	fec42783          	lw	a5,-20(s0)
+    800006f4:	0017879b          	addiw	a5,a5,1
+    800006f8:	fef42623          	sw	a5,-20(s0)
+    800006fc:	fec42783          	lw	a5,-20(s0)
+    80000700:	0007871b          	sext.w	a4,a5
+    80000704:	00700793          	li	a5,7
+    80000708:	f8e7dee3          	ble	a4,a5,800006a4 <init_source+0x30>
+  //setup the base address
+  bsg_rocc_write( y_cord, x_cord, &(pMCViewTask->base_addr), manycore_mem_vect);
+    8000070c:	fdc42783          	lw	a5,-36(s0)
+    80000710:	03179713          	slli	a4,a5,0x31
+    80000714:	fd842783          	lw	a5,-40(s0)
+    80000718:	02179793          	slli	a5,a5,0x21
+    8000071c:	00f76733          	or	a4,a4,a5
+    80000720:	fd043783          	ld	a5,-48(s0)
+    80000724:	00078693          	mv	a3,a5
+    80000728:	fff00793          	li	a5,-1
+    8000072c:	0207d793          	srli	a5,a5,0x20
+    80000730:	00f6f7b3          	and	a5,a3,a5
+    80000734:	00f767b3          	or	a5,a4,a5
+    80000738:	00078593          	mv	a1,a5
+    8000073c:	00002797          	auipc	a5,0x2
+    80000740:	8c478793          	addi	a5,a5,-1852 # 80002000 <manycore_mem_vect>
+    80000744:	00078613          	mv	a2,a5
+    80000748:	00c5b00b          	0xc5b00b
+
+  //reset the done signal.
+  pRocketViewTask->done = 0;
+    8000074c:	fc843783          	ld	a5,-56(s0)
+    80000750:	0207a223          	sw	zero,36(a5)
+}
+    80000754:	00000013          	nop
+    80000758:	03813403          	ld	s0,56(sp)
+    8000075c:	04010113          	addi	sp,sp,64
+    80000760:	00008067          	ret
+
+0000000080000764 <check_result>:
+//check the result
+int check_result(volatile manycore_task_s *pRocketViewTask){
+    80000764:	fd010113          	addi	sp,sp,-48
+    80000768:	02813423          	sd	s0,40(sp)
+    8000076c:	03010413          	addi	s0,sp,48
+    80000770:	fca43c23          	sd	a0,-40(s0)
+    int i=0;
+    80000774:	fe042623          	sw	zero,-20(s0)
+    for( i=0; i< MANYCORE_DST_BUF_LEN ; i ++ ){
+    80000778:	fe042623          	sw	zero,-20(s0)
+    8000077c:	0400006f          	j	800007bc <check_result+0x58>
+        if( pRocketViewTask->result[i] != i ) return 1;
+    80000780:	fd843703          	ld	a4,-40(s0)
+    80000784:	fec42783          	lw	a5,-20(s0)
+    80000788:	00878793          	addi	a5,a5,8
+    8000078c:	00279793          	slli	a5,a5,0x2
+    80000790:	00f707b3          	add	a5,a4,a5
+    80000794:	0087a783          	lw	a5,8(a5)
+    80000798:	0007871b          	sext.w	a4,a5
+    8000079c:	fec42783          	lw	a5,-20(s0)
+    800007a0:	0007879b          	sext.w	a5,a5
+    800007a4:	00e78663          	beq	a5,a4,800007b0 <check_result+0x4c>
+    800007a8:	00100793          	li	a5,1
+    800007ac:	0240006f          	j	800007d0 <check_result+0x6c>
+    for( i=0; i< MANYCORE_DST_BUF_LEN ; i ++ ){
+    800007b0:	fec42783          	lw	a5,-20(s0)
+    800007b4:	0017879b          	addiw	a5,a5,1
+    800007b8:	fef42623          	sw	a5,-20(s0)
+    800007bc:	fec42783          	lw	a5,-20(s0)
+    800007c0:	0007871b          	sext.w	a4,a5
+    800007c4:	00700793          	li	a5,7
+    800007c8:	fae7dce3          	ble	a4,a5,80000780 <check_result+0x1c>
+    }
+    return 0;
+    800007cc:	00000793          	li	a5,0
+}
+    800007d0:	00078513          	mv	a0,a5
+    800007d4:	02813403          	ld	s0,40(sp)
+    800007d8:	03010113          	addi	sp,sp,48
+    800007dc:	00008067          	ret
+
+00000000800007e0 <kputc>:
+#endif
+static volatile uint32_t * const uart = (void *)(UART_CTRL_ADDR);
+static char * const SHUTDOWN_FLAG_STR = "ST Simulation Ended!";
+
+static inline void kputc(char c)
+{
+    800007e0:	fd010113          	addi	sp,sp,-48
+    800007e4:	02813423          	sd	s0,40(sp)
+    800007e8:	03010413          	addi	s0,sp,48
+    800007ec:	00050793          	mv	a5,a0
+    800007f0:	fcf40fa3          	sb	a5,-33(s0)
+  //volatile uint32_t temp_value;
+	volatile uint32_t *tx = &REG32(uart, UART_REG_TXFIFO);
+    800007f4:	640007b7          	lui	a5,0x64000
+    800007f8:	fef43423          	sd	a5,-24(s0)
+#ifdef __riscv_atomic
+	int32_t r;
+	do {
+		__asm__ __volatile__ (
+    800007fc:	fe843683          	ld	a3,-24(s0)
+    80000800:	fdf44783          	lbu	a5,-33(s0)
+    80000804:	fe843703          	ld	a4,-24(s0)
+    80000808:	40f6a7af          	amoor.w	a5,a5,(a3)
+    8000080c:	fef42223          	sw	a5,-28(s0)
+			"amoor.w %0, %2, %1\n"
+			: "=r" (r), "+A" (*tx)
+			: "r" (c));
+	} while (r < 0);
+    80000810:	fe442783          	lw	a5,-28(s0)
+    80000814:	0007879b          	sext.w	a5,a5
+    80000818:	fe07c2e3          	bltz	a5,800007fc <kputc+0x1c>
+  //   temp_value = REG32(uart, UART_REG_TXFIFO);
+  // }
+  while ((int32_t)(*tx) < 0);
+	*tx = c;
+#endif
+}
+    8000081c:	00000013          	nop
+    80000820:	02813403          	ld	s0,40(sp)
+    80000824:	03010113          	addi	sp,sp,48
+    80000828:	00008067          	ret
+
+000000008000082c <_kputs>:
+#include <stdbool.h>
+
+#include "kprintf.h"
+
+static inline void _kputs(const char *s)
+{
+    8000082c:	fd010113          	addi	sp,sp,-48
+    80000830:	02113423          	sd	ra,40(sp)
+    80000834:	02813023          	sd	s0,32(sp)
+    80000838:	03010413          	addi	s0,sp,48
+    8000083c:	fca43c23          	sd	a0,-40(s0)
+	char c;
+	for (; (c = *s) != '\0'; s++)
+    80000840:	01c0006f          	j	8000085c <_kputs+0x30>
+		kputc(c);
+    80000844:	fef44783          	lbu	a5,-17(s0)
+    80000848:	00078513          	mv	a0,a5
+    8000084c:	f95ff0ef          	jal	ra,800007e0 <kputc>
+	for (; (c = *s) != '\0'; s++)
+    80000850:	fd843783          	ld	a5,-40(s0)
+    80000854:	00178793          	addi	a5,a5,1 # 64000001 <_prog_start-0x1bffffff>
+    80000858:	fcf43c23          	sd	a5,-40(s0)
+    8000085c:	fd843783          	ld	a5,-40(s0)
+    80000860:	0007c783          	lbu	a5,0(a5)
+    80000864:	fef407a3          	sb	a5,-17(s0)
+    80000868:	fef44783          	lbu	a5,-17(s0)
+    8000086c:	0ff7f793          	andi	a5,a5,255
+    80000870:	fc079ae3          	bnez	a5,80000844 <_kputs+0x18>
+}
+    80000874:	00000013          	nop
+    80000878:	02813083          	ld	ra,40(sp)
+    8000087c:	02013403          	ld	s0,32(sp)
+    80000880:	03010113          	addi	sp,sp,48
+    80000884:	00008067          	ret
+
+0000000080000888 <kputs>:
+
+void kputs(const char *s)
+{
+    80000888:	fe010113          	addi	sp,sp,-32
+    8000088c:	00113c23          	sd	ra,24(sp)
+    80000890:	00813823          	sd	s0,16(sp)
+    80000894:	02010413          	addi	s0,sp,32
+    80000898:	fea43423          	sd	a0,-24(s0)
+	_kputs(s);
+    8000089c:	fe843503          	ld	a0,-24(s0)
+    800008a0:	f8dff0ef          	jal	ra,8000082c <_kputs>
+	kputc('\r');
+    800008a4:	00d00513          	li	a0,13
+    800008a8:	f39ff0ef          	jal	ra,800007e0 <kputc>
+	kputc('\n');
+    800008ac:	00a00513          	li	a0,10
+    800008b0:	f31ff0ef          	jal	ra,800007e0 <kputc>
+}
+    800008b4:	00000013          	nop
+    800008b8:	01813083          	ld	ra,24(sp)
+    800008bc:	01013403          	ld	s0,16(sp)
+    800008c0:	02010113          	addi	sp,sp,32
+    800008c4:	00008067          	ret
+
+00000000800008c8 <kprintf>:
+
+void kprintf(const char *fmt, ...)
+{
+    800008c8:	f7010113          	addi	sp,sp,-144
+    800008cc:	04113423          	sd	ra,72(sp)
+    800008d0:	04813023          	sd	s0,64(sp)
+    800008d4:	05010413          	addi	s0,sp,80
+    800008d8:	faa43c23          	sd	a0,-72(s0)
+    800008dc:	00b43423          	sd	a1,8(s0)
+    800008e0:	00c43823          	sd	a2,16(s0)
+    800008e4:	00d43c23          	sd	a3,24(s0)
+    800008e8:	02e43023          	sd	a4,32(s0)
+    800008ec:	02f43423          	sd	a5,40(s0)
+    800008f0:	03043823          	sd	a6,48(s0)
+    800008f4:	03143c23          	sd	a7,56(s0)
+	va_list vl;
+	bool is_format, is_long, is_char;
+	char c;
+
+	va_start(vl, fmt);
+    800008f8:	04040793          	addi	a5,s0,64
+    800008fc:	fc878793          	addi	a5,a5,-56
+    80000900:	fcf43023          	sd	a5,-64(s0)
+	is_format = false;
+    80000904:	fe0407a3          	sb	zero,-17(s0)
+	is_long = false;
+    80000908:	fe040723          	sb	zero,-18(s0)
+	is_char = false;
+    8000090c:	fe0406a3          	sb	zero,-19(s0)
+	
+	while ((c = *fmt++) != '\0') {
+    80000910:	1b40006f          	j	80000ac4 <kprintf+0x1fc>
+		if (is_format) {
+    80000914:	fef44783          	lbu	a5,-17(s0)
+    80000918:	0ff7f793          	andi	a5,a5,255
+    8000091c:	18078063          	beqz	a5,80000a9c <kprintf+0x1d4>
+			switch (c) {
+    80000920:	fd744783          	lbu	a5,-41(s0)
+    80000924:	0007879b          	sext.w	a5,a5
+    80000928:	f9d7869b          	addiw	a3,a5,-99
+    8000092c:	0006871b          	sext.w	a4,a3
+    80000930:	01500793          	li	a5,21
+    80000934:	14e7ec63          	bltu	a5,a4,80000a8c <kprintf+0x1c4>
+    80000938:	02069793          	slli	a5,a3,0x20
+    8000093c:	0207d793          	srli	a5,a5,0x20
+    80000940:	00279713          	slli	a4,a5,0x2
+    80000944:	00000797          	auipc	a5,0x0
+    80000948:	31478793          	addi	a5,a5,788 # 80000c58 <kprintf+0x390>
+    8000094c:	00f707b3          	add	a5,a4,a5
+    80000950:	0007a783          	lw	a5,0(a5)
+    80000954:	0007871b          	sext.w	a4,a5
+    80000958:	00000797          	auipc	a5,0x0
+    8000095c:	30078793          	addi	a5,a5,768 # 80000c58 <kprintf+0x390>
+    80000960:	00f707b3          	add	a5,a4,a5
+    80000964:	00078067          	jr	a5
+			case 'l':
+				is_long = true;
+    80000968:	00100793          	li	a5,1
+    8000096c:	fef40723          	sb	a5,-18(s0)
+				continue;
+    80000970:	1540006f          	j	80000ac4 <kprintf+0x1fc>
+			case 'h':
+				is_char = true;
+    80000974:	00100793          	li	a5,1
+    80000978:	fef406a3          	sb	a5,-19(s0)
+				continue;
+    8000097c:	1480006f          	j	80000ac4 <kprintf+0x1fc>
+			case 'x': {
+				unsigned long n;
+				long i;
+				if (is_long) {
+    80000980:	fee44783          	lbu	a5,-18(s0)
+    80000984:	0ff7f793          	andi	a5,a5,255
+    80000988:	02078263          	beqz	a5,800009ac <kprintf+0xe4>
+					n = va_arg(vl, unsigned long);
+    8000098c:	fc043783          	ld	a5,-64(s0)
+    80000990:	00878713          	addi	a4,a5,8
+    80000994:	fce43023          	sd	a4,-64(s0)
+    80000998:	0007b783          	ld	a5,0(a5)
+    8000099c:	fef43023          	sd	a5,-32(s0)
+					i = (sizeof(unsigned long) << 3) - 4;
+    800009a0:	03c00793          	li	a5,60
+    800009a4:	fcf43c23          	sd	a5,-40(s0)
+    800009a8:	09c0006f          	j	80000a44 <kprintf+0x17c>
+				} else {
+					n = va_arg(vl, unsigned int);
+    800009ac:	fc043783          	ld	a5,-64(s0)
+    800009b0:	00878713          	addi	a4,a5,8
+    800009b4:	fce43023          	sd	a4,-64(s0)
+    800009b8:	0007a783          	lw	a5,0(a5)
+    800009bc:	02079793          	slli	a5,a5,0x20
+    800009c0:	0207d793          	srli	a5,a5,0x20
+    800009c4:	fef43023          	sd	a5,-32(s0)
+					i = is_char ? 4 : (sizeof(unsigned int) << 3) - 4;
+    800009c8:	fed44783          	lbu	a5,-19(s0)
+    800009cc:	0ff7f793          	andi	a5,a5,255
+    800009d0:	00078663          	beqz	a5,800009dc <kprintf+0x114>
+    800009d4:	00400793          	li	a5,4
+    800009d8:	0080006f          	j	800009e0 <kprintf+0x118>
+    800009dc:	01c00793          	li	a5,28
+    800009e0:	fcf43c23          	sd	a5,-40(s0)
+				}
+				for (; i >= 0; i -= 4) {
+    800009e4:	0600006f          	j	80000a44 <kprintf+0x17c>
+					long d;
+					d = (n >> i) & 0xF;
+    800009e8:	fd843783          	ld	a5,-40(s0)
+    800009ec:	0007879b          	sext.w	a5,a5
+    800009f0:	fe043703          	ld	a4,-32(s0)
+    800009f4:	00f757b3          	srl	a5,a4,a5
+    800009f8:	00f7f793          	andi	a5,a5,15
+    800009fc:	fcf43423          	sd	a5,-56(s0)
+					kputc(d < 10 ? '0' + d : 'a' + d - 10);
+    80000a00:	fc843703          	ld	a4,-56(s0)
+    80000a04:	00900793          	li	a5,9
+    80000a08:	00e7cc63          	blt	a5,a4,80000a20 <kprintf+0x158>
+    80000a0c:	fc843783          	ld	a5,-56(s0)
+    80000a10:	0ff7f793          	andi	a5,a5,255
+    80000a14:	0307879b          	addiw	a5,a5,48
+    80000a18:	0ff7f793          	andi	a5,a5,255
+    80000a1c:	0140006f          	j	80000a30 <kprintf+0x168>
+    80000a20:	fc843783          	ld	a5,-56(s0)
+    80000a24:	0ff7f793          	andi	a5,a5,255
+    80000a28:	0577879b          	addiw	a5,a5,87
+    80000a2c:	0ff7f793          	andi	a5,a5,255
+    80000a30:	00078513          	mv	a0,a5
+    80000a34:	dadff0ef          	jal	ra,800007e0 <kputc>
+				for (; i >= 0; i -= 4) {
+    80000a38:	fd843783          	ld	a5,-40(s0)
+    80000a3c:	ffc78793          	addi	a5,a5,-4
+    80000a40:	fcf43c23          	sd	a5,-40(s0)
+    80000a44:	fd843783          	ld	a5,-40(s0)
+    80000a48:	fa07d0e3          	bgez	a5,800009e8 <kprintf+0x120>
+				}
+				break;
+    80000a4c:	0400006f          	j	80000a8c <kprintf+0x1c4>
+			}
+			case 's':
+				//kputc('s');
+				_kputs(va_arg(vl, const char *));
+    80000a50:	fc043783          	ld	a5,-64(s0)
+    80000a54:	00878713          	addi	a4,a5,8
+    80000a58:	fce43023          	sd	a4,-64(s0)
+    80000a5c:	0007b783          	ld	a5,0(a5)
+    80000a60:	00078513          	mv	a0,a5
+    80000a64:	dc9ff0ef          	jal	ra,8000082c <_kputs>
+				break;
+    80000a68:	0240006f          	j	80000a8c <kprintf+0x1c4>
+			case 'c':
+				kputc(va_arg(vl, int));
+    80000a6c:	fc043783          	ld	a5,-64(s0)
+    80000a70:	00878713          	addi	a4,a5,8
+    80000a74:	fce43023          	sd	a4,-64(s0)
+    80000a78:	0007a783          	lw	a5,0(a5)
+    80000a7c:	0ff7f793          	andi	a5,a5,255
+    80000a80:	00078513          	mv	a0,a5
+    80000a84:	d5dff0ef          	jal	ra,800007e0 <kputc>
+				break;
+    80000a88:	00000013          	nop
+			}
+			is_format = false;
+    80000a8c:	fe0407a3          	sb	zero,-17(s0)
+			is_long = false;
+    80000a90:	fe040723          	sb	zero,-18(s0)
+			is_char = false;
+    80000a94:	fe0406a3          	sb	zero,-19(s0)
+    80000a98:	02c0006f          	j	80000ac4 <kprintf+0x1fc>
+		} else if (c == '%') {
+    80000a9c:	fd744783          	lbu	a5,-41(s0)
+    80000aa0:	0ff7f713          	andi	a4,a5,255
+    80000aa4:	02500793          	li	a5,37
+    80000aa8:	00f71863          	bne	a4,a5,80000ab8 <kprintf+0x1f0>
+			is_format = true;
+    80000aac:	00100793          	li	a5,1
+    80000ab0:	fef407a3          	sb	a5,-17(s0)
+    80000ab4:	0100006f          	j	80000ac4 <kprintf+0x1fc>
+		} else {
+			kputc(c);
+    80000ab8:	fd744783          	lbu	a5,-41(s0)
+    80000abc:	00078513          	mv	a0,a5
+    80000ac0:	d21ff0ef          	jal	ra,800007e0 <kputc>
+	while ((c = *fmt++) != '\0') {
+    80000ac4:	fb843783          	ld	a5,-72(s0)
+    80000ac8:	00178713          	addi	a4,a5,1
+    80000acc:	fae43c23          	sd	a4,-72(s0)
+    80000ad0:	0007c783          	lbu	a5,0(a5)
+    80000ad4:	fcf40ba3          	sb	a5,-41(s0)
+    80000ad8:	fd744783          	lbu	a5,-41(s0)
+    80000adc:	0ff7f793          	andi	a5,a5,255
+    80000ae0:	e2079ae3          	bnez	a5,80000914 <kprintf+0x4c>
+		}
+	}
+	kputc('\n');
+    80000ae4:	00a00513          	li	a0,10
+    80000ae8:	cf9ff0ef          	jal	ra,800007e0 <kputc>
+	va_end(vl);
+}
+    80000aec:	00000013          	nop
+    80000af0:	04813083          	ld	ra,72(sp)
+    80000af4:	04013403          	ld	s0,64(sp)
+    80000af8:	09010113          	addi	sp,sp,144
+    80000afc:	00008067          	ret
+	...

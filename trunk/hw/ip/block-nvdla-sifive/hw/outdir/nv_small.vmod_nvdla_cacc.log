@@ -1,0 +1,61 @@
+command: cd vmod/nvdla/cacc;make PROJECT=nv_small 
+make[1]: Entering directory '/work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/nvdla/cacc'
+../../../tools/bin/vcp -i NV_NVDLA_cacc.v -o ../../../outdir/nv_small/vmod/nvdla/cacc/NV_NVDLA_cacc.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/cacc/NV_NVDLA_cacc.v ../../../outdir/nv_small/vmod/nvdla/cacc/NV_NVDLA_cacc.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_CACC_assembly_buffer.v -o ../../../outdir/nv_small/vmod/nvdla/cacc/NV_NVDLA_CACC_assembly_buffer.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/cacc/NV_NVDLA_CACC_assembly_buffer.v ../../../outdir/nv_small/vmod/nvdla/cacc/NV_NVDLA_CACC_assembly_buffer.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_CACC_assembly_ctrl.v -o ../../../outdir/nv_small/vmod/nvdla/cacc/NV_NVDLA_CACC_assembly_ctrl.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/cacc/NV_NVDLA_CACC_assembly_ctrl.v ../../../outdir/nv_small/vmod/nvdla/cacc/NV_NVDLA_CACC_assembly_ctrl.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_CACC_calculator.v -o ../../../outdir/nv_small/vmod/nvdla/cacc/NV_NVDLA_CACC_calculator.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/cacc/NV_NVDLA_CACC_calculator.v ../../../outdir/nv_small/vmod/nvdla/cacc/NV_NVDLA_CACC_calculator.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_CACC_CALC_int8.v -o ../../../outdir/nv_small/vmod/nvdla/cacc/NV_NVDLA_CACC_CALC_int8.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/cacc/NV_NVDLA_CACC_CALC_int8.v ../../../outdir/nv_small/vmod/nvdla/cacc/NV_NVDLA_CACC_CALC_int8.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_CACC_delivery_buffer.v -o ../../../outdir/nv_small/vmod/nvdla/cacc/NV_NVDLA_CACC_delivery_buffer.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/cacc/NV_NVDLA_CACC_delivery_buffer.v ../../../outdir/nv_small/vmod/nvdla/cacc/NV_NVDLA_CACC_delivery_buffer.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_CACC_delivery_ctrl.v -o ../../../outdir/nv_small/vmod/nvdla/cacc/NV_NVDLA_CACC_delivery_ctrl.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/cacc/NV_NVDLA_CACC_delivery_ctrl.v ../../../outdir/nv_small/vmod/nvdla/cacc/NV_NVDLA_CACC_delivery_ctrl.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_CACC_dual_reg.v -o ../../../outdir/nv_small/vmod/nvdla/cacc/NV_NVDLA_CACC_dual_reg.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/cacc/NV_NVDLA_CACC_dual_reg.v ../../../outdir/nv_small/vmod/nvdla/cacc/NV_NVDLA_CACC_dual_reg.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_CACC_regfile.v -o ../../../outdir/nv_small/vmod/nvdla/cacc/NV_NVDLA_CACC_regfile.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/cacc/NV_NVDLA_CACC_regfile.v ../../../outdir/nv_small/vmod/nvdla/cacc/NV_NVDLA_CACC_regfile.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_CACC_single_reg.v -o ../../../outdir/nv_small/vmod/nvdla/cacc/NV_NVDLA_CACC_single_reg.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/cacc/NV_NVDLA_CACC_single_reg.v ../../../outdir/nv_small/vmod/nvdla/cacc/NV_NVDLA_CACC_single_reg.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_CACC_slcg.v -o ../../../outdir/nv_small/vmod/nvdla/cacc/NV_NVDLA_CACC_slcg.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/cacc/NV_NVDLA_CACC_slcg.v ../../../outdir/nv_small/vmod/nvdla/cacc/NV_NVDLA_CACC_slcg.v.vcp 
+==============================================
+files are generated under /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/outdir/nv_small/vmod/nvdla/cacc
+==============================================
+make[1]: Leaving directory '/work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/nvdla/cacc'
+Processing NV_NVDLA_cacc.v into ../../../outdir/nv_small/vmod/nvdla/cacc/NV_NVDLA_cacc.v.vcp
+../../../outdir/nv_small/vmod/nvdla/cacc/NV_NVDLA_cacc.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/cacc/NV_NVDLA_cacc.v modified.
+Processing NV_NVDLA_CACC_assembly_buffer.v into ../../../outdir/nv_small/vmod/nvdla/cacc/NV_NVDLA_CACC_assembly_buffer.v.vcp
+../../../outdir/nv_small/vmod/nvdla/cacc/NV_NVDLA_CACC_assembly_buffer.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/cacc/NV_NVDLA_CACC_assembly_buffer.v modified.
+Processing NV_NVDLA_CACC_assembly_ctrl.v into ../../../outdir/nv_small/vmod/nvdla/cacc/NV_NVDLA_CACC_assembly_ctrl.v.vcp
+../../../outdir/nv_small/vmod/nvdla/cacc/NV_NVDLA_CACC_assembly_ctrl.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/cacc/NV_NVDLA_CACC_assembly_ctrl.v modified.
+Processing NV_NVDLA_CACC_calculator.v into ../../../outdir/nv_small/vmod/nvdla/cacc/NV_NVDLA_CACC_calculator.v.vcp
+../../../outdir/nv_small/vmod/nvdla/cacc/NV_NVDLA_CACC_calculator.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/cacc/NV_NVDLA_CACC_calculator.v modified.
+Processing NV_NVDLA_CACC_CALC_int8.v into ../../../outdir/nv_small/vmod/nvdla/cacc/NV_NVDLA_CACC_CALC_int8.v.vcp
+../../../outdir/nv_small/vmod/nvdla/cacc/NV_NVDLA_CACC_CALC_int8.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/cacc/NV_NVDLA_CACC_CALC_int8.v modified.
+Processing NV_NVDLA_CACC_delivery_buffer.v into ../../../outdir/nv_small/vmod/nvdla/cacc/NV_NVDLA_CACC_delivery_buffer.v.vcp
+../../../outdir/nv_small/vmod/nvdla/cacc/NV_NVDLA_CACC_delivery_buffer.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/cacc/NV_NVDLA_CACC_delivery_buffer.v modified.
+Processing NV_NVDLA_CACC_delivery_ctrl.v into ../../../outdir/nv_small/vmod/nvdla/cacc/NV_NVDLA_CACC_delivery_ctrl.v.vcp
+../../../outdir/nv_small/vmod/nvdla/cacc/NV_NVDLA_CACC_delivery_ctrl.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/cacc/NV_NVDLA_CACC_delivery_ctrl.v modified.
+Processing NV_NVDLA_CACC_dual_reg.v into ../../../outdir/nv_small/vmod/nvdla/cacc/NV_NVDLA_CACC_dual_reg.v.vcp
+../../../outdir/nv_small/vmod/nvdla/cacc/NV_NVDLA_CACC_dual_reg.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/cacc/NV_NVDLA_CACC_dual_reg.v modified.
+Processing NV_NVDLA_CACC_regfile.v into ../../../outdir/nv_small/vmod/nvdla/cacc/NV_NVDLA_CACC_regfile.v.vcp
+../../../outdir/nv_small/vmod/nvdla/cacc/NV_NVDLA_CACC_regfile.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/cacc/NV_NVDLA_CACC_regfile.v modified.
+Processing NV_NVDLA_CACC_single_reg.v into ../../../outdir/nv_small/vmod/nvdla/cacc/NV_NVDLA_CACC_single_reg.v.vcp
+../../../outdir/nv_small/vmod/nvdla/cacc/NV_NVDLA_CACC_single_reg.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/cacc/NV_NVDLA_CACC_single_reg.v modified.
+Processing NV_NVDLA_CACC_slcg.v into ../../../outdir/nv_small/vmod/nvdla/cacc/NV_NVDLA_CACC_slcg.v.vcp
+../../../outdir/nv_small/vmod/nvdla/cacc/NV_NVDLA_CACC_slcg.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/cacc/NV_NVDLA_CACC_slcg.v modified.

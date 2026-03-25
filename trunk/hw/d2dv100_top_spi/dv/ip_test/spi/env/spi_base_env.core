@@ -1,0 +1,25 @@
+CAPI=2:
+# Vendor 		: 
+# Author 		: zjl
+# Filename 	:  
+# Date Created: 2024.03.26
+# Version		: V1.0
+# File description	:
+# Revision History :
+name: "lowrisc:dv:spi_base_env:0.1"
+description: "SPI UVM environment"
+filesets:
+  files_dv:
+    depend:
+      - lowrisc:dv:spi_base_agent
+      - lowrisc:dv:tlul_base_env_pkg
+    files:
+      - spi_env_pkg.sv
+      - spi_scoreboard.sv: {is_include_file: true}
+      - spi_env.sv: {is_include_file: true}
+    file_type: systemVerilogSource
+
+targets:
+  default:
+    filesets:
+      - files_dv

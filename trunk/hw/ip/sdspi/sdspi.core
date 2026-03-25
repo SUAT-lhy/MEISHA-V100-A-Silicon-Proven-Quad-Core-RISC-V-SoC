@@ -1,0 +1,28 @@
+CAPI=2:
+# Vendor 		: 
+# Author 		: ling
+# Filename 	:  
+# Date Created: 2022.04.26 
+# Version		: V1.0
+# File description	:
+# Revision History :
+name: "new_soc:meisha:sdspi:0.1"
+description: "SD-Card controller, using a shared SPI interface"
+filesets:
+  files_dv:
+    depend:
+    files:
+      #- rtl/llsdspi.v
+      #- rtl/sdspi.v
+      - bench/verilog/IOBUF.v
+      #- bench/verilog/wb_bfm.v
+      - bench/verilog/mdl_sdio.v
+      - bench/verilog/mdl_sdcmd.v
+      - bench/verilog/mdl_sdrx.v
+      - bench/verilog/mdl_sdtx.v
+    file_type: systemVerilogSource
+
+targets:
+  default:
+    filesets:
+      - files_dv

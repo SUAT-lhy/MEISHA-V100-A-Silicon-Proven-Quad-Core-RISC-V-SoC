@@ -1,0 +1,1213 @@
+// Copyright lowRISC contributors.
+// Licensed under the Apache License, Version 2.0, see LICENSE for details.
+// SPDX-License-Identifier: Apache-2.0
+{ name: "entropy_src",
+  clock_primary: "clk_i",
+  bus_interfaces: [
+    { protocol: "tlul", direction: "device" }
+  ],
+  interrupt_list: [
+    { name: "es_entropy_valid"
+      desc: "Asserted when entropy source bits are available."}
+    { name: "es_health_test_failed"
+      desc: "Asserted when the alert count has been met."}
+    { name: "es_observe_fifo_ready"
+      desc: "Asserted when the observe FIFO has filled to the threshold level."}
+    { name: "es_fatal_err"
+      desc: "Asserted when a FIFO error occurs, or if an illegal state machine state is reached."}
+  ],
+  inter_signal_list: [
+    { struct:  "entropy_src_hw_if",
+      type:    "req_rsp",
+      name:    "entropy_src_hw_if",
+      act:     "rsp",
+      package: "entropy_src_pkg",
+    }
+    { struct:  "cs_aes_halt"
+      type:    "req_rsp",
+      name:    "cs_aes_halt"
+      act:     "req"
+      package: "entropy_src_pkg"
+    }
+    { struct:  "entropy_src_rng",
+      type:    "req_rsp",
+      name:    "entropy_src_rng",
+      act:     "req",
+      package: "entropy_src_pkg",
+    }
+    { struct:  "entropy_src_xht",
+      type:    "req_rsp",
+      name:    "entropy_src_xht",
+      act:     "req",
+      package: "entropy_src_pkg",
+    }
+    { struct:  "otp_en"
+      type:    "uni"
+      name:    "otp_en_entropy_src_fw_read"
+      act:     "rcv"
+      package: "otp_ctrl_pkg"
+    }
+    { struct:  "otp_en"
+      type:    "uni"
+      name:    "otp_en_entropy_src_fw_over"
+      act:     "rcv"
+      package: "otp_ctrl_pkg"
+    }
+    { struct:  "logic"
+      type:    "uni"
+      name:    "rng_fips"
+      act:     "req"
+      width:   1
+      package: ""
+    }
+  ],
+  param_list: [
+    { name:    "Stub",
+      type:    "bit",
+      default: "0",
+      desc:    "Stub out the core of entropy_src logic"
+      local:   "false",
+      expose:  "true"
+    },
+  ]
+  alert_list: [
+    { name: "recov_alert",
+      desc: "This alert is triggered upon the alert health test threshold criteria not met."
+    }
+    { name: "fatal_alert",
+      desc: '''
+            This alert triggers (i) if an illegal state machine state is reached, or
+            (ii) if a fatal integrity failure is detected on the TL-UL bus.
+            ''',
+    }
+  ],
+
+  regwidth: "32",
+  registers: [
+    { name: "REGWEN",
+      desc: "Register write enable for all control registers",
+      swaccess: "ro", // lock is managed by HW
+      hwaccess: "hwo",
+      hwext: "true",
+      fields: [
+        {
+            bits: "0",
+            desc: ''' When true, all writeable registers can be modified.
+            When false, they become read-only.
+            '''
+            resval: 1
+        }
+      ]
+    },
+    { name: "REV",
+      desc: "Revision register",
+      swaccess: "ro",
+      hwaccess: "none",
+      fields: [
+        { bits: "23:16",
+          name: "CHIP_TYPE",
+          desc: "Read of this register shows the type of chip using this block.",
+          resval: "0x1"
+        }
+        { bits: "15:8",
+          name: "HW_REVISION",
+          desc: "Read of this register shows the revision of this block.",
+          resval: "0x3"
+        }
+        { bits: "7:0",
+          name: "ABI_REVISION",
+          desc: "Read of this register shows the ABI of this block.",
+          resval: "0x3"
+        }
+      ]
+    },
+    { name: "CONF",
+      desc: "Configuration register",
+      swaccess: "rw",
+      hwaccess: "hro",
+      fields: [
+        { bits: "1:0",
+          name: "ENABLE",
+          desc: '''This field is the module enable for the ENTROPY_SRC entropy generation function.
+                This two bit field determines what source will be used for all processing:
+                0b00: Disabled
+                0b01: PTRNG mode enabled
+                0b10: LFSR mode enabled
+                0b11: Reserved
+                '''
+          tags: [// Exclude from writes to these bits to avoid Xs from entropy FIFO.
+                 "excl:CsrAllTests:CsrExclWrite"]
+        }
+        { bits: "3",
+          name: "BOOT_BYPASS_DISABLE",
+          desc: "Setting this bit disables the initial generation of non-FIPS entropy."
+        }
+        { bits: "4",
+          name: "REPCNT_DISABLE",
+          desc: "Setting this bit disables the health test called Repetition Count test."
+        }
+        { bits: "5",
+          name: "ADAPTP_DISABLE",
+          desc: "Setting this bit disables the health test called  Adaptive Proportion test."
+        }
+        { bits: "6",
+          name: "BUCKET_DISABLE",
+          desc: "Setting this bit disables the health test called Bucket test."
+        }
+        { bits: "7",
+          name: "MARKOV_DISABLE",
+          desc: "Setting this bit disables the health test called Markov test."
+        }
+        { bits: "8",
+          name: "HEALTH_TEST_CLR",
+          desc: "Setting this bit will clear all registers related to the health test operations."
+        }
+        { bits: "9",
+          name: "RNG_BIT_EN",
+          desc: "Setting this bit enables the single RNG bit mode, where only one bit is sampled."
+        }
+        { bits: "11:10",
+          name: "RNG_BIT_SEL",
+          desc: '''When the above bit iset, this field selects which bit from the RNG bus will
+                be processed when in single RNG bit mode.
+                This two bit field selects the RNG bit stream:
+                0b00: RNG bit 0
+                0b01: RNG bit 1
+                0b10: RNG bit 2
+                0b11: RNG bit 3
+                '''
+        }
+        { bits: "12",
+          name: "EXTHT_ENABLE",
+          desc: '''Setting this bit enables the hardware-based health test that is external
+                to ENTROPY_SRC."
+                '''
+        }
+        { bits: "13",
+          name: "REPCNTS_DISABLE",
+          desc: '''Setting this bit disables the health test called Repetition Count test,
+                which is based on counting symbols.
+                '''
+        }
+      ]
+    },
+    { name: "RATE",
+      desc: "Entropy rate register",
+      swaccess: "rw",
+      fields: [
+        { bits: "15:0",
+          name: "ENTROPY_RATE",
+          desc: '''This register determines the rate that entropy bits will be supplied.
+                   In LFSR mode, this is the rate that the LFSR value will be advanced.
+                   The number in this register represents how many clocks there are between
+                   each newLFSR value generation.
+                '''
+          resval: "0x00000004"
+        }
+      ]
+    },
+    { name: "ENTROPY_CONTROL",
+      desc: "Entropy control register",
+      swaccess: "rw",
+      hwaccess: "hro",
+      regwen:   "REGWEN",
+      fields: [
+        { bits: "0",
+          name: "ES_ROUTE",
+          desc: '''Setting this bit routes the generated entropy value to the ENTROPY_DATA
+                register to be read by firmware. When this bit is zero, the generated
+                entropy will be forwarded out of this module to the hardware interface.
+                '''
+        }
+        { bits: "1",
+          name: "ES_TYPE",
+          desc: '''Setting this bit will bypass the conditioning logic and bring raw entropy
+                data to the ENTROPY_DATA register. When zero, FIPS compliant entropy
+                will be brought the ENTROPY_DATA register, after being conditioned.
+                '''
+        }
+      ]
+    },
+    { name: "ENTROPY_DATA",
+      desc: "Entropy data bits",
+      swaccess: "ro",
+      hwaccess: "hrw",
+      hwext: "true",
+      hwre: "true",
+      fields: [
+        { bits: "31:0",
+          desc: "A read of this register provides generated entropy bits to firmware."
+
+        }
+      ]
+    },
+    { name: "HEALTH_TEST_WINDOWS",
+      desc: "Health test windows register",
+      swaccess: "rw",
+      hwaccess: "hro",
+      regwen:   "REGWEN",
+      fields: [
+        { bits: "15:0",
+          name: "FIPS_WINDOW",
+          desc: '''This is the window size for all health tests. This value is used in normal mode
+                   when entropy is being tested in FIPS/CC compliance mode.
+                   The default value is (2048 bits * 1 clock/4 bits);
+                '''
+          resval: "0x0200"
+        }
+        { bits: "31:16",
+          name: "BYPASS_WINDOW",
+          desc: '''This is the window size for all health tests when running in bypass mode. This mode
+                   is active after reset for the first and only test run, or when this mode is
+                   programmed by firmware.
+                   The default value is (384 bits * 1 clock/4 bits);
+                '''
+          resval: "0x0060"
+        }
+      ]
+    },
+    { name: "REPCNT_THRESHOLDS",
+      desc: "Repetition count test thresholds register",
+      swaccess: "rw",
+      hwaccess: "hrw",
+      hwext: "true",
+      hwqe:  "true",
+      regwen:   "REGWEN",
+      tags: [// Exclude from writes to these field because they are one-way updates
+             "excl:CsrAllTests:CsrExclWrite"]
+      fields: [
+        { bits: "15:0",
+          name: "FIPS_THRESH",
+          desc: '''This is the threshold size for the repetition count health test.
+                   This value is used in normal mode when entropy is being tested in
+                   FIPS/CC compliance mode.
+                   This register must be written before the module is enabled.
+                   Writing to this register will only update the register if the
+                   written value is less than the current value of this register.
+                   A read from this register always reflects the current value.
+                '''
+          resval: "0xFFFF"
+        }
+        { bits: "31:16",
+          name: "BYPASS_THRESH",
+          desc: '''This is the threshold size for the repetition count health test
+                   running in bypass mode. This mode is active after reset for the
+                   first and only test run, or when this mode is programmed by firmware.
+                   This register must be written before the module is enabled.
+                   Writing to this register will only update the register if the
+                   written value is less than the current value of this register.
+                   A read from this register always reflects the current value.
+                '''
+          resval: "0xFFFF"
+        }
+      ]
+    },
+    { name: "REPCNTS_THRESHOLDS",
+      desc: "Repetition count symbol test thresholds register",
+      swaccess: "rw",
+      hwaccess: "hrw",
+      hwext: "true",
+      hwqe:  "true",
+      regwen:   "REGWEN",
+      tags: [// Exclude from writes to these field because they are one-way updates
+             "excl:CsrAllTests:CsrExclWrite"]
+      fields: [
+        { bits: "15:0",
+          name: "FIPS_THRESH",
+          desc: '''This is the threshold size for the repetition count symbol health test.
+                   This value is used in normal mode when entropy is being tested in
+                   FIPS/CC compliance mode.
+                   This register must be written before the module is enabled.
+                   Writing to this register will only update the register if the
+                   written value is less than the current value of this register.
+                   A read from this register always reflects the current value.
+                '''
+          resval: "0xFFFF"
+        }
+        { bits: "31:16",
+          name: "BYPASS_THRESH",
+          desc: '''This is the threshold size for the repetition count symbol health test
+                   running in bypass mode. This mode is active after reset for the
+                   first and only test run, or when this mode is programmed by firmware.
+                   This register must be written before the module is enabled.
+                   Writing to this register will only update the register if the
+                   written value is less than the current value of this register.
+                   A read from this register always reflects the current value.
+                '''
+          resval: "0xFFFF"
+        }
+      ]
+    },
+    { name: "ADAPTP_HI_THRESHOLDS",
+      desc: "Adaptive proportion test high thresholds register",
+      swaccess: "rw",
+      hwaccess: "hrw",
+      hwext: "true",
+      hwqe:  "true",
+      regwen:   "REGWEN",
+      tags: [// Exclude from writes to these field because they are one-way updates
+             "excl:CsrAllTests:CsrExclWrite"]
+      fields: [
+        { bits: "15:0",
+          name: "FIPS_THRESH",
+          desc: '''This is the threshold size for the adaptive proportion health test.
+                   This value is used in normal mode when entropy is being tested in
+                   FIPS/CC compliance mode.
+                   This register must be written before the module is enabled.
+                   Writing to this register will only update the register if the
+                   written value is less than the current value of this register.
+                   A read from this register always reflects the current value.
+                '''
+          resval: "0xFFFF"
+        }
+        { bits: "31:16",
+          name: "BYPASS_THRESH",
+          desc: '''This is the threshold size for the adaptive proportion health test
+                   running in bypass mode. This mode is active after reset for the
+                   first and only test run, or when this mode is programmed by firmware.
+                   This register must be written before the module is enabled.
+                   Writing to this register will only update the register if the
+                   written value is less than the current value of this register.
+                   A read from this register always reflects the current value.
+                '''
+          resval: "0xFFFF"
+        }
+      ]
+    },
+    { name: "ADAPTP_LO_THRESHOLDS",
+      desc: "Adaptive proportion test low thresholds register",
+      swaccess: "rw",
+      hwaccess: "hrw",
+      hwext: "true",
+      hwqe:  "true",
+      regwen:   "REGWEN",
+      tags: [// Exclude from writes to these field because they are one-way updates
+             "excl:CsrAllTests:CsrExclWrite"]
+      fields: [
+        { bits: "15:0",
+          name: "FIPS_THRESH",
+          desc: '''This is the threshold size for the adaptive proportion health test.
+                   This value is used in normal mode when entropy is being tested in
+                   FIPS/CC compliance mode.
+                   This register must be written before the module is enabled.
+                   Writing to this register will only update the register if the
+                   written value is greater than the current value of this register.
+                   A read from this register always reflects the current value.
+                '''
+          resval: "0x0000"
+        }
+        { bits: "31:16",
+          name: "BYPASS_THRESH",
+          desc: '''This is the threshold size for the adaptive proportion health test
+                   running in bypass mode. This mode is active after reset for the
+                   first and only test run, or when this mode is programmed by firmware.
+                   This register must be written before the module is enabled.
+                   Writing to this register will only update the register if the
+                   written value is greater than the current value of this register.
+                   A read from this register always reflects the current value.
+                '''
+          resval: "0x0000"
+        }
+      ]
+    },
+    { name: "BUCKET_THRESHOLDS",
+      desc: "Bucket test thresholds register",
+      swaccess: "rw",
+      hwaccess: "hrw",
+      hwext: "true",
+      hwqe:  "true",
+      regwen:   "REGWEN",
+      tags: [// Exclude from writes to these field because they are one-way updates
+             "excl:CsrAllTests:CsrExclWrite"]
+      fields: [
+        { bits: "15:0",
+          name: "FIPS_THRESH",
+          desc: '''This is the threshold size for the bucket health test.
+                   This value is used in normal mode when entropy is being tested in
+                   FIPS/CC compliance mode.
+                   This register must be written before the module is enabled.
+                   Writing to this register will only update the register if the
+                   written value is less than the current value of this register.
+                   A read from this register always reflects the current value.
+                '''
+          resval: "0xFFFF"
+        }
+        { bits: "31:16",
+          name: "BYPASS_THRESH",
+          desc: '''This is the threshold size for the bucket health test
+                   running in bypass mode. This mode is active after reset for the
+                   first and only test run, or when this mode is programmed by firmware.
+                   This register must be written before the module is enabled.
+                   Writing to this register will only update the register if the
+                   written value is less than the current value of this register.
+                   A read from this register always reflects the current value.
+                '''
+          resval: "0xFFFF"
+        }
+      ]
+    },
+    { name: "MARKOV_HI_THRESHOLDS",
+      desc: "Markov test high thresholds register",
+      swaccess: "rw",
+      hwaccess: "hrw",
+      hwext: "true",
+      hwqe:  "true",
+      regwen:   "REGWEN",
+      tags: [// Exclude from writes to these field because they are one-way updates
+             "excl:CsrAllTests:CsrExclWrite"]
+      fields: [
+        { bits: "15:0",
+          name: "FIPS_THRESH",
+          desc: '''This is the threshold size for the Markov health test.
+                   This value is used in normal mode when entropy is being tested in
+                   FIPS/CC compliance mode.
+                   This register must be written before the module is enabled.
+                   Writing to this register will only update the register if the
+                   written value is less than the current value of this register.
+                   A read from this register always reflects the current value.
+                '''
+          resval: "0xFFFF"
+        }
+        { bits: "31:16",
+          name: "BYPASS_THRESH",
+          desc: '''This is the threshold size for the Markov health test
+                   running in bypass mode. This mode is active after reset for the
+                   first and only test run, or when this mode is programmed by firmware.
+                   This register must be written before the module is enabled.
+                   Writing to this register will only update the register if the
+                   written value is less than the current value of this register.
+                   A read from this register always reflects the current value.
+                '''
+          resval: "0xFFFF"
+       }
+      ]
+    },
+    { name: "MARKOV_LO_THRESHOLDS",
+      desc: "Markov test low thresholds register",
+      swaccess: "rw",
+      hwaccess: "hrw",
+      hwext: "true",
+      hwqe:  "true",
+      regwen:   "REGWEN",
+      tags: [// Exclude from writes to these field because they are one-way updates
+             "excl:CsrAllTests:CsrExclWrite"]
+      fields: [
+        { bits: "15:0",
+          name: "FIPS_THRESH",
+          desc: '''This is the threshold size for the Markov health test.
+                   This value is used in normal mode when entropy is being tested in
+                   FIPS/CC compliance mode.
+                   This register must be written before the module is enabled.
+                   Writing to this register will only update the register if the
+                   written value is greater than the current value of this register.
+                   A read from this register always reflects the current value.
+                '''
+          resval: "0x0000"
+        }
+        { bits: "31:16",
+          name: "BYPASS_THRESH",
+          desc: '''This is the threshold size for the Markov health test
+                   running in bypass mode. This mode is active after reset for the
+                   first and only test run, or when this mode is programmed by firmware.
+                   This register must be written before the module is enabled.
+                   Writing to this register will only update the register if the
+                   written value is greater than the current value of this register.
+                   A read from this register always reflects the current value.
+                '''
+          resval: "0x0000"
+        }
+      ]
+    },
+    { name: "EXTHT_HI_THRESHOLDS",
+      desc: "External health test high thresholds register",
+      swaccess: "rw",
+      hwaccess: "hrw",
+      hwext: "true",
+      hwqe:  "true",
+      regwen:   "REGWEN",
+      tags: [// Exclude from writes to these field because they are one-way updates
+             "excl:CsrAllTests:CsrExclWrite"]
+      fields: [
+        { bits: "15:0",
+          name: "FIPS_THRESH",
+          desc: '''This is the threshold size for the external health test.
+                   This value is used in normal mode when entropy is being tested in
+                   FIPS/CC compliance mode.
+                   This register must be written before the module is enabled.
+                   Writing to this register will only update the register if the
+                   written value is less than the current value of this register.
+                   A read from this register always reflects the current value.
+                '''
+          resval: "0xFFFF"
+        }
+        { bits: "31:16",
+          name: "BYPASS_THRESH",
+          desc: '''This is the threshold size for the external health test
+                   running in bypass mode. This mode is active after reset for the
+                   first and only test run, or when this mode is programmed by firmware.
+                   This register must be written before the module is enabled.
+                   Writing to this register will only update the register if the
+                   written value is less than the current value of this register.
+                   A read from this register always reflects the current value.
+                '''
+          resval: "0xFFFF"
+        }
+      ]
+    },
+    { name: "EXTHT_LO_THRESHOLDS",
+      desc: "External health test low thresholds register",
+      swaccess: "rw",
+      hwaccess: "hrw",
+      hwext: "true",
+      hwqe:  "true",
+      regwen:   "REGWEN",
+      tags: [// Exclude from writes to these field because they are one-way updates
+             "excl:CsrAllTests:CsrExclWrite"]
+      fields: [
+        { bits: "15:0",
+          name: "FIPS_THRESH",
+          desc: '''This is the threshold size for the external health test.
+                   This value is used in normal mode when entropy is being tested in
+                   FIPS/CC compliance mode.
+                   This register must be written before the module is enabled.
+                   Writing to this register will only update the register if the
+                   written value is greater than the current value of this register.
+                   A read from this register always reflects the current value.
+                '''
+          resval: "0x0000"
+        }
+        { bits: "31:16",
+          name: "BYPASS_THRESH",
+          desc: '''This is the threshold size for the external health test
+                   running in bypass mode. This mode is active after reset for the
+                   first and only test run, or when this mode is programmed by firmware.
+                   This register must be written before the module is enabled.
+                   Writing to this register will only update the register if the
+                   written value is greater than the current value of this register.
+                   A read from this register always reflects the current value.
+                '''
+          resval: "0x0000"
+        }
+      ]
+    },
+    { name:     "REPCNT_HI_WATERMARKS",
+      desc:     "Repetition count test high watermarks register",
+      swaccess: "ro",
+      hwaccess: "hwo",
+      hwext: "true",
+      fields: [
+        { bits: "15:0",
+          name: "FIPS_WATERMARK",
+          desc: "High watermark value of the REPCNT test in FIPS mode."
+        }
+        { bits: "31:16",
+          name: "BYPASS_WATERMARK",
+          desc: "High watermark value of the REPCNT test in bypass mode."
+        }
+      ]
+    },
+    { name:     "REPCNTS_HI_WATERMARKS",
+      desc:     "Repetition count symbol test high watermarks register",
+      swaccess: "ro",
+      hwaccess: "hwo",
+      hwext: "true",
+      fields: [
+        { bits: "15:0",
+          name: "FIPS_WATERMARK",
+          desc: "High watermark value of the REPCNTS test in FIPS mode."
+        }
+        { bits: "31:16",
+          name: "BYPASS_WATERMARK",
+          desc: "High watermark value of the REPCNTS test in bypass mode."
+        }
+      ]
+    },
+    { name:     "ADAPTP_HI_WATERMARKS",
+      desc:     "Adaptive proportion test high watermarks register",
+      swaccess: "ro",
+      hwaccess: "hwo",
+      hwext: "true",
+      fields: [
+        { bits: "15:0",
+          name: "FIPS_WATERMARK",
+          desc: "High watermark value of the adaptive proportion test in FIPS mode."
+        }
+        { bits: "31:16",
+          name: "BYPASS_WATERMARK",
+          desc: "High watermark value of the adaptive proportion test in bypass mode."
+        }
+      ]
+    },
+    { name:     "ADAPTP_LO_WATERMARKS",
+      desc:     "Adaptive proportion test low watermarks register",
+      swaccess: "ro",
+      hwaccess: "hwo",
+      hwext: "true",
+      fields: [
+        { bits: "15:0",
+          name: "FIPS_WATERMARK",
+          desc: "Low watermark value of the adaptive proportion test in FIPS mode."
+          resval: "0xFFFF"
+        }
+        { bits: "31:16",
+          name: "BYPASS_WATERMARK",
+          desc: "Low watermark value of the adaptive proportion test in bypass mode."
+          resval: "0xFFFF"
+        }
+      ]
+    },
+    { name:     "EXTHT_HI_WATERMARKS",
+      desc:     "External health test high watermarks register",
+      swaccess: "ro",
+      hwaccess: "hwo",
+      hwext: "true",
+      fields: [
+        { bits: "15:0",
+          name: "FIPS_WATERMARK",
+          desc: "High watermark value of the external health test in FIPS mode."
+        }
+        { bits: "31:16",
+          name: "BYPASS_WATERMARK",
+          desc: "High watermark value of the external health test in bypass mode."
+        }
+      ]
+    },
+    { name:     "EXTHT_LO_WATERMARKS",
+      desc:     "External health test low watermarks register",
+      swaccess: "ro",
+      hwaccess: "hwo",
+      hwext: "true",
+      fields: [
+        { bits: "15:0",
+          name: "FIPS_WATERMARK",
+          desc: "Low watermark value of the external health test in FIPS mode."
+          resval: "0xFFFF"
+        }
+        { bits: "31:16",
+          name: "BYPASS_WATERMARK",
+          desc: "Low watermark value of the external health test in bypass mode."
+          resval: "0xFFFF"
+        }
+      ]
+    },
+    { name:     "BUCKET_HI_WATERMARKS",
+      desc:     "Bucket test high watermarks register",
+      swaccess: "ro",
+      hwaccess: "hwo",
+      hwext: "true",
+      fields: [
+        { bits: "15:0",
+          name: "FIPS_WATERMARK",
+          desc: "High watermark value of the bucket test in FIPS mode."
+        }
+        { bits: "31:16",
+          name: "BYPASS_WATERMARK",
+          desc: "High watermark value of the bucket test in bypass mode."
+        }
+      ]
+    },
+    { name:     "MARKOV_HI_WATERMARKS",
+      desc:     "Markov test high watermarks register",
+      swaccess: "ro",
+      hwaccess: "hwo",
+      hwext: "true",
+      fields: [
+        { bits: "15:0",
+          name: "FIPS_WATERMARK",
+          desc: "High watermark value of the Markov test in FIPS mode."
+        }
+        { bits: "31:16",
+          name: "BYPASS_WATERMARK",
+          desc: "High watermark value of the Markov test in bypass mode."
+        }
+      ]
+    },
+    { name:     "MARKOV_LO_WATERMARKS",
+      desc:     "Markov test low watermarks register",
+      swaccess: "ro",
+      hwaccess: "hwo",
+      hwext: "true",
+      fields: [
+        { bits: "15:0",
+          name: "FIPS_WATERMARK",
+          desc: "Low watermark value of the Markov test in FIPS mode."
+          resval: "0xFFFF"
+        }
+        { bits: "31:16",
+          name: "BYPASS_WATERMARK",
+          desc: "Low watermark value of the Markov test in bypass mode."
+          resval: "0xFFFF"
+        }
+      ]
+    },
+    { name:     "REPCNT_TOTAL_FAILS",
+      desc:     "Repetition count test failure counter register",
+      swaccess: "ro",
+      hwaccess: "hwo",
+      hwext: "true",
+      fields: [
+        { bits: "31:0",
+          name: "REPCNT_TOTAL_FAILS",
+          desc: '''This register will hold a running count of test failures observed
+                   during normal operation. It will persist until cleared.
+                '''
+        }
+      ]
+    },
+    { name:     "REPCNTS_TOTAL_FAILS",
+      desc:     "Repetition count symbol test failure counter register",
+      swaccess: "ro",
+      hwaccess: "hwo",
+      hwext: "true",
+      fields: [
+        { bits: "31:0",
+          name: "REPCNTS_TOTAL_FAILS",
+          desc: '''This register will hold a running count of test failures observed
+                   during normal operation. It will persist until cleared.
+                '''
+        }
+      ]
+    },
+    { name:     "ADAPTP_HI_TOTAL_FAILS",
+      desc:     "Adaptive proportion high test failure counter register",
+      swaccess: "ro",
+      hwaccess: "hwo",
+      hwext: "true",
+      fields: [
+        { bits: "31:0",
+          name: "ADAPTP_HI_TOTAL_FAILS",
+          desc: '''This register will hold a running count of test failures observed
+                   during normal operation. It will persist until cleared.
+                '''
+        }
+      ]
+    },
+    { name:     "ADAPTP_LO_TOTAL_FAILS",
+      desc:     "Adaptive proportion low test failure counter register",
+      swaccess: "ro",
+      hwaccess: "hwo",
+      hwext: "true",
+      fields: [
+        { bits: "31:0",
+          name: "ADAPTP_LO_TOTAL_FAILS",
+          desc: '''This register will hold a running count of test failures observed
+                   during normal operation. It will persist until cleared.
+                '''
+        }
+      ]
+    },
+    { name:     "BUCKET_TOTAL_FAILS",
+      desc:     "Bucket test failure counter register",
+      swaccess: "ro",
+      hwaccess: "hwo",
+      hwext: "true",
+      fields: [
+        { bits: "31:0",
+          name: "BUCKET_TOTAL_FAILS",
+          desc: '''This register will hold a running count of test failures observed
+                   during normal operation. It will persist until cleared.
+                '''
+        }
+      ]
+    },
+    { name:     "MARKOV_HI_TOTAL_FAILS",
+      desc:     "Markov high test failure counter register",
+      swaccess: "ro",
+      hwaccess: "hwo",
+      hwext: "true",
+      fields: [
+        { bits: "31:0",
+          name: "MARKOV_HI_TOTAL_FAILS",
+          desc: '''This register will hold a running count of test failures observed
+                   during normal operation. It will persist until cleared.
+                '''
+        }
+      ]
+    },
+    { name:     "MARKOV_LO_TOTAL_FAILS",
+      desc:     "Markov low test failure counter register",
+      swaccess: "ro",
+      hwaccess: "hwo",
+      hwext: "true",
+      fields: [
+        { bits: "31:0",
+          name: "MARKOV_LO_TOTAL_FAILS",
+          desc: '''This register will hold a running count of test failures observed
+                   during normal operation. It will persist until cleared.
+                '''
+        }
+      ]
+    },
+    { name:     "EXTHT_HI_TOTAL_FAILS",
+      desc:     "External health test high threshold failure counter register",
+      swaccess: "ro",
+      hwaccess: "hwo",
+      hwext: "true",
+      fields: [
+        { bits: "31:0",
+          name: "EXTHT_HI_TOTAL_FAILS",
+          desc: '''This register will hold a running count of test failures observed
+                   during normal operation. It will persist until cleared.
+                '''
+        }
+      ]
+    },
+    { name:     "EXTHT_LO_TOTAL_FAILS",
+      desc:     "External health test low threshold failure counter register",
+      swaccess: "ro",
+      hwaccess: "hwo",
+      hwext: "true",
+      fields: [
+        { bits: "31:0",
+          name: "EXTHT_LO_TOTAL_FAILS",
+          desc: '''This register will hold a running count of test failures observed
+                   during normal operation. It will persist until cleared.
+                '''
+        }
+      ]
+    },
+    { name: "ALERT_THRESHOLD",
+      desc: "Alert threshold register",
+      swaccess: "rw",
+      hwaccess: "hro",
+      regwen:   "REGWEN",
+      fields: [
+        { bits: "31:0",
+          name: "ALERT_THRESHOLD",
+          desc: '''This is the threshold size that will signal an alert when
+                   value is reached. A value of zero will disable alerts.
+                   The default value is 2.
+                '''
+          resval: "0x0002"
+        }
+      ]
+    },
+    { name:     "ALERT_SUMMARY_FAIL_COUNTS",
+      desc:     "Alert summary failure counts register",
+      swaccess: "ro",
+      hwaccess: "hwo",
+      hwext: "true",
+      fields: [
+        { bits: "31:0",
+          name: "ANY_FAIL_COUNT",
+          desc: '''This field will hold a running count of
+                   the total alert count, which is a sum of all of the other
+                   counters in the !!ALERT_FAIL_COUNTS register.
+                   It will be reset after every
+                   passing test sequence. If an alert is signaled, this value
+                   will persist until it is cleared.
+                '''
+        }
+      ]
+    },
+    { name:     "ALERT_FAIL_COUNTS",
+      desc:     "Alert failure counts register",
+      swaccess: "ro",
+      hwaccess: "hwo",
+      hwext: "true",
+      fields: [
+        { bits: "7:4",
+          name: "REPCNT_FAIL_COUNT",
+          desc: '''This field will hold a running count of test failures that
+                   contribute to the total alert count. It will be reset after every
+                   passing test sequence. If an alert is signaled, this value
+                   will persist until it is cleared.
+                '''
+        }
+        { bits: "11:8",
+          name: "ADAPTP_HI_FAIL_COUNT",
+          desc: '''This field will hold a running count of test failures that
+                   contribute to the total alert count. It will be reset after every
+                   passing test sequence. If an alert is signaled, this value
+                   will persist until it is cleared.
+                '''
+        }
+        { bits: "15:12",
+          name: "ADAPTP_LO_FAIL_COUNT",
+          desc: '''This field will hold a running count of test failures that
+                   contribute to the total alert count. It will be reset after every
+                   passing test sequence. If an alert is signaled, this value
+                   will persist until it is cleared.
+                '''
+        }
+        { bits: "19:16",
+          name: "BUCKET_FAIL_COUNT",
+          desc: '''This field will hold a running count of test failures that
+                   contribute to the total alert count. It will be reset after every
+                   passing test sequence. If an alert is signaled, this value
+                   will persist until it is cleared.
+                '''
+        }
+        { bits: "23:20",
+          name: "MARKOV_HI_FAIL_COUNT",
+          desc: '''This field will hold a running count of test failures that
+                   contribute to the total alert count. It will be reset after every
+                   passing test sequence. If an alert is signaled, this value
+                   will persist until it is cleared.
+                '''
+        }
+        { bits: "27:24",
+          name: "MARKOV_LO_FAIL_COUNT",
+          desc: '''This field will hold a running count of test failures that
+                   contribute to the total alert count. It will be reset after every
+                   passing test sequence. If an alert is signaled, this value
+                   will persist until it is cleared.
+                '''
+        }
+        { bits: "31:28",
+          name: "REPCNTS_FAIL_COUNT",
+          desc: '''This field will hold a running count of test failures that
+                   contribute to the total alert count. It will be reset after every
+                   passing test sequence. If an alert is signaled, this value
+                   will persist until it is cleared.
+                '''
+        }
+      ]
+    },
+    { name:     "EXTHT_FAIL_COUNTS",
+      desc:     "External health test alert failure counts register",
+      swaccess: "ro",
+      hwaccess: "hwo",
+      hwext: "true",
+      fields: [
+        { bits: "3:0",
+          name: "EXTHT_HI_FAIL_COUNT",
+          desc: '''This field will hold a running count of test failures that
+                   contribute to the total alert count. It will be reset after every
+                   passing test sequence. If an alert is signaled, this value
+                   will persist until it is cleared.
+                '''
+        }
+        { bits: "7:4",
+          name: "EXTHT_LO_FAIL_COUNT",
+          desc: '''This field will hold a running count of test failures that
+                   contribute to the total alert count. It will be reset after every
+                   passing test sequence. If an alert is signaled, this value
+                   will persist until it is cleared.
+                '''
+        }
+      ]
+    },
+    { name: "FW_OV_CONTROL",
+      desc: "Firmware override control register",
+      swaccess: "rw",
+      hwaccess: "hro",
+      regwen:   "REGWEN",
+      fields: [
+        { bits: "0",
+          name: "FW_OV_MODE",
+          desc: '''Setting this bit will put the entropy flow in firmware override mode.
+                In this mode, firmware can monitor the post-health test entropy by reading
+                the observe FIFO.
+                '''
+        }
+        { bits: "1",
+          name: "FW_OV_ENTROPY_INSERT",
+          desc: '''Setting this bit will switch the input into the pre-conditioner packer FIFO.
+                Firmware can directly write into the packer FIFO, enabling the ability to insert
+                entropy bits back into the hardware flow. Firmware can read data from the health
+                check packer FIFO, then do optional health checks or optional conditioning, then
+                insert the results back into the flow. Also, the !!FW_OV_MODE bit must be set.
+                '''
+        }
+      ]
+    },
+    { name: "FW_OV_RD_DATA",
+      desc: "Firmware override Observe FIFO read register",
+      swaccess: "ro",
+      hwaccess: "hrw",
+      hwext: "true",
+      hwre: "true",
+      fields: [
+        { bits: "31:0",
+          desc: '''A read of this register pops and returns the top of the Observe FIFO.
+                '''
+        }
+      ]
+    },
+    { name: "FW_OV_WR_DATA",
+      desc: "Firmware override FIFO write register",
+      swaccess: "wo",
+      hwaccess: "hro",
+      hwext: "true",
+      hwqe: "true",
+      fields: [
+        { bits: "31:0",
+          desc: '''A write to  this register will insert entropy back into the entropy source
+                module flow. Both !!FW_OV_MODE and !!FW_OV_ENTROPY_INSERT bits need to be set
+                to enable the insertion.
+                '''
+        }
+      ]
+    },
+    { name: "OBSERVE_FIFO_THRESH",
+      desc: "Observe FIFO threshold register",
+      swaccess: "rw",
+      hwaccess: "hro",
+      regwen:   "REGWEN",
+      fields: [
+        { bits: "6:0",
+          desc: '''This field will set the threshold that the depth of the Observe FIFO
+                will be compared with when setting the interrupt status bit.
+                '''
+          resval: "0x20"
+        }
+      ]
+    },
+    { name:     "DEBUG_STATUS",
+      desc:     "Debug status register",
+      swaccess: "ro",
+      hwaccess: "hwo",
+      hwext: "true",
+      tags: [// Internal HW can modify status register
+             "excl:CsrAllTests:CsrExclCheck"]
+      fields: [
+        { bits: "2:0",
+          name: "ENTROPY_FIFO_DEPTH",
+          desc: "This is the depth of the entropy source FIFO."
+        }
+        { bits: "5:3",
+          name: "SHA3_FSM",
+          desc: "This is the SHA3 finite state machine current state."
+        }
+        { bits: "6",
+          name: "SHA3_BLOCK_PR",
+          desc: "This is the SHA3 block processed signal current state."
+        }
+        { bits: "7",
+          name: "SHA3_SQUEEZING",
+          desc: "This is the SHA3 squeezing signal current state."
+        }
+        { bits: "8",
+          name: "SHA3_ABSORBED",
+          desc: "This is the SHA3 absorbed signal current state."
+        }
+        { bits: "9",
+          name: "SHA3_ERR",
+          desc: "This is a logic-or of all of the SHA3 error signals."
+        }
+        { bits: "16",
+          name: "MAIN_SM_IDLE",
+          desc: "The entropy_src main state machine is in the idle state."
+        }
+        { bits: "31:24",
+          name: "MAIN_SM_STATE",
+          desc: "This is the state of the entropy_src main state machine."
+        }
+      ]
+    },
+    { name: "SEED",
+      desc: "ENTROPY_SRC seed register",
+      swaccess: "rw",
+      regwen:   "REGWEN",
+      fields: [
+        { bits: "3:0",
+          name: "LFSR_SEED",
+          desc: "Seed used to load into the LFSR for the initial state. This field will not update if the REGWEN bit 0 is cleared.",
+          resval: "0xb"
+       }
+      ]
+    },
+    {
+      name: "ERR_CODE",
+      desc: "Hardware detection of error conditions status register",
+      swaccess: "ro",
+      hwaccess: "hwo",
+      fields: [
+        { bits: "0",
+          name: "SFIFO_ESRNG_ERR",
+          desc: '''
+                This bit will be set to one when an error has been detected for the
+                esrng FIFO. The type of error is reflected in the type status
+                bits (bits 28 through 30 of this register).
+                This bit will stay set until firmware clears it.
+                '''
+        }
+        { bits: "1",
+          name: "SFIFO_OBSERVE_ERR",
+          desc: '''
+                This bit will be set to one when an error has been detected for the
+                observe FIFO. The type of error is reflected in the type status
+                bits (bits 28 through 30 of this register).
+                This bit will stay set until firmware clears it.
+                '''
+        }
+        { bits: "2",
+          name: "SFIFO_ESFINAL_ERR",
+          desc: '''
+                This bit will be set to one when an error has been detected for the
+                esfinal FIFO. The type of error is reflected in the type status
+                bits (bits 28 through 30 of this register).
+                This bit will stay set until firmware clears it.
+                '''
+        }
+        { bits: "20",
+          name: "ES_ACK_SM_ERR",
+          desc: '''
+                This bit will be set to one when an illegal state has been detected for the
+                ES ack stage state machine. This error will signal a fatal alert, and also
+                an interrupt if enabled.
+                This bit will stay set until firmware clears it.
+                '''
+        }
+        { bits: "21",
+          name: "ES_MAIN_SM_ERR",
+          desc: '''
+                This bit will be set to one when an illegal state has been detected for the
+                ES main stage state machine. This error will signal a fatal alert, and also
+                an interrupt if enabled.
+                This bit will stay set until firmware clears it.
+                '''
+        }
+        { bits: "28",
+          name: "FIFO_WRITE_ERR",
+          desc: '''
+                This bit will be set to one when any of the source bits (bits 0 through 1 of this
+                this register) are asserted as a result of an error pulse generated from
+                any full FIFO that has been recieved a write pulse.
+                This bit will stay set until firmware clears it.
+                '''
+        }
+        { bits: "29",
+          name: "FIFO_READ_ERR",
+          desc: '''
+                This bit will be set to one when any of the source bits (bits 0 through 1 of this
+                this register) are asserted as a result of an error pulse generated from
+                any empty FIFO that has recieved a read pulse.
+                This bit will stay set until firmware clears it.
+                '''
+        }
+        { bits: "30",
+          name: "FIFO_STATE_ERR",
+          desc: '''
+                This bit will be set to one when any of the source bits (bits 0 through 1 of this
+                this register) are asserted as a result of an error pulse generated from
+                any FIFO where both the empty and full status bits are set.
+                This bit will stay set until firmware clears it.
+                '''
+        }
+      ]
+    },
+    { name: "ERR_CODE_TEST",
+      desc: "Test error conditions register",
+      swaccess: "rw",
+      hwaccess: "hro",
+      hwqe: "true",
+      regwen: "REGWEN",
+      fields: [
+        {
+            bits: "4:0",
+            name: "ERR_CODE_TEST",
+            desc: '''
+                  Setting this field will set the bit number for which an error
+                  will be forced in the hardware. This bit number is that same one
+                  found in the !!ERR_CODE register. The action of writing this
+                  register will force an error pulse. The sole purpose of this
+                  register is to test that any error properly propagates to either
+                  an interrupt or an alert.
+                  '''
+        },
+      ]
+    },
+  ]
+}

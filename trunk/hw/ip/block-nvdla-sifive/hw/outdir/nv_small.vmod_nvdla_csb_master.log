@@ -1,0 +1,21 @@
+command: cd vmod/nvdla/csb_master;make PROJECT=nv_small 
+make[1]: Entering directory '/work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/nvdla/csb_master'
+../../../tools/bin/vcp -i NV_NVDLA_csb_master.v -o ../../../outdir/nv_small/vmod/nvdla/csb_master/NV_NVDLA_csb_master.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/csb_master/NV_NVDLA_csb_master.v ../../../outdir/nv_small/vmod/nvdla/csb_master/NV_NVDLA_csb_master.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_CSB_MASTER_csb2falcon_fifo.v -o ../../../outdir/nv_small/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_csb2falcon_fifo.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_csb2falcon_fifo.v ../../../outdir/nv_small/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_csb2falcon_fifo.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_CSB_MASTER_falcon2csb_fifo.v -o ../../../outdir/nv_small/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_falcon2csb_fifo.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_falcon2csb_fifo.v ../../../outdir/nv_small/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_falcon2csb_fifo.v.vcp 
+==============================================
+files are generated under /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/outdir/nv_small/vmod/nvdla/csb_master
+==============================================
+make[1]: Leaving directory '/work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/nvdla/csb_master'
+Processing NV_NVDLA_csb_master.v into ../../../outdir/nv_small/vmod/nvdla/csb_master/NV_NVDLA_csb_master.v.vcp
+../../../outdir/nv_small/vmod/nvdla/csb_master/NV_NVDLA_csb_master.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/csb_master/NV_NVDLA_csb_master.v modified.
+Processing NV_NVDLA_CSB_MASTER_csb2falcon_fifo.v into ../../../outdir/nv_small/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_csb2falcon_fifo.v.vcp
+../../../outdir/nv_small/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_csb2falcon_fifo.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_csb2falcon_fifo.v modified.
+Processing NV_NVDLA_CSB_MASTER_falcon2csb_fifo.v into ../../../outdir/nv_small/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_falcon2csb_fifo.v.vcp
+../../../outdir/nv_small/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_falcon2csb_fifo.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_falcon2csb_fifo.v modified.

@@ -1,0 +1,390 @@
+$date
+	Sat Nov 23 17:49:16 2024
+$end
+
+$version
+	Synopsys VCS version L-2016.06_Full64
+$end
+
+$timescale
+	1ps
+$end
+
+$comment Csum: 1 a71fe012090ea4c8 $end
+
+
+$scope module tb_bridge_64to32 $end
+$var reg 1 ! clk $end
+$var reg 1 " rst_n $end
+$var reg 8 # ram64_wr_i [7:0] $end
+$var reg 1 $ ram64_rd_i $end
+$var reg 8 % ram64_len_i [7:0] $end
+$var reg 32 & ram64_addr_i [31:0] $end
+$var reg 64 ' ram64_write_data_i [63:0] $end
+$var wire 1 ( ram64_accept_o $end
+$var wire 1 ) ram64_ack_o $end
+$var wire 1 * ram64_error_o $end
+$var wire 64 + ram64_read_data_o [63:0] $end
+$var reg 1 , ram32_accept_i $end
+$var reg 1 - ram32_ack_i $end
+$var reg 1 . ram32_error_i $end
+$var reg 32 / ram32_read_data_i [31:0] $end
+$var wire 4 0 ram32_wr_o [3:0] $end
+$var wire 1 1 ram32_rd_o $end
+$var wire 8 2 ram32_len_o [7:0] $end
+$var wire 32 3 ram32_addr_o [31:0] $end
+$var wire 32 4 ram32_write_data_o [31:0] $end
+
+$scope module dut $end
+$var reg 1 5 clk $end
+$var reg 1 6 rst_n $end
+$var reg 8 7 ram64_wr_i [7:0] $end
+$var reg 1 8 ram64_rd_i $end
+$var reg 8 9 ram64_len_i [7:0] $end
+$var reg 32 : ram64_addr_i [31:0] $end
+$var reg 64 ; ram64_write_data_i [63:0] $end
+$var reg 1 < ram64_accept_o $end
+$var reg 1 = ram64_ack_o $end
+$var reg 1 > ram64_error_o $end
+$var reg 64 ? ram64_read_data_o [63:0] $end
+$var reg 1 @ ram32_accept_i $end
+$var reg 1 A ram32_ack_i $end
+$var reg 1 B ram32_error_i $end
+$var reg 32 C ram32_read_data_i [31:0] $end
+$var reg 4 D ram32_wr_o [3:0] $end
+$var reg 1 E ram32_rd_o $end
+$var reg 8 F ram32_len_o [7:0] $end
+$var reg 32 G ram32_addr_o [31:0] $end
+$var reg 32 H ram32_write_data_o [31:0] $end
+$var reg 2 I state [1:0] $end
+$var reg 2 J next_state [1:0] $end
+$var reg 32 K ram32_addr_reg [31:0] $end
+$var reg 8 L ram32_len_reg [7:0] $end
+$var reg 32 M ram32_write_data_reg [31:0] $end
+$var reg 64 N ram64_read_data_reg [63:0] $end
+$var reg 32 O internal_addr [31:0] $end
+$var reg 8 P internal_len [7:0] $end
+$var reg 64 Q internal_write_data [63:0] $end
+$var reg 32 R write_fifo_data_in [31:0] $end
+$var reg 1 S write_fifo_push $end
+$var reg 1 T write_fifo_pop $end
+$var reg 1 U write_fifo_empty $end
+$var reg 1 V write_fifo_full $end
+$var reg 32 W write_fifo_data_out [31:0] $end
+$var reg 32 X read_fifo_data_in [31:0] $end
+$var reg 1 Y read_fifo_push $end
+$var reg 1 Z read_fifo_pop $end
+$var reg 1 [ read_fifo_empty $end
+$var reg 1 \ read_fifo_full $end
+$var reg 32 ] read_fifo_data_out [31:0] $end
+
+$scope module write_fifo $end
+$var wire 1 ^ clk $end
+$var wire 1 _ rst_n $end
+$var wire 1 ` push $end
+$var wire 32 a data_in [31:0] $end
+$var wire 1 b pop $end
+$var reg 32 c data_out [31:0] $end
+$var reg 1 d empty $end
+$var reg 1 e full $end
+$var reg 4 f head [3:0] $end
+$var reg 4 g tail [3:0] $end
+$upscope $end
+
+
+$scope module read_fifo $end
+$var wire 1 h clk $end
+$var wire 1 i rst_n $end
+$var wire 1 j push $end
+$var wire 32 k data_in [31:0] $end
+$var wire 1 l pop $end
+$var reg 32 m data_out [31:0] $end
+$var reg 1 n empty $end
+$var reg 1 o full $end
+$var reg 4 p head [3:0] $end
+$var reg 4 q tail [3:0] $end
+$upscope $end
+
+$upscope $end
+
+$upscope $end
+
+$enddefinitions $end
+
+#0
+$dumpvars
+0!
+1@
+0A
+0B
+0E
+0<
+0=
+0>
+08
+06
+1d
+0e
+xb
+x`
+1,
+0-
+0.
+01
+0(
+0)
+0*
+0$
+1n
+0o
+0l
+xj
+0i
+1[
+0\
+0Z
+xY
+0"
+0_
+1U
+0V
+xT
+xS
+bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx a
+bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx c
+b00000000000000000000000000000000 G
+b00000000 F
+b00000000000000000000000000000000 C
+b0000 D
+b00000000000000000000000000000000 H
+b00000000000000000000000000000000 :
+b00000000 9
+b0000000000000000000000000000000000000000000000000000000000000000 ?
+b00000000 7
+b0000000000000000000000000000000000000000000000000000000000000000 ;
+b0000 f
+b00000000000000000000000000000000 O
+b00000000 P
+b0000000000000000000000000000000000000000000000000000000000000000 Q
+bxx J
+b00000000000000000000000000000000 3
+b00000000000000000000000000000000 K
+b00000000 2
+b00000000 L
+b00000000000000000000000000000000 /
+b0000 0
+b00000000000000000000000000000000 4
+b00000000000000000000000000000000 M
+b00000000000000000000000000000000 &
+b00000000 %
+b0000000000000000000000000000000000000000000000000000000000000000 +
+b0000000000000000000000000000000000000000000000000000000000000000 N
+b00000000 #
+b0000000000000000000000000000000000000000000000000000000000000000 '
+bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx k
+bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx m
+b0000 p
+b0000 q
+bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx X
+bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx ]
+b00 I
+b0000 g
+bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx R
+bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx W
+0^
+0h
+05
+$end
+#5000
+1!
+15
+1^
+1h
+#10000
+1"
+16
+1i
+1_
+b11111111 #
+b11111111 7
+b00010010001101000101011001111000 &
+b00010010001101000101011001111000 :
+b1101111010101101101111101110111111001010111111101100101011111110 '
+b1101111010101101101111101110111111001010111111101100101011111110 ;
+b00001000 %
+b00001000 9
+0!
+05
+0^
+0h
+#15000
+1!
+15
+1^
+1h
+b10 J
+bxx I
+b00010010001101000101011001111000 O
+b00001000 P
+b1101111010101101101111101110111111001010111111101100101011111110 Q
+#20000
+0!
+05
+0^
+0h
+#25000
+1!
+15
+1^
+1h
+b10 I
+#30000
+1-
+1A
+0!
+05
+0^
+0h
+#35000
+1!
+15
+1^
+1h
+b1111 D
+b1111 0
+1S
+1`
+b11001010111111101100101011111110 R
+b11001010111111101100101011111110 a
+b00010010001101000101011001111000 K
+b00001000 L
+b11001010111111101100101011111110 M
+b00010010001101000101011001111100 O
+b1101111010101101101111101110111100000000000000000000000000000000 Q
+b00000111 P
+#40000
+0-
+0A
+0!
+05
+0^
+0h
+#45000
+1!
+15
+1^
+1h
+b00001000 F
+b00001000 2
+b00010010001101000101011001111000 G
+b00010010001101000101011001111000 3
+b11001010111111101100101011111110 H
+b11001010111111101100101011111110 4
+b00000000000000000000000000000000 R
+b00000000000000000000000000000000 a
+b00010010001101000101011001111100 K
+b00000111 L
+b00000000000000000000000000000000 M
+b00010010001101000101011010000000 O
+b00000110 P
+b0001 f
+1e
+1V
+0d
+0U
+#50000
+1-
+1A
+0!
+05
+0^
+0h
+#55000
+1!
+15
+1^
+1h
+b0000 D
+b0000 0
+b00000111 F
+b00000111 2
+b00010010001101000101011001111100 G
+b00010010001101000101011001111100 3
+b00000000000000000000000000000000 H
+b00000000000000000000000000000000 4
+#60000
+0-
+0A
+0!
+05
+0^
+0h
+#65000
+1!
+15
+1^
+1h
+#70000
+1$
+18
+0!
+05
+0^
+0h
+#75000
+1!
+15
+1^
+1h
+#80000
+b11011110101011011011111011101111 /
+b11011110101011011011111011101111 C
+1-
+1A
+0!
+05
+0^
+0h
+#85000
+1!
+15
+1^
+1h
+#90000
+0-
+0A
+0!
+05
+0^
+0h
+#95000
+1!
+15
+1^
+1h
+#100000
+b11001010111111101100101011111110 /
+b11001010111111101100101011111110 C
+1-
+1A
+0!
+05
+0^
+0h
+#105000
+1!
+15
+1^
+1h
+#110000
+0-
+0A
+0!
+05
+0^
+0h
+#115000
+1!
+15
+1^
+1h

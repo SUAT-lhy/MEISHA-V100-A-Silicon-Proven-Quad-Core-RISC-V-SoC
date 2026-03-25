@@ -1,0 +1,25 @@
+CAPI=2:
+# Vendor 		: 
+# Author 		: ling
+# Filename 	:  
+# Date Created: 2022.04.26 
+# Version		: V1.0
+# File description	:
+# Revision History :
+name: "lowrisc:dv:bind_abs:0.1"
+description: "bind lib DV UVM test"
+filesets:
+  files_dv:
+    depend:
+      - lowrisc:dv:dv_utils
+    files:
+      - harness_api_abstract.sv: {is_include_file: true}
+      - base_intf_c.sv: {is_include_file: true}
+      - base_port_info.sv: {is_include_file: true}
+      - bind_abs_pkg.sv
+    file_type: systemVerilogSource
+
+targets:
+  default:
+    filesets:
+      - files_dv

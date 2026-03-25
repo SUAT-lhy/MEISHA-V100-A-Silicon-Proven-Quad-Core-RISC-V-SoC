@@ -1,0 +1,71 @@
+command: cd vmod/nvdla/csc;make PROJECT=nv_small 
+make[1]: Entering directory '/work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/nvdla/csc'
+../../../tools/bin/vcp -i NV_NVDLA_csc.v -o ../../../outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_csc.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_csc.v ../../../outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_csc.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_CSC_dl.v -o ../../../outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_CSC_dl.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_CSC_dl.v ../../../outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_CSC_dl.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_CSC_dual_reg.v -o ../../../outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_CSC_dual_reg.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_CSC_dual_reg.v ../../../outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_CSC_dual_reg.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_CSC_pra_cell.v -o ../../../outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_CSC_pra_cell.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_CSC_pra_cell.v ../../../outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_CSC_pra_cell.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_CSC_regfile.v -o ../../../outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_CSC_regfile.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_CSC_regfile.v ../../../outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_CSC_regfile.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_CSC_sg.v -o ../../../outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_CSC_sg.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_CSC_sg.v ../../../outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_CSC_sg.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_CSC_SG_dat_fifo.v -o ../../../outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_CSC_SG_dat_fifo.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_CSC_SG_dat_fifo.v ../../../outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_CSC_SG_dat_fifo.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_CSC_SG_wt_fifo.v -o ../../../outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_CSC_SG_wt_fifo.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_CSC_SG_wt_fifo.v ../../../outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_CSC_SG_wt_fifo.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_CSC_single_reg.v -o ../../../outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_CSC_single_reg.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_CSC_single_reg.v ../../../outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_CSC_single_reg.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_CSC_slcg.v -o ../../../outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_CSC_slcg.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_CSC_slcg.v ../../../outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_CSC_slcg.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_CSC_wl.v -o ../../../outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_CSC_wl.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_CSC_wl.v ../../../outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_CSC_wl.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_CSC_WL_dec.v -o ../../../outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_CSC_WL_dec.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_CSC_WL_dec.v ../../../outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_CSC_WL_dec.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_csc.swl -o ../../../outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_csc.swl.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_csc.swl ../../../outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_csc.swl.vcp 
+==============================================
+files are generated under /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/outdir/nv_small/vmod/nvdla/csc
+==============================================
+make[1]: Leaving directory '/work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/nvdla/csc'
+Processing NV_NVDLA_csc.v into ../../../outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_csc.v.vcp
+../../../outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_csc.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_csc.v modified.
+Processing NV_NVDLA_CSC_dl.v into ../../../outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_CSC_dl.v.vcp
+../../../outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_CSC_dl.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_CSC_dl.v modified.
+Processing NV_NVDLA_CSC_dual_reg.v into ../../../outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_CSC_dual_reg.v.vcp
+../../../outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_CSC_dual_reg.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_CSC_dual_reg.v modified.
+Processing NV_NVDLA_CSC_pra_cell.v into ../../../outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_CSC_pra_cell.v.vcp
+../../../outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_CSC_pra_cell.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_CSC_pra_cell.v modified.
+Processing NV_NVDLA_CSC_regfile.v into ../../../outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_CSC_regfile.v.vcp
+../../../outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_CSC_regfile.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_CSC_regfile.v modified.
+Processing NV_NVDLA_CSC_sg.v into ../../../outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_CSC_sg.v.vcp
+../../../outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_CSC_sg.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_CSC_sg.v modified.
+Processing NV_NVDLA_CSC_SG_dat_fifo.v into ../../../outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_CSC_SG_dat_fifo.v.vcp
+../../../outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_CSC_SG_dat_fifo.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_CSC_SG_dat_fifo.v modified.
+Processing NV_NVDLA_CSC_SG_wt_fifo.v into ../../../outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_CSC_SG_wt_fifo.v.vcp
+../../../outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_CSC_SG_wt_fifo.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_CSC_SG_wt_fifo.v modified.
+Processing NV_NVDLA_CSC_single_reg.v into ../../../outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_CSC_single_reg.v.vcp
+../../../outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_CSC_single_reg.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_CSC_single_reg.v modified.
+Processing NV_NVDLA_CSC_slcg.v into ../../../outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_CSC_slcg.v.vcp
+../../../outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_CSC_slcg.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_CSC_slcg.v modified.
+Processing NV_NVDLA_CSC_wl.v into ../../../outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_CSC_wl.v.vcp
+../../../outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_CSC_wl.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_CSC_wl.v modified.
+Processing NV_NVDLA_CSC_WL_dec.v into ../../../outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_CSC_WL_dec.v.vcp
+../../../outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_CSC_WL_dec.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_CSC_WL_dec.v modified.
+Processing NV_NVDLA_csc.swl into ../../../outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_csc.swl.vcp
+../../../outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_csc.swl.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_csc.swl modified.

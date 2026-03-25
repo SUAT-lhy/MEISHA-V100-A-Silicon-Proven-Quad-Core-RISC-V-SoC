@@ -1,0 +1,3 @@
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/ip/sdram_controller/sdram_axi_core.v
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/ip/sdram_controller/sdram_axi_pmem.sv
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/ip/sdram_controller/sdram_axi.v

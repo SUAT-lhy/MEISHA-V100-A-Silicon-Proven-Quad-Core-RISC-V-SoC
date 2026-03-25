@@ -1,0 +1,24 @@
+CAPI=2:
+# Vendor 		: 
+# Author 		: zjl
+# Filename 	:  
+# Date Created: 2024.08.07 
+# Version		: V1.0
+# File description	:
+# Revision History :
+name: "lowrisc:dv:spi1_test:0.1"
+description: "SPI1 UVM test"
+filesets:
+  files_dv:
+    depend:
+      #- lowrisc:dv:spi_base_env
+    files:
+      - spi1_macros.svh
+      #- rtl/flash_model/W25Q128JVxIM.v
+      
+    file_type: systemVerilogSource
+
+targets:
+  default:
+    filesets:
+      - files_dv

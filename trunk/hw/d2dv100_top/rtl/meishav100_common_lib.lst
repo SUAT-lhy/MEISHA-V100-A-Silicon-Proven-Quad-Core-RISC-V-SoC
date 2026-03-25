@@ -1,0 +1,31 @@
+-f ${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/memory/src_files.lst
+-f ${MEISHAV100_ROOT}/hw/ip/block-nvdla-sifive/vsrc/ram_model_u40/output_verilog/umc_verilog/src_files.lst
+-v ${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/verilog/fsh0l_ihs/src/fsh0l_ihs_core.lib.src
+-v ${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/verilog/fsh0l_yhs/src/fsh0l_yhs_core.lib.src
+-v ${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/verilog/fsh0l_dhs/src/fsh0l_dhs_core.lib.src
+-v ${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/verilog/fsh0l_irs/src/fsh0l_irs_core.lib.src
+-v ${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/verilog/fsh0l_yrs/src/fsh0l_yrs_core.lib.src
+-v ${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/verilog/fsh0l_drs/src/fsh0l_drs_core.lib.src
+-v ${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/verilog/fsh0l_ils/src/fsh0l_ils_core.lib.src
+-v ${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/verilog/fsh0l_yls/src/fsh0l_yls_core.lib.src
+-v ${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/verilog/fsh0l_dls/src/fsh0l_dls_core.lib.src
+-v ${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/verilog/foh0l_qrs25/src/foh0l_qrs25_io.lib.src
+-v ${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/verilog/foh0l_qrs25_spc/src/foh0l_qrs25_spc.lib.src
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/cbb/tag_array_0_ext.v
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/cbb/tag_array_ext.v
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/cbb/data_arrays_0_ext.v
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/cbb/data_arrays_0_0_ext.v
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/cbb/DualCoreConfig.behav_srams.v
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/ip/sdram_controller/sdram_model.v
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/ip/sdram_controller/mt48lc16m16a2.v
+// add designware lib path
++incdir+${DESIGNWARE_HOME}/sim_ver
++libext+.v
++libext+.sv
+// for prand_inst0 = $RollPLI(min, max, "auto") error
++define+PRAND_OFF
+${DESIGNWARE_HOME}/sim_ver/DW02_mac.v
+-y ${DESIGNWARE_HOME}/sim_ver
+
+// dwversion is not match version, maybe generate z state
+//${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/lib/DW02_multp.v

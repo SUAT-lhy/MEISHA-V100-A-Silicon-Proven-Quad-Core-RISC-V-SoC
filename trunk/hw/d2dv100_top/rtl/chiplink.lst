@@ -1,0 +1,8 @@
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/top/MEISHAV100_DEFINE.v
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/cbb/pulse_expander.v
+-f ${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/cbb/buffer/src_files.lst
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/cbb/AXI4IdIndexer_Param.v
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/cbb/CHIPLINK_PREFIX_ram_ext.v
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/ip/CHIPLINK_PREFIX_TLToAXI4.v
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/ip/chiplink.v
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/ip/CHIPLINK_PREFIX_ChipLinkMaster.v

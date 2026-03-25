@@ -1,0 +1,91 @@
+// Copyright lowRISC contributors.
+// Licensed under the Apache License, Version 2.0, see LICENSE for details.
+// SPDX-License-Identifier: Apache-2.0
+{
+  name: "otbn"
+  import_testplans: ["hw/dv/tools/dvsim/testplans/csr_testplan.hjson",
+                     "hw/dv/tools/dvsim/testplans/mem_testplan.hjson",
+                     "hw/dv/tools/dvsim/testplans/alert_test_testplan.hjson",
+                     "hw/dv/tools/dvsim/testplans/intr_test_testplan.hjson",
+                     "hw/dv/tools/dvsim/testplans/tl_device_access_types_testplan.hjson"]
+  testpoints: [
+    {
+      name: smoke
+      desc: '''
+            Smoke test, running a single fixed binary
+
+            This runs the binary from otbn/dv/smoke/smoke_test.s, which is
+            designed to check most of the implemented instructions. The
+            unchanging binary should mean this basic test is particularly
+            appropriate for CI.
+
+            '''
+      milestone: V1
+      tests: ["otbn_smoke"]
+    }
+    {
+      name: single_binary
+      desc: '''
+            Run a single randomly-chosen binary
+
+            This test drives the main bulk of OTBN testing. It picks a random
+            binary from a pre-generated set and runs it, comparing against the
+            model. We'll run this with a large number of seeds and use
+            functional coverage to track when verification of the internals of
+            the core is done.
+
+            Sometimes enable the "done" interrupt to check that it and the
+            error interrupt work correctly.
+
+            '''
+      milestone: V1
+      tests: ["otbn_single"]
+    }
+
+    {
+      name: reset_recovery
+      desc: '''
+            Run two binaries, resetting the first at an arbitrary time
+
+            Running another binary after a sudden and unexpected reset via the
+            rst_ni signal will check that all state is properly re-initialized
+            after a reset. We'd expect X-propagation checks to catch most
+            problems like this, but an explicit reset sequence also adds the
+            relevant FSM/toggle coverage.
+
+            '''
+      milestone: V2
+      tests: ["otbn_reset"]
+    }
+    {
+      name: mem_integrity
+      desc: '''
+            Inject ECC errors into DMEM and IMEM and expect an alert
+            '''
+      milestone: V2
+      tests: []
+    }
+    {
+      name: back_to_back
+      desc: '''
+            Run sequences back-to-back
+
+            This runs several sequences back-to-back, without resets between
+            them. This should catch initialisation problems where not all state
+            is cleared between programs when there's no reset.
+
+            '''
+      milestone: V2
+      tests: ["otbn_multi"]
+    }
+    {
+      name: stress_all
+      desc: '''
+            Run multiple sequences back-to-back while making invalid TL
+            accesses at the same time.
+            '''
+      milestone: V2
+      tests: []
+    }
+  ]
+}

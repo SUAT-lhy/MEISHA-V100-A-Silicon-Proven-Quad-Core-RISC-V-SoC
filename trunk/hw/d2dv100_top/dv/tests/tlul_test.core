@@ -1,0 +1,49 @@
+CAPI=2:
+# Vendor 		: 
+# Author 		: ling
+# Filename 	:  
+# Date Created: 2022.04.26 
+# Version		: V1.0
+# File description	:
+# Revision History :
+name: "lowrisc:dv:tlul_test:0.1"
+description: "tlul_xbar test DV UVM test"
+filesets:
+  files_dv:
+    depend:
+      - lowrisc:dv:tlul_base_env_pkg
+      - lowrisc:dv:jtaga_base_env
+    files:
+      - tlul_test_pkg.sv
+      - tlul_test.sv: {is_include_file: true}
+      - soft_base_test.sv: {is_include_file: true}
+      - c2c_base_test.sv: {is_include_file: true}
+      - ddr_c2c_base_test.sv: {is_include_file: true}
+      - ddr_c2c_loopback_base_test.sv: {is_include_file: true}
+      - uart_base_test.sv: {is_include_file: true}
+      - chiplink_base_test.sv: {is_include_file: true}
+      - jtag_soft_base_test.sv: {is_include_file: true}
+      - master_bus_soft_base_test.sv: {is_include_file: true}
+      - tlul_mst_2_slv_cross_test.sv: {is_include_file: true}
+      - spi_slave_soft_base_test.sv: {is_include_file: true}
+      - spi_slave_base_test.sv: {is_include_file: true}
+      - spi1_base_test.sv: {is_include_file: true}
+      - lsys_base_test.sv: {is_include_file: true}
+      - spi0_base_test.sv: {is_include_file: true}
+      - sram_soft_base_test.sv: {is_include_file: true}
+      - linux_soft_base_test.sv: {is_include_file: true}
+      - nvdla_soft_base_test.sv: {is_include_file: true}
+      - mig_slave_soft_base_test.sv: {is_include_file: true}
+    file_type: systemVerilogSource
+
+targets:
+  default:
+    filesets:
+      - files_dv
+    default_tool: vcs
+    tools:
+      vcs:
+        vcs_options:
+        run_options:
+          #- +spi_stim_hex_file=/work/svn/MEISHAV100/trunk/hw/d2dv100_top/dv/ip_test/spi_slave/spi_stim.txt
+

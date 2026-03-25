@@ -1,0 +1,1265 @@
+
+library("INNO_FNPLL_TOP_ss_cmax_m40") {
+
+  technology (cmos) ;
+  delay_model : table_lookup ;
+  define ("add_pg_pin_to_lib",  "library",  "boolean");
+  add_pg_pin_to_lib : true;
+  
+  voltage_map ( vccdcore, 0.990000 );
+  voltage_map ( vccdpost, 0.990000 );
+  voltage_map ( vcca, 2.970000 );
+  voltage_map ( vssa, 0.000000 );
+  date : "Tue Nov  5 18:54:09 2024" ;
+  revision : "S-2021.06-SP5-2" ;
+  nom_process : 1.0000 ;
+  nom_voltage : 0.9900 ;
+  nom_temperature : -40.0000 ;
+      
+  operating_conditions("WCCCOM"){
+      process : 1.0000 ;
+      voltage : 0.9900 ;
+      temperature : -40.0000 ;
+   } /* current design opcond */
+  default_operating_conditions : "WCCCOM" ;
+  voltage_unit : "1V" ;
+  time_unit : "1ns" ;
+  capacitive_load_unit (1.000000, pf);
+  slew_derate_from_library : 1.0000 ;
+  slew_lower_threshold_pct_rise : 30.0000 ;
+  slew_lower_threshold_pct_fall : 30.0000 ;
+  slew_upper_threshold_pct_rise : 70.0000 ;
+  slew_upper_threshold_pct_fall : 70.0000 ;
+  input_threshold_pct_rise : 50.0000 ;
+  input_threshold_pct_fall : 50.0000 ;
+  output_threshold_pct_rise : 50.0000 ;
+  output_threshold_pct_fall : 50.0000 ;
+  k_process_cell_rise : 0.000000;
+  k_process_cell_fall : 0.000000;
+  k_volt_cell_rise : 0.000000;
+  k_volt_cell_fall : 0.000000;
+  k_temp_cell_rise : 0.000000;
+  k_temp_cell_fall : 0.000000;
+  k_process_rise_transition : 0.000000;
+  k_process_fall_transition : 0.000000;
+  k_volt_rise_transition : 0.000000;
+  k_volt_fall_transition : 0.000000;
+  k_temp_rise_transition : 0.000000;
+  k_temp_fall_transition : 0.000000;
+  default_fanout_load : 1.000000;
+  default_inout_pin_cap : 1.000000;
+  default_input_pin_cap : 1.000000;
+  default_output_pin_cap : 0.000000;
+  current_unit : 1mA;
+  pulling_resistance_unit : "1kohm";
+  comment : "PrimeTime extracted Model." ;
+
+/* Power attributes. */
+  leakage_power_unit : 1uW;
+  default_cell_leakage_power : 0.000000;
+  default_leakage_power_density : 0.000000;
+
+
+ 
+  define(min_delay_flag, timing, boolean);
+  define(internal_noise_width_above_low, pin, float);
+  define(internal_noise_height_below_high, pin, float);
+  define(original_pin, pin, string);
+  define(max_noise_immunity_low, pin, float);
+  define(is_unconstrained, pin, boolean);
+  define(internal_noise_width_below_high, pin, float);
+  define(internal_noise_peak_time_below_high, pin, float);
+  define(internal_noise_height_above_low, pin, float);
+  define(max_noise_immunity_high, pin, float);
+  define(internal_noise_peak_time_above_low, pin, float);
+
+
+
+/* SCALAR table template is built-in */
+
+
+/* 1-D table template f(in_trans) */
+lu_table_template( f_itrans ) {
+	variable_1 : input_net_transition;
+	index_1 (" 0.0000, 1.0000 ");
+}
+
+/* 2-D table template f(in_trans, out_cap) */
+lu_table_template( f_itrans_ocap ) {
+	variable_1 : input_net_transition;
+	variable_2 : total_output_net_capacitance;
+	index_1 (" 0.0000, 1.0000 ");
+	index_2 (" 0.0000, 1.0000 ");
+}
+
+/* 2-D table template f(d_trans, c_trans) */
+lu_table_template( f_dtrans_ctrans ) {
+	variable_1 : constrained_pin_transition;
+	variable_2 : related_pin_transition;
+	index_1 (" 0.0000, 1.0000 ");
+	index_2 (" 0.0000, 1.0000 ");
+}
+
+type ( BUS8_type0 ) {
+	base_type : array ;
+	data_type : bit ;
+	bit_width : 8 ;
+	bit_from : 7 ;
+	bit_to : 0 ;
+	downto : true ;
+	downto : true ;
+} /* end of type */
+type ( BUS64_type1 ) {
+	base_type : array ;
+	data_type : bit ;
+	bit_width : 64 ;
+	bit_from : 63 ;
+	bit_to : 0 ;
+	downto : true ;
+	downto : true ;
+} /* end of type */
+type ( BUS10_type2 ) {
+	base_type : array ;
+	data_type : bit ;
+	bit_width : 10 ;
+	bit_from : 9 ;
+	bit_to : 0 ;
+	downto : true ;
+	downto : true ;
+} /* end of type */
+type ( BUS2_type3 ) {
+	base_type : array ;
+	data_type : bit ;
+	bit_width : 2 ;
+	bit_from : 1 ;
+	bit_to : 0 ;
+	downto : true ;
+	downto : true ;
+} /* end of type */
+type ( BUS4_type4 ) {
+	base_type : array ;
+	data_type : bit ;
+	bit_width : 4 ;
+	bit_from : 3 ;
+	bit_to : 0 ;
+	downto : true ;
+	downto : true ;
+} /* end of type */
+type ( BUS5_type5 ) {
+	base_type : array ;
+	data_type : bit ;
+	bit_width : 5 ;
+	bit_from : 4 ;
+	bit_to : 0 ;
+	downto : true ;
+	downto : true ;
+} /* end of type */
+type ( BUS9_type6 ) {
+	base_type : array ;
+	data_type : bit ;
+	bit_width : 9 ;
+	bit_from : 8 ;
+	bit_to : 0 ;
+	downto : true ;
+	downto : true ;
+} /* end of type */
+type ( BUS3_type7 ) {
+	base_type : array ;
+	data_type : bit ;
+	bit_width : 3 ;
+	bit_from : 2 ;
+	bit_to : 0 ;
+	downto : true ;
+	downto : true ;
+} /* end of type */
+type ( BUS12_type8 ) {
+	base_type : array ;
+	data_type : bit ;
+	bit_width : 12 ;
+	bit_from : 11 ;
+	bit_to : 0 ;
+	downto : true ;
+	downto : true ;
+} /* end of type */
+type ( BUS24_type9 ) {
+	base_type : array ;
+	data_type : bit ;
+	bit_width : 24 ;
+	bit_from : 23 ;
+	bit_to : 0 ;
+	downto : true ;
+	downto : true ;
+} /* end of type */
+
+cell( INNO_FNPLL_TOP ) {
+  pg_pin (vcca) {
+    pg_type : primary_power;
+    voltage_name : vcca;
+    direction : inout;
+  }
+  pg_pin (vccdcore) {
+    pg_type : primary_power;
+    voltage_name : vccdcore;
+  }
+  pg_pin (vccdpost) {
+    pg_type : primary_power;
+    voltage_name : vccdpost;
+    direction : inout;
+  }
+  pg_pin (vssa) {
+    pg_type : primary_ground;
+    voltage_name : vssa;
+  }
+  area : 81000 ;
+  dont_use : true ;
+  dont_touch : true ;
+  interface_timing : true;
+  timing_model_type : "extracted";
+  is_macro_cell : true;
+bus ( cpi_bias ) {
+
+	bus_type  : BUS3_type7 ;
+	direction : input ;
+
+pin("cpi_bias[2]") {
+  related_power_pin : vccdcore;
+  related_ground_pin : vssa;
+	direction : input ;
+	max_transition : 0.300000 ;
+	capacitance : 0.000000 ;
+
+	/* Other user defined attributes. */
+	original_pin : cpi_bias[2];
+	is_unconstrained : true;
+} /* end of pin cpi_bias[2] */
+
+pin("cpi_bias[1]") {
+  related_power_pin : vccdcore;
+  related_ground_pin : vssa;
+	direction : input ;
+	max_transition : 0.300000 ;
+	capacitance : 0.000000 ;
+
+	/* Other user defined attributes. */
+	original_pin : cpi_bias[1];
+	is_unconstrained : true;
+} /* end of pin cpi_bias[1] */
+
+pin("cpi_bias[0]") {
+  related_power_pin : vccdcore;
+  related_ground_pin : vssa;
+	direction : input ;
+	max_transition : 0.300000 ;
+	capacitance : 0.000000 ;
+
+	/* Other user defined attributes. */
+	original_pin : cpi_bias[0];
+	is_unconstrained : true;
+} /* end of pin cpi_bias[0] */
+} /* end of bus cpi_bias */
+
+bus ( cpp_bias ) {
+
+	bus_type  : BUS3_type7 ;
+	direction : input ;
+
+pin("cpp_bias[2]") {
+  related_power_pin : vccdcore;
+  related_ground_pin : vssa;
+	direction : input ;
+	max_transition : 0.300000 ;
+	capacitance : 0.000000 ;
+
+	/* Other user defined attributes. */
+	original_pin : cpp_bias[2];
+	is_unconstrained : true;
+} /* end of pin cpp_bias[2] */
+
+pin("cpp_bias[1]") {
+  related_power_pin : vccdcore;
+  related_ground_pin : vssa;
+	direction : input ;
+	max_transition : 0.300000 ;
+	capacitance : 0.000000 ;
+
+	/* Other user defined attributes. */
+	original_pin : cpp_bias[1];
+	is_unconstrained : true;
+} /* end of pin cpp_bias[1] */
+
+pin("cpp_bias[0]") {
+  related_power_pin : vccdcore;
+  related_ground_pin : vssa;
+	direction : input ;
+	max_transition : 0.300000 ;
+	capacitance : 0.000000 ;
+
+	/* Other user defined attributes. */
+	original_pin : cpp_bias[0];
+	is_unconstrained : true;
+} /* end of pin cpp_bias[0] */
+} /* end of bus cpp_bias */
+
+bus ( fbdiv ) {
+
+	bus_type  : BUS12_type8 ;
+	direction : input ;
+
+pin("fbdiv[11]") {
+  related_power_pin : vccdcore;
+  related_ground_pin : vssa;
+	direction : input ;
+	max_transition : 0.300000 ;
+	capacitance : 0.000000 ;
+
+	/* Other user defined attributes. */
+	original_pin : fbdiv[11];
+	is_unconstrained : true;
+} /* end of pin fbdiv[11] */
+
+pin("fbdiv[10]") {
+  related_power_pin : vccdcore;
+  related_ground_pin : vssa;
+	direction : input ;
+	max_transition : 0.300000 ;
+	capacitance : 0.000000 ;
+
+	/* Other user defined attributes. */
+	original_pin : fbdiv[10];
+	is_unconstrained : true;
+} /* end of pin fbdiv[10] */
+
+pin("fbdiv[9]") {
+  related_power_pin : vccdcore;
+  related_ground_pin : vssa;
+	direction : input ;
+	max_transition : 0.300000 ;
+	capacitance : 0.000000 ;
+
+	/* Other user defined attributes. */
+	original_pin : fbdiv[9];
+	is_unconstrained : true;
+} /* end of pin fbdiv[9] */
+
+pin("fbdiv[8]") {
+  related_power_pin : vccdcore;
+  related_ground_pin : vssa;
+	direction : input ;
+	max_transition : 0.300000 ;
+	capacitance : 0.000000 ;
+
+	/* Other user defined attributes. */
+	original_pin : fbdiv[8];
+	is_unconstrained : true;
+} /* end of pin fbdiv[8] */
+
+pin("fbdiv[7]") {
+  related_power_pin : vccdcore;
+  related_ground_pin : vssa;
+	direction : input ;
+	max_transition : 0.300000 ;
+	capacitance : 0.000000 ;
+
+	/* Other user defined attributes. */
+	original_pin : fbdiv[7];
+	is_unconstrained : true;
+} /* end of pin fbdiv[7] */
+
+pin("fbdiv[6]") {
+  related_power_pin : vccdcore;
+  related_ground_pin : vssa;
+	direction : input ;
+	max_transition : 0.300000 ;
+	capacitance : 0.000000 ;
+
+	/* Other user defined attributes. */
+	original_pin : fbdiv[6];
+	is_unconstrained : true;
+} /* end of pin fbdiv[6] */
+
+pin("fbdiv[5]") {
+  related_power_pin : vccdcore;
+  related_ground_pin : vssa;
+	direction : input ;
+	max_transition : 0.300000 ;
+	capacitance : 0.000000 ;
+
+	/* Other user defined attributes. */
+	original_pin : fbdiv[5];
+	is_unconstrained : true;
+} /* end of pin fbdiv[5] */
+
+pin("fbdiv[4]") {
+  related_power_pin : vccdcore;
+  related_ground_pin : vssa;
+	direction : input ;
+	max_transition : 0.300000 ;
+	capacitance : 0.000000 ;
+
+	/* Other user defined attributes. */
+	original_pin : fbdiv[4];
+	is_unconstrained : true;
+} /* end of pin fbdiv[4] */
+
+pin("fbdiv[3]") {
+  related_power_pin : vccdcore;
+  related_ground_pin : vssa;
+	direction : input ;
+	max_transition : 0.300000 ;
+	capacitance : 0.000000 ;
+
+	/* Other user defined attributes. */
+	original_pin : fbdiv[3];
+	is_unconstrained : true;
+} /* end of pin fbdiv[3] */
+
+pin("fbdiv[2]") {
+  related_power_pin : vccdcore;
+  related_ground_pin : vssa;
+	direction : input ;
+	max_transition : 0.300000 ;
+	capacitance : 0.000000 ;
+
+	/* Other user defined attributes. */
+	original_pin : fbdiv[2];
+	is_unconstrained : true;
+} /* end of pin fbdiv[2] */
+
+pin("fbdiv[1]") {
+  related_power_pin : vccdcore;
+  related_ground_pin : vssa;
+	direction : input ;
+	max_transition : 0.300000 ;
+	capacitance : 0.000000 ;
+
+	/* Other user defined attributes. */
+	original_pin : fbdiv[1];
+	is_unconstrained : true;
+} /* end of pin fbdiv[1] */
+
+pin("fbdiv[0]") {
+  related_power_pin : vccdcore;
+  related_ground_pin : vssa;
+	direction : input ;
+	max_transition : 0.300000 ;
+	capacitance : 0.000000 ;
+
+	/* Other user defined attributes. */
+	original_pin : fbdiv[0];
+	is_unconstrained : true;
+} /* end of pin fbdiv[0] */
+} /* end of bus fbdiv */
+
+bus ( frac ) {
+
+	bus_type  : BUS24_type9 ;
+	direction : input ;
+
+pin("frac[23]") {
+  related_power_pin : vccdcore;
+  related_ground_pin : vssa;
+	direction : input ;
+	max_transition : 0.300000 ;
+	capacitance : 0.000000 ;
+
+	/* Other user defined attributes. */
+	original_pin : frac[23];
+	is_unconstrained : true;
+} /* end of pin frac[23] */
+
+pin("frac[22]") {
+  related_power_pin : vccdcore;
+  related_ground_pin : vssa;
+	direction : input ;
+	max_transition : 0.300000 ;
+	capacitance : 0.000000 ;
+
+	/* Other user defined attributes. */
+	original_pin : frac[22];
+	is_unconstrained : true;
+} /* end of pin frac[22] */
+
+pin("frac[21]") {
+  related_power_pin : vccdcore;
+  related_ground_pin : vssa;
+	direction : input ;
+	max_transition : 0.300000 ;
+	capacitance : 0.000000 ;
+
+	/* Other user defined attributes. */
+	original_pin : frac[21];
+	is_unconstrained : true;
+} /* end of pin frac[21] */
+
+pin("frac[20]") {
+  related_power_pin : vccdcore;
+  related_ground_pin : vssa;
+	direction : input ;
+	max_transition : 0.300000 ;
+	capacitance : 0.000000 ;
+
+	/* Other user defined attributes. */
+	original_pin : frac[20];
+	is_unconstrained : true;
+} /* end of pin frac[20] */
+
+pin("frac[19]") {
+  related_power_pin : vccdcore;
+  related_ground_pin : vssa;
+	direction : input ;
+	max_transition : 0.300000 ;
+	capacitance : 0.000000 ;
+
+	/* Other user defined attributes. */
+	original_pin : frac[19];
+	is_unconstrained : true;
+} /* end of pin frac[19] */
+
+pin("frac[18]") {
+  related_power_pin : vccdcore;
+  related_ground_pin : vssa;
+	direction : input ;
+	max_transition : 0.300000 ;
+	capacitance : 0.000000 ;
+
+	/* Other user defined attributes. */
+	original_pin : frac[18];
+	is_unconstrained : true;
+} /* end of pin frac[18] */
+
+pin("frac[17]") {
+  related_power_pin : vccdcore;
+  related_ground_pin : vssa;
+	direction : input ;
+	max_transition : 0.300000 ;
+	capacitance : 0.000000 ;
+
+	/* Other user defined attributes. */
+	original_pin : frac[17];
+	is_unconstrained : true;
+} /* end of pin frac[17] */
+
+pin("frac[16]") {
+  related_power_pin : vccdcore;
+  related_ground_pin : vssa;
+	direction : input ;
+	max_transition : 0.300000 ;
+	capacitance : 0.000000 ;
+
+	/* Other user defined attributes. */
+	original_pin : frac[16];
+	is_unconstrained : true;
+} /* end of pin frac[16] */
+
+pin("frac[15]") {
+  related_power_pin : vccdcore;
+  related_ground_pin : vssa;
+	direction : input ;
+	max_transition : 0.300000 ;
+	capacitance : 0.000000 ;
+
+	/* Other user defined attributes. */
+	original_pin : frac[15];
+	is_unconstrained : true;
+} /* end of pin frac[15] */
+
+pin("frac[14]") {
+  related_power_pin : vccdcore;
+  related_ground_pin : vssa;
+	direction : input ;
+	max_transition : 0.300000 ;
+	capacitance : 0.000000 ;
+
+	/* Other user defined attributes. */
+	original_pin : frac[14];
+	is_unconstrained : true;
+} /* end of pin frac[14] */
+
+pin("frac[13]") {
+  related_power_pin : vccdcore;
+  related_ground_pin : vssa;
+	direction : input ;
+	max_transition : 0.300000 ;
+	capacitance : 0.000000 ;
+
+	/* Other user defined attributes. */
+	original_pin : frac[13];
+	is_unconstrained : true;
+} /* end of pin frac[13] */
+
+pin("frac[12]") {
+  related_power_pin : vccdcore;
+  related_ground_pin : vssa;
+	direction : input ;
+	max_transition : 0.300000 ;
+	capacitance : 0.000000 ;
+
+	/* Other user defined attributes. */
+	original_pin : frac[12];
+	is_unconstrained : true;
+} /* end of pin frac[12] */
+
+pin("frac[11]") {
+  related_power_pin : vccdcore;
+  related_ground_pin : vssa;
+	direction : input ;
+	max_transition : 0.300000 ;
+	capacitance : 0.000000 ;
+
+	/* Other user defined attributes. */
+	original_pin : frac[11];
+	is_unconstrained : true;
+} /* end of pin frac[11] */
+
+pin("frac[10]") {
+  related_power_pin : vccdcore;
+  related_ground_pin : vssa;
+	direction : input ;
+	max_transition : 0.300000 ;
+	capacitance : 0.000000 ;
+
+	/* Other user defined attributes. */
+	original_pin : frac[10];
+	is_unconstrained : true;
+} /* end of pin frac[10] */
+
+pin("frac[9]") {
+  related_power_pin : vccdcore;
+  related_ground_pin : vssa;
+	direction : input ;
+	max_transition : 0.300000 ;
+	capacitance : 0.000000 ;
+
+	/* Other user defined attributes. */
+	original_pin : frac[9];
+	is_unconstrained : true;
+} /* end of pin frac[9] */
+
+pin("frac[8]") {
+  related_power_pin : vccdcore;
+  related_ground_pin : vssa;
+	direction : input ;
+	max_transition : 0.300000 ;
+	capacitance : 0.000000 ;
+
+	/* Other user defined attributes. */
+	original_pin : frac[8];
+	is_unconstrained : true;
+} /* end of pin frac[8] */
+
+pin("frac[7]") {
+  related_power_pin : vccdcore;
+  related_ground_pin : vssa;
+	direction : input ;
+	max_transition : 0.300000 ;
+	capacitance : 0.000000 ;
+
+	/* Other user defined attributes. */
+	original_pin : frac[7];
+	is_unconstrained : true;
+} /* end of pin frac[7] */
+
+pin("frac[6]") {
+  related_power_pin : vccdcore;
+  related_ground_pin : vssa;
+	direction : input ;
+	max_transition : 0.300000 ;
+	capacitance : 0.000000 ;
+
+	/* Other user defined attributes. */
+	original_pin : frac[6];
+	is_unconstrained : true;
+} /* end of pin frac[6] */
+
+pin("frac[5]") {
+  related_power_pin : vccdcore;
+  related_ground_pin : vssa;
+	direction : input ;
+	max_transition : 0.300000 ;
+	capacitance : 0.000000 ;
+
+	/* Other user defined attributes. */
+	original_pin : frac[5];
+	is_unconstrained : true;
+} /* end of pin frac[5] */
+
+pin("frac[4]") {
+  related_power_pin : vccdcore;
+  related_ground_pin : vssa;
+	direction : input ;
+	max_transition : 0.300000 ;
+	capacitance : 0.000000 ;
+
+	/* Other user defined attributes. */
+	original_pin : frac[4];
+	is_unconstrained : true;
+} /* end of pin frac[4] */
+
+pin("frac[3]") {
+  related_power_pin : vccdcore;
+  related_ground_pin : vssa;
+	direction : input ;
+	max_transition : 0.300000 ;
+	capacitance : 0.000000 ;
+
+	/* Other user defined attributes. */
+	original_pin : frac[3];
+	is_unconstrained : true;
+} /* end of pin frac[3] */
+
+pin("frac[2]") {
+  related_power_pin : vccdcore;
+  related_ground_pin : vssa;
+	direction : input ;
+	max_transition : 0.300000 ;
+	capacitance : 0.000000 ;
+
+	/* Other user defined attributes. */
+	original_pin : frac[2];
+	is_unconstrained : true;
+} /* end of pin frac[2] */
+
+pin("frac[1]") {
+  related_power_pin : vccdcore;
+  related_ground_pin : vssa;
+	direction : input ;
+	max_transition : 0.300000 ;
+	capacitance : 0.000000 ;
+
+	/* Other user defined attributes. */
+	original_pin : frac[1];
+	is_unconstrained : true;
+} /* end of pin frac[1] */
+
+pin("frac[0]") {
+  related_power_pin : vccdcore;
+  related_ground_pin : vssa;
+	direction : input ;
+	max_transition : 0.300000 ;
+	capacitance : 0.000000 ;
+
+	/* Other user defined attributes. */
+	original_pin : frac[0];
+	is_unconstrained : true;
+} /* end of pin frac[0] */
+} /* end of bus frac */
+
+bus ( gvco_bias ) {
+
+	bus_type  : BUS2_type3 ;
+	direction : input ;
+
+pin("gvco_bias[1]") {
+  related_power_pin : vccdcore;
+  related_ground_pin : vssa;
+	direction : input ;
+	max_transition : 0.300000 ;
+	capacitance : 0.000000 ;
+
+	/* Other user defined attributes. */
+	original_pin : gvco_bias[1];
+	is_unconstrained : true;
+} /* end of pin gvco_bias[1] */
+
+pin("gvco_bias[0]") {
+  related_power_pin : vccdcore;
+  related_ground_pin : vssa;
+	direction : input ;
+	max_transition : 0.300000 ;
+	capacitance : 0.000000 ;
+
+	/* Other user defined attributes. */
+	original_pin : gvco_bias[0];
+	is_unconstrained : true;
+} /* end of pin gvco_bias[0] */
+} /* end of bus gvco_bias */
+
+bus ( postdiv0_0 ) {
+
+	bus_type  : BUS3_type7 ;
+	direction : input ;
+
+pin("postdiv0_0[2]") {
+  related_power_pin : vccdcore;
+  related_ground_pin : vssa;
+	direction : input ;
+	max_transition : 0.300000 ;
+	capacitance : 0.000000 ;
+
+	/* Other user defined attributes. */
+	original_pin : postdiv0_0[2];
+	is_unconstrained : true;
+} /* end of pin postdiv0_0[2] */
+
+pin("postdiv0_0[1]") {
+  related_power_pin : vccdcore;
+  related_ground_pin : vssa;
+	direction : input ;
+	max_transition : 0.300000 ;
+	capacitance : 0.000000 ;
+
+	/* Other user defined attributes. */
+	original_pin : postdiv0_0[1];
+	is_unconstrained : true;
+} /* end of pin postdiv0_0[1] */
+
+pin("postdiv0_0[0]") {
+  related_power_pin : vccdcore;
+  related_ground_pin : vssa;
+	direction : input ;
+	max_transition : 0.300000 ;
+	capacitance : 0.000000 ;
+
+	/* Other user defined attributes. */
+	original_pin : postdiv0_0[0];
+	is_unconstrained : true;
+} /* end of pin postdiv0_0[0] */
+} /* end of bus postdiv0_0 */
+
+bus ( postdiv0_1 ) {
+
+	bus_type  : BUS3_type7 ;
+	direction : input ;
+
+pin("postdiv0_1[2]") {
+  related_power_pin : vccdcore;
+  related_ground_pin : vssa;
+	direction : input ;
+	max_transition : 0.300000 ;
+	capacitance : 0.000000 ;
+
+	/* Other user defined attributes. */
+	original_pin : postdiv0_1[2];
+	is_unconstrained : true;
+} /* end of pin postdiv0_1[2] */
+
+pin("postdiv0_1[1]") {
+  related_power_pin : vccdcore;
+  related_ground_pin : vssa;
+	direction : input ;
+	max_transition : 0.300000 ;
+	capacitance : 0.000000 ;
+
+	/* Other user defined attributes. */
+	original_pin : postdiv0_1[1];
+	is_unconstrained : true;
+} /* end of pin postdiv0_1[1] */
+
+pin("postdiv0_1[0]") {
+  related_power_pin : vccdcore;
+  related_ground_pin : vssa;
+	direction : input ;
+	max_transition : 0.300000 ;
+	capacitance : 0.000000 ;
+
+	/* Other user defined attributes. */
+	original_pin : postdiv0_1[0];
+	is_unconstrained : true;
+} /* end of pin postdiv0_1[0] */
+} /* end of bus postdiv0_1 */
+
+bus ( postdiv0_2 ) {
+
+	bus_type  : BUS3_type7 ;
+	direction : input ;
+
+pin("postdiv0_2[2]") {
+  related_power_pin : vccdcore;
+  related_ground_pin : vssa;
+	direction : input ;
+	max_transition : 0.300000 ;
+	capacitance : 0.000000 ;
+
+	/* Other user defined attributes. */
+	original_pin : postdiv0_2[2];
+	is_unconstrained : true;
+} /* end of pin postdiv0_2[2] */
+
+pin("postdiv0_2[1]") {
+  related_power_pin : vccdcore;
+  related_ground_pin : vssa;
+	direction : input ;
+	max_transition : 0.300000 ;
+	capacitance : 0.000000 ;
+
+	/* Other user defined attributes. */
+	original_pin : postdiv0_2[1];
+	is_unconstrained : true;
+} /* end of pin postdiv0_2[1] */
+
+pin("postdiv0_2[0]") {
+  related_power_pin : vccdcore;
+  related_ground_pin : vssa;
+	direction : input ;
+	max_transition : 0.300000 ;
+	capacitance : 0.000000 ;
+
+	/* Other user defined attributes. */
+	original_pin : postdiv0_2[0];
+	is_unconstrained : true;
+} /* end of pin postdiv0_2[0] */
+} /* end of bus postdiv0_2 */
+
+bus ( postdiv1_0 ) {
+
+	bus_type  : BUS3_type7 ;
+	direction : input ;
+
+pin("postdiv1_0[2]") {
+  related_power_pin : vccdcore;
+  related_ground_pin : vssa;
+	direction : input ;
+	max_transition : 0.300000 ;
+	capacitance : 0.000000 ;
+
+	/* Other user defined attributes. */
+	original_pin : postdiv1_0[2];
+	is_unconstrained : true;
+} /* end of pin postdiv1_0[2] */
+
+pin("postdiv1_0[1]") {
+  related_power_pin : vccdcore;
+  related_ground_pin : vssa;
+	direction : input ;
+	max_transition : 0.300000 ;
+	capacitance : 0.000000 ;
+
+	/* Other user defined attributes. */
+	original_pin : postdiv1_0[1];
+	is_unconstrained : true;
+} /* end of pin postdiv1_0[1] */
+
+pin("postdiv1_0[0]") {
+  related_power_pin : vccdcore;
+  related_ground_pin : vssa;
+	direction : input ;
+	max_transition : 0.300000 ;
+	capacitance : 0.000000 ;
+
+	/* Other user defined attributes. */
+	original_pin : postdiv1_0[0];
+	is_unconstrained : true;
+} /* end of pin postdiv1_0[0] */
+} /* end of bus postdiv1_0 */
+
+bus ( postdiv1_1 ) {
+
+	bus_type  : BUS3_type7 ;
+	direction : input ;
+
+pin("postdiv1_1[2]") {
+  related_power_pin : vccdcore;
+  related_ground_pin : vssa;
+	direction : input ;
+	max_transition : 0.300000 ;
+	capacitance : 0.000000 ;
+
+	/* Other user defined attributes. */
+	original_pin : postdiv1_1[2];
+	is_unconstrained : true;
+} /* end of pin postdiv1_1[2] */
+
+pin("postdiv1_1[1]") {
+  related_power_pin : vccdcore;
+  related_ground_pin : vssa;
+	direction : input ;
+	max_transition : 0.300000 ;
+	capacitance : 0.000000 ;
+
+	/* Other user defined attributes. */
+	original_pin : postdiv1_1[1];
+	is_unconstrained : true;
+} /* end of pin postdiv1_1[1] */
+
+pin("postdiv1_1[0]") {
+  related_power_pin : vccdcore;
+  related_ground_pin : vssa;
+	direction : input ;
+	max_transition : 0.300000 ;
+	capacitance : 0.000000 ;
+
+	/* Other user defined attributes. */
+	original_pin : postdiv1_1[0];
+	is_unconstrained : true;
+} /* end of pin postdiv1_1[0] */
+} /* end of bus postdiv1_1 */
+
+bus ( postdiv1_2 ) {
+
+	bus_type  : BUS3_type7 ;
+	direction : input ;
+
+pin("postdiv1_2[2]") {
+  related_power_pin : vccdcore;
+  related_ground_pin : vssa;
+	direction : input ;
+	max_transition : 0.300000 ;
+	capacitance : 0.000000 ;
+
+	/* Other user defined attributes. */
+	original_pin : postdiv1_2[2];
+	is_unconstrained : true;
+} /* end of pin postdiv1_2[2] */
+
+pin("postdiv1_2[1]") {
+  related_power_pin : vccdcore;
+  related_ground_pin : vssa;
+	direction : input ;
+	max_transition : 0.300000 ;
+	capacitance : 0.000000 ;
+
+	/* Other user defined attributes. */
+	original_pin : postdiv1_2[1];
+	is_unconstrained : true;
+} /* end of pin postdiv1_2[1] */
+
+pin("postdiv1_2[0]") {
+  related_power_pin : vccdcore;
+  related_ground_pin : vssa;
+	direction : input ;
+	max_transition : 0.300000 ;
+	capacitance : 0.000000 ;
+
+	/* Other user defined attributes. */
+	original_pin : postdiv1_2[0];
+	is_unconstrained : true;
+} /* end of pin postdiv1_2[0] */
+} /* end of bus postdiv1_2 */
+
+bus ( prediv ) {
+
+	bus_type  : BUS5_type5 ;
+	direction : input ;
+
+pin("prediv[4]") {
+  related_power_pin : vccdcore;
+  related_ground_pin : vssa;
+	direction : input ;
+	max_transition : 0.300000 ;
+	capacitance : 0.000000 ;
+
+	/* Other user defined attributes. */
+	original_pin : prediv[4];
+	is_unconstrained : true;
+} /* end of pin prediv[4] */
+
+pin("prediv[3]") {
+  related_power_pin : vccdcore;
+  related_ground_pin : vssa;
+	direction : input ;
+	max_transition : 0.300000 ;
+	capacitance : 0.000000 ;
+
+	/* Other user defined attributes. */
+	original_pin : prediv[3];
+	is_unconstrained : true;
+} /* end of pin prediv[3] */
+
+pin("prediv[2]") {
+  related_power_pin : vccdcore;
+  related_ground_pin : vssa;
+	direction : input ;
+	max_transition : 0.300000 ;
+	capacitance : 0.000000 ;
+
+	/* Other user defined attributes. */
+	original_pin : prediv[2];
+	is_unconstrained : true;
+} /* end of pin prediv[2] */
+
+pin("prediv[1]") {
+  related_power_pin : vccdcore;
+  related_ground_pin : vssa;
+	direction : input ;
+	max_transition : 0.300000 ;
+	capacitance : 0.000000 ;
+
+	/* Other user defined attributes. */
+	original_pin : prediv[1];
+	is_unconstrained : true;
+} /* end of pin prediv[1] */
+
+pin("prediv[0]") {
+  related_power_pin : vccdcore;
+  related_ground_pin : vssa;
+	direction : input ;
+	max_transition : 0.300000 ;
+	capacitance : 0.000000 ;
+
+	/* Other user defined attributes. */
+	original_pin : prediv[0];
+	is_unconstrained : true;
+} /* end of pin prediv[0] */
+} /* end of bus prediv */
+
+bus ( testsel ) {
+
+	bus_type  : BUS2_type3 ;
+	direction : input ;
+
+pin("testsel[1]") {
+  related_power_pin : vccdcore;
+  related_ground_pin : vssa;
+	direction : input ;
+	max_transition : 0.300000 ;
+	capacitance : 0.000000 ;
+
+	/* Other user defined attributes. */
+	original_pin : testsel[1];
+	is_unconstrained : true;
+} /* end of pin testsel[1] */
+
+pin("testsel[0]") {
+  related_power_pin : vccdcore;
+  related_ground_pin : vssa;
+	direction : input ;
+	max_transition : 0.300000 ;
+	capacitance : 0.000000 ;
+
+	/* Other user defined attributes. */
+	original_pin : testsel[0];
+	is_unconstrained : true;
+} /* end of pin testsel[0] */
+} /* end of bus testsel */
+
+pin("lock") {
+  related_power_pin : vccdcore;
+  related_ground_pin : vssa;
+  power_down_function : !vccdcore+vssa;
+	direction : output ;
+	min_capacitance : 0.000000 ;
+	capacitance : 0.000000 ;
+
+	/* Other user defined attributes. */
+	original_pin : lock;
+} /* end of pin lock */
+
+pin("dacpd") {
+  related_power_pin : vccdcore;
+  related_ground_pin : vssa;
+	direction : input ;
+	max_transition : 0.300000 ;
+	capacitance : 0.000000 ;
+
+	/* Other user defined attributes. */
+	original_pin : dacpd;
+	is_unconstrained : true;
+} /* end of pin dacpd */
+
+pin("dsmpd") {
+  related_power_pin : vccdcore;
+  related_ground_pin : vssa;
+	direction : input ;
+	max_transition : 0.300000 ;
+	capacitance : 0.000000 ;
+
+	/* Other user defined attributes. */
+	original_pin : dsmpd;
+	is_unconstrained : true;
+} /* end of pin dsmpd */
+
+pin("pd") {
+  related_power_pin : vccdcore;
+  related_ground_pin : vssa;
+	direction : input ;
+	max_transition : 0.300000 ;
+	capacitance : 0.000000 ;
+
+	/* Other user defined attributes. */
+	original_pin : pd;
+	is_unconstrained : true;
+} /* end of pin pd */
+
+pin("testen") {
+  related_power_pin : vccdcore;
+  related_ground_pin : vssa;
+	direction : input ;
+	max_transition : 0.300000 ;
+	capacitance : 0.000000 ;
+
+	/* Other user defined attributes. */
+	original_pin : testen;
+	is_unconstrained : true;
+} /* end of pin testen */
+
+pin("testout") {
+  related_power_pin : vccdcore;
+  related_ground_pin : vssa;
+  power_down_function : !vccdcore+vssa;
+	direction : output ;
+	min_capacitance : 0.000000 ;
+	capacitance : 0.000000 ;
+
+	/* Other user defined attributes. */
+	original_pin : testout;
+    clock : true;
+} /* end of pin testout */
+
+pin("refclk") {
+  related_power_pin : vccdcore;
+  related_ground_pin : vssa;
+	direction : input ;
+	max_transition : 0.300000 ;
+	capacitance : 0.000000 ;
+
+	/* Other user defined attributes. */
+	original_pin : refclk;
+    clock : true;
+} /* end of pin refclk */
+
+pin("clko0") {
+  related_power_pin : vccdcore;
+  related_ground_pin : vssa;
+  power_down_function : !vccdcore+vssa;
+	direction : output ;
+	min_capacitance : 0.000000 ;
+	capacitance : 0.000000 ;
+
+	/* Other user defined attributes. */
+	original_pin : clko0;
+    clock : true;
+} /* end of pin clko0 */
+
+pin("clko1") {
+  related_power_pin : vccdcore;
+  related_ground_pin : vssa;
+  power_down_function : !vccdcore+vssa;
+	direction : output ;
+	min_capacitance : 0.000000 ;
+	capacitance : 0.000000 ;
+
+	/* Other user defined attributes. */
+	original_pin : clko1;
+    clock : true;
+} /* end of pin clko1 */
+
+pin("clko2") {
+  related_power_pin : vccdcore;
+  related_ground_pin : vssa;
+  power_down_function : !vccdcore+vssa;
+	direction : output ;
+	min_capacitance : 0.000000 ;
+	capacitance : 0.000000 ;
+
+	/* Other user defined attributes. */
+	original_pin : clko2;
+    clock : true;
+} /* end of pin clko2 */
+
+
+ /* end of pin vcca */
+
+
+ /* end of pin vccdcore */
+
+
+ /* end of pin vssa */
+
+
+ /* end of pin vccdpost */
+
+
+
+
+} /* end of cell */
+} /* end of library */

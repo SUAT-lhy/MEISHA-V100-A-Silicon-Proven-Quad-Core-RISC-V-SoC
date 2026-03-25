@@ -1,0 +1,511 @@
+
+iram/hello_meisha.elf:     file format elf64-littleriscv
+iram/hello_meisha.elf
+architecture: riscv:rv64, flags 0x00000112:
+EXEC_P, HAS_SYMS, D_PAGED
+start address 0x0000000050000000
+
+Program Header:
+    LOAD off    0x0000000000001000 vaddr 0x0000000050000000 paddr 0x0000000050000000 align 2**12
+         filesz 0x00000000000004b8 memsz 0x00000000000004b8 flags r-x
+    LOAD off    0x00000000000014b8 vaddr 0x00000000500004b8 paddr 0x00000000500004b8 align 2**12
+         filesz 0x0000000000000130 memsz 0x0000000000000130 flags rw-
+    LOAD off    0x0000000000002000 vaddr 0x0000000050000000 paddr 0x0000000050000000 align 2**12
+         filesz 0x0000000000000000 memsz 0x0000000000000000 flags rw-
+
+Sections:
+Idx Name          Size      VMA               LMA               File off  Algn
+  0 .text         000004b8  0000000050000000  0000000050000000  00001000  2**2
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .rodata       00000110  00000000500004b8  00000000500004b8  000014b8  2**3
+                  CONTENTS, ALLOC, LOAD, READONLY, DATA
+  2 .sdata        00000020  00000000500005c8  00000000500005c8  000015c8  2**3
+                  CONTENTS, ALLOC, LOAD, DATA
+  3 .bss          00000000  0000000050000000  0000000050000000  00002000  2**3
+                  ALLOC
+  4 .debug_line   00000497  0000000000000000  0000000000000000  000015e8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   000003c4  0000000000000000  0000000000000000  00001a7f  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 00000179  0000000000000000  0000000000000000  00001e43  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_aranges 00000090  0000000000000000  0000000000000000  00001fc0  2**4
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_str    0000018c  0000000000000000  0000000000000000  00002050  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .comment      00000011  0000000000000000  0000000000000000  000021dc  2**0
+                  CONTENTS, READONLY
+ 10 .debug_frame  00000108  0000000000000000  0000000000000000  000021f0  2**3
+                  CONTENTS, READONLY, DEBUGGING
+SYMBOL TABLE:
+0000000050000000 l    d  .text	0000000000000000 .text
+00000000500004b8 l    d  .rodata	0000000000000000 .rodata
+00000000500005c8 l    d  .sdata	0000000000000000 .sdata
+0000000050000000 l    d  .bss	0000000000000000 .bss
+0000000000000000 l    d  .debug_line	0000000000000000 .debug_line
+0000000000000000 l    d  .debug_info	0000000000000000 .debug_info
+0000000000000000 l    d  .debug_abbrev	0000000000000000 .debug_abbrev
+0000000000000000 l    d  .debug_aranges	0000000000000000 .debug_aranges
+0000000000000000 l    d  .debug_str	0000000000000000 .debug_str
+0000000000000000 l    d  .comment	0000000000000000 .comment
+0000000000000000 l    d  .debug_frame	0000000000000000 .debug_frame
+0000000000000000 l    df *ABS*	0000000000000000 hello_meisha.c
+00000000500005c8 l     O .sdata	0000000000000008 uart
+00000000500005d0 l     O .sdata	0000000000000008 SHUTDOWN_FLAG_STR
+0000000000000000 l    df *ABS*	0000000000000000 kprintf.c
+00000000500005d8 l     O .sdata	0000000000000008 uart
+00000000500005e0 l     O .sdata	0000000000000008 SHUTDOWN_FLAG_STR
+0000000050000158 l     F .text	000000000000004c kputc
+00000000500001a4 l     F .text	000000000000005c _kputs
+0000000050000000 g       .bss	0000000000000000 _ebss
+0000000050100000 g       *ABS*	0000000000000000 _sp
+0000000050000000 g       .text	0000000000000000 _prog_start
+0000000050000080 g     F .text	00000000000000d8 main
+0000000050000200 g     F .text	0000000000000040 kputs
+0000000050000240 g     F .text	0000000000000238 kprintf
+
+
+
+Disassembly of section .text:
+
+0000000050000000 <_prog_start>:
+  .option norvc
+  .globl _prog_start
+_prog_start:
+  //li t1, 0x10000
+  //jr t1
+  smp_pause(s1, s2) # used in bootrom.hex
+    50000000:	00800913          	li	s2,8
+    50000004:	30491073          	csrw	mie,s2
+    50000008:	00000493          	li	s1,0
+    5000000c:	f1402973          	csrr	s2,mhartid
+    50000010:	03249863          	bne	s1,s2,50000040 <_prog_start+0x40>
+  li sp, (PAYLOAD_DEST + 0x7fff000)  # used in bootrom.hex
+    50000014:	00088137          	lui	sp,0x88
+    50000018:	fff1011b          	addiw	sp,sp,-1
+    5000001c:	00c11113          	slli	sp,sp,0xc
+  call main
+    50000020:	060000ef          	jal	ra,50000080 <main>
+  smp_resume(s1, s2)
+    50000024:	020004b7          	lui	s1,0x2000
+    50000028:	00100913          	li	s2,1
+    5000002c:	0124a023          	sw	s2,0(s1) # 2000000 <_prog_start-0x4e000000>
+    50000030:	00448493          	addi	s1,s1,4
+    50000034:	02000937          	lui	s2,0x2000
+    50000038:	0809091b          	addiw	s2,s2,128
+    5000003c:	ff24c6e3          	blt	s1,s2,50000028 <_prog_start+0x28>
+    50000040:	10500073          	wfi
+    50000044:	34402973          	csrr	s2,mip
+    50000048:	00897913          	andi	s2,s2,8
+    5000004c:	fe090ae3          	beqz	s2,50000040 <_prog_start+0x40>
+    50000050:	020004b7          	lui	s1,0x2000
+    50000054:	f1402973          	csrr	s2,mhartid
+    50000058:	00291913          	slli	s2,s2,0x2
+    5000005c:	00990933          	add	s2,s2,s1
+    50000060:	00092023          	sw	zero,0(s2) # 2000000 <_prog_start-0x4e000000>
+    50000064:	0004a903          	lw	s2,0(s1) # 2000000 <_prog_start-0x4e000000>
+    50000068:	fe091ee3          	bnez	s2,50000064 <_prog_start+0x64>
+    5000006c:	00448493          	addi	s1,s1,4
+    50000070:	02000937          	lui	s2,0x2000
+    50000074:	0809091b          	addiw	s2,s2,128
+    50000078:	ff24c6e3          	blt	s1,s2,50000064 <_prog_start+0x64>
+  csrr a0, mhartid
+    5000007c:	f1402573          	csrr	a0,mhartid
+
+0000000050000080 <main>:
+//#define DYNAMIC_SWITCH_CLK
+#define SOC_IRAM_MAX_SIZE 0x200
+#define PRINT_INFO_INDENT (SOC_IRAM_MAX_SIZE>>2)
+#include "kprintf.h"
+
+int main(void){
+    50000080:	fe010113          	addi	sp,sp,-32 # 87fe0 <_prog_start-0x4ff78020>
+    50000084:	00113c23          	sd	ra,24(sp)
+    50000088:	00813823          	sd	s0,16(sp)
+    5000008c:	02010413          	addi	s0,sp,32
+	//smp_pause(s1, s2);
+
+    //asm volatile("li sp, (PAYLOAD_DEST + 0x7fff000);");
+
+  //REG32(uart, UART_REG_DIV) = 271;  // 
+  REG32(uart, UART_REG_DIV) = 1;
+    50000090:	640007b7          	lui	a5,0x64000
+    50000094:	01878793          	addi	a5,a5,24 # 64000018 <_sp+0x13f00018>
+    50000098:	00100713          	li	a4,1
+    5000009c:	00e7a023          	sw	a4,0(a5)
+  REG32(uart, UART_REG_RXCTRL) = UART_TXEN;
+    500000a0:	640007b7          	lui	a5,0x64000
+    500000a4:	00c78793          	addi	a5,a5,12 # 6400000c <_sp+0x13f0000c>
+    500000a8:	00100713          	li	a4,1
+    500000ac:	00e7a023          	sw	a4,0(a5)
+  REG32(uart, UART_REG_TXCTRL) = UART_RXEN;  // donot delete
+    500000b0:	640007b7          	lui	a5,0x64000
+    500000b4:	00878793          	addi	a5,a5,8 # 64000008 <_sp+0x13f00008>
+    500000b8:	00100713          	li	a4,1
+    500000bc:	00e7a023          	sw	a4,0(a5)
+  _REG32(_AC(0x51000000, UL), 0x18) = (18 << 15) + (20 << 10) + (0x0 << 5) + (0x0);  // SOC_LSYS cfg pll cfg donot need switch pll
+    500000c0:	510007b7          	lui	a5,0x51000
+    500000c4:	01878793          	addi	a5,a5,24 # 51000018 <_sp+0xf00018>
+    500000c8:	00095737          	lui	a4,0x95
+    500000cc:	00e7a023          	sw	a4,0(a5)
+
+	kprintf("Test begin ! @ core: 0x%x, compiler date: %s, time: %s", read_csr(mhartid), __DATE__,__TIME__);
+    500000d0:	f14027f3          	csrr	a5,mhartid
+    500000d4:	fef43423          	sd	a5,-24(s0)
+    500000d8:	fe843783          	ld	a5,-24(s0)
+    500000dc:	00000697          	auipc	a3,0x0
+    500000e0:	3f468693          	addi	a3,a3,1012 # 500004d0 <kprintf+0x290>
+    500000e4:	00000617          	auipc	a2,0x0
+    500000e8:	3fc60613          	addi	a2,a2,1020 # 500004e0 <kprintf+0x2a0>
+    500000ec:	00078593          	mv	a1,a5
+    500000f0:	00000517          	auipc	a0,0x0
+    500000f4:	40050513          	addi	a0,a0,1024 # 500004f0 <kprintf+0x2b0>
+    500000f8:	148000ef          	jal	ra,50000240 <kprintf>
+
+	kprintf("Hello MEISHA!");
+    500000fc:	00000517          	auipc	a0,0x0
+    50000100:	42c50513          	addi	a0,a0,1068 # 50000528 <kprintf+0x2e8>
+    50000104:	13c000ef          	jal	ra,50000240 <kprintf>
+	
+	kprintf("Test end ! @ core: 0x%x", read_csr(mhartid));
+    50000108:	f14027f3          	csrr	a5,mhartid
+    5000010c:	fef43023          	sd	a5,-32(s0)
+    50000110:	fe043783          	ld	a5,-32(s0)
+    50000114:	00078593          	mv	a1,a5
+    50000118:	00000517          	auipc	a0,0x0
+    5000011c:	42050513          	addi	a0,a0,1056 # 50000538 <kprintf+0x2f8>
+    50000120:	120000ef          	jal	ra,50000240 <kprintf>
+
+	if (1){
+		kprintf("PASS");
+    50000124:	00000517          	auipc	a0,0x0
+    50000128:	42c50513          	addi	a0,a0,1068 # 50000550 <kprintf+0x310>
+    5000012c:	114000ef          	jal	ra,50000240 <kprintf>
+	}
+	else{
+		kprintf("FAIL");
+	}
+
+	kprintf(SHUTDOWN_FLAG_STR);  // donnot delete
+    50000130:	00000797          	auipc	a5,0x0
+    50000134:	38878793          	addi	a5,a5,904 # 500004b8 <kprintf+0x278>
+    50000138:	00078513          	mv	a0,a5
+    5000013c:	104000ef          	jal	ra,50000240 <kprintf>
+
+	return 0;
+    50000140:	00000793          	li	a5,0
+}
+    50000144:	00078513          	mv	a0,a5
+    50000148:	01813083          	ld	ra,24(sp)
+    5000014c:	01013403          	ld	s0,16(sp)
+    50000150:	02010113          	addi	sp,sp,32
+    50000154:	00008067          	ret
+
+0000000050000158 <kputc>:
+#endif
+static volatile uint32_t * const uart = (void *)(UART_CTRL_ADDR);
+static char * const SHUTDOWN_FLAG_STR = "ST Simulation Ended!";
+
+static inline void kputc(char c)
+{
+    50000158:	fd010113          	addi	sp,sp,-48
+    5000015c:	02813423          	sd	s0,40(sp)
+    50000160:	03010413          	addi	s0,sp,48
+    50000164:	00050793          	mv	a5,a0
+    50000168:	fcf40fa3          	sb	a5,-33(s0)
+  //volatile uint32_t temp_value;
+	volatile uint32_t *tx = &REG32(uart, UART_REG_TXFIFO);
+    5000016c:	640007b7          	lui	a5,0x64000
+    50000170:	fef43423          	sd	a5,-24(s0)
+#ifdef __riscv_atomic
+	int32_t r;
+	do {
+		__asm__ __volatile__ (
+    50000174:	fe843683          	ld	a3,-24(s0)
+    50000178:	fdf44783          	lbu	a5,-33(s0)
+    5000017c:	fe843703          	ld	a4,-24(s0)
+    50000180:	40f6a7af          	amoor.w	a5,a5,(a3)
+    50000184:	fef42223          	sw	a5,-28(s0)
+			"amoor.w %0, %2, %1\n"
+			: "=r" (r), "+A" (*tx)
+			: "r" (c));
+	} while (r < 0);
+    50000188:	fe442783          	lw	a5,-28(s0)
+    5000018c:	0007879b          	sext.w	a5,a5
+    50000190:	fe07c2e3          	bltz	a5,50000174 <kputc+0x1c>
+  //   temp_value = REG32(uart, UART_REG_TXFIFO);
+  // }
+  while ((int32_t)(*tx) < 0);
+	*tx = c;
+#endif
+}
+    50000194:	00000013          	nop
+    50000198:	02813403          	ld	s0,40(sp)
+    5000019c:	03010113          	addi	sp,sp,48
+    500001a0:	00008067          	ret
+
+00000000500001a4 <_kputs>:
+#include <stdbool.h>
+
+#include "kprintf.h"
+
+static inline void _kputs(const char *s)
+{
+    500001a4:	fd010113          	addi	sp,sp,-48
+    500001a8:	02113423          	sd	ra,40(sp)
+    500001ac:	02813023          	sd	s0,32(sp)
+    500001b0:	03010413          	addi	s0,sp,48
+    500001b4:	fca43c23          	sd	a0,-40(s0)
+	char c;
+	for (; (c = *s) != '\0'; s++)
+    500001b8:	01c0006f          	j	500001d4 <_kputs+0x30>
+		kputc(c);
+    500001bc:	fef44783          	lbu	a5,-17(s0)
+    500001c0:	00078513          	mv	a0,a5
+    500001c4:	f95ff0ef          	jal	ra,50000158 <kputc>
+	for (; (c = *s) != '\0'; s++)
+    500001c8:	fd843783          	ld	a5,-40(s0)
+    500001cc:	00178793          	addi	a5,a5,1 # 64000001 <_sp+0x13f00001>
+    500001d0:	fcf43c23          	sd	a5,-40(s0)
+    500001d4:	fd843783          	ld	a5,-40(s0)
+    500001d8:	0007c783          	lbu	a5,0(a5)
+    500001dc:	fef407a3          	sb	a5,-17(s0)
+    500001e0:	fef44783          	lbu	a5,-17(s0)
+    500001e4:	0ff7f793          	andi	a5,a5,255
+    500001e8:	fc079ae3          	bnez	a5,500001bc <_kputs+0x18>
+}
+    500001ec:	00000013          	nop
+    500001f0:	02813083          	ld	ra,40(sp)
+    500001f4:	02013403          	ld	s0,32(sp)
+    500001f8:	03010113          	addi	sp,sp,48
+    500001fc:	00008067          	ret
+
+0000000050000200 <kputs>:
+
+void kputs(const char *s)
+{
+    50000200:	fe010113          	addi	sp,sp,-32
+    50000204:	00113c23          	sd	ra,24(sp)
+    50000208:	00813823          	sd	s0,16(sp)
+    5000020c:	02010413          	addi	s0,sp,32
+    50000210:	fea43423          	sd	a0,-24(s0)
+	_kputs(s);
+    50000214:	fe843503          	ld	a0,-24(s0)
+    50000218:	f8dff0ef          	jal	ra,500001a4 <_kputs>
+	kputc('\r');
+    5000021c:	00d00513          	li	a0,13
+    50000220:	f39ff0ef          	jal	ra,50000158 <kputc>
+	kputc('\n');
+    50000224:	00a00513          	li	a0,10
+    50000228:	f31ff0ef          	jal	ra,50000158 <kputc>
+}
+    5000022c:	00000013          	nop
+    50000230:	01813083          	ld	ra,24(sp)
+    50000234:	01013403          	ld	s0,16(sp)
+    50000238:	02010113          	addi	sp,sp,32
+    5000023c:	00008067          	ret
+
+0000000050000240 <kprintf>:
+
+void kprintf(const char *fmt, ...)
+{
+    50000240:	f7010113          	addi	sp,sp,-144
+    50000244:	04113423          	sd	ra,72(sp)
+    50000248:	04813023          	sd	s0,64(sp)
+    5000024c:	05010413          	addi	s0,sp,80
+    50000250:	faa43c23          	sd	a0,-72(s0)
+    50000254:	00b43423          	sd	a1,8(s0)
+    50000258:	00c43823          	sd	a2,16(s0)
+    5000025c:	00d43c23          	sd	a3,24(s0)
+    50000260:	02e43023          	sd	a4,32(s0)
+    50000264:	02f43423          	sd	a5,40(s0)
+    50000268:	03043823          	sd	a6,48(s0)
+    5000026c:	03143c23          	sd	a7,56(s0)
+	va_list vl;
+	bool is_format, is_long, is_char;
+	char c;
+
+	va_start(vl, fmt);
+    50000270:	04040793          	addi	a5,s0,64
+    50000274:	fc878793          	addi	a5,a5,-56
+    50000278:	fcf43023          	sd	a5,-64(s0)
+	is_format = false;
+    5000027c:	fe0407a3          	sb	zero,-17(s0)
+	is_long = false;
+    50000280:	fe040723          	sb	zero,-18(s0)
+	is_char = false;
+    50000284:	fe0406a3          	sb	zero,-19(s0)
+	
+	while ((c = *fmt++) != '\0') {
+    50000288:	1b40006f          	j	5000043c <kprintf+0x1fc>
+		if (is_format) {
+    5000028c:	fef44783          	lbu	a5,-17(s0)
+    50000290:	0ff7f793          	andi	a5,a5,255
+    50000294:	18078063          	beqz	a5,50000414 <kprintf+0x1d4>
+			switch (c) {
+    50000298:	fd744783          	lbu	a5,-41(s0)
+    5000029c:	0007879b          	sext.w	a5,a5
+    500002a0:	f9d7869b          	addiw	a3,a5,-99
+    500002a4:	0006871b          	sext.w	a4,a3
+    500002a8:	01500793          	li	a5,21
+    500002ac:	14e7ec63          	bltu	a5,a4,50000404 <kprintf+0x1c4>
+    500002b0:	02069793          	slli	a5,a3,0x20
+    500002b4:	0207d793          	srli	a5,a5,0x20
+    500002b8:	00279713          	slli	a4,a5,0x2
+    500002bc:	00000797          	auipc	a5,0x0
+    500002c0:	2b478793          	addi	a5,a5,692 # 50000570 <kprintf+0x330>
+    500002c4:	00f707b3          	add	a5,a4,a5
+    500002c8:	0007a783          	lw	a5,0(a5)
+    500002cc:	0007871b          	sext.w	a4,a5
+    500002d0:	00000797          	auipc	a5,0x0
+    500002d4:	2a078793          	addi	a5,a5,672 # 50000570 <kprintf+0x330>
+    500002d8:	00f707b3          	add	a5,a4,a5
+    500002dc:	00078067          	jr	a5
+			case 'l':
+				is_long = true;
+    500002e0:	00100793          	li	a5,1
+    500002e4:	fef40723          	sb	a5,-18(s0)
+				continue;
+    500002e8:	1540006f          	j	5000043c <kprintf+0x1fc>
+			case 'h':
+				is_char = true;
+    500002ec:	00100793          	li	a5,1
+    500002f0:	fef406a3          	sb	a5,-19(s0)
+				continue;
+    500002f4:	1480006f          	j	5000043c <kprintf+0x1fc>
+			case 'x': {
+				unsigned long n;
+				long i;
+				if (is_long) {
+    500002f8:	fee44783          	lbu	a5,-18(s0)
+    500002fc:	0ff7f793          	andi	a5,a5,255
+    50000300:	02078263          	beqz	a5,50000324 <kprintf+0xe4>
+					n = va_arg(vl, unsigned long);
+    50000304:	fc043783          	ld	a5,-64(s0)
+    50000308:	00878713          	addi	a4,a5,8
+    5000030c:	fce43023          	sd	a4,-64(s0)
+    50000310:	0007b783          	ld	a5,0(a5)
+    50000314:	fef43023          	sd	a5,-32(s0)
+					i = (sizeof(unsigned long) << 3) - 4;
+    50000318:	03c00793          	li	a5,60
+    5000031c:	fcf43c23          	sd	a5,-40(s0)
+    50000320:	09c0006f          	j	500003bc <kprintf+0x17c>
+				} else {
+					n = va_arg(vl, unsigned int);
+    50000324:	fc043783          	ld	a5,-64(s0)
+    50000328:	00878713          	addi	a4,a5,8
+    5000032c:	fce43023          	sd	a4,-64(s0)
+    50000330:	0007a783          	lw	a5,0(a5)
+    50000334:	02079793          	slli	a5,a5,0x20
+    50000338:	0207d793          	srli	a5,a5,0x20
+    5000033c:	fef43023          	sd	a5,-32(s0)
+					i = is_char ? 4 : (sizeof(unsigned int) << 3) - 4;
+    50000340:	fed44783          	lbu	a5,-19(s0)
+    50000344:	0ff7f793          	andi	a5,a5,255
+    50000348:	00078663          	beqz	a5,50000354 <kprintf+0x114>
+    5000034c:	00400793          	li	a5,4
+    50000350:	0080006f          	j	50000358 <kprintf+0x118>
+    50000354:	01c00793          	li	a5,28
+    50000358:	fcf43c23          	sd	a5,-40(s0)
+				}
+				for (; i >= 0; i -= 4) {
+    5000035c:	0600006f          	j	500003bc <kprintf+0x17c>
+					long d;
+					d = (n >> i) & 0xF;
+    50000360:	fd843783          	ld	a5,-40(s0)
+    50000364:	0007879b          	sext.w	a5,a5
+    50000368:	fe043703          	ld	a4,-32(s0)
+    5000036c:	00f757b3          	srl	a5,a4,a5
+    50000370:	00f7f793          	andi	a5,a5,15
+    50000374:	fcf43423          	sd	a5,-56(s0)
+					kputc(d < 10 ? '0' + d : 'a' + d - 10);
+    50000378:	fc843703          	ld	a4,-56(s0)
+    5000037c:	00900793          	li	a5,9
+    50000380:	00e7cc63          	blt	a5,a4,50000398 <kprintf+0x158>
+    50000384:	fc843783          	ld	a5,-56(s0)
+    50000388:	0ff7f793          	andi	a5,a5,255
+    5000038c:	0307879b          	addiw	a5,a5,48
+    50000390:	0ff7f793          	andi	a5,a5,255
+    50000394:	0140006f          	j	500003a8 <kprintf+0x168>
+    50000398:	fc843783          	ld	a5,-56(s0)
+    5000039c:	0ff7f793          	andi	a5,a5,255
+    500003a0:	0577879b          	addiw	a5,a5,87
+    500003a4:	0ff7f793          	andi	a5,a5,255
+    500003a8:	00078513          	mv	a0,a5
+    500003ac:	dadff0ef          	jal	ra,50000158 <kputc>
+				for (; i >= 0; i -= 4) {
+    500003b0:	fd843783          	ld	a5,-40(s0)
+    500003b4:	ffc78793          	addi	a5,a5,-4
+    500003b8:	fcf43c23          	sd	a5,-40(s0)
+    500003bc:	fd843783          	ld	a5,-40(s0)
+    500003c0:	fa07d0e3          	bgez	a5,50000360 <kprintf+0x120>
+				}
+				break;
+    500003c4:	0400006f          	j	50000404 <kprintf+0x1c4>
+			}
+			case 's':
+				//kputc('s');
+				_kputs(va_arg(vl, const char *));
+    500003c8:	fc043783          	ld	a5,-64(s0)
+    500003cc:	00878713          	addi	a4,a5,8
+    500003d0:	fce43023          	sd	a4,-64(s0)
+    500003d4:	0007b783          	ld	a5,0(a5)
+    500003d8:	00078513          	mv	a0,a5
+    500003dc:	dc9ff0ef          	jal	ra,500001a4 <_kputs>
+				break;
+    500003e0:	0240006f          	j	50000404 <kprintf+0x1c4>
+			case 'c':
+				kputc(va_arg(vl, int));
+    500003e4:	fc043783          	ld	a5,-64(s0)
+    500003e8:	00878713          	addi	a4,a5,8
+    500003ec:	fce43023          	sd	a4,-64(s0)
+    500003f0:	0007a783          	lw	a5,0(a5)
+    500003f4:	0ff7f793          	andi	a5,a5,255
+    500003f8:	00078513          	mv	a0,a5
+    500003fc:	d5dff0ef          	jal	ra,50000158 <kputc>
+				break;
+    50000400:	00000013          	nop
+			}
+			is_format = false;
+    50000404:	fe0407a3          	sb	zero,-17(s0)
+			is_long = false;
+    50000408:	fe040723          	sb	zero,-18(s0)
+			is_char = false;
+    5000040c:	fe0406a3          	sb	zero,-19(s0)
+    50000410:	02c0006f          	j	5000043c <kprintf+0x1fc>
+		} else if (c == '%') {
+    50000414:	fd744783          	lbu	a5,-41(s0)
+    50000418:	0ff7f713          	andi	a4,a5,255
+    5000041c:	02500793          	li	a5,37
+    50000420:	00f71863          	bne	a4,a5,50000430 <kprintf+0x1f0>
+			is_format = true;
+    50000424:	00100793          	li	a5,1
+    50000428:	fef407a3          	sb	a5,-17(s0)
+    5000042c:	0100006f          	j	5000043c <kprintf+0x1fc>
+		} else {
+			kputc(c);
+    50000430:	fd744783          	lbu	a5,-41(s0)
+    50000434:	00078513          	mv	a0,a5
+    50000438:	d21ff0ef          	jal	ra,50000158 <kputc>
+	while ((c = *fmt++) != '\0') {
+    5000043c:	fb843783          	ld	a5,-72(s0)
+    50000440:	00178713          	addi	a4,a5,1
+    50000444:	fae43c23          	sd	a4,-72(s0)
+    50000448:	0007c783          	lbu	a5,0(a5)
+    5000044c:	fcf40ba3          	sb	a5,-41(s0)
+    50000450:	fd744783          	lbu	a5,-41(s0)
+    50000454:	0ff7f793          	andi	a5,a5,255
+    50000458:	e2079ae3          	bnez	a5,5000028c <kprintf+0x4c>
+		}
+	}
+	kputc('\n');
+    5000045c:	00a00513          	li	a0,10
+    50000460:	cf9ff0ef          	jal	ra,50000158 <kputc>
+	va_end(vl);
+}
+    50000464:	00000013          	nop
+    50000468:	04813083          	ld	ra,72(sp)
+    5000046c:	04013403          	ld	s0,64(sp)
+    50000470:	09010113          	addi	sp,sp,144
+    50000474:	00008067          	ret
+	...

@@ -1,0 +1,43 @@
+
+bootrom.rv64.elf:     file format elf64-littleriscv
+
+
+Disassembly of section .text.start:
+
+0000000000010000 <_start>:
+   10000:	00800913          	li	s2,8
+   10004:	30491073          	csrw	mie,s2
+   10008:	00000493          	li	s1,0
+   1000c:	f1402973          	csrr	s2,mhartid
+   10010:	05249263          	bne	s1,s2,10054 <_start+0x54>
+   10014:	00088137          	lui	sp,0x88
+   10018:	fff1011b          	addiw	sp,sp,-1 # 87fff <_start+0x77fff>
+   1001c:	00c11113          	slli	sp,sp,0xc
+   10020:	510007b7          	lui	a5,0x51000
+   10024:	04078793          	addi	a5,a5,64 # 51000040 <_start+0x50ff0040>
+   10028:	00800713          	li	a4,8
+   1002c:	00e7a023          	sw	a4,0(a5)
+   10030:	7fff0297          	auipc	t0,0x7fff0
+   10034:	00028067          	jr	t0 # 80000030 <_start+0x7fff0030>
+   10038:	020004b7          	lui	s1,0x2000
+   1003c:	00100913          	li	s2,1
+   10040:	0124a023          	sw	s2,0(s1) # 2000000 <_start+0x1ff0000>
+   10044:	00448493          	addi	s1,s1,4
+   10048:	02000937          	lui	s2,0x2000
+   1004c:	0809091b          	addiw	s2,s2,128 # 2000080 <_start+0x1ff0080>
+   10050:	ff24c6e3          	blt	s1,s2,1003c <_start+0x3c>
+   10054:	10500073          	wfi
+   10058:	34402973          	csrr	s2,mip
+   1005c:	00897913          	andi	s2,s2,8
+   10060:	fe090ae3          	beqz	s2,10054 <_start+0x54>
+   10064:	020004b7          	lui	s1,0x2000
+   10068:	f1402973          	csrr	s2,mhartid
+   1006c:	00291913          	slli	s2,s2,0x2
+   10070:	00990933          	add	s2,s2,s1
+   10074:	00092023          	sw	zero,0(s2)
+   10078:	0004a903          	lw	s2,0(s1) # 2000000 <_start+0x1ff0000>
+   1007c:	fe091ee3          	bnez	s2,10078 <_start+0x78>
+   10080:	00448493          	addi	s1,s1,4
+   10084:	02000937          	lui	s2,0x2000
+   10088:	0809091b          	addiw	s2,s2,128 # 2000080 <_start+0x1ff0080>
+   1008c:	ff24c6e3          	blt	s1,s2,10078 <_start+0x78>

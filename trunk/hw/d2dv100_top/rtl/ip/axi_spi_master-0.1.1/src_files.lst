@@ -1,0 +1,7 @@
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/ip/axi_spi_master-0.1.1/axi_spi_master.sv
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/ip/axi_spi_master-0.1.1/spi_master_axi_if.sv
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/ip/axi_spi_master-0.1.1/spi_master_clkgen.sv
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/ip/axi_spi_master-0.1.1/spi_master_controller.sv
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/ip/axi_spi_master-0.1.1/spi_master_fifo.sv
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/ip/axi_spi_master-0.1.1/spi_master_rx.sv
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/ip/axi_spi_master-0.1.1/spi_master_tx.sv

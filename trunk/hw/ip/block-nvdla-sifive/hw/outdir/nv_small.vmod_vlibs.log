@@ -1,0 +1,361 @@
+command: cd vmod/vlibs;make PROJECT=nv_small 
+make[1]: Entering directory '/work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/vlibs'
+../../tools/bin/vcp -i assertion_header.vh -o ../../outdir/nv_small/vmod/vlibs/assertion_header.vh.vcp -imacros ../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../vmod/plugins -Meperl ../../tools/bin/eperl -o ../../outdir/nv_small/vmod/vlibs/assertion_header.vh ../../outdir/nv_small/vmod/vlibs/assertion_header.vh.vcp 
+../../tools/bin/vcp -i assertion_task.vh -o ../../outdir/nv_small/vmod/vlibs/assertion_task.vh.vcp -imacros ../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../vmod/plugins -Meperl ../../tools/bin/eperl -o ../../outdir/nv_small/vmod/vlibs/assertion_task.vh ../../outdir/nv_small/vmod/vlibs/assertion_task.vh.vcp 
+../../tools/bin/vcp -i AN2D4PO4.v -o ../../outdir/nv_small/vmod/vlibs/AN2D4PO4.v.vcp -imacros ../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../vmod/plugins -Meperl ../../tools/bin/eperl -o ../../outdir/nv_small/vmod/vlibs/AN2D4PO4.v ../../outdir/nv_small/vmod/vlibs/AN2D4PO4.v.vcp 
+../../tools/bin/vcp -i CKLNQD12.v -o ../../outdir/nv_small/vmod/vlibs/CKLNQD12.v.vcp -imacros ../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../vmod/plugins -Meperl ../../tools/bin/eperl -o ../../outdir/nv_small/vmod/vlibs/CKLNQD12.v ../../outdir/nv_small/vmod/vlibs/CKLNQD12.v.vcp 
+../../tools/bin/vcp -i CKLNQD12PO4.v -o ../../outdir/nv_small/vmod/vlibs/CKLNQD12PO4.v.vcp -imacros ../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../vmod/plugins -Meperl ../../tools/bin/eperl -o ../../outdir/nv_small/vmod/vlibs/CKLNQD12PO4.v ../../outdir/nv_small/vmod/vlibs/CKLNQD12PO4.v.vcp 
+../../tools/bin/vcp -i HLS_cdp_icvt.v -o ../../outdir/nv_small/vmod/vlibs/HLS_cdp_icvt.v.vcp -imacros ../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../vmod/plugins -Meperl ../../tools/bin/eperl -o ../../outdir/nv_small/vmod/vlibs/HLS_cdp_icvt.v ../../outdir/nv_small/vmod/vlibs/HLS_cdp_icvt.v.vcp 
+../../tools/bin/vcp -i HLS_cdp_ocvt.v -o ../../outdir/nv_small/vmod/vlibs/HLS_cdp_ocvt.v.vcp -imacros ../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../vmod/plugins -Meperl ../../tools/bin/eperl -o ../../outdir/nv_small/vmod/vlibs/HLS_cdp_ocvt.v ../../outdir/nv_small/vmod/vlibs/HLS_cdp_ocvt.v.vcp 
+../../tools/bin/vcp -i HLS_fp16_to_fp17.v -o ../../outdir/nv_small/vmod/vlibs/HLS_fp16_to_fp17.v.vcp -imacros ../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../vmod/plugins -Meperl ../../tools/bin/eperl -o ../../outdir/nv_small/vmod/vlibs/HLS_fp16_to_fp17.v ../../outdir/nv_small/vmod/vlibs/HLS_fp16_to_fp17.v.vcp 
+../../tools/bin/vcp -i HLS_fp16_to_fp32.v -o ../../outdir/nv_small/vmod/vlibs/HLS_fp16_to_fp32.v.vcp -imacros ../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../vmod/plugins -Meperl ../../tools/bin/eperl -o ../../outdir/nv_small/vmod/vlibs/HLS_fp16_to_fp32.v ../../outdir/nv_small/vmod/vlibs/HLS_fp16_to_fp32.v.vcp 
+../../tools/bin/vcp -i HLS_fp17_add.v -o ../../outdir/nv_small/vmod/vlibs/HLS_fp17_add.v.vcp -imacros ../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../vmod/plugins -Meperl ../../tools/bin/eperl -o ../../outdir/nv_small/vmod/vlibs/HLS_fp17_add.v ../../outdir/nv_small/vmod/vlibs/HLS_fp17_add.v.vcp 
+../../tools/bin/vcp -i HLS_fp17_mul.v -o ../../outdir/nv_small/vmod/vlibs/HLS_fp17_mul.v.vcp -imacros ../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../vmod/plugins -Meperl ../../tools/bin/eperl -o ../../outdir/nv_small/vmod/vlibs/HLS_fp17_mul.v ../../outdir/nv_small/vmod/vlibs/HLS_fp17_mul.v.vcp 
+../../tools/bin/vcp -i HLS_fp17_sub.v -o ../../outdir/nv_small/vmod/vlibs/HLS_fp17_sub.v.vcp -imacros ../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../vmod/plugins -Meperl ../../tools/bin/eperl -o ../../outdir/nv_small/vmod/vlibs/HLS_fp17_sub.v ../../outdir/nv_small/vmod/vlibs/HLS_fp17_sub.v.vcp 
+../../tools/bin/vcp -i HLS_fp17_to_fp16.v -o ../../outdir/nv_small/vmod/vlibs/HLS_fp17_to_fp16.v.vcp -imacros ../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../vmod/plugins -Meperl ../../tools/bin/eperl -o ../../outdir/nv_small/vmod/vlibs/HLS_fp17_to_fp16.v ../../outdir/nv_small/vmod/vlibs/HLS_fp17_to_fp16.v.vcp 
+../../tools/bin/vcp -i HLS_fp17_to_fp32.v -o ../../outdir/nv_small/vmod/vlibs/HLS_fp17_to_fp32.v.vcp -imacros ../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../vmod/plugins -Meperl ../../tools/bin/eperl -o ../../outdir/nv_small/vmod/vlibs/HLS_fp17_to_fp32.v ../../outdir/nv_small/vmod/vlibs/HLS_fp17_to_fp32.v.vcp 
+../../tools/bin/vcp -i HLS_fp32_add.v -o ../../outdir/nv_small/vmod/vlibs/HLS_fp32_add.v.vcp -imacros ../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../vmod/plugins -Meperl ../../tools/bin/eperl -o ../../outdir/nv_small/vmod/vlibs/HLS_fp32_add.v ../../outdir/nv_small/vmod/vlibs/HLS_fp32_add.v.vcp 
+../../tools/bin/vcp -i HLS_fp32_mul.v -o ../../outdir/nv_small/vmod/vlibs/HLS_fp32_mul.v.vcp -imacros ../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../vmod/plugins -Meperl ../../tools/bin/eperl -o ../../outdir/nv_small/vmod/vlibs/HLS_fp32_mul.v ../../outdir/nv_small/vmod/vlibs/HLS_fp32_mul.v.vcp 
+../../tools/bin/vcp -i HLS_fp32_sub.v -o ../../outdir/nv_small/vmod/vlibs/HLS_fp32_sub.v.vcp -imacros ../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../vmod/plugins -Meperl ../../tools/bin/eperl -o ../../outdir/nv_small/vmod/vlibs/HLS_fp32_sub.v ../../outdir/nv_small/vmod/vlibs/HLS_fp32_sub.v.vcp 
+../../tools/bin/vcp -i HLS_fp32_to_fp16.v -o ../../outdir/nv_small/vmod/vlibs/HLS_fp32_to_fp16.v.vcp -imacros ../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../vmod/plugins -Meperl ../../tools/bin/eperl -o ../../outdir/nv_small/vmod/vlibs/HLS_fp32_to_fp16.v ../../outdir/nv_small/vmod/vlibs/HLS_fp32_to_fp16.v.vcp 
+../../tools/bin/vcp -i HLS_fp32_to_fp17.v -o ../../outdir/nv_small/vmod/vlibs/HLS_fp32_to_fp17.v.vcp -imacros ../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../vmod/plugins -Meperl ../../tools/bin/eperl -o ../../outdir/nv_small/vmod/vlibs/HLS_fp32_to_fp17.v ../../outdir/nv_small/vmod/vlibs/HLS_fp32_to_fp17.v.vcp 
+../../tools/bin/vcp -i HLS_uint16_to_fp17.v -o ../../outdir/nv_small/vmod/vlibs/HLS_uint16_to_fp17.v.vcp -imacros ../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../vmod/plugins -Meperl ../../tools/bin/eperl -o ../../outdir/nv_small/vmod/vlibs/HLS_uint16_to_fp17.v ../../outdir/nv_small/vmod/vlibs/HLS_uint16_to_fp17.v.vcp 
+../../tools/bin/vcp -i LNQD1PO4.v -o ../../outdir/nv_small/vmod/vlibs/LNQD1PO4.v.vcp -imacros ../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../vmod/plugins -Meperl ../../tools/bin/eperl -o ../../outdir/nv_small/vmod/vlibs/LNQD1PO4.v ../../outdir/nv_small/vmod/vlibs/LNQD1PO4.v.vcp 
+../../tools/bin/vcp -i MUX2D4.v -o ../../outdir/nv_small/vmod/vlibs/MUX2D4.v.vcp -imacros ../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../vmod/plugins -Meperl ../../tools/bin/eperl -o ../../outdir/nv_small/vmod/vlibs/MUX2D4.v ../../outdir/nv_small/vmod/vlibs/MUX2D4.v.vcp 
+../../tools/bin/vcp -i MUX2HDD2.v -o ../../outdir/nv_small/vmod/vlibs/MUX2HDD2.v.vcp -imacros ../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../vmod/plugins -Meperl ../../tools/bin/eperl -o ../../outdir/nv_small/vmod/vlibs/MUX2HDD2.v ../../outdir/nv_small/vmod/vlibs/MUX2HDD2.v.vcp 
+../../tools/bin/vcp -i NV_BLKBOX_BUFFER.v -o ../../outdir/nv_small/vmod/vlibs/NV_BLKBOX_BUFFER.v.vcp -imacros ../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../vmod/plugins -Meperl ../../tools/bin/eperl -o ../../outdir/nv_small/vmod/vlibs/NV_BLKBOX_BUFFER.v ../../outdir/nv_small/vmod/vlibs/NV_BLKBOX_BUFFER.v.vcp 
+../../tools/bin/vcp -i NV_BLKBOX_SINK.v -o ../../outdir/nv_small/vmod/vlibs/NV_BLKBOX_SINK.v.vcp -imacros ../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../vmod/plugins -Meperl ../../tools/bin/eperl -o ../../outdir/nv_small/vmod/vlibs/NV_BLKBOX_SINK.v ../../outdir/nv_small/vmod/vlibs/NV_BLKBOX_SINK.v.vcp 
+../../tools/bin/vcp -i NV_BLKBOX_SRC0.v -o ../../outdir/nv_small/vmod/vlibs/NV_BLKBOX_SRC0.v.vcp -imacros ../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../vmod/plugins -Meperl ../../tools/bin/eperl -o ../../outdir/nv_small/vmod/vlibs/NV_BLKBOX_SRC0.v ../../outdir/nv_small/vmod/vlibs/NV_BLKBOX_SRC0.v.vcp 
+../../tools/bin/vcp -i NV_BLKBOX_SRC0_X.v -o ../../outdir/nv_small/vmod/vlibs/NV_BLKBOX_SRC0_X.v.vcp -imacros ../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../vmod/plugins -Meperl ../../tools/bin/eperl -o ../../outdir/nv_small/vmod/vlibs/NV_BLKBOX_SRC0_X.v ../../outdir/nv_small/vmod/vlibs/NV_BLKBOX_SRC0_X.v.vcp 
+../../tools/bin/vcp -i NV_CLK_gate_power.v -o ../../outdir/nv_small/vmod/vlibs/NV_CLK_gate_power.v.vcp -imacros ../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../vmod/plugins -Meperl ../../tools/bin/eperl -o ../../outdir/nv_small/vmod/vlibs/NV_CLK_gate_power.v ../../outdir/nv_small/vmod/vlibs/NV_CLK_gate_power.v.vcp 
+../../tools/bin/vcp -i NV_DW02_tree.v -o ../../outdir/nv_small/vmod/vlibs/NV_DW02_tree.v.vcp -imacros ../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../vmod/plugins -Meperl ../../tools/bin/eperl -o ../../outdir/nv_small/vmod/vlibs/NV_DW02_tree.v ../../outdir/nv_small/vmod/vlibs/NV_DW02_tree.v.vcp 
+../../tools/bin/vcp -i NV_DW_lsd.v -o ../../outdir/nv_small/vmod/vlibs/NV_DW_lsd.v.vcp -imacros ../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../vmod/plugins -Meperl ../../tools/bin/eperl -o ../../outdir/nv_small/vmod/vlibs/NV_DW_lsd.v ../../outdir/nv_small/vmod/vlibs/NV_DW_lsd.v.vcp 
+../../tools/bin/vcp -i NV_DW_minmax.v -o ../../outdir/nv_small/vmod/vlibs/NV_DW_minmax.v.vcp -imacros ../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../vmod/plugins -Meperl ../../tools/bin/eperl -o ../../outdir/nv_small/vmod/vlibs/NV_DW_minmax.v ../../outdir/nv_small/vmod/vlibs/NV_DW_minmax.v.vcp 
+../../tools/bin/vcp -i NV_NVDLA_CDP_HLS_icvt.v -o ../../outdir/nv_small/vmod/vlibs/NV_NVDLA_CDP_HLS_icvt.v.vcp -imacros ../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../vmod/plugins -Meperl ../../tools/bin/eperl -o ../../outdir/nv_small/vmod/vlibs/NV_NVDLA_CDP_HLS_icvt.v ../../outdir/nv_small/vmod/vlibs/NV_NVDLA_CDP_HLS_icvt.v.vcp 
+../../tools/bin/vcp -i NV_NVDLA_CDP_HLS_ocvt.v -o ../../outdir/nv_small/vmod/vlibs/NV_NVDLA_CDP_HLS_ocvt.v.vcp -imacros ../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../vmod/plugins -Meperl ../../tools/bin/eperl -o ../../outdir/nv_small/vmod/vlibs/NV_NVDLA_CDP_HLS_ocvt.v ../../outdir/nv_small/vmod/vlibs/NV_NVDLA_CDP_HLS_ocvt.v.vcp 
+../../tools/bin/vcp -i NV_NVDLA_HLS_saturate.v -o ../../outdir/nv_small/vmod/vlibs/NV_NVDLA_HLS_saturate.v.vcp -imacros ../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../vmod/plugins -Meperl ../../tools/bin/eperl -o ../../outdir/nv_small/vmod/vlibs/NV_NVDLA_HLS_saturate.v ../../outdir/nv_small/vmod/vlibs/NV_NVDLA_HLS_saturate.v.vcp 
+../../tools/bin/vcp -i NV_NVDLA_HLS_shiftleftsu.v -o ../../outdir/nv_small/vmod/vlibs/NV_NVDLA_HLS_shiftleftsu.v.vcp -imacros ../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../vmod/plugins -Meperl ../../tools/bin/eperl -o ../../outdir/nv_small/vmod/vlibs/NV_NVDLA_HLS_shiftleftsu.v ../../outdir/nv_small/vmod/vlibs/NV_NVDLA_HLS_shiftleftsu.v.vcp 
+../../tools/bin/vcp -i NV_NVDLA_HLS_shiftrightsatsu.v -o ../../outdir/nv_small/vmod/vlibs/NV_NVDLA_HLS_shiftrightsatsu.v.vcp -imacros ../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../vmod/plugins -Meperl ../../tools/bin/eperl -o ../../outdir/nv_small/vmod/vlibs/NV_NVDLA_HLS_shiftrightsatsu.v ../../outdir/nv_small/vmod/vlibs/NV_NVDLA_HLS_shiftrightsatsu.v.vcp 
+../../tools/bin/vcp -i NV_NVDLA_HLS_shiftrightss.v -o ../../outdir/nv_small/vmod/vlibs/NV_NVDLA_HLS_shiftrightss.v.vcp -imacros ../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../vmod/plugins -Meperl ../../tools/bin/eperl -o ../../outdir/nv_small/vmod/vlibs/NV_NVDLA_HLS_shiftrightss.v ../../outdir/nv_small/vmod/vlibs/NV_NVDLA_HLS_shiftrightss.v.vcp 
+../../tools/bin/vcp -i NV_NVDLA_HLS_shiftrightsu.v -o ../../outdir/nv_small/vmod/vlibs/NV_NVDLA_HLS_shiftrightsu.v.vcp -imacros ../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../vmod/plugins -Meperl ../../tools/bin/eperl -o ../../outdir/nv_small/vmod/vlibs/NV_NVDLA_HLS_shiftrightsu.v ../../outdir/nv_small/vmod/vlibs/NV_NVDLA_HLS_shiftrightsu.v.vcp 
+../../tools/bin/vcp -i NV_NVDLA_HLS_shiftrightusz.v -o ../../outdir/nv_small/vmod/vlibs/NV_NVDLA_HLS_shiftrightusz.v.vcp -imacros ../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../vmod/plugins -Meperl ../../tools/bin/eperl -o ../../outdir/nv_small/vmod/vlibs/NV_NVDLA_HLS_shiftrightusz.v ../../outdir/nv_small/vmod/vlibs/NV_NVDLA_HLS_shiftrightusz.v.vcp 
+../../tools/bin/vcp -i oneHotClk_async_read_clock.v -o ../../outdir/nv_small/vmod/vlibs/oneHotClk_async_read_clock.v.vcp -imacros ../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../vmod/plugins -Meperl ../../tools/bin/eperl -o ../../outdir/nv_small/vmod/vlibs/oneHotClk_async_read_clock.v ../../outdir/nv_small/vmod/vlibs/oneHotClk_async_read_clock.v.vcp 
+../../tools/bin/vcp -i oneHotClk_async_write_clock.v -o ../../outdir/nv_small/vmod/vlibs/oneHotClk_async_write_clock.v.vcp -imacros ../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../vmod/plugins -Meperl ../../tools/bin/eperl -o ../../outdir/nv_small/vmod/vlibs/oneHotClk_async_write_clock.v ../../outdir/nv_small/vmod/vlibs/oneHotClk_async_write_clock.v.vcp 
+../../tools/bin/vcp -i OR2D1.v -o ../../outdir/nv_small/vmod/vlibs/OR2D1.v.vcp -imacros ../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../vmod/plugins -Meperl ../../tools/bin/eperl -o ../../outdir/nv_small/vmod/vlibs/OR2D1.v ../../outdir/nv_small/vmod/vlibs/OR2D1.v.vcp 
+../../tools/bin/vcp -i PGAOPV_AN2D2PO4.v -o ../../outdir/nv_small/vmod/vlibs/PGAOPV_AN2D2PO4.v.vcp -imacros ../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../vmod/plugins -Meperl ../../tools/bin/eperl -o ../../outdir/nv_small/vmod/vlibs/PGAOPV_AN2D2PO4.v ../../outdir/nv_small/vmod/vlibs/PGAOPV_AN2D2PO4.v.vcp 
+../../tools/bin/vcp -i PGAOPV_DFCNQD2PO4.v -o ../../outdir/nv_small/vmod/vlibs/PGAOPV_DFCNQD2PO4.v.vcp -imacros ../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../vmod/plugins -Meperl ../../tools/bin/eperl -o ../../outdir/nv_small/vmod/vlibs/PGAOPV_DFCNQD2PO4.v ../../outdir/nv_small/vmod/vlibs/PGAOPV_DFCNQD2PO4.v.vcp 
+../../tools/bin/vcp -i PGAOPV_INVD2PO4.v -o ../../outdir/nv_small/vmod/vlibs/PGAOPV_INVD2PO4.v.vcp -imacros ../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../vmod/plugins -Meperl ../../tools/bin/eperl -o ../../outdir/nv_small/vmod/vlibs/PGAOPV_INVD2PO4.v ../../outdir/nv_small/vmod/vlibs/PGAOPV_INVD2PO4.v.vcp 
+../../tools/bin/vcp -i p_SDFCNQD1PO4.v -o ../../outdir/nv_small/vmod/vlibs/p_SDFCNQD1PO4.v.vcp -imacros ../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../vmod/plugins -Meperl ../../tools/bin/eperl -o ../../outdir/nv_small/vmod/vlibs/p_SDFCNQD1PO4.v ../../outdir/nv_small/vmod/vlibs/p_SDFCNQD1PO4.v.vcp 
+../../tools/bin/vcp -i p_SSYNC2DO_C_PP.v -o ../../outdir/nv_small/vmod/vlibs/p_SSYNC2DO_C_PP.v.vcp -imacros ../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../vmod/plugins -Meperl ../../tools/bin/eperl -o ../../outdir/nv_small/vmod/vlibs/p_SSYNC2DO_C_PP.v ../../outdir/nv_small/vmod/vlibs/p_SSYNC2DO_C_PP.v.vcp 
+../../tools/bin/vcp -i p_SSYNC3DO.v -o ../../outdir/nv_small/vmod/vlibs/p_SSYNC3DO.v.vcp -imacros ../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../vmod/plugins -Meperl ../../tools/bin/eperl -o ../../outdir/nv_small/vmod/vlibs/p_SSYNC3DO.v ../../outdir/nv_small/vmod/vlibs/p_SSYNC3DO.v.vcp 
+../../tools/bin/vcp -i p_SSYNC3DO_C_PPP.v -o ../../outdir/nv_small/vmod/vlibs/p_SSYNC3DO_C_PPP.v.vcp -imacros ../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../vmod/plugins -Meperl ../../tools/bin/eperl -o ../../outdir/nv_small/vmod/vlibs/p_SSYNC3DO_C_PPP.v ../../outdir/nv_small/vmod/vlibs/p_SSYNC3DO_C_PPP.v.vcp 
+../../tools/bin/vcp -i p_SSYNC3DO_S_PPP.v -o ../../outdir/nv_small/vmod/vlibs/p_SSYNC3DO_S_PPP.v.vcp -imacros ../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../vmod/plugins -Meperl ../../tools/bin/eperl -o ../../outdir/nv_small/vmod/vlibs/p_SSYNC3DO_S_PPP.v ../../outdir/nv_small/vmod/vlibs/p_SSYNC3DO_S_PPP.v.vcp 
+../../tools/bin/vcp -i p_STRICTSYNC3DOTM_C_PPP.v -o ../../outdir/nv_small/vmod/vlibs/p_STRICTSYNC3DOTM_C_PPP.v.vcp -imacros ../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../vmod/plugins -Meperl ../../tools/bin/eperl -o ../../outdir/nv_small/vmod/vlibs/p_STRICTSYNC3DOTM_C_PPP.v ../../outdir/nv_small/vmod/vlibs/p_STRICTSYNC3DOTM_C_PPP.v.vcp 
+../../tools/bin/vcp -i ScanShareSel_JTAG_reg_ext_cg.v -o ../../outdir/nv_small/vmod/vlibs/ScanShareSel_JTAG_reg_ext_cg.v.vcp -imacros ../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../vmod/plugins -Meperl ../../tools/bin/eperl -o ../../outdir/nv_small/vmod/vlibs/ScanShareSel_JTAG_reg_ext_cg.v ../../outdir/nv_small/vmod/vlibs/ScanShareSel_JTAG_reg_ext_cg.v.vcp 
+../../tools/bin/vcp -i SDFCNQD1.v -o ../../outdir/nv_small/vmod/vlibs/SDFCNQD1.v.vcp -imacros ../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../vmod/plugins -Meperl ../../tools/bin/eperl -o ../../outdir/nv_small/vmod/vlibs/SDFCNQD1.v ../../outdir/nv_small/vmod/vlibs/SDFCNQD1.v.vcp 
+../../tools/bin/vcp -i SDFQD1.v -o ../../outdir/nv_small/vmod/vlibs/SDFQD1.v.vcp -imacros ../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../vmod/plugins -Meperl ../../tools/bin/eperl -o ../../outdir/nv_small/vmod/vlibs/SDFQD1.v ../../outdir/nv_small/vmod/vlibs/SDFQD1.v.vcp 
+../../tools/bin/vcp -i SDFSNQD1.v -o ../../outdir/nv_small/vmod/vlibs/SDFSNQD1.v.vcp -imacros ../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../vmod/plugins -Meperl ../../tools/bin/eperl -o ../../outdir/nv_small/vmod/vlibs/SDFSNQD1.v ../../outdir/nv_small/vmod/vlibs/SDFSNQD1.v.vcp 
+../../tools/bin/vcp -i sync2d_c_pp.v -o ../../outdir/nv_small/vmod/vlibs/sync2d_c_pp.v.vcp -imacros ../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../vmod/plugins -Meperl ../../tools/bin/eperl -o ../../outdir/nv_small/vmod/vlibs/sync2d_c_pp.v ../../outdir/nv_small/vmod/vlibs/sync2d_c_pp.v.vcp 
+../../tools/bin/vcp -i sync3d.v -o ../../outdir/nv_small/vmod/vlibs/sync3d.v.vcp -imacros ../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../vmod/plugins -Meperl ../../tools/bin/eperl -o ../../outdir/nv_small/vmod/vlibs/sync3d.v ../../outdir/nv_small/vmod/vlibs/sync3d.v.vcp 
+../../tools/bin/vcp -i sync3d_c_ppp.v -o ../../outdir/nv_small/vmod/vlibs/sync3d_c_ppp.v.vcp -imacros ../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../vmod/plugins -Meperl ../../tools/bin/eperl -o ../../outdir/nv_small/vmod/vlibs/sync3d_c_ppp.v ../../outdir/nv_small/vmod/vlibs/sync3d_c_ppp.v.vcp 
+../../tools/bin/vcp -i sync3d_s_ppp.v -o ../../outdir/nv_small/vmod/vlibs/sync3d_s_ppp.v.vcp -imacros ../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../vmod/plugins -Meperl ../../tools/bin/eperl -o ../../outdir/nv_small/vmod/vlibs/sync3d_s_ppp.v ../../outdir/nv_small/vmod/vlibs/sync3d_s_ppp.v.vcp 
+../../tools/bin/vcp -i sync_reset.v -o ../../outdir/nv_small/vmod/vlibs/sync_reset.v.vcp -imacros ../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../vmod/plugins -Meperl ../../tools/bin/eperl -o ../../outdir/nv_small/vmod/vlibs/sync_reset.v ../../outdir/nv_small/vmod/vlibs/sync_reset.v.vcp 
+../../tools/bin/vcp -i no_lib_cells.vlib -o ../../outdir/nv_small/vmod/vlibs/no_lib_cells.vlib.vcp -imacros ../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../vmod/plugins -Meperl ../../tools/bin/eperl -o ../../outdir/nv_small/vmod/vlibs/no_lib_cells.vlib ../../outdir/nv_small/vmod/vlibs/no_lib_cells.vlib.vcp 
+../../tools/bin/vcp -i nv_assert_always.vlib -o ../../outdir/nv_small/vmod/vlibs/nv_assert_always.vlib.vcp -imacros ../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../vmod/plugins -Meperl ../../tools/bin/eperl -o ../../outdir/nv_small/vmod/vlibs/nv_assert_always.vlib ../../outdir/nv_small/vmod/vlibs/nv_assert_always.vlib.vcp 
+../../tools/bin/vcp -i nv_assert_at_time_interval.vlib -o ../../outdir/nv_small/vmod/vlibs/nv_assert_at_time_interval.vlib.vcp -imacros ../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../vmod/plugins -Meperl ../../tools/bin/eperl -o ../../outdir/nv_small/vmod/vlibs/nv_assert_at_time_interval.vlib ../../outdir/nv_small/vmod/vlibs/nv_assert_at_time_interval.vlib.vcp 
+../../tools/bin/vcp -i nv_assert_fifo.vlib -o ../../outdir/nv_small/vmod/vlibs/nv_assert_fifo.vlib.vcp -imacros ../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../vmod/plugins -Meperl ../../tools/bin/eperl -o ../../outdir/nv_small/vmod/vlibs/nv_assert_fifo.vlib ../../outdir/nv_small/vmod/vlibs/nv_assert_fifo.vlib.vcp 
+../../tools/bin/vcp -i nv_assert_hold_throughout_event_interval.vlib -o ../../outdir/nv_small/vmod/vlibs/nv_assert_hold_throughout_event_interval.vlib.vcp -imacros ../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../vmod/plugins -Meperl ../../tools/bin/eperl -o ../../outdir/nv_small/vmod/vlibs/nv_assert_hold_throughout_event_interval.vlib ../../outdir/nv_small/vmod/vlibs/nv_assert_hold_throughout_event_interval.vlib.vcp 
+../../tools/bin/vcp -i nv_assert_never.vlib -o ../../outdir/nv_small/vmod/vlibs/nv_assert_never.vlib.vcp -imacros ../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../vmod/plugins -Meperl ../../tools/bin/eperl -o ../../outdir/nv_small/vmod/vlibs/nv_assert_never.vlib ../../outdir/nv_small/vmod/vlibs/nv_assert_never.vlib.vcp 
+../../tools/bin/vcp -i nv_assert_no_x.vlib -o ../../outdir/nv_small/vmod/vlibs/nv_assert_no_x.vlib.vcp -imacros ../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../vmod/plugins -Meperl ../../tools/bin/eperl -o ../../outdir/nv_small/vmod/vlibs/nv_assert_no_x.vlib ../../outdir/nv_small/vmod/vlibs/nv_assert_no_x.vlib.vcp 
+../../tools/bin/vcp -i nv_assert_one_hot.vlib -o ../../outdir/nv_small/vmod/vlibs/nv_assert_one_hot.vlib.vcp -imacros ../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../vmod/plugins -Meperl ../../tools/bin/eperl -o ../../outdir/nv_small/vmod/vlibs/nv_assert_one_hot.vlib ../../outdir/nv_small/vmod/vlibs/nv_assert_one_hot.vlib.vcp 
+../../tools/bin/vcp -i nv_assert_vld_credit_max.vlib -o ../../outdir/nv_small/vmod/vlibs/nv_assert_vld_credit_max.vlib.vcp -imacros ../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../vmod/plugins -Meperl ../../tools/bin/eperl -o ../../outdir/nv_small/vmod/vlibs/nv_assert_vld_credit_max.vlib ../../outdir/nv_small/vmod/vlibs/nv_assert_vld_credit_max.vlib.vcp 
+../../tools/bin/vcp -i nv_assert_zero_one_hot.vlib -o ../../outdir/nv_small/vmod/vlibs/nv_assert_zero_one_hot.vlib.vcp -imacros ../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../vmod/plugins -Meperl ../../tools/bin/eperl -o ../../outdir/nv_small/vmod/vlibs/nv_assert_zero_one_hot.vlib ../../outdir/nv_small/vmod/vlibs/nv_assert_zero_one_hot.vlib.vcp 
+../../tools/bin/vcp -i RANDFUNC.vlib -o ../../outdir/nv_small/vmod/vlibs/RANDFUNC.vlib.vcp -imacros ../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../vmod/plugins -Meperl ../../tools/bin/eperl -o ../../outdir/nv_small/vmod/vlibs/RANDFUNC.vlib ../../outdir/nv_small/vmod/vlibs/RANDFUNC.vlib.vcp 
+==============================================
+files are generated under /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/outdir/nv_small/vmod/vlibs
+==============================================
+make[1]: Leaving directory '/work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/vlibs'
+Processing assertion_header.vh into ../../outdir/nv_small/vmod/vlibs/assertion_header.vh.vcp
+../../outdir/nv_small/vmod/vlibs/assertion_header.vh.vcp successfully written
+eperl: ../../outdir/nv_small/vmod/vlibs/assertion_header.vh modified.
+Processing assertion_task.vh into ../../outdir/nv_small/vmod/vlibs/assertion_task.vh.vcp
+../../outdir/nv_small/vmod/vlibs/assertion_task.vh.vcp successfully written
+eperl: ../../outdir/nv_small/vmod/vlibs/assertion_task.vh modified.
+Processing AN2D4PO4.v into ../../outdir/nv_small/vmod/vlibs/AN2D4PO4.v.vcp
+../../outdir/nv_small/vmod/vlibs/AN2D4PO4.v.vcp successfully written
+eperl: ../../outdir/nv_small/vmod/vlibs/AN2D4PO4.v modified.
+Processing CKLNQD12.v into ../../outdir/nv_small/vmod/vlibs/CKLNQD12.v.vcp
+../../outdir/nv_small/vmod/vlibs/CKLNQD12.v.vcp successfully written
+eperl: ../../outdir/nv_small/vmod/vlibs/CKLNQD12.v modified.
+Processing CKLNQD12PO4.v into ../../outdir/nv_small/vmod/vlibs/CKLNQD12PO4.v.vcp
+../../outdir/nv_small/vmod/vlibs/CKLNQD12PO4.v.vcp successfully written
+eperl: ../../outdir/nv_small/vmod/vlibs/CKLNQD12PO4.v modified.
+Processing HLS_cdp_icvt.v into ../../outdir/nv_small/vmod/vlibs/HLS_cdp_icvt.v.vcp
+../../outdir/nv_small/vmod/vlibs/HLS_cdp_icvt.v.vcp successfully written
+eperl: ../../outdir/nv_small/vmod/vlibs/HLS_cdp_icvt.v modified.
+Processing HLS_cdp_ocvt.v into ../../outdir/nv_small/vmod/vlibs/HLS_cdp_ocvt.v.vcp
+../../outdir/nv_small/vmod/vlibs/HLS_cdp_ocvt.v.vcp successfully written
+eperl: ../../outdir/nv_small/vmod/vlibs/HLS_cdp_ocvt.v modified.
+Processing HLS_fp16_to_fp17.v into ../../outdir/nv_small/vmod/vlibs/HLS_fp16_to_fp17.v.vcp
+../../outdir/nv_small/vmod/vlibs/HLS_fp16_to_fp17.v.vcp successfully written
+eperl: ../../outdir/nv_small/vmod/vlibs/HLS_fp16_to_fp17.v modified.
+Processing HLS_fp16_to_fp32.v into ../../outdir/nv_small/vmod/vlibs/HLS_fp16_to_fp32.v.vcp
+../../outdir/nv_small/vmod/vlibs/HLS_fp16_to_fp32.v.vcp successfully written
+eperl: ../../outdir/nv_small/vmod/vlibs/HLS_fp16_to_fp32.v modified.
+Processing HLS_fp17_add.v into ../../outdir/nv_small/vmod/vlibs/HLS_fp17_add.v.vcp
+../../outdir/nv_small/vmod/vlibs/HLS_fp17_add.v.vcp successfully written
+eperl: ../../outdir/nv_small/vmod/vlibs/HLS_fp17_add.v modified.
+Processing HLS_fp17_mul.v into ../../outdir/nv_small/vmod/vlibs/HLS_fp17_mul.v.vcp
+../../outdir/nv_small/vmod/vlibs/HLS_fp17_mul.v.vcp successfully written
+eperl: ../../outdir/nv_small/vmod/vlibs/HLS_fp17_mul.v modified.
+Processing HLS_fp17_sub.v into ../../outdir/nv_small/vmod/vlibs/HLS_fp17_sub.v.vcp
+../../outdir/nv_small/vmod/vlibs/HLS_fp17_sub.v.vcp successfully written
+eperl: ../../outdir/nv_small/vmod/vlibs/HLS_fp17_sub.v modified.
+Processing HLS_fp17_to_fp16.v into ../../outdir/nv_small/vmod/vlibs/HLS_fp17_to_fp16.v.vcp
+../../outdir/nv_small/vmod/vlibs/HLS_fp17_to_fp16.v.vcp successfully written
+eperl: ../../outdir/nv_small/vmod/vlibs/HLS_fp17_to_fp16.v modified.
+Processing HLS_fp17_to_fp32.v into ../../outdir/nv_small/vmod/vlibs/HLS_fp17_to_fp32.v.vcp
+../../outdir/nv_small/vmod/vlibs/HLS_fp17_to_fp32.v.vcp successfully written
+eperl: ../../outdir/nv_small/vmod/vlibs/HLS_fp17_to_fp32.v modified.
+Processing HLS_fp32_add.v into ../../outdir/nv_small/vmod/vlibs/HLS_fp32_add.v.vcp
+../../outdir/nv_small/vmod/vlibs/HLS_fp32_add.v.vcp successfully written
+eperl: ../../outdir/nv_small/vmod/vlibs/HLS_fp32_add.v modified.
+Processing HLS_fp32_mul.v into ../../outdir/nv_small/vmod/vlibs/HLS_fp32_mul.v.vcp
+../../outdir/nv_small/vmod/vlibs/HLS_fp32_mul.v.vcp successfully written
+eperl: ../../outdir/nv_small/vmod/vlibs/HLS_fp32_mul.v modified.
+Processing HLS_fp32_sub.v into ../../outdir/nv_small/vmod/vlibs/HLS_fp32_sub.v.vcp
+../../outdir/nv_small/vmod/vlibs/HLS_fp32_sub.v.vcp successfully written
+eperl: ../../outdir/nv_small/vmod/vlibs/HLS_fp32_sub.v modified.
+Processing HLS_fp32_to_fp16.v into ../../outdir/nv_small/vmod/vlibs/HLS_fp32_to_fp16.v.vcp
+../../outdir/nv_small/vmod/vlibs/HLS_fp32_to_fp16.v.vcp successfully written
+eperl: ../../outdir/nv_small/vmod/vlibs/HLS_fp32_to_fp16.v modified.
+Processing HLS_fp32_to_fp17.v into ../../outdir/nv_small/vmod/vlibs/HLS_fp32_to_fp17.v.vcp
+../../outdir/nv_small/vmod/vlibs/HLS_fp32_to_fp17.v.vcp successfully written
+eperl: ../../outdir/nv_small/vmod/vlibs/HLS_fp32_to_fp17.v modified.
+Processing HLS_uint16_to_fp17.v into ../../outdir/nv_small/vmod/vlibs/HLS_uint16_to_fp17.v.vcp
+../../outdir/nv_small/vmod/vlibs/HLS_uint16_to_fp17.v.vcp successfully written
+eperl: ../../outdir/nv_small/vmod/vlibs/HLS_uint16_to_fp17.v modified.
+Processing LNQD1PO4.v into ../../outdir/nv_small/vmod/vlibs/LNQD1PO4.v.vcp
+../../outdir/nv_small/vmod/vlibs/LNQD1PO4.v.vcp successfully written
+eperl: ../../outdir/nv_small/vmod/vlibs/LNQD1PO4.v modified.
+Processing MUX2D4.v into ../../outdir/nv_small/vmod/vlibs/MUX2D4.v.vcp
+../../outdir/nv_small/vmod/vlibs/MUX2D4.v.vcp successfully written
+eperl: ../../outdir/nv_small/vmod/vlibs/MUX2D4.v modified.
+Processing MUX2HDD2.v into ../../outdir/nv_small/vmod/vlibs/MUX2HDD2.v.vcp
+../../outdir/nv_small/vmod/vlibs/MUX2HDD2.v.vcp successfully written
+eperl: ../../outdir/nv_small/vmod/vlibs/MUX2HDD2.v modified.
+Processing NV_BLKBOX_BUFFER.v into ../../outdir/nv_small/vmod/vlibs/NV_BLKBOX_BUFFER.v.vcp
+../../outdir/nv_small/vmod/vlibs/NV_BLKBOX_BUFFER.v.vcp successfully written
+eperl: ../../outdir/nv_small/vmod/vlibs/NV_BLKBOX_BUFFER.v modified.
+Processing NV_BLKBOX_SINK.v into ../../outdir/nv_small/vmod/vlibs/NV_BLKBOX_SINK.v.vcp
+../../outdir/nv_small/vmod/vlibs/NV_BLKBOX_SINK.v.vcp successfully written
+eperl: ../../outdir/nv_small/vmod/vlibs/NV_BLKBOX_SINK.v modified.
+Processing NV_BLKBOX_SRC0.v into ../../outdir/nv_small/vmod/vlibs/NV_BLKBOX_SRC0.v.vcp
+../../outdir/nv_small/vmod/vlibs/NV_BLKBOX_SRC0.v.vcp successfully written
+eperl: ../../outdir/nv_small/vmod/vlibs/NV_BLKBOX_SRC0.v modified.
+Processing NV_BLKBOX_SRC0_X.v into ../../outdir/nv_small/vmod/vlibs/NV_BLKBOX_SRC0_X.v.vcp
+../../outdir/nv_small/vmod/vlibs/NV_BLKBOX_SRC0_X.v.vcp successfully written
+eperl: ../../outdir/nv_small/vmod/vlibs/NV_BLKBOX_SRC0_X.v modified.
+Processing NV_CLK_gate_power.v into ../../outdir/nv_small/vmod/vlibs/NV_CLK_gate_power.v.vcp
+../../outdir/nv_small/vmod/vlibs/NV_CLK_gate_power.v.vcp successfully written
+eperl: ../../outdir/nv_small/vmod/vlibs/NV_CLK_gate_power.v modified.
+Processing NV_DW02_tree.v into ../../outdir/nv_small/vmod/vlibs/NV_DW02_tree.v.vcp
+../../outdir/nv_small/vmod/vlibs/NV_DW02_tree.v.vcp successfully written
+eperl: ../../outdir/nv_small/vmod/vlibs/NV_DW02_tree.v modified.
+Processing NV_DW_lsd.v into ../../outdir/nv_small/vmod/vlibs/NV_DW_lsd.v.vcp
+../../outdir/nv_small/vmod/vlibs/NV_DW_lsd.v.vcp successfully written
+eperl: ../../outdir/nv_small/vmod/vlibs/NV_DW_lsd.v modified.
+Processing NV_DW_minmax.v into ../../outdir/nv_small/vmod/vlibs/NV_DW_minmax.v.vcp
+../../outdir/nv_small/vmod/vlibs/NV_DW_minmax.v.vcp successfully written
+eperl: ../../outdir/nv_small/vmod/vlibs/NV_DW_minmax.v modified.
+Processing NV_NVDLA_CDP_HLS_icvt.v into ../../outdir/nv_small/vmod/vlibs/NV_NVDLA_CDP_HLS_icvt.v.vcp
+../../outdir/nv_small/vmod/vlibs/NV_NVDLA_CDP_HLS_icvt.v.vcp successfully written
+eperl: ../../outdir/nv_small/vmod/vlibs/NV_NVDLA_CDP_HLS_icvt.v modified.
+Processing NV_NVDLA_CDP_HLS_ocvt.v into ../../outdir/nv_small/vmod/vlibs/NV_NVDLA_CDP_HLS_ocvt.v.vcp
+../../outdir/nv_small/vmod/vlibs/NV_NVDLA_CDP_HLS_ocvt.v.vcp successfully written
+eperl: ../../outdir/nv_small/vmod/vlibs/NV_NVDLA_CDP_HLS_ocvt.v modified.
+Processing NV_NVDLA_HLS_saturate.v into ../../outdir/nv_small/vmod/vlibs/NV_NVDLA_HLS_saturate.v.vcp
+../../outdir/nv_small/vmod/vlibs/NV_NVDLA_HLS_saturate.v.vcp successfully written
+eperl: ../../outdir/nv_small/vmod/vlibs/NV_NVDLA_HLS_saturate.v modified.
+Processing NV_NVDLA_HLS_shiftleftsu.v into ../../outdir/nv_small/vmod/vlibs/NV_NVDLA_HLS_shiftleftsu.v.vcp
+../../outdir/nv_small/vmod/vlibs/NV_NVDLA_HLS_shiftleftsu.v.vcp successfully written
+eperl: ../../outdir/nv_small/vmod/vlibs/NV_NVDLA_HLS_shiftleftsu.v modified.
+Processing NV_NVDLA_HLS_shiftrightsatsu.v into ../../outdir/nv_small/vmod/vlibs/NV_NVDLA_HLS_shiftrightsatsu.v.vcp
+../../outdir/nv_small/vmod/vlibs/NV_NVDLA_HLS_shiftrightsatsu.v.vcp successfully written
+eperl: ../../outdir/nv_small/vmod/vlibs/NV_NVDLA_HLS_shiftrightsatsu.v modified.
+Processing NV_NVDLA_HLS_shiftrightss.v into ../../outdir/nv_small/vmod/vlibs/NV_NVDLA_HLS_shiftrightss.v.vcp
+../../outdir/nv_small/vmod/vlibs/NV_NVDLA_HLS_shiftrightss.v.vcp successfully written
+eperl: ../../outdir/nv_small/vmod/vlibs/NV_NVDLA_HLS_shiftrightss.v modified.
+Processing NV_NVDLA_HLS_shiftrightsu.v into ../../outdir/nv_small/vmod/vlibs/NV_NVDLA_HLS_shiftrightsu.v.vcp
+../../outdir/nv_small/vmod/vlibs/NV_NVDLA_HLS_shiftrightsu.v.vcp successfully written
+eperl: ../../outdir/nv_small/vmod/vlibs/NV_NVDLA_HLS_shiftrightsu.v modified.
+Processing NV_NVDLA_HLS_shiftrightusz.v into ../../outdir/nv_small/vmod/vlibs/NV_NVDLA_HLS_shiftrightusz.v.vcp
+../../outdir/nv_small/vmod/vlibs/NV_NVDLA_HLS_shiftrightusz.v.vcp successfully written
+eperl: ../../outdir/nv_small/vmod/vlibs/NV_NVDLA_HLS_shiftrightusz.v modified.
+Processing oneHotClk_async_read_clock.v into ../../outdir/nv_small/vmod/vlibs/oneHotClk_async_read_clock.v.vcp
+../../outdir/nv_small/vmod/vlibs/oneHotClk_async_read_clock.v.vcp successfully written
+eperl: ../../outdir/nv_small/vmod/vlibs/oneHotClk_async_read_clock.v modified.
+Processing oneHotClk_async_write_clock.v into ../../outdir/nv_small/vmod/vlibs/oneHotClk_async_write_clock.v.vcp
+../../outdir/nv_small/vmod/vlibs/oneHotClk_async_write_clock.v.vcp successfully written
+eperl: ../../outdir/nv_small/vmod/vlibs/oneHotClk_async_write_clock.v modified.
+Processing OR2D1.v into ../../outdir/nv_small/vmod/vlibs/OR2D1.v.vcp
+../../outdir/nv_small/vmod/vlibs/OR2D1.v.vcp successfully written
+eperl: ../../outdir/nv_small/vmod/vlibs/OR2D1.v modified.
+Processing PGAOPV_AN2D2PO4.v into ../../outdir/nv_small/vmod/vlibs/PGAOPV_AN2D2PO4.v.vcp
+../../outdir/nv_small/vmod/vlibs/PGAOPV_AN2D2PO4.v.vcp successfully written
+eperl: ../../outdir/nv_small/vmod/vlibs/PGAOPV_AN2D2PO4.v modified.
+Processing PGAOPV_DFCNQD2PO4.v into ../../outdir/nv_small/vmod/vlibs/PGAOPV_DFCNQD2PO4.v.vcp
+../../outdir/nv_small/vmod/vlibs/PGAOPV_DFCNQD2PO4.v.vcp successfully written
+eperl: ../../outdir/nv_small/vmod/vlibs/PGAOPV_DFCNQD2PO4.v modified.
+Processing PGAOPV_INVD2PO4.v into ../../outdir/nv_small/vmod/vlibs/PGAOPV_INVD2PO4.v.vcp
+../../outdir/nv_small/vmod/vlibs/PGAOPV_INVD2PO4.v.vcp successfully written
+eperl: ../../outdir/nv_small/vmod/vlibs/PGAOPV_INVD2PO4.v modified.
+Processing p_SDFCNQD1PO4.v into ../../outdir/nv_small/vmod/vlibs/p_SDFCNQD1PO4.v.vcp
+../../outdir/nv_small/vmod/vlibs/p_SDFCNQD1PO4.v.vcp successfully written
+eperl: ../../outdir/nv_small/vmod/vlibs/p_SDFCNQD1PO4.v modified.
+Processing p_SSYNC2DO_C_PP.v into ../../outdir/nv_small/vmod/vlibs/p_SSYNC2DO_C_PP.v.vcp
+../../outdir/nv_small/vmod/vlibs/p_SSYNC2DO_C_PP.v.vcp successfully written
+eperl: ../../outdir/nv_small/vmod/vlibs/p_SSYNC2DO_C_PP.v modified.
+Processing p_SSYNC3DO.v into ../../outdir/nv_small/vmod/vlibs/p_SSYNC3DO.v.vcp
+../../outdir/nv_small/vmod/vlibs/p_SSYNC3DO.v.vcp successfully written
+eperl: ../../outdir/nv_small/vmod/vlibs/p_SSYNC3DO.v modified.
+Processing p_SSYNC3DO_C_PPP.v into ../../outdir/nv_small/vmod/vlibs/p_SSYNC3DO_C_PPP.v.vcp
+../../outdir/nv_small/vmod/vlibs/p_SSYNC3DO_C_PPP.v.vcp successfully written
+eperl: ../../outdir/nv_small/vmod/vlibs/p_SSYNC3DO_C_PPP.v modified.
+Processing p_SSYNC3DO_S_PPP.v into ../../outdir/nv_small/vmod/vlibs/p_SSYNC3DO_S_PPP.v.vcp
+../../outdir/nv_small/vmod/vlibs/p_SSYNC3DO_S_PPP.v.vcp successfully written
+eperl: ../../outdir/nv_small/vmod/vlibs/p_SSYNC3DO_S_PPP.v modified.
+Processing p_STRICTSYNC3DOTM_C_PPP.v into ../../outdir/nv_small/vmod/vlibs/p_STRICTSYNC3DOTM_C_PPP.v.vcp
+../../outdir/nv_small/vmod/vlibs/p_STRICTSYNC3DOTM_C_PPP.v.vcp successfully written
+eperl: ../../outdir/nv_small/vmod/vlibs/p_STRICTSYNC3DOTM_C_PPP.v modified.
+Processing ScanShareSel_JTAG_reg_ext_cg.v into ../../outdir/nv_small/vmod/vlibs/ScanShareSel_JTAG_reg_ext_cg.v.vcp
+../../outdir/nv_small/vmod/vlibs/ScanShareSel_JTAG_reg_ext_cg.v.vcp successfully written
+eperl: ../../outdir/nv_small/vmod/vlibs/ScanShareSel_JTAG_reg_ext_cg.v modified.
+Processing SDFCNQD1.v into ../../outdir/nv_small/vmod/vlibs/SDFCNQD1.v.vcp
+../../outdir/nv_small/vmod/vlibs/SDFCNQD1.v.vcp successfully written
+eperl: ../../outdir/nv_small/vmod/vlibs/SDFCNQD1.v modified.
+Processing SDFQD1.v into ../../outdir/nv_small/vmod/vlibs/SDFQD1.v.vcp
+../../outdir/nv_small/vmod/vlibs/SDFQD1.v.vcp successfully written
+eperl: ../../outdir/nv_small/vmod/vlibs/SDFQD1.v modified.
+Processing SDFSNQD1.v into ../../outdir/nv_small/vmod/vlibs/SDFSNQD1.v.vcp
+../../outdir/nv_small/vmod/vlibs/SDFSNQD1.v.vcp successfully written
+eperl: ../../outdir/nv_small/vmod/vlibs/SDFSNQD1.v modified.
+Processing sync2d_c_pp.v into ../../outdir/nv_small/vmod/vlibs/sync2d_c_pp.v.vcp
+../../outdir/nv_small/vmod/vlibs/sync2d_c_pp.v.vcp successfully written
+eperl: ../../outdir/nv_small/vmod/vlibs/sync2d_c_pp.v modified.
+Processing sync3d.v into ../../outdir/nv_small/vmod/vlibs/sync3d.v.vcp
+../../outdir/nv_small/vmod/vlibs/sync3d.v.vcp successfully written
+eperl: ../../outdir/nv_small/vmod/vlibs/sync3d.v modified.
+Processing sync3d_c_ppp.v into ../../outdir/nv_small/vmod/vlibs/sync3d_c_ppp.v.vcp
+../../outdir/nv_small/vmod/vlibs/sync3d_c_ppp.v.vcp successfully written
+eperl: ../../outdir/nv_small/vmod/vlibs/sync3d_c_ppp.v modified.
+Processing sync3d_s_ppp.v into ../../outdir/nv_small/vmod/vlibs/sync3d_s_ppp.v.vcp
+../../outdir/nv_small/vmod/vlibs/sync3d_s_ppp.v.vcp successfully written
+eperl: ../../outdir/nv_small/vmod/vlibs/sync3d_s_ppp.v modified.
+Processing sync_reset.v into ../../outdir/nv_small/vmod/vlibs/sync_reset.v.vcp
+../../outdir/nv_small/vmod/vlibs/sync_reset.v.vcp successfully written
+eperl: ../../outdir/nv_small/vmod/vlibs/sync_reset.v modified.
+Processing no_lib_cells.vlib into ../../outdir/nv_small/vmod/vlibs/no_lib_cells.vlib.vcp
+../../outdir/nv_small/vmod/vlibs/no_lib_cells.vlib.vcp successfully written
+eperl: ../../outdir/nv_small/vmod/vlibs/no_lib_cells.vlib modified.
+Processing nv_assert_always.vlib into ../../outdir/nv_small/vmod/vlibs/nv_assert_always.vlib.vcp
+../../outdir/nv_small/vmod/vlibs/nv_assert_always.vlib.vcp successfully written
+eperl: ../../outdir/nv_small/vmod/vlibs/nv_assert_always.vlib modified.
+Processing nv_assert_at_time_interval.vlib into ../../outdir/nv_small/vmod/vlibs/nv_assert_at_time_interval.vlib.vcp
+../../outdir/nv_small/vmod/vlibs/nv_assert_at_time_interval.vlib.vcp successfully written
+eperl: ../../outdir/nv_small/vmod/vlibs/nv_assert_at_time_interval.vlib modified.
+Processing nv_assert_fifo.vlib into ../../outdir/nv_small/vmod/vlibs/nv_assert_fifo.vlib.vcp
+../../outdir/nv_small/vmod/vlibs/nv_assert_fifo.vlib.vcp successfully written
+eperl: ../../outdir/nv_small/vmod/vlibs/nv_assert_fifo.vlib modified.
+Processing nv_assert_hold_throughout_event_interval.vlib into ../../outdir/nv_small/vmod/vlibs/nv_assert_hold_throughout_event_interval.vlib.vcp
+../../outdir/nv_small/vmod/vlibs/nv_assert_hold_throughout_event_interval.vlib.vcp successfully written
+eperl: ../../outdir/nv_small/vmod/vlibs/nv_assert_hold_throughout_event_interval.vlib modified.
+Processing nv_assert_never.vlib into ../../outdir/nv_small/vmod/vlibs/nv_assert_never.vlib.vcp
+../../outdir/nv_small/vmod/vlibs/nv_assert_never.vlib.vcp successfully written
+eperl: ../../outdir/nv_small/vmod/vlibs/nv_assert_never.vlib modified.
+Processing nv_assert_no_x.vlib into ../../outdir/nv_small/vmod/vlibs/nv_assert_no_x.vlib.vcp
+../../outdir/nv_small/vmod/vlibs/nv_assert_no_x.vlib.vcp successfully written
+eperl: ../../outdir/nv_small/vmod/vlibs/nv_assert_no_x.vlib modified.
+Processing nv_assert_one_hot.vlib into ../../outdir/nv_small/vmod/vlibs/nv_assert_one_hot.vlib.vcp
+../../outdir/nv_small/vmod/vlibs/nv_assert_one_hot.vlib.vcp successfully written
+eperl: ../../outdir/nv_small/vmod/vlibs/nv_assert_one_hot.vlib modified.
+Processing nv_assert_vld_credit_max.vlib into ../../outdir/nv_small/vmod/vlibs/nv_assert_vld_credit_max.vlib.vcp
+../../outdir/nv_small/vmod/vlibs/nv_assert_vld_credit_max.vlib.vcp successfully written
+eperl: ../../outdir/nv_small/vmod/vlibs/nv_assert_vld_credit_max.vlib modified.
+Processing nv_assert_zero_one_hot.vlib into ../../outdir/nv_small/vmod/vlibs/nv_assert_zero_one_hot.vlib.vcp
+../../outdir/nv_small/vmod/vlibs/nv_assert_zero_one_hot.vlib.vcp successfully written
+eperl: ../../outdir/nv_small/vmod/vlibs/nv_assert_zero_one_hot.vlib modified.
+Processing RANDFUNC.vlib into ../../outdir/nv_small/vmod/vlibs/RANDFUNC.vlib.vcp
+../../outdir/nv_small/vmod/vlibs/RANDFUNC.vlib.vcp successfully written
+eperl: ../../outdir/nv_small/vmod/vlibs/RANDFUNC.vlib modified.

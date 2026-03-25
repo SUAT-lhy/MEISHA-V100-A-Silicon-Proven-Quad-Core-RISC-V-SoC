@@ -1,0 +1,60 @@
+CAPI=2:
+# Copyright lowRISC contributors.
+# Licensed under the Apache License, Version 2.0, see LICENSE for details.
+# SPDX-License-Identifier: Apache-2.0
+name: "lowrisc:ip:u500_top_spi:0.1"
+description: "Technology-independent Earl Grey toplevel"
+filesets:
+  files_rtl:
+    depend:
+      # -
+    files:
+      #- rtl/autogen/top_earlgrey_rnd_cnst_pkg.sv
+      #- rtl/autogen/top_earlgrey.sv
+      #- rtl/top/d2dv100_top.v
+      - rtl/top/VC707_U500.v
+      - rtl/ip/SRAM_CTRL.v
+      - rtl/ip/TLMaskROM.v
+      - rtl/ip/XilinxVC707MIG.v
+    file_type: systemVerilogSource
+  files_dv:
+    depend:
+      #- lowrisc:dv:axi_xbar_bind:0.1
+      #- lowrisc:dv:axi_xbar_test:0.1
+      # - lowrisc:dv:axi_bind:0.1
+      # - lowrisc:dv:axi_xbar_sva
+    files:
+      #- tb/dut.sv: {is_include_file: true}
+      #- dv/AAA_tb_u500_spi.sv
+    file_type: systemVerilogSource
+
+  files_verilator_waiver:
+    depend:
+      # common waivers
+      #- lowrisc:lint:common
+      #- lowrisc:lint:comportable
+    files:
+      - lint/top_earlgrey.vlt
+    file_type: vlt
+
+  files_ascentlint_waiver:
+    depend:
+      # common waivers
+      #- lowrisc:lint:common
+      #- lowrisc:lint:comportable
+    files:
+      - lint/top_earlgrey.waiver
+    file_type: waiver
+
+  files_veriblelint_waiver:
+    depend:
+      # common waivers
+      #- lowrisc:lint:common
+      #- lowrisc:lint:comportable
+
+targets:
+  default:
+    filesets:
+      - files_rtl
+      - files_dv
+

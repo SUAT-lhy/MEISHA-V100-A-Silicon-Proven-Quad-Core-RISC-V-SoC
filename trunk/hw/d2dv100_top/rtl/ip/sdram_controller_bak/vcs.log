@@ -1,0 +1,37 @@
+Command: vcs -xlrm uniq_prior_final -CFLAGS --std=c++11 -LDFLAGS -Wl,--no-as-needed \
+-sverilog -full64 -debug_all -R -lca -timescale=1ns/1ps bridge_64to32.sv fifo.sv \
+tb_bridge_64to32.sv -o simv -l vcs.log -top tb_bridge_64to32
+                         Chronologic VCS (TM)
+         Version L-2016.06_Full64 -- Sat Nov 23 20:56:59 2024
+               Copyright (c) 1991-2016 by Synopsys Inc.
+                         ALL RIGHTS RESERVED
+
+This program is proprietary and confidential information of Synopsys Inc.
+and may be used and disclosed only as authorized in a license agreement
+controlling such use and disclosure.
+
+
+Warning-[LCA_FEATURES_ENABLED] Usage warning
+  LCA features enabled by '-lca' argument on the command line.  For more 
+  information regarding list of LCA features please refer to Chapter "LCA 
+  features" in the VCS/VCS-MX Release Notes
+
+Parsing design file 'bridge_64to32.sv'
+Parsing design file 'fifo.sv'
+Parsing design file 'tb_bridge_64to32.sv'
+Top Level Modules:
+       tb_bridge_64to32
+TimeScale is 1 ns / 1 ps
+
+An unexpected termination has occurred in /usr/synopsys/vcs-L-2016.06/linux64/bin/vcs1 due to a signal: Segmentation fault
+Hostname lizhen
+
+Module tb_bridge_64to32 declared at tb_bridge_64to32.sv, 3
+During semantic checks 
+During post design resolution 
+
+Command line: /usr/synopsys/vcs-L-2016.06/linux64/bin/vcs1 -Mcc=gcc -Mcplusplus=g++ -Masflags= "-Mcfl= -pipe -fPIC --std=c++11 -O -I/usr/synopsys/vcs-L-2016.06/include " "-Mxcflags= -pipe -fPIC -I/usr/synopsys/vcs-L-2016.06/include" "-Mldflags= -Wl,--no-as-needed -rdynamic " -Mout=simv -Mamsrun= -Mvcsaceobjs= "-Mobjects= /usr/synopsys/vcs-L-2016.06/linux64/lib/libvirsim.so /usr/synopsys/vcs-L-2016.06/linux64/lib/liberrorinf.so /usr/synopsys/vcs-L-2016.06/linux64/lib/libsnpsmalloc.so " -Mexternalobj= -Msaverestoreobj=/usr/synopsys/vcs-L-2016.06/linux64/lib/vcs_save_restore_new.o -Mcrt0= -Mcrtn= -Mcsrc= "-Msyslibs=-ldl " -l vcs.log -Xvcs_run_simv=1 -uniq_prior final -full64 -debug_access+all+dmptf+bc +vpi +vcsd +memcbk +itf+/usr/synopsys/vcs-L-2016.06/linux64/lib/vcsdp.tab -debug_region=cell+lib -Xpiyushb1=0x80 -lca -timescale=1ns/1ps -o simv -top tb_bridge_64to32 -picarchive -sverilog -gen_obj bridge_64to32.sv fifo.sv tb_bridge_64to32.sv
+
+--- Stack trace follows:
+Completed context dump phase location 'Module'*
+CPU time: 1.654 seconds to compile

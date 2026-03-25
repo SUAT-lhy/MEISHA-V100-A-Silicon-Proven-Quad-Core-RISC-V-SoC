@@ -1,0 +1,35 @@
+CAPI=2:
+# Vendor 		: 
+# Author 		: ling
+# Filename 	:  
+# Date Created: 2022.04.26 
+# Version		: V1.0
+# File description	:
+# Revision History :
+name: "lowrisc:dv:axi_xbar_sim:0.1"
+description: "axi_xbar DV sim target"
+filesets:
+  files_rtl:
+    depend:
+      - lowrisc:ip:axi_xbar:0.1
+  files_dv:
+    depend:
+      - lowrisc:dv:axi_xbar_bind:0.1
+      - lowrisc:dv:axi_xbar_test:0.1
+      # - lowrisc:dv:axi_bind:0.1
+      # - lowrisc:dv:axi_xbar_sva
+    files:
+      - tb/dut.sv: {is_include_file: true}
+      - tb/axi_tb_top.sv
+    file_type: systemVerilogSource
+
+targets:
+  sim: &sim_target
+    toplevel: tb
+    filesets:
+      - files_rtl
+      - files_dv
+    default_tool: vcs
+
+  lint:
+    <<: *sim_target

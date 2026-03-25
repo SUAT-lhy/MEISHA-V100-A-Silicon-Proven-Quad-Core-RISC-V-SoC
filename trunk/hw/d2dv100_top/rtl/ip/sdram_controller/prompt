@@ -1,0 +1,19 @@
+module sram_bridge_64to32 (
+    input  logic         clk,
+    input  logic         rst_n,
+    input  logic [7:0]   ram64_wr_strb_i,
+    input  logic         ram64_rd_i,
+    input  logic [31:0]  ram64_addr_i,
+    input  logic [63:0]  ram64_write_data_i,
+    output logic         ram64_accept_o,
+    output logic         ram64_ack_o,
+    output logic [63:0]  ram64_read_data_o,
+    input  logic         ram32_accept_i,
+    input  logic         ram32_ack_i,
+    input  logic [31:0]  ram32_read_data_i,
+    output logic [3:0]   ram32_wr_strb_o,
+    output logic         ram32_rd_o,
+    output logic [31:0]  ram32_addr_o,
+    output logic [31:0]  ram32_write_data_o
+);
+基于如上模块接口请使用可综合的高质量语法重新撰写一个64bit转32bit的桥，并使用fifo进行缓存，这个桥读写操作不会同时出现，因此可以将读写两个分支合并。ack表示返回响应或者数据有效，accept表示接收该笔命令，wr_strb表示当前这笔写命令有多少字节有效的bitmap实现，比如8'h5表示第4及第1个字节有效

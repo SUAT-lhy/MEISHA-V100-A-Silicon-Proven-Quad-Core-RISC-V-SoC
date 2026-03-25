@@ -1,0 +1,21 @@
+CAPI=2:
+# Vendor 		: 
+# Author 		: ling
+# Filename 	:  
+# Date Created: 2022.04.26 
+# Version		: V1.0
+# File description	:
+# Revision History :
+name: "lowrisc:dv:uart_monitor:0.1"
+description: ""
+filesets:
+  files_dv:
+    depend:
+    files:
+      - uart_monitor.sv
+    file_type: systemVerilogSource
+
+targets:
+  default:
+    filesets:
+      - files_dv

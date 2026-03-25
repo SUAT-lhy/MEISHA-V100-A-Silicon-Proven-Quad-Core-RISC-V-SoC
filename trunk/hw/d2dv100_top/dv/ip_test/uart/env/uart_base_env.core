@@ -1,0 +1,25 @@
+CAPI=2:
+# Vendor 		: 
+# Author 		: zjl
+# Filename 	:  
+# Date Created: 2024.03.26
+# Version		: V1.0
+# File description	:
+# Revision History :
+name: "lowrisc:dv:uarta_base_env:0.1"
+description: "SPI UVM environment"
+filesets:
+  files_dv:
+    depend:
+      - lowrisc:dv:uarta_base_agent
+      - lowrisc:dv:tlul_base_env_pkg
+    files:
+      - uart_env_pkg.sv
+      - uart_env.sv: {is_include_file: true}
+    ##  - uart_scoreboard.sv: {is_include_file: true}
+    file_type: systemVerilogSource
+
+targets:
+  default:
+    filesets:
+      - files_dv

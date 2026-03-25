@@ -1,0 +1,157 @@
+// Copyright lowRISC contributors.
+// Licensed under the Apache License, Version 2.0, see LICENSE for details.
+// SPDX-License-Identifier: Apache-2.0
+{
+  name: "rom_ctrl"
+  clock_primary: "clk_i"
+  reset_primary: "rst_ni",
+  regwidth: "32"
+  bus_interfaces: [
+    { protocol: "tlul", direction: "device", name: "regs" }
+    { protocol: "tlul", direction: "device", name: "rom" },
+  ],
+  param_list: [
+    { name:    "BootRomInitFile",
+      type:    "",
+      default: '""',
+      desc:    "Contents of mask ROM"
+      local:   "false",
+      expose:  "true"
+    }
+
+    { name:      "RndCnstScrNonce",
+      type:      "bit [63:0]",
+      desc:      "Fixed nonce used for address / data scrambling"
+      randcount: "64",
+      randtype:  "data"
+    }
+
+    { name:      "RndCnstScrKey",
+      type:      "bit [127:0]",
+      desc:      "Randomised constant used as a scrambling key for ROM data"
+      randcount: "128",
+      randtype:  "data"
+    }
+  ]
+  alert_list: [
+    { name: "fatal"
+      desc: "A fatal error. Fatal alerts are non-recoverable and will be asserted until a hard reset."
+    }
+  ],
+  inter_signal_list: [
+    // Interface to memory configuration
+    { name:    "rom_cfg",
+      package: "prim_rom_pkg",
+      struct:  "rom_cfg",
+      act:     "rcv"
+      type:    "uni",
+    },
+
+    // Power manager interface
+    { name:    "pwrmgr_data"
+      package: "rom_ctrl_pkg"
+      struct:  "pwrmgr_data"
+      act:     "req"
+      type:    "uni"
+    },
+
+    // Keymgr interface
+    { name:    "keymgr_data"
+      package: "rom_ctrl_pkg"
+      struct:  "keymgr_data"
+      act:     "req"
+      type:    "uni"
+    },
+
+    // KMAC interface
+    { name:    "kmac_data"
+      package: "kmac_pkg"
+      struct:  "app"
+      act:     "req"
+      type:    "req_rsp"
+    },
+  ],
+  regwidth: "32"
+  registers: {
+    regs: [
+      { name: "FATAL_ALERT_CAUSE",
+        desc: '''
+          The cause of a fatal alert.
+
+          The bits of this register correspond to errors that can cause a fatal
+          alert. Software can read these bits to see what went wrong. Once set,
+          these bits cannot be cleared.
+        '''
+        swaccess: "ro",
+        hwaccess: "hwo",
+        fields: [
+          { bits: "0",
+            name: "checker_error",
+            resval: 0,
+            desc: "Set on a fatal error detected by the ROM checker."
+          }
+          { bits: "1",
+            name: "integrity_error",
+            resval: 0,
+            desc: "Set on an integrity error from the register interface."
+          }
+        ]
+      }
+
+      {
+        multireg: {
+          cname: "ROM_CTRL",
+          name: "DIGEST",
+          desc: "The digest computed from the contents of ROM"
+          count: "8"
+          swaccess: "ro"
+          hwaccess: "hrw"
+          fields: [
+            {
+              bits: "31:0"
+              name: "DIGEST"
+              desc: "32 bits of the digest"
+            }
+          ]
+          // Disable CSR checks for digest registers, since their values will
+          // change under the feet of the CSR package as the ROM checker computes
+          // a digest. These values are checked instead by the rom_ctrl TB.
+          tags: ["excl:CsrAllTests:CsrExclCheck"]
+        }
+      }
+      {
+        multireg: {
+          cname: "ROM_CTRL",
+          name: "EXP_DIGEST",
+          desc: "The expected digest, stored in the top words of ROM"
+          count: "8"
+          swaccess: "ro"
+          hwaccess: "hrw"
+          fields: [
+            {
+              bits: "31:0"
+              name: "DIGEST"
+              desc: "32 bits of the digest"
+            }
+          ]
+          // As with DIGEST, these values are checked by the rom_ctrl TB.
+          tags: ["excl:CsrAllTests:CsrExclCheck"]
+        }
+      }
+    ],
+
+    rom: [
+      // ROM size (given as `items` below) must be a power of two.
+      //
+      // NOTE: This number is replicated in ../util/scramble_image.py: keep the
+      // two in sync.
+      { window: {
+          name: "ROM"
+          items: "4096" // 16 KiB
+          swaccess: "ro",
+          desc: '''ROM data'''
+        }
+      }
+    ]
+  }
+}

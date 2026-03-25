@@ -1,0 +1,41 @@
+command: cd vmod/nvdla/car;make PROJECT=nv_small 
+make[1]: Entering directory '/work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/nvdla/car'
+../../../tools/bin/vcp -i NV_NVDLA_core_reset.v -o ../../../outdir/nv_small/vmod/nvdla/car/NV_NVDLA_core_reset.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/car/NV_NVDLA_core_reset.v ../../../outdir/nv_small/vmod/nvdla/car/NV_NVDLA_core_reset.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_reset.v -o ../../../outdir/nv_small/vmod/nvdla/car/NV_NVDLA_reset.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/car/NV_NVDLA_reset.v ../../../outdir/nv_small/vmod/nvdla/car/NV_NVDLA_reset.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_ssync3d.v -o ../../../outdir/nv_small/vmod/nvdla/car/NV_NVDLA_ssync3d.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/car/NV_NVDLA_ssync3d.v ../../../outdir/nv_small/vmod/nvdla/car/NV_NVDLA_ssync3d.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_ssync3d_c.v -o ../../../outdir/nv_small/vmod/nvdla/car/NV_NVDLA_ssync3d_c.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/car/NV_NVDLA_ssync3d_c.v ../../../outdir/nv_small/vmod/nvdla/car/NV_NVDLA_ssync3d_c.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_sync3d.v -o ../../../outdir/nv_small/vmod/nvdla/car/NV_NVDLA_sync3d.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/car/NV_NVDLA_sync3d.v ../../../outdir/nv_small/vmod/nvdla/car/NV_NVDLA_sync3d.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_sync3d_c.v -o ../../../outdir/nv_small/vmod/nvdla/car/NV_NVDLA_sync3d_c.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/car/NV_NVDLA_sync3d_c.v ../../../outdir/nv_small/vmod/nvdla/car/NV_NVDLA_sync3d_c.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_sync3d_s.v -o ../../../outdir/nv_small/vmod/nvdla/car/NV_NVDLA_sync3d_s.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/car/NV_NVDLA_sync3d_s.v ../../../outdir/nv_small/vmod/nvdla/car/NV_NVDLA_sync3d_s.v.vcp 
+==============================================
+files are generated under /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/outdir/nv_small/vmod/nvdla/car
+==============================================
+make[1]: Leaving directory '/work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/nvdla/car'
+Processing NV_NVDLA_core_reset.v into ../../../outdir/nv_small/vmod/nvdla/car/NV_NVDLA_core_reset.v.vcp
+../../../outdir/nv_small/vmod/nvdla/car/NV_NVDLA_core_reset.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/car/NV_NVDLA_core_reset.v modified.
+Processing NV_NVDLA_reset.v into ../../../outdir/nv_small/vmod/nvdla/car/NV_NVDLA_reset.v.vcp
+../../../outdir/nv_small/vmod/nvdla/car/NV_NVDLA_reset.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/car/NV_NVDLA_reset.v modified.
+Processing NV_NVDLA_ssync3d.v into ../../../outdir/nv_small/vmod/nvdla/car/NV_NVDLA_ssync3d.v.vcp
+../../../outdir/nv_small/vmod/nvdla/car/NV_NVDLA_ssync3d.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/car/NV_NVDLA_ssync3d.v modified.
+Processing NV_NVDLA_ssync3d_c.v into ../../../outdir/nv_small/vmod/nvdla/car/NV_NVDLA_ssync3d_c.v.vcp
+../../../outdir/nv_small/vmod/nvdla/car/NV_NVDLA_ssync3d_c.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/car/NV_NVDLA_ssync3d_c.v modified.
+Processing NV_NVDLA_sync3d.v into ../../../outdir/nv_small/vmod/nvdla/car/NV_NVDLA_sync3d.v.vcp
+../../../outdir/nv_small/vmod/nvdla/car/NV_NVDLA_sync3d.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/car/NV_NVDLA_sync3d.v modified.
+Processing NV_NVDLA_sync3d_c.v into ../../../outdir/nv_small/vmod/nvdla/car/NV_NVDLA_sync3d_c.v.vcp
+../../../outdir/nv_small/vmod/nvdla/car/NV_NVDLA_sync3d_c.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/car/NV_NVDLA_sync3d_c.v modified.
+Processing NV_NVDLA_sync3d_s.v into ../../../outdir/nv_small/vmod/nvdla/car/NV_NVDLA_sync3d_s.v.vcp
+../../../outdir/nv_small/vmod/nvdla/car/NV_NVDLA_sync3d_s.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/car/NV_NVDLA_sync3d_s.v modified.

@@ -1,0 +1,48 @@
+
+To describe the various modules in this SOC (System on Chip) architecture diagram in English, we can analyze each part of the image one by one. Here is an English description of each module:
+
+1. **RocketTile**:
+   - These modules are likely processor cores responsible for executing instructions and processing data. Each RocketTile may represent an independent processor core, which communicates via the S-BUS.
+
+2. **S-BUS**:
+   - The S-BUS is a system bus that connects the various processor cores to other modules, providing a channel for data and instruction transfer.
+
+3. **QSPI**:
+   - QSPI (Quad Serial Peripheral Interface) is a high-speed serial interface used for fast data transmission. It typically connects external memory or other high-speed peripherals.
+
+4. **PERIPHERAL_BUS_2 (AXI)**:
+   - AXI (Advanced eXtensible Interface) is a high-performance bus interface used to connect various peripheral devices. PERIPHERAL_BUS_2 interfaces with other modules through AXI.
+
+5. **IRAM/LSYS/SPL_1**:
+   - IRAM (Instruction RAM) stores instructions.
+   - LSYS could be a local system module responsible for system-level control and management.
+   - SPL_1 might be a specific peripheral or interface module.
+
+6. **chiplink D2D**:
+   - chiplink D2D is a chip-to-chip direct data transfer interface used for efficient data exchange between chips.
+
+7. **NVDLA ACC**:
+   - NVDLA (NVIDIA Deep Learning Accelerator) is a hardware module dedicated to accelerating deep learning computations, speeding up neural network calculations.
+
+8. **CONTROL_BUS**:
+   - CONTROL_BUS transmits control signals and connects to modules such as ROM, CLINT, PLIC, and DTM.
+
+9. **ROM/CLINT/PLIC/DTM**:
+   - ROM (Read-Only Memory) stores fixed programs or data.
+   - CLINT (Core Local Interrupt Controller) handles interrupt requests at the core level.
+   - PLIC (Platform Level Interrupt Controller) manages interrupt requests across the platform.
+   - DTM (Debug and Trace Module) is used for debugging and monitoring system operations.
+
+10. **PERIPHERAL_BUS_0**:
+    - PERIPHERAL_BUS_0 connects to external devices via GPIO, SPI_0, and UART interfaces.
+
+11. **PLL_WRAPPER**:
+    - PLL (Phase-Locked Loop) generates stable clock signals. PLL_WRAPPER might be a wrapper module for PLLs, providing clock signal management and distribution.
+
+12. **RST_GEN**:
+    - RST_GEN is the reset generator used to produce reset signals for initializing the system.
+
+13. **PAD_IO_SUB**:
+    - PAD_IO_SUB is the input/output (I/O) port module used for physical connections to external devices.
+
+With these descriptions, we gain a better understanding of the various components within this SOC architecture diagram and their functionalities.

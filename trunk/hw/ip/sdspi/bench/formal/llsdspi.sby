@@ -1,0 +1,32 @@
+[tasks]
+prfa prf optarbiter
+prf
+prfc prf continuous
+cvr
+cvra cvr optarbiter
+cvrc cvr continuous
+
+[options]
+prf: mode prove
+prf: depth 4
+cvr: mode cover
+cvr: depth 120
+
+[engines]
+smtbmc boolector
+
+[script]
+read -formal -DLLSDSPI llsdspi.v
+--pycode-begin--
+cmd = "hierarchy -top llsdspi"
+cmd += " -chparam OPT_SPI_ARBITRATION  %d" % (1 if "optarbiter" in tags else 0)
+cmd += " -chparam OPT_CONTINUOUS_CLOCK %d" % (1 if "continuous" in tags else 0)
+if ("cvr" in tags):
+	cmd += " -chparam POWERUP_IDLE   3"
+	cmd += " -chparam STARTUP_CLOCKS 3"
+output(cmd)
+--pycode-end--
+prep -top llsdspi
+
+[files]
+../../rtl/llsdspi.v

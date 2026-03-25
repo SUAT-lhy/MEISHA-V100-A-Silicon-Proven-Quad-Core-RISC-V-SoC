@@ -1,0 +1,36 @@
+command: cd vmod/nvdla/top;make PROJECT=nv_small 
+make[1]: Entering directory '/work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/nvdla/top'
+../../../tools/bin/vcp -i NV_nvdla.v -o ../../../outdir/nv_small/vmod/nvdla/top/NV_nvdla.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/top/NV_nvdla.v ../../../outdir/nv_small/vmod/nvdla/top/NV_nvdla.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_partition_a.v -o ../../../outdir/nv_small/vmod/nvdla/top/NV_NVDLA_partition_a.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/top/NV_NVDLA_partition_a.v ../../../outdir/nv_small/vmod/nvdla/top/NV_NVDLA_partition_a.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_partition_c.v -o ../../../outdir/nv_small/vmod/nvdla/top/NV_NVDLA_partition_c.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/top/NV_NVDLA_partition_c.v ../../../outdir/nv_small/vmod/nvdla/top/NV_NVDLA_partition_c.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_partition_m.v -o ../../../outdir/nv_small/vmod/nvdla/top/NV_NVDLA_partition_m.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/top/NV_NVDLA_partition_m.v ../../../outdir/nv_small/vmod/nvdla/top/NV_NVDLA_partition_m.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_partition_o.v -o ../../../outdir/nv_small/vmod/nvdla/top/NV_NVDLA_partition_o.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/top/NV_NVDLA_partition_o.v ../../../outdir/nv_small/vmod/nvdla/top/NV_NVDLA_partition_o.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_partition_p.v -o ../../../outdir/nv_small/vmod/nvdla/top/NV_NVDLA_partition_p.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/top/NV_NVDLA_partition_p.v ../../../outdir/nv_small/vmod/nvdla/top/NV_NVDLA_partition_p.v.vcp 
+==============================================
+files are generated under /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/outdir/nv_small/vmod/nvdla/top
+==============================================
+make[1]: Leaving directory '/work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/nvdla/top'
+Processing NV_nvdla.v into ../../../outdir/nv_small/vmod/nvdla/top/NV_nvdla.v.vcp
+../../../outdir/nv_small/vmod/nvdla/top/NV_nvdla.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/top/NV_nvdla.v modified.
+Processing NV_NVDLA_partition_a.v into ../../../outdir/nv_small/vmod/nvdla/top/NV_NVDLA_partition_a.v.vcp
+../../../outdir/nv_small/vmod/nvdla/top/NV_NVDLA_partition_a.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/top/NV_NVDLA_partition_a.v modified.
+Processing NV_NVDLA_partition_c.v into ../../../outdir/nv_small/vmod/nvdla/top/NV_NVDLA_partition_c.v.vcp
+../../../outdir/nv_small/vmod/nvdla/top/NV_NVDLA_partition_c.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/top/NV_NVDLA_partition_c.v modified.
+Processing NV_NVDLA_partition_m.v into ../../../outdir/nv_small/vmod/nvdla/top/NV_NVDLA_partition_m.v.vcp
+../../../outdir/nv_small/vmod/nvdla/top/NV_NVDLA_partition_m.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/top/NV_NVDLA_partition_m.v modified.
+Processing NV_NVDLA_partition_o.v into ../../../outdir/nv_small/vmod/nvdla/top/NV_NVDLA_partition_o.v.vcp
+../../../outdir/nv_small/vmod/nvdla/top/NV_NVDLA_partition_o.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/top/NV_NVDLA_partition_o.v modified.
+Processing NV_NVDLA_partition_p.v into ../../../outdir/nv_small/vmod/nvdla/top/NV_NVDLA_partition_p.v.vcp
+../../../outdir/nv_small/vmod/nvdla/top/NV_NVDLA_partition_p.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/top/NV_NVDLA_partition_p.v modified.

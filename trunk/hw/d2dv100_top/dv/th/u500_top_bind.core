@@ -1,0 +1,44 @@
+CAPI=2:
+# Vendor 		: 
+# Author 		: ling
+# Filename 	:  
+# Date Created: 2022.04.26 
+# Version		: V1.0
+# File description	:
+# Revision History :
+name: "lowrisc:dv:u500_top_bind:0.1"
+description: "axi bind DV UVM test"
+filesets:
+  files_dv:
+    depend:
+      - lowrisc:dut:top_pkg:0.1
+      - lowrisc:dv:bind_abs:0.1
+      #- lowrisc:ip:u500_top:0.1  # modify to top sim
+      - lowrisc:dv:tl_bind_lib
+      - lowrisc:dv:axi_bind_lib
+      - lowrisc:dv:uart_monitor
+      #- new_soc:meisha:sdModel
+      - new_soc:meisha:sdspi
+    files:
+      - vendor_ram_init_harness.sv
+      - sdspi_model.v
+      - sdram_monitor.sv
+      - RocketTile_bind.sv
+      #- XilinxVC707MIG_bind.sv
+      - TLMaskROM_bind.sv
+      - MEISHAV100_TOP_init_bind.sv
+      #- vc707mig1gb_chiplink_bind.sv # depreciate for CHIPLINK_DIRECT
+      - axi_spi_slave_bind.sv
+      - nvdla_small_bind.sv
+      #- AMBA_XBAR_M2S2_bind.sv
+      #- amba_axi_m3s2_bind.sv
+      #- vc707axi_to_pcie_x1_bind.sv
+      - CHIPLINK_PREFIX_ChipLinkMaster_0_bind.sv
+      - CHIPLINK_PREFIX_ChipLinkMaster_bind.sv
+      - CHIPLINK_PREFIX_ChipLinkMaster_tl_bind.sv
+    file_type: systemVerilogSource
+
+targets:
+  default:
+    filesets:
+      - files_dv

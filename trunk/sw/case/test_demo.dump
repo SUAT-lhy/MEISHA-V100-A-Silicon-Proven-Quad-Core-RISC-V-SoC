@@ -1,0 +1,1919 @@
+
+test_demo.elf:     file format elf64-littleriscv
+test_demo.elf
+architecture: riscv:rv64, flags 0x00000112:
+EXEC_P, HAS_SYMS, D_PAGED
+start address 0x0000000080000000
+
+Program Header:
+    LOAD off    0x0000000000001000 vaddr 0x0000000080000000 paddr 0x0000000080000000 align 2**12
+         filesz 0x0000000000001620 memsz 0x0000000000001620 flags r-x
+    LOAD off    0x0000000000002620 vaddr 0x0000000080001620 paddr 0x0000000080001620 align 2**12
+         filesz 0x00000000000004e8 memsz 0x00000000000004e8 flags rw-
+    LOAD off    0x0000000000003000 vaddr 0x0000000080000000 paddr 0x0000000080000000 align 2**12
+         filesz 0x0000000000000000 memsz 0x0000000000000000 flags rw-
+
+Sections:
+Idx Name          Size      VMA               LMA               File off  Algn
+  0 .text         00001620  0000000080000000  0000000080000000  00001000  2**2
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .rodata       000004c8  0000000080001620  0000000080001620  00002620  2**3
+                  CONTENTS, ALLOC, LOAD, READONLY, DATA
+  2 .sdata        00000020  0000000080001ae8  0000000080001ae8  00002ae8  2**3
+                  CONTENTS, ALLOC, LOAD, DATA
+  3 .bss          00000000  0000000080000000  0000000080000000  00003000  2**3
+                  ALLOC
+  4 .debug_line   000009b8  0000000000000000  0000000000000000  00002b08  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   000006a5  0000000000000000  0000000000000000  000034c0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 000001ba  0000000000000000  0000000000000000  00003b65  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_aranges 00000090  0000000000000000  0000000000000000  00003d20  2**4
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_str    00000201  0000000000000000  0000000000000000  00003db0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .comment      00000011  0000000000000000  0000000000000000  00003fb1  2**0
+                  CONTENTS, READONLY
+ 10 .debug_frame  00000108  0000000000000000  0000000000000000  00003fc8  2**3
+                  CONTENTS, READONLY, DEBUGGING
+SYMBOL TABLE:
+0000000080000000 l    d  .text	0000000000000000 .text
+0000000080001620 l    d  .rodata	0000000000000000 .rodata
+0000000080001ae8 l    d  .sdata	0000000000000000 .sdata
+0000000080000000 l    d  .bss	0000000000000000 .bss
+0000000000000000 l    d  .debug_line	0000000000000000 .debug_line
+0000000000000000 l    d  .debug_info	0000000000000000 .debug_info
+0000000000000000 l    d  .debug_abbrev	0000000000000000 .debug_abbrev
+0000000000000000 l    d  .debug_aranges	0000000000000000 .debug_aranges
+0000000000000000 l    d  .debug_str	0000000000000000 .debug_str
+0000000000000000 l    d  .comment	0000000000000000 .comment
+0000000000000000 l    d  .debug_frame	0000000000000000 .debug_frame
+0000000000000000 l    df *ABS*	0000000000000000 test_demo.c
+0000000080001ae8 l     O .sdata	0000000000000008 uart
+0000000080001af0 l     O .sdata	0000000000000008 SHUTDOWN_FLAG_STR
+0000000000000000 l    df *ABS*	0000000000000000 kprintf.c
+0000000080001af8 l     O .sdata	0000000000000008 uart
+0000000080001b00 l     O .sdata	0000000000000008 SHUTDOWN_FLAG_STR
+00000000800012c0 l     F .text	000000000000004c kputc
+000000008000130c l     F .text	000000000000005c _kputs
+0000000080000000 g       .bss	0000000000000000 _ebss
+0000000080100000 g       *ABS*	0000000000000000 _sp
+0000000080000000 g       .text	0000000000000000 _prog_start
+0000000080000060 g     F .text	0000000000001260 main
+0000000080001368 g     F .text	0000000000000040 kputs
+00000000800013a8 g     F .text	0000000000000238 kprintf
+
+
+
+Disassembly of section .text:
+
+0000000080000000 <_prog_start>:
+_prog_start:
+  //li t1, 0x10000
+  //jr t1
+  //smp_pause(s1, s2) # used in bootrom.hex
+  //li sp, (PAYLOAD_DEST + 0x7fff000)  # used in bootrom.hex
+  call main
+    80000000:	060000ef          	jal	ra,80000060 <main>
+  smp_resume(s1, s2)
+    80000004:	020004b7          	lui	s1,0x2000
+    80000008:	00100913          	li	s2,1
+    8000000c:	0124a023          	sw	s2,0(s1) # 2000000 <_prog_start-0x7e000000>
+    80000010:	00448493          	addi	s1,s1,4
+    80000014:	02000937          	lui	s2,0x2000
+    80000018:	0809091b          	addiw	s2,s2,128
+    8000001c:	ff24c6e3          	blt	s1,s2,80000008 <_prog_start+0x8>
+    80000020:	10500073          	wfi
+    80000024:	34402973          	csrr	s2,mip
+    80000028:	00897913          	andi	s2,s2,8
+    8000002c:	fe090ae3          	beqz	s2,80000020 <_prog_start+0x20>
+    80000030:	020004b7          	lui	s1,0x2000
+    80000034:	f1402973          	csrr	s2,mhartid
+    80000038:	00291913          	slli	s2,s2,0x2
+    8000003c:	00990933          	add	s2,s2,s1
+    80000040:	00092023          	sw	zero,0(s2) # 2000000 <_prog_start-0x7e000000>
+    80000044:	0004a903          	lw	s2,0(s1) # 2000000 <_prog_start-0x7e000000>
+    80000048:	fe091ee3          	bnez	s2,80000044 <_prog_start+0x44>
+    8000004c:	00448493          	addi	s1,s1,4
+    80000050:	02000937          	lui	s2,0x2000
+    80000054:	0809091b          	addiw	s2,s2,128
+    80000058:	ff24c6e3          	blt	s1,s2,80000044 <_prog_start+0x44>
+  csrr a0, mhartid
+    8000005c:	f1402573          	csrr	a0,mhartid
+
+0000000080000060 <main>:
+// 			}
+
+// }
+
+int main(void)
+{
+    80000060:	f1010113          	addi	sp,sp,-240
+    80000064:	0e113423          	sd	ra,232(sp)
+    80000068:	0e813023          	sd	s0,224(sp)
+    8000006c:	0f010413          	addi	s0,sp,240
+  uint32_t *test_ptr;
+  uint64_t *test_ptr_64;
+  uint64_t temp_data;
+  uint64_t dut_data;
+  uint32_t temp_data_32;
+  uint64_t soc_iram_max_size_64 = SOC_IRAM_MAX_SIZE ;
+    80000070:	20000793          	li	a5,512
+    80000074:	faf43423          	sd	a5,-88(s0)
+
+  // test_addr[0] = 0x60000000UL;   // failed
+  // test_addr[0] = 0x40000000UL;   // failed
+  test_addr[0] = 0xa8000000UL;   //
+    80000078:	01500793          	li	a5,21
+    8000007c:	01b79793          	slli	a5,a5,0x1b
+    80000080:	f0f43c23          	sd	a5,-232(s0)
+  // test_addr[1] = 0x08000000UL;   // failed
+  test_addr[1] = 0x88000000UL;   // ddr
+    80000084:	01100793          	li	a5,17
+    80000088:	01b79793          	slli	a5,a5,0x1b
+    8000008c:	f2f43023          	sd	a5,-224(s0)
+  test_addr[2] = 0x02000000UL;   // clint
+    80000090:	020007b7          	lui	a5,0x2000
+    80000094:	f2f43423          	sd	a5,-216(s0)
+  //test_addr[3] = 0x00002000UL;   // gpio failed
+  test_addr[3] = 0xa0002000UL;   //  
+    80000098:	500017b7          	lui	a5,0x50001
+    8000009c:	00179793          	slli	a5,a5,0x1
+    800000a0:	f2f43823          	sd	a5,-208(s0)
+  test_addr[4] = 0xb2000000UL;   // ddr
+    800000a4:	05900793          	li	a5,89
+    800000a8:	01979793          	slli	a5,a5,0x19
+    800000ac:	f2f43c23          	sd	a5,-200(s0)
+  //test_addr[5] = 0xc3000000UL;   // ddr failed
+  test_addr[5] = 0x99000000UL;
+    800000b0:	09900793          	li	a5,153
+    800000b4:	01879793          	slli	a5,a5,0x18
+    800000b8:	f4f43023          	sd	a5,-192(s0)
+  test_addr[6] = 0x50000000UL;   // soc iram
+    800000bc:	500007b7          	lui	a5,0x50000
+    800000c0:	f4f43423          	sd	a5,-184(s0)
+  test_addr[7] = 0x52000000UL;   //  spi_1
+    800000c4:	520007b7          	lui	a5,0x52000
+    800000c8:	f4f43823          	sd	a5,-176(s0)
+  test_addr[8] = 0x2000000000UL;   // pcie slave timeout
+    800000cc:	00100793          	li	a5,1
+    800000d0:	02579793          	slli	a5,a5,0x25
+    800000d4:	f4f43c23          	sd	a5,-168(s0)
+  //test_addr[7] = 0x51000008UL;   //  lsys donnot access , maybe access control register
+  
+  //REG32(uart, UART_REG_DIV) = 271;  // 
+  REG32(uart, UART_REG_DIV) = 1;
+    800000d8:	640007b7          	lui	a5,0x64000
+    800000dc:	01878793          	addi	a5,a5,24 # 64000018 <_prog_start-0x1bffffe8>
+    800000e0:	00100713          	li	a4,1
+    800000e4:	00e7a023          	sw	a4,0(a5)
+  REG32(uart, UART_REG_RXCTRL) = UART_TXEN;
+    800000e8:	640007b7          	lui	a5,0x64000
+    800000ec:	00c78793          	addi	a5,a5,12 # 6400000c <_prog_start-0x1bfffff4>
+    800000f0:	00100713          	li	a4,1
+    800000f4:	00e7a023          	sw	a4,0(a5)
+  REG32(uart, UART_REG_TXCTRL) = UART_RXEN;  // donot delete
+    800000f8:	640007b7          	lui	a5,0x64000
+    800000fc:	00878793          	addi	a5,a5,8 # 64000008 <_prog_start-0x1bfffff8>
+    80000100:	00100713          	li	a4,1
+    80000104:	00e7a023          	sw	a4,0(a5)
+	// A000_0000 - BFFF_FFFF
+	//debug_addr(0xa004ff40);
+	//debug_addr(0xa008ffc0);
+
+
+  for(int i = 8; i >= 0; i--) {
+    80000108:	00800793          	li	a5,8
+    8000010c:	fef42623          	sw	a5,-20(s0)
+    80000110:	0a40006f          	j	800001b4 <main+0x154>
+		test_ptr = (void *)(test_addr[i]);
+    80000114:	fec42783          	lw	a5,-20(s0)
+    80000118:	00379793          	slli	a5,a5,0x3
+    8000011c:	ff040713          	addi	a4,s0,-16
+    80000120:	00f707b3          	add	a5,a4,a5
+    80000124:	f287b783          	ld	a5,-216(a5)
+    80000128:	f8f43823          	sd	a5,-112(s0)
+		*(test_ptr) = test_addr[i];
+    8000012c:	fec42783          	lw	a5,-20(s0)
+    80000130:	00379793          	slli	a5,a5,0x3
+    80000134:	ff040713          	addi	a4,s0,-16
+    80000138:	00f707b3          	add	a5,a4,a5
+    8000013c:	f287b783          	ld	a5,-216(a5)
+    80000140:	0007871b          	sext.w	a4,a5
+    80000144:	f9043783          	ld	a5,-112(s0)
+    80000148:	00e7a023          	sw	a4,0(a5)
+		*(test_ptr + 4) = test_addr[i] + 4;
+    8000014c:	fec42783          	lw	a5,-20(s0)
+    80000150:	00379793          	slli	a5,a5,0x3
+    80000154:	ff040713          	addi	a4,s0,-16
+    80000158:	00f707b3          	add	a5,a4,a5
+    8000015c:	f287b783          	ld	a5,-216(a5)
+    80000160:	0007871b          	sext.w	a4,a5
+    80000164:	f9043783          	ld	a5,-112(s0)
+    80000168:	01078793          	addi	a5,a5,16
+    8000016c:	0047071b          	addiw	a4,a4,4
+    80000170:	0007071b          	sext.w	a4,a4
+    80000174:	00e7a023          	sw	a4,0(a5)
+		kprintf("Info: test cache addr 0x%x - 0x%x", test_addr[i], *(test_ptr));
+    80000178:	fec42783          	lw	a5,-20(s0)
+    8000017c:	00379793          	slli	a5,a5,0x3
+    80000180:	ff040713          	addi	a4,s0,-16
+    80000184:	00f707b3          	add	a5,a4,a5
+    80000188:	f287b703          	ld	a4,-216(a5)
+    8000018c:	f9043783          	ld	a5,-112(s0)
+    80000190:	0007a783          	lw	a5,0(a5)
+    80000194:	00078613          	mv	a2,a5
+    80000198:	00070593          	mv	a1,a4
+    8000019c:	00001517          	auipc	a0,0x1
+    800001a0:	49c50513          	addi	a0,a0,1180 # 80001638 <kprintf+0x290>
+    800001a4:	204010ef          	jal	ra,800013a8 <kprintf>
+  for(int i = 8; i >= 0; i--) {
+    800001a8:	fec42783          	lw	a5,-20(s0)
+    800001ac:	fff7879b          	addiw	a5,a5,-1
+    800001b0:	fef42623          	sw	a5,-20(s0)
+    800001b4:	fec42783          	lw	a5,-20(s0)
+    800001b8:	0007879b          	sext.w	a5,a5
+    800001bc:	f407dce3          	bgez	a5,80000114 <main+0xb4>
+	}
+
+  kprintf("Info: Test begin ! @ core: 0x%x, compiler date: %s, time: %s", read_csr(mhartid), __DATE__,__TIME__);
+    800001c0:	f14027f3          	csrr	a5,mhartid
+    800001c4:	faf43023          	sd	a5,-96(s0)
+    800001c8:	fa043783          	ld	a5,-96(s0)
+    800001cc:	00001697          	auipc	a3,0x1
+    800001d0:	49468693          	addi	a3,a3,1172 # 80001660 <kprintf+0x2b8>
+    800001d4:	00001617          	auipc	a2,0x1
+    800001d8:	49c60613          	addi	a2,a2,1180 # 80001670 <kprintf+0x2c8>
+    800001dc:	00078593          	mv	a1,a5
+    800001e0:	00001517          	auipc	a0,0x1
+    800001e4:	4a050513          	addi	a0,a0,1184 # 80001680 <kprintf+0x2d8>
+    800001e8:	1c0010ef          	jal	ra,800013a8 <kprintf>
+
+	// config pll clko0 500M clko1 250M clko2 100M, VCO = 2000M
+	_REG32(_AC(0x51000000, UL), 0x10) = (0x0 << 30)/**/ + (50 << 18)/*fbdiv*/ + (0x3 << 15)/*postdiv0_0*/ + (0x0 << 12)/*postdiv1_0*/ + (0x3 << 9)/*postdiv0_1*/ + (0x1 << 6)/*postdiv1_1*/ + (0x4 << 3)/*postdiv0_1*/ + (0x3 << 0)/*postdiv1_1*/;
+    800001ec:	510007b7          	lui	a5,0x51000
+    800001f0:	01078793          	addi	a5,a5,16 # 51000010 <_prog_start-0x2efffff0>
+    800001f4:	00c98737          	lui	a4,0xc98
+    800001f8:	6637071b          	addiw	a4,a4,1635
+    800001fc:	00e7a023          	sw	a4,0(a5)
+	
+	// need bigger than 1us
+	for(int i = 1; i >= 0; i--) {
+    80000200:	00100793          	li	a5,1
+    80000204:	fef42423          	sw	a5,-24(s0)
+    80000208:	0380006f          	j	80000240 <main+0x1e0>
+		dprintf("Info: cfg pll parameter 0x%x - 0x%x\r\n", i, _REG32(_AC(0x51000000, UL), 0x10));
+    8000020c:	510007b7          	lui	a5,0x51000
+    80000210:	01078793          	addi	a5,a5,16 # 51000010 <_prog_start-0x2efffff0>
+    80000214:	0007a783          	lw	a5,0(a5)
+    80000218:	0007871b          	sext.w	a4,a5
+    8000021c:	fe842783          	lw	a5,-24(s0)
+    80000220:	00070613          	mv	a2,a4
+    80000224:	00078593          	mv	a1,a5
+    80000228:	00001517          	auipc	a0,0x1
+    8000022c:	49850513          	addi	a0,a0,1176 # 800016c0 <kprintf+0x318>
+    80000230:	178010ef          	jal	ra,800013a8 <kprintf>
+	for(int i = 1; i >= 0; i--) {
+    80000234:	fe842783          	lw	a5,-24(s0)
+    80000238:	fff7879b          	addiw	a5,a5,-1
+    8000023c:	fef42423          	sw	a5,-24(s0)
+    80000240:	fe842783          	lw	a5,-24(s0)
+    80000244:	0007879b          	sext.w	a5,a5
+    80000248:	fc07d2e3          	bgez	a5,8000020c <main+0x1ac>
+	}
+
+	_REG32(_AC(0x51000000, UL), 0x100) = (0x0 << 31) + (0x3 << 29) + (0x3 << 23) + (0x2 << 20) + (0x1 << 18);
+    8000024c:	510007b7          	lui	a5,0x51000
+    80000250:	10078793          	addi	a5,a5,256 # 51000100 <_prog_start-0x2effff00>
+    80000254:	61a40737          	lui	a4,0x61a40
+    80000258:	00e7a023          	sw	a4,0(a5)
+
+	//use_clk_freq = 40000UL;
+
+	// judge debug config mode, for switch pll
+	if((_REG32(_AC(0x51000000, UL), 0x20) & 0x40000000) == 0x40000000){
+    8000025c:	510007b7          	lui	a5,0x51000
+    80000260:	02078793          	addi	a5,a5,32 # 51000020 <_prog_start-0x2effffe0>
+    80000264:	0007a783          	lw	a5,0(a5)
+    80000268:	0007879b          	sext.w	a5,a5
+    8000026c:	00078713          	mv	a4,a5
+    80000270:	400007b7          	lui	a5,0x40000
+    80000274:	00f777b3          	and	a5,a4,a5
+    80000278:	0007879b          	sext.w	a5,a5
+    8000027c:	00078713          	mv	a4,a5
+    80000280:	400007b7          	lui	a5,0x40000
+    80000284:	08f71463          	bne	a4,a5,8000030c <main+0x2ac>
+		_REG32(_AC(0x51000000, UL), 0x18) = (18 << 15) + (20 << 10) + (0x0 << 5) + (0x0);  // SOC_LSYS cfg pll cfg
+    80000288:	510007b7          	lui	a5,0x51000
+    8000028c:	01878793          	addi	a5,a5,24 # 51000018 <_prog_start-0x2effffe8>
+    80000290:	00095737          	lui	a4,0x95
+    80000294:	00e7a023          	sw	a4,0(a5)
+		// donot need switch pll, use ref clk
+		// cfg sdram parameter to 10m
+		_REG32(_AC(0x51000000, UL), 0x200) = 1000;
+    80000298:	510007b7          	lui	a5,0x51000
+    8000029c:	20078793          	addi	a5,a5,512 # 51000200 <_prog_start-0x2efffe00>
+    800002a0:	3e800713          	li	a4,1000
+    800002a4:	00e7a023          	sw	a4,0(a5)
+		_REG32(_AC(0x51000000, UL), 0x208) = 77;
+    800002a8:	510007b7          	lui	a5,0x51000
+    800002ac:	20878793          	addi	a5,a5,520 # 51000208 <_prog_start-0x2efffdf8>
+    800002b0:	04d00713          	li	a4,77
+    800002b4:	00e7a023          	sw	a4,0(a5)
+		_REG32(_AC(0x51000000, UL), 0x210) = 1;
+    800002b8:	510007b7          	lui	a5,0x51000
+    800002bc:	21078793          	addi	a5,a5,528 # 51000210 <_prog_start-0x2efffdf0>
+    800002c0:	00100713          	li	a4,1
+    800002c4:	00e7a023          	sw	a4,0(a5)
+		_REG32(_AC(0x51000000, UL), 0x218) = 1;
+    800002c8:	510007b7          	lui	a5,0x51000
+    800002cc:	21878793          	addi	a5,a5,536 # 51000218 <_prog_start-0x2efffde8>
+    800002d0:	00100713          	li	a4,1
+    800002d4:	00e7a023          	sw	a4,0(a5)
+		_REG32(_AC(0x51000000, UL), 0x220) = 1;
+    800002d8:	510007b7          	lui	a5,0x51000
+    800002dc:	22078793          	addi	a5,a5,544 # 51000220 <_prog_start-0x2efffde0>
+    800002e0:	00100713          	li	a4,1
+    800002e4:	00e7a023          	sw	a4,0(a5)
+
+		kprintf("Info: donot need switch work clk to pll output: 0x%x", _REG32(_AC(0x51000000, UL), 0x20));
+    800002e8:	510007b7          	lui	a5,0x51000
+    800002ec:	02078793          	addi	a5,a5,32 # 51000020 <_prog_start-0x2effffe0>
+    800002f0:	0007a783          	lw	a5,0(a5)
+    800002f4:	0007879b          	sext.w	a5,a5
+    800002f8:	00078593          	mv	a1,a5
+    800002fc:	00001517          	auipc	a0,0x1
+    80000300:	3ec50513          	addi	a0,a0,1004 # 800016e8 <kprintf+0x340>
+    80000304:	0a4010ef          	jal	ra,800013a8 <kprintf>
+    80000308:	1a00006f          	j	800004a8 <main+0x448>
+	}
+	else{
+		// wait more than 1us
+		// check pll lock 100 times
+		for(int i = 10; i >= 0; i--) {
+    8000030c:	00a00793          	li	a5,10
+    80000310:	fef42223          	sw	a5,-28(s0)
+    80000314:	0380006f          	j	8000034c <main+0x2ec>
+			dprintf("Info: test pll state index: 0x%x - 0x%x\r\n", i, _REG32(_AC(0x51000000, UL), 0x20));
+    80000318:	510007b7          	lui	a5,0x51000
+    8000031c:	02078793          	addi	a5,a5,32 # 51000020 <_prog_start-0x2effffe0>
+    80000320:	0007a783          	lw	a5,0(a5)
+    80000324:	0007871b          	sext.w	a4,a5
+    80000328:	fe442783          	lw	a5,-28(s0)
+    8000032c:	00070613          	mv	a2,a4
+    80000330:	00078593          	mv	a1,a5
+    80000334:	00001517          	auipc	a0,0x1
+    80000338:	3ec50513          	addi	a0,a0,1004 # 80001720 <kprintf+0x378>
+    8000033c:	06c010ef          	jal	ra,800013a8 <kprintf>
+		for(int i = 10; i >= 0; i--) {
+    80000340:	fe442783          	lw	a5,-28(s0)
+    80000344:	fff7879b          	addiw	a5,a5,-1
+    80000348:	fef42223          	sw	a5,-28(s0)
+    8000034c:	fe442783          	lw	a5,-28(s0)
+    80000350:	0007879b          	sext.w	a5,a5
+    80000354:	fc07d2e3          	bgez	a5,80000318 <main+0x2b8>
+		}
+		// check pll lock
+		if((_REG32(_AC(0x51000000, UL), 0x20) & 0x00000001) == 0x00000001) {
+    80000358:	510007b7          	lui	a5,0x51000
+    8000035c:	02078793          	addi	a5,a5,32 # 51000020 <_prog_start-0x2effffe0>
+    80000360:	0007a783          	lw	a5,0(a5)
+    80000364:	0007879b          	sext.w	a5,a5
+    80000368:	0017f793          	andi	a5,a5,1
+    8000036c:	0007879b          	sext.w	a5,a5
+    80000370:	00078713          	mv	a4,a5
+    80000374:	00100793          	li	a5,1
+    80000378:	0af71863          	bne	a4,a5,80000428 <main+0x3c8>
+			kprintf("Info: begin switch work clk to pll output: 0x%x", _REG32(_AC(0x51000000, UL), 0x20));
+    8000037c:	510007b7          	lui	a5,0x51000
+    80000380:	02078793          	addi	a5,a5,32 # 51000020 <_prog_start-0x2effffe0>
+    80000384:	0007a783          	lw	a5,0(a5)
+    80000388:	0007879b          	sext.w	a5,a5
+    8000038c:	00078593          	mv	a1,a5
+    80000390:	00001517          	auipc	a0,0x1
+    80000394:	3c050513          	addi	a0,a0,960 # 80001750 <kprintf+0x3a8>
+    80000398:	010010ef          	jal	ra,800013a8 <kprintf>
+			// speed up only use in eda_ram, because vendor ram is limit frequency
+			
+			// cfg sdram parameter to 50m
+			_REG32(_AC(0x51000000, UL), 0x200) = 5000;
+    8000039c:	510007b7          	lui	a5,0x51000
+    800003a0:	20078793          	addi	a5,a5,512 # 51000200 <_prog_start-0x2efffe00>
+    800003a4:	00001737          	lui	a4,0x1
+    800003a8:	3887071b          	addiw	a4,a4,904
+    800003ac:	00e7a023          	sw	a4,0(a5)
+			_REG32(_AC(0x51000000, UL), 0x208) = 1561;
+    800003b0:	510007b7          	lui	a5,0x51000
+    800003b4:	20878793          	addi	a5,a5,520 # 51000208 <_prog_start-0x2efffdf8>
+    800003b8:	61900713          	li	a4,1561
+    800003bc:	00e7a023          	sw	a4,0(a5)
+			_REG32(_AC(0x51000000, UL), 0x210) = 2;
+    800003c0:	510007b7          	lui	a5,0x51000
+    800003c4:	21078793          	addi	a5,a5,528 # 51000210 <_prog_start-0x2efffdf0>
+    800003c8:	00200713          	li	a4,2
+    800003cc:	00e7a023          	sw	a4,0(a5)
+			_REG32(_AC(0x51000000, UL), 0x218) = 2;
+    800003d0:	510007b7          	lui	a5,0x51000
+    800003d4:	21878793          	addi	a5,a5,536 # 51000218 <_prog_start-0x2efffde8>
+    800003d8:	00200713          	li	a4,2
+    800003dc:	00e7a023          	sw	a4,0(a5)
+			_REG32(_AC(0x51000000, UL), 0x220) = 4;
+    800003e0:	510007b7          	lui	a5,0x51000
+    800003e4:	22078793          	addi	a5,a5,544 # 51000220 <_prog_start-0x2efffde0>
+    800003e8:	00400713          	li	a4,4
+    800003ec:	00e7a023          	sw	a4,0(a5)
+
+			// config pll to clk_cpu: 400M + clk_main: 250M + clk_ddr: 50M + clk_chiplink: 20M
+			_REG32(_AC(0x51000000, UL), 0x18) = (0x2 << 15) + (0x4 << 10) + (0x1 << 5) + (0x1);  // SOC_LSYS cfg pll cfg
+    800003f0:	510007b7          	lui	a5,0x51000
+    800003f4:	01878793          	addi	a5,a5,24 # 51000018 <_prog_start-0x2effffe8>
+    800003f8:	00011737          	lui	a4,0x11
+    800003fc:	0217071b          	addiw	a4,a4,33
+    80000400:	00e7a023          	sw	a4,0(a5)
+			kprintf("Info: end switch work clk to pll output: 0x%x", _REG32(_AC(0x51000000, UL), 0x20));
+    80000404:	510007b7          	lui	a5,0x51000
+    80000408:	02078793          	addi	a5,a5,32 # 51000020 <_prog_start-0x2effffe0>
+    8000040c:	0007a783          	lw	a5,0(a5)
+    80000410:	0007879b          	sext.w	a5,a5
+    80000414:	00078593          	mv	a1,a5
+    80000418:	00001517          	auipc	a0,0x1
+    8000041c:	36850513          	addi	a0,a0,872 # 80001780 <kprintf+0x3d8>
+    80000420:	789000ef          	jal	ra,800013a8 <kprintf>
+    80000424:	0840006f          	j	800004a8 <main+0x448>
+			//use_clk_freq = 200000UL;
+		}
+		else {
+			_REG32(_AC(0x51000000, UL), 0x18) = (18 << 15) + (20 << 10) + (0x0 << 5) + (0x0);  // SOC_LSYS cfg pll cfg
+    80000428:	510007b7          	lui	a5,0x51000
+    8000042c:	01878793          	addi	a5,a5,24 # 51000018 <_prog_start-0x2effffe8>
+    80000430:	00095737          	lui	a4,0x95
+    80000434:	00e7a023          	sw	a4,0(a5)
+			// donot need switch pll, use ref clk
+			// cfg sdram parameter to 10m
+			_REG32(_AC(0x51000000, UL), 0x200) = 1000;
+    80000438:	510007b7          	lui	a5,0x51000
+    8000043c:	20078793          	addi	a5,a5,512 # 51000200 <_prog_start-0x2efffe00>
+    80000440:	3e800713          	li	a4,1000
+    80000444:	00e7a023          	sw	a4,0(a5)
+			_REG32(_AC(0x51000000, UL), 0x208) = 77;
+    80000448:	510007b7          	lui	a5,0x51000
+    8000044c:	20878793          	addi	a5,a5,520 # 51000208 <_prog_start-0x2efffdf8>
+    80000450:	04d00713          	li	a4,77
+    80000454:	00e7a023          	sw	a4,0(a5)
+			_REG32(_AC(0x51000000, UL), 0x210) = 1;
+    80000458:	510007b7          	lui	a5,0x51000
+    8000045c:	21078793          	addi	a5,a5,528 # 51000210 <_prog_start-0x2efffdf0>
+    80000460:	00100713          	li	a4,1
+    80000464:	00e7a023          	sw	a4,0(a5)
+			_REG32(_AC(0x51000000, UL), 0x218) = 1;
+    80000468:	510007b7          	lui	a5,0x51000
+    8000046c:	21878793          	addi	a5,a5,536 # 51000218 <_prog_start-0x2efffde8>
+    80000470:	00100713          	li	a4,1
+    80000474:	00e7a023          	sw	a4,0(a5)
+			_REG32(_AC(0x51000000, UL), 0x220) = 1;
+    80000478:	510007b7          	lui	a5,0x51000
+    8000047c:	22078793          	addi	a5,a5,544 # 51000220 <_prog_start-0x2efffde0>
+    80000480:	00100713          	li	a4,1
+    80000484:	00e7a023          	sw	a4,0(a5)
+
+			kprintf("Info: donot need switch work clk to pll output: 0x%x", _REG32(_AC(0x51000000, UL), 0x20));
+    80000488:	510007b7          	lui	a5,0x51000
+    8000048c:	02078793          	addi	a5,a5,32 # 51000020 <_prog_start-0x2effffe0>
+    80000490:	0007a783          	lw	a5,0(a5)
+    80000494:	0007879b          	sext.w	a5,a5
+    80000498:	00078593          	mv	a1,a5
+    8000049c:	00001517          	auipc	a0,0x1
+    800004a0:	24c50513          	addi	a0,a0,588 # 800016e8 <kprintf+0x340>
+    800004a4:	705000ef          	jal	ra,800013a8 <kprintf>
+	
+
+
+
+	// A000_0000 - BFFF_FFFF
+  for(int incr = 10; incr >= 0; incr = incr - 1) {
+    800004a8:	00a00793          	li	a5,10
+    800004ac:	fef42023          	sw	a5,-32(s0)
+    800004b0:	1400006f          	j	800005f0 <main+0x590>
+		//incr_addr = incr*0x10000000UL + 0x2ffffff8UL;
+		incr_addr = incr*0x10000UL + 0x20000000UL;
+    800004b4:	fe042703          	lw	a4,-32(s0)
+    800004b8:	000027b7          	lui	a5,0x2
+    800004bc:	00f707b3          	add	a5,a4,a5
+    800004c0:	01079793          	slli	a5,a5,0x10
+    800004c4:	f6f43423          	sd	a5,-152(s0)
+		base_addr = 0x80000000UL + incr_addr;
+    800004c8:	f6843703          	ld	a4,-152(s0)
+    800004cc:	00100793          	li	a5,1
+    800004d0:	01f79793          	slli	a5,a5,0x1f
+    800004d4:	00f707b3          	add	a5,a4,a5
+    800004d8:	f8f43c23          	sd	a5,-104(s0)
+		kprintf("Info: test sdram for 0x%x Single 8Byte access @ addr 0x%x", soc_iram_max_size_64, base_addr);
+    800004dc:	f9843603          	ld	a2,-104(s0)
+    800004e0:	fa843583          	ld	a1,-88(s0)
+    800004e4:	00001517          	auipc	a0,0x1
+    800004e8:	2cc50513          	addi	a0,a0,716 # 800017b0 <kprintf+0x408>
+    800004ec:	6bd000ef          	jal	ra,800013a8 <kprintf>
+		for(int i = SOC_IRAM_MAX_SIZE - 8; i >= 0; i = i - 8) {
+    800004f0:	1f800793          	li	a5,504
+    800004f4:	fcf42e23          	sw	a5,-36(s0)
+    800004f8:	0e00006f          	j	800005d8 <main+0x578>
+			temp_data = ((incr_addr - i + 4) << 32) + (incr_addr - i);
+    800004fc:	fdc42783          	lw	a5,-36(s0)
+    80000500:	f6843703          	ld	a4,-152(s0)
+    80000504:	40f707b3          	sub	a5,a4,a5
+    80000508:	00478793          	addi	a5,a5,4 # 2004 <_prog_start-0x7fffdffc>
+    8000050c:	02079713          	slli	a4,a5,0x20
+    80000510:	fdc42783          	lw	a5,-36(s0)
+    80000514:	f6843683          	ld	a3,-152(s0)
+    80000518:	40f687b3          	sub	a5,a3,a5
+    8000051c:	00f707b3          	add	a5,a4,a5
+    80000520:	f6f43c23          	sd	a5,-136(s0)
+			_REG64(0x80000000UL, incr_addr - i) = temp_data;
+    80000524:	fdc42783          	lw	a5,-36(s0)
+    80000528:	f6843703          	ld	a4,-152(s0)
+    8000052c:	40f70733          	sub	a4,a4,a5
+    80000530:	00100793          	li	a5,1
+    80000534:	01f79793          	slli	a5,a5,0x1f
+    80000538:	00f707b3          	add	a5,a4,a5
+    8000053c:	00078713          	mv	a4,a5
+    80000540:	f7843783          	ld	a5,-136(s0)
+    80000544:	00f73023          	sd	a5,0(a4) # 95000 <_prog_start-0x7ff6b000>
+			dut_data = _REG64(0x80000000UL, incr_addr - i);
+    80000548:	fdc42783          	lw	a5,-36(s0)
+    8000054c:	f6843703          	ld	a4,-152(s0)
+    80000550:	40f70733          	sub	a4,a4,a5
+    80000554:	00100793          	li	a5,1
+    80000558:	01f79793          	slli	a5,a5,0x1f
+    8000055c:	00f707b3          	add	a5,a4,a5
+    80000560:	0007b783          	ld	a5,0(a5)
+    80000564:	f6f43023          	sd	a5,-160(s0)
+			if(dut_data != temp_data) {
+    80000568:	f6043703          	ld	a4,-160(s0)
+    8000056c:	f7843783          	ld	a5,-136(s0)
+    80000570:	02f70663          	beq	a4,a5,8000059c <main+0x53c>
+				kprintf("Error: memory read value 0x%x - 0x%x @ addr 0x%x", dut_data, temp_data, base_addr - i);
+    80000574:	fdc42783          	lw	a5,-36(s0)
+    80000578:	f9843703          	ld	a4,-104(s0)
+    8000057c:	40f707b3          	sub	a5,a4,a5
+    80000580:	00078693          	mv	a3,a5
+    80000584:	f7843603          	ld	a2,-136(s0)
+    80000588:	f6043583          	ld	a1,-160(s0)
+    8000058c:	00001517          	auipc	a0,0x1
+    80000590:	26450513          	addi	a0,a0,612 # 800017f0 <kprintf+0x448>
+    80000594:	615000ef          	jal	ra,800013a8 <kprintf>
+    80000598:	0340006f          	j	800005cc <main+0x56c>
+			}
+			else if(i%PRINT_INFO_INDENT == 0) {
+    8000059c:	fdc42783          	lw	a5,-36(s0)
+    800005a0:	07f7f793          	andi	a5,a5,127
+    800005a4:	0007879b          	sext.w	a5,a5
+    800005a8:	02079263          	bnez	a5,800005cc <main+0x56c>
+				kprintf("Info: read value is 0x%x @ addr 0x%x", temp_data, base_addr - i);
+    800005ac:	fdc42783          	lw	a5,-36(s0)
+    800005b0:	f9843703          	ld	a4,-104(s0)
+    800005b4:	40f707b3          	sub	a5,a4,a5
+    800005b8:	00078613          	mv	a2,a5
+    800005bc:	f7843583          	ld	a1,-136(s0)
+    800005c0:	00001517          	auipc	a0,0x1
+    800005c4:	26850513          	addi	a0,a0,616 # 80001828 <kprintf+0x480>
+    800005c8:	5e1000ef          	jal	ra,800013a8 <kprintf>
+		for(int i = SOC_IRAM_MAX_SIZE - 8; i >= 0; i = i - 8) {
+    800005cc:	fdc42783          	lw	a5,-36(s0)
+    800005d0:	ff87879b          	addiw	a5,a5,-8
+    800005d4:	fcf42e23          	sw	a5,-36(s0)
+    800005d8:	fdc42783          	lw	a5,-36(s0)
+    800005dc:	0007879b          	sext.w	a5,a5
+    800005e0:	f007dee3          	bgez	a5,800004fc <main+0x49c>
+  for(int incr = 10; incr >= 0; incr = incr - 1) {
+    800005e4:	fe042783          	lw	a5,-32(s0)
+    800005e8:	fff7879b          	addiw	a5,a5,-1
+    800005ec:	fef42023          	sw	a5,-32(s0)
+    800005f0:	fe042783          	lw	a5,-32(s0)
+    800005f4:	0007879b          	sext.w	a5,a5
+    800005f8:	ea07dee3          	bgez	a5,800004b4 <main+0x454>
+			#endif
+		} 
+	}
+
+  // A000_0000 - BFFF_FFFF
+  for(int incr = 10; incr >= 0; incr = incr - 1) {
+    800005fc:	00a00793          	li	a5,10
+    80000600:	fcf42c23          	sw	a5,-40(s0)
+    80000604:	1f40006f          	j	800007f8 <main+0x798>
+		//incr_addr = incr*0x10000000UL + 0x2ffffff8UL;
+		incr_addr = incr*0x10000UL + 0x20000000UL;
+    80000608:	fd842703          	lw	a4,-40(s0)
+    8000060c:	000027b7          	lui	a5,0x2
+    80000610:	00f707b3          	add	a5,a4,a5
+    80000614:	01079793          	slli	a5,a5,0x10
+    80000618:	f6f43423          	sd	a5,-152(s0)
+		base_addr = 0x80000000UL + incr_addr;
+    8000061c:	f6843703          	ld	a4,-152(s0)
+    80000620:	00100793          	li	a5,1
+    80000624:	01f79793          	slli	a5,a5,0x1f
+    80000628:	00f707b3          	add	a5,a4,a5
+    8000062c:	f8f43c23          	sd	a5,-104(s0)
+		//kprintf("Info: test sdram for 0x%x Byte MEMORY_REG64 access @ addr 0x%x", soc_iram_max_size_64, base_addr);
+		for(int i = SOC_IRAM_MAX_SIZE - 8; i >= 0; i = i - 8) {
+    80000630:	1f800793          	li	a5,504
+    80000634:	fcf42a23          	sw	a5,-44(s0)
+    80000638:	1a80006f          	j	800007e0 <main+0x780>
+			temp_data = ((incr_addr - i + 4) << 32) + (incr_addr - i);
+    8000063c:	fd442783          	lw	a5,-44(s0)
+    80000640:	f6843703          	ld	a4,-152(s0)
+    80000644:	40f707b3          	sub	a5,a4,a5
+    80000648:	00478793          	addi	a5,a5,4 # 2004 <_prog_start-0x7fffdffc>
+    8000064c:	02079713          	slli	a4,a5,0x20
+    80000650:	fd442783          	lw	a5,-44(s0)
+    80000654:	f6843683          	ld	a3,-152(s0)
+    80000658:	40f687b3          	sub	a5,a3,a5
+    8000065c:	00f707b3          	add	a5,a4,a5
+    80000660:	f6f43c23          	sd	a5,-136(s0)
+			_REG64(0x80000000UL, incr_addr - i) = temp_data;
+    80000664:	fd442783          	lw	a5,-44(s0)
+    80000668:	f6843703          	ld	a4,-152(s0)
+    8000066c:	40f70733          	sub	a4,a4,a5
+    80000670:	00100793          	li	a5,1
+    80000674:	01f79793          	slli	a5,a5,0x1f
+    80000678:	00f707b3          	add	a5,a4,a5
+    8000067c:	00078713          	mv	a4,a5
+    80000680:	f7843783          	ld	a5,-136(s0)
+    80000684:	00f73023          	sd	a5,0(a4)
+			if(MEMORY_REG64(incr_addr - i) != temp_data) {
+    80000688:	fd442783          	lw	a5,-44(s0)
+    8000068c:	f6843703          	ld	a4,-152(s0)
+    80000690:	40f70733          	sub	a4,a4,a5
+    80000694:	00100793          	li	a5,1
+    80000698:	01f79793          	slli	a5,a5,0x1f
+    8000069c:	00f707b3          	add	a5,a4,a5
+    800006a0:	0007b783          	ld	a5,0(a5)
+    800006a4:	f7843703          	ld	a4,-136(s0)
+    800006a8:	04f70263          	beq	a4,a5,800006ec <main+0x68c>
+				kprintf("Error: memory read value 0x%x - 0x%x @ addr 0x%x", _REG64(0x80000000UL, incr_addr - i), temp_data, base_addr - i);
+    800006ac:	fd442783          	lw	a5,-44(s0)
+    800006b0:	f6843703          	ld	a4,-152(s0)
+    800006b4:	40f70733          	sub	a4,a4,a5
+    800006b8:	00100793          	li	a5,1
+    800006bc:	01f79793          	slli	a5,a5,0x1f
+    800006c0:	00f707b3          	add	a5,a4,a5
+    800006c4:	0007b583          	ld	a1,0(a5)
+    800006c8:	fd442783          	lw	a5,-44(s0)
+    800006cc:	f9843703          	ld	a4,-104(s0)
+    800006d0:	40f707b3          	sub	a5,a4,a5
+    800006d4:	00078693          	mv	a3,a5
+    800006d8:	f7843603          	ld	a2,-136(s0)
+    800006dc:	00001517          	auipc	a0,0x1
+    800006e0:	11450513          	addi	a0,a0,276 # 800017f0 <kprintf+0x448>
+    800006e4:	4c5000ef          	jal	ra,800013a8 <kprintf>
+    800006e8:	0340006f          	j	8000071c <main+0x6bc>
+			}
+			else if(i%PRINT_INFO_INDENT == 0) {
+    800006ec:	fd442783          	lw	a5,-44(s0)
+    800006f0:	07f7f793          	andi	a5,a5,127
+    800006f4:	0007879b          	sext.w	a5,a5
+    800006f8:	02079263          	bnez	a5,8000071c <main+0x6bc>
+				kprintf("Info: read value is 0x%x @ addr 0x%x", temp_data, base_addr - i);
+    800006fc:	fd442783          	lw	a5,-44(s0)
+    80000700:	f9843703          	ld	a4,-104(s0)
+    80000704:	40f707b3          	sub	a5,a4,a5
+    80000708:	00078613          	mv	a2,a5
+    8000070c:	f7843583          	ld	a1,-136(s0)
+    80000710:	00001517          	auipc	a0,0x1
+    80000714:	11850513          	addi	a0,a0,280 # 80001828 <kprintf+0x480>
+    80000718:	491000ef          	jal	ra,800013a8 <kprintf>
+			}
+			_REG64(0x80000000UL, incr_addr - i) = temp_data;
+    8000071c:	fd442783          	lw	a5,-44(s0)
+    80000720:	f6843703          	ld	a4,-152(s0)
+    80000724:	40f70733          	sub	a4,a4,a5
+    80000728:	00100793          	li	a5,1
+    8000072c:	01f79793          	slli	a5,a5,0x1f
+    80000730:	00f707b3          	add	a5,a4,a5
+    80000734:	00078713          	mv	a4,a5
+    80000738:	f7843783          	ld	a5,-136(s0)
+    8000073c:	00f73023          	sd	a5,0(a4)
+			if(_REG64(0x80000000UL, incr_addr - i) != temp_data) {
+    80000740:	fd442783          	lw	a5,-44(s0)
+    80000744:	f6843703          	ld	a4,-152(s0)
+    80000748:	40f70733          	sub	a4,a4,a5
+    8000074c:	00100793          	li	a5,1
+    80000750:	01f79793          	slli	a5,a5,0x1f
+    80000754:	00f707b3          	add	a5,a4,a5
+    80000758:	0007b783          	ld	a5,0(a5)
+    8000075c:	f7843703          	ld	a4,-136(s0)
+    80000760:	04f70263          	beq	a4,a5,800007a4 <main+0x744>
+				kprintf("Error: reg read value 0x%x - 0x%x @ addr 0x%x", MEMORY_REG64(incr_addr - i), temp_data, base_addr - i);
+    80000764:	fd442783          	lw	a5,-44(s0)
+    80000768:	f6843703          	ld	a4,-152(s0)
+    8000076c:	40f70733          	sub	a4,a4,a5
+    80000770:	00100793          	li	a5,1
+    80000774:	01f79793          	slli	a5,a5,0x1f
+    80000778:	00f707b3          	add	a5,a4,a5
+    8000077c:	0007b583          	ld	a1,0(a5)
+    80000780:	fd442783          	lw	a5,-44(s0)
+    80000784:	f9843703          	ld	a4,-104(s0)
+    80000788:	40f707b3          	sub	a5,a4,a5
+    8000078c:	00078693          	mv	a3,a5
+    80000790:	f7843603          	ld	a2,-136(s0)
+    80000794:	00001517          	auipc	a0,0x1
+    80000798:	0bc50513          	addi	a0,a0,188 # 80001850 <kprintf+0x4a8>
+    8000079c:	40d000ef          	jal	ra,800013a8 <kprintf>
+    800007a0:	0340006f          	j	800007d4 <main+0x774>
+			}
+			else if(i%PRINT_INFO_INDENT == 0) {
+    800007a4:	fd442783          	lw	a5,-44(s0)
+    800007a8:	07f7f793          	andi	a5,a5,127
+    800007ac:	0007879b          	sext.w	a5,a5
+    800007b0:	02079263          	bnez	a5,800007d4 <main+0x774>
+				kprintf("Info: read value is 0x%x @ addr 0x%x", temp_data, base_addr - i);
+    800007b4:	fd442783          	lw	a5,-44(s0)
+    800007b8:	f9843703          	ld	a4,-104(s0)
+    800007bc:	40f707b3          	sub	a5,a4,a5
+    800007c0:	00078613          	mv	a2,a5
+    800007c4:	f7843583          	ld	a1,-136(s0)
+    800007c8:	00001517          	auipc	a0,0x1
+    800007cc:	06050513          	addi	a0,a0,96 # 80001828 <kprintf+0x480>
+    800007d0:	3d9000ef          	jal	ra,800013a8 <kprintf>
+		for(int i = SOC_IRAM_MAX_SIZE - 8; i >= 0; i = i - 8) {
+    800007d4:	fd442783          	lw	a5,-44(s0)
+    800007d8:	ff87879b          	addiw	a5,a5,-8
+    800007dc:	fcf42a23          	sw	a5,-44(s0)
+    800007e0:	fd442783          	lw	a5,-44(s0)
+    800007e4:	0007879b          	sext.w	a5,a5
+    800007e8:	e407dae3          	bgez	a5,8000063c <main+0x5dc>
+  for(int incr = 10; incr >= 0; incr = incr - 1) {
+    800007ec:	fd842783          	lw	a5,-40(s0)
+    800007f0:	fff7879b          	addiw	a5,a5,-1
+    800007f4:	fcf42c23          	sw	a5,-40(s0)
+    800007f8:	fd842783          	lw	a5,-40(s0)
+    800007fc:	0007879b          	sext.w	a5,a5
+    80000800:	e007d4e3          	bgez	a5,80000608 <main+0x5a8>
+//   for(int i = 0 ; i < 0x1000; i++){
+//     *(ddr_ptr + i) = 0x81001000 + i;
+//   }
+
+	// donnot access 0x8000_0000，avoid write program stack
+	for(int incr = 3; incr >= 1; incr = incr - 1) {
+    80000804:	00300793          	li	a5,3
+    80000808:	fcf42823          	sw	a5,-48(s0)
+    8000080c:	2000006f          	j	80000a0c <main+0x9ac>
+		incr_addr = incr*0x10000000UL;
+    80000810:	fd042783          	lw	a5,-48(s0)
+    80000814:	01c79793          	slli	a5,a5,0x1c
+    80000818:	f6f43423          	sd	a5,-152(s0)
+		
+		base_addr = 0x80000000UL + incr_addr;
+    8000081c:	f6843703          	ld	a4,-152(s0)
+    80000820:	00100793          	li	a5,1
+    80000824:	01f79793          	slli	a5,a5,0x1f
+    80000828:	00f707b3          	add	a5,a4,a5
+    8000082c:	f8f43c23          	sd	a5,-104(s0)
+		kprintf("Info: test chiplink for 0x%x Byte MEMORY_REG64 access @ addr 0x%x", soc_iram_max_size_64, base_addr);
+    80000830:	f9843603          	ld	a2,-104(s0)
+    80000834:	fa843583          	ld	a1,-88(s0)
+    80000838:	00001517          	auipc	a0,0x1
+    8000083c:	04850513          	addi	a0,a0,72 # 80001880 <kprintf+0x4d8>
+    80000840:	369000ef          	jal	ra,800013a8 <kprintf>
+		for(int i = SOC_IRAM_MAX_SIZE - 8; i >= 0; i = i - 8) {
+    80000844:	1f800793          	li	a5,504
+    80000848:	fcf42623          	sw	a5,-52(s0)
+    8000084c:	1a80006f          	j	800009f4 <main+0x994>
+			temp_data = ((incr_addr + i + 4) << 32) + (incr_addr + i);
+    80000850:	fcc42703          	lw	a4,-52(s0)
+    80000854:	f6843783          	ld	a5,-152(s0)
+    80000858:	00f707b3          	add	a5,a4,a5
+    8000085c:	00478793          	addi	a5,a5,4
+    80000860:	02079713          	slli	a4,a5,0x20
+    80000864:	fcc42683          	lw	a3,-52(s0)
+    80000868:	f6843783          	ld	a5,-152(s0)
+    8000086c:	00f687b3          	add	a5,a3,a5
+    80000870:	00f707b3          	add	a5,a4,a5
+    80000874:	f6f43c23          	sd	a5,-136(s0)
+			MEMORY_REG64(incr_addr + i) = temp_data;
+    80000878:	fcc42703          	lw	a4,-52(s0)
+    8000087c:	f6843783          	ld	a5,-152(s0)
+    80000880:	00f70733          	add	a4,a4,a5
+    80000884:	00100793          	li	a5,1
+    80000888:	01f79793          	slli	a5,a5,0x1f
+    8000088c:	00f707b3          	add	a5,a4,a5
+    80000890:	00078713          	mv	a4,a5
+    80000894:	f7843783          	ld	a5,-136(s0)
+    80000898:	00f73023          	sd	a5,0(a4)
+			if(MEMORY_REG64(incr_addr + i) != temp_data) {
+    8000089c:	fcc42703          	lw	a4,-52(s0)
+    800008a0:	f6843783          	ld	a5,-152(s0)
+    800008a4:	00f70733          	add	a4,a4,a5
+    800008a8:	00100793          	li	a5,1
+    800008ac:	01f79793          	slli	a5,a5,0x1f
+    800008b0:	00f707b3          	add	a5,a4,a5
+    800008b4:	0007b783          	ld	a5,0(a5)
+    800008b8:	f7843703          	ld	a4,-136(s0)
+    800008bc:	04f70263          	beq	a4,a5,80000900 <main+0x8a0>
+				kprintf("Error: memory read value 0x%x - 0x%x @ addr 0x%x", _REG64(0x80000000UL, incr_addr + i), temp_data, base_addr + i);
+    800008c0:	fcc42703          	lw	a4,-52(s0)
+    800008c4:	f6843783          	ld	a5,-152(s0)
+    800008c8:	00f70733          	add	a4,a4,a5
+    800008cc:	00100793          	li	a5,1
+    800008d0:	01f79793          	slli	a5,a5,0x1f
+    800008d4:	00f707b3          	add	a5,a4,a5
+    800008d8:	0007b583          	ld	a1,0(a5)
+    800008dc:	fcc42703          	lw	a4,-52(s0)
+    800008e0:	f9843783          	ld	a5,-104(s0)
+    800008e4:	00f707b3          	add	a5,a4,a5
+    800008e8:	00078693          	mv	a3,a5
+    800008ec:	f7843603          	ld	a2,-136(s0)
+    800008f0:	00001517          	auipc	a0,0x1
+    800008f4:	f0050513          	addi	a0,a0,-256 # 800017f0 <kprintf+0x448>
+    800008f8:	2b1000ef          	jal	ra,800013a8 <kprintf>
+    800008fc:	0340006f          	j	80000930 <main+0x8d0>
+			}
+			else if(i%PRINT_INFO_INDENT == 0) {
+    80000900:	fcc42783          	lw	a5,-52(s0)
+    80000904:	07f7f793          	andi	a5,a5,127
+    80000908:	0007879b          	sext.w	a5,a5
+    8000090c:	02079263          	bnez	a5,80000930 <main+0x8d0>
+				kprintf("Info: read value is 0x%x @ addr 0x%x", temp_data, base_addr + i);
+    80000910:	fcc42703          	lw	a4,-52(s0)
+    80000914:	f9843783          	ld	a5,-104(s0)
+    80000918:	00f707b3          	add	a5,a4,a5
+    8000091c:	00078613          	mv	a2,a5
+    80000920:	f7843583          	ld	a1,-136(s0)
+    80000924:	00001517          	auipc	a0,0x1
+    80000928:	f0450513          	addi	a0,a0,-252 # 80001828 <kprintf+0x480>
+    8000092c:	27d000ef          	jal	ra,800013a8 <kprintf>
+			}
+			_REG64(0x80000000UL, incr_addr + i) = temp_data;
+    80000930:	fcc42703          	lw	a4,-52(s0)
+    80000934:	f6843783          	ld	a5,-152(s0)
+    80000938:	00f70733          	add	a4,a4,a5
+    8000093c:	00100793          	li	a5,1
+    80000940:	01f79793          	slli	a5,a5,0x1f
+    80000944:	00f707b3          	add	a5,a4,a5
+    80000948:	00078713          	mv	a4,a5
+    8000094c:	f7843783          	ld	a5,-136(s0)
+    80000950:	00f73023          	sd	a5,0(a4)
+			if(_REG64(0x80000000UL, incr_addr + i) != temp_data) {
+    80000954:	fcc42703          	lw	a4,-52(s0)
+    80000958:	f6843783          	ld	a5,-152(s0)
+    8000095c:	00f70733          	add	a4,a4,a5
+    80000960:	00100793          	li	a5,1
+    80000964:	01f79793          	slli	a5,a5,0x1f
+    80000968:	00f707b3          	add	a5,a4,a5
+    8000096c:	0007b783          	ld	a5,0(a5)
+    80000970:	f7843703          	ld	a4,-136(s0)
+    80000974:	04f70263          	beq	a4,a5,800009b8 <main+0x958>
+				kprintf("Error: reg read value 0x%x - 0x%x @ addr 0x%x", MEMORY_REG64(incr_addr + i), temp_data, base_addr + i);
+    80000978:	fcc42703          	lw	a4,-52(s0)
+    8000097c:	f6843783          	ld	a5,-152(s0)
+    80000980:	00f70733          	add	a4,a4,a5
+    80000984:	00100793          	li	a5,1
+    80000988:	01f79793          	slli	a5,a5,0x1f
+    8000098c:	00f707b3          	add	a5,a4,a5
+    80000990:	0007b583          	ld	a1,0(a5)
+    80000994:	fcc42703          	lw	a4,-52(s0)
+    80000998:	f9843783          	ld	a5,-104(s0)
+    8000099c:	00f707b3          	add	a5,a4,a5
+    800009a0:	00078693          	mv	a3,a5
+    800009a4:	f7843603          	ld	a2,-136(s0)
+    800009a8:	00001517          	auipc	a0,0x1
+    800009ac:	ea850513          	addi	a0,a0,-344 # 80001850 <kprintf+0x4a8>
+    800009b0:	1f9000ef          	jal	ra,800013a8 <kprintf>
+    800009b4:	0340006f          	j	800009e8 <main+0x988>
+			}
+			else if(i%PRINT_INFO_INDENT == 0) {
+    800009b8:	fcc42783          	lw	a5,-52(s0)
+    800009bc:	07f7f793          	andi	a5,a5,127
+    800009c0:	0007879b          	sext.w	a5,a5
+    800009c4:	02079263          	bnez	a5,800009e8 <main+0x988>
+				kprintf("Info: read value is 0x%x @ addr 0x%x", temp_data, base_addr + i);
+    800009c8:	fcc42703          	lw	a4,-52(s0)
+    800009cc:	f9843783          	ld	a5,-104(s0)
+    800009d0:	00f707b3          	add	a5,a4,a5
+    800009d4:	00078613          	mv	a2,a5
+    800009d8:	f7843583          	ld	a1,-136(s0)
+    800009dc:	00001517          	auipc	a0,0x1
+    800009e0:	e4c50513          	addi	a0,a0,-436 # 80001828 <kprintf+0x480>
+    800009e4:	1c5000ef          	jal	ra,800013a8 <kprintf>
+		for(int i = SOC_IRAM_MAX_SIZE - 8; i >= 0; i = i - 8) {
+    800009e8:	fcc42783          	lw	a5,-52(s0)
+    800009ec:	ff87879b          	addiw	a5,a5,-8
+    800009f0:	fcf42623          	sw	a5,-52(s0)
+    800009f4:	fcc42783          	lw	a5,-52(s0)
+    800009f8:	0007879b          	sext.w	a5,a5
+    800009fc:	e407dae3          	bgez	a5,80000850 <main+0x7f0>
+	for(int incr = 3; incr >= 1; incr = incr - 1) {
+    80000a00:	fd042783          	lw	a5,-48(s0)
+    80000a04:	fff7879b          	addiw	a5,a5,-1
+    80000a08:	fcf42823          	sw	a5,-48(s0)
+    80000a0c:	fd042783          	lw	a5,-48(s0)
+    80000a10:	0007879b          	sext.w	a5,a5
+    80000a14:	def04ee3          	bgtz	a5,80000810 <main+0x7b0>
+			#endif
+		}
+	}
+
+	// donnot access 0x8000_0000，avoid write program stack
+	for(int incr = 3; incr >= 1; incr = incr - 1) {
+    80000a18:	00300793          	li	a5,3
+    80000a1c:	fcf42423          	sw	a5,-56(s0)
+    80000a20:	20c0006f          	j	80000c2c <main+0xbcc>
+		incr_addr = incr*0x10000000UL + 0x0ffffff8UL;
+    80000a24:	fc842783          	lw	a5,-56(s0)
+    80000a28:	01c79713          	slli	a4,a5,0x1c
+    80000a2c:	100007b7          	lui	a5,0x10000
+    80000a30:	ff878793          	addi	a5,a5,-8 # ffffff8 <_prog_start-0x70000008>
+    80000a34:	00f707b3          	add	a5,a4,a5
+    80000a38:	f6f43423          	sd	a5,-152(s0)
+		// if((incr == 1) || (incr == 3)) {  // modfiy stack addr to no stack max stack size is 1048576 = 0x10_0000
+		// 	incr_addr = incr_addr - 0x200000;
+		// }
+		base_addr = 0x80000000UL + incr_addr;
+    80000a3c:	f6843703          	ld	a4,-152(s0)
+    80000a40:	00100793          	li	a5,1
+    80000a44:	01f79793          	slli	a5,a5,0x1f
+    80000a48:	00f707b3          	add	a5,a4,a5
+    80000a4c:	f8f43c23          	sd	a5,-104(s0)
+		kprintf("Info: test chiplink for 0x%x Byte MEMORY_REG64 access @ addr 0x%x", soc_iram_max_size_64, base_addr);
+    80000a50:	f9843603          	ld	a2,-104(s0)
+    80000a54:	fa843583          	ld	a1,-88(s0)
+    80000a58:	00001517          	auipc	a0,0x1
+    80000a5c:	e2850513          	addi	a0,a0,-472 # 80001880 <kprintf+0x4d8>
+    80000a60:	149000ef          	jal	ra,800013a8 <kprintf>
+		for(int i = SOC_IRAM_MAX_SIZE - 8; i >= 0; i = i - 8) {
+    80000a64:	1f800793          	li	a5,504
+    80000a68:	fcf42223          	sw	a5,-60(s0)
+    80000a6c:	1a80006f          	j	80000c14 <main+0xbb4>
+			temp_data = ((incr_addr - i + 4) << 32) + (incr_addr - i);
+    80000a70:	fc442783          	lw	a5,-60(s0)
+    80000a74:	f6843703          	ld	a4,-152(s0)
+    80000a78:	40f707b3          	sub	a5,a4,a5
+    80000a7c:	00478793          	addi	a5,a5,4
+    80000a80:	02079713          	slli	a4,a5,0x20
+    80000a84:	fc442783          	lw	a5,-60(s0)
+    80000a88:	f6843683          	ld	a3,-152(s0)
+    80000a8c:	40f687b3          	sub	a5,a3,a5
+    80000a90:	00f707b3          	add	a5,a4,a5
+    80000a94:	f6f43c23          	sd	a5,-136(s0)
+			MEMORY_REG64(incr_addr - i) = temp_data;
+    80000a98:	fc442783          	lw	a5,-60(s0)
+    80000a9c:	f6843703          	ld	a4,-152(s0)
+    80000aa0:	40f70733          	sub	a4,a4,a5
+    80000aa4:	00100793          	li	a5,1
+    80000aa8:	01f79793          	slli	a5,a5,0x1f
+    80000aac:	00f707b3          	add	a5,a4,a5
+    80000ab0:	00078713          	mv	a4,a5
+    80000ab4:	f7843783          	ld	a5,-136(s0)
+    80000ab8:	00f73023          	sd	a5,0(a4)
+			if(MEMORY_REG64(incr_addr - i) != temp_data) {
+    80000abc:	fc442783          	lw	a5,-60(s0)
+    80000ac0:	f6843703          	ld	a4,-152(s0)
+    80000ac4:	40f70733          	sub	a4,a4,a5
+    80000ac8:	00100793          	li	a5,1
+    80000acc:	01f79793          	slli	a5,a5,0x1f
+    80000ad0:	00f707b3          	add	a5,a4,a5
+    80000ad4:	0007b783          	ld	a5,0(a5)
+    80000ad8:	f7843703          	ld	a4,-136(s0)
+    80000adc:	04f70263          	beq	a4,a5,80000b20 <main+0xac0>
+				kprintf("Error: memory read value 0x%x - 0x%x @ addr 0x%x", _REG64(0x80000000UL, incr_addr - i), temp_data, base_addr - i);
+    80000ae0:	fc442783          	lw	a5,-60(s0)
+    80000ae4:	f6843703          	ld	a4,-152(s0)
+    80000ae8:	40f70733          	sub	a4,a4,a5
+    80000aec:	00100793          	li	a5,1
+    80000af0:	01f79793          	slli	a5,a5,0x1f
+    80000af4:	00f707b3          	add	a5,a4,a5
+    80000af8:	0007b583          	ld	a1,0(a5)
+    80000afc:	fc442783          	lw	a5,-60(s0)
+    80000b00:	f9843703          	ld	a4,-104(s0)
+    80000b04:	40f707b3          	sub	a5,a4,a5
+    80000b08:	00078693          	mv	a3,a5
+    80000b0c:	f7843603          	ld	a2,-136(s0)
+    80000b10:	00001517          	auipc	a0,0x1
+    80000b14:	ce050513          	addi	a0,a0,-800 # 800017f0 <kprintf+0x448>
+    80000b18:	091000ef          	jal	ra,800013a8 <kprintf>
+    80000b1c:	0340006f          	j	80000b50 <main+0xaf0>
+			}
+			else if(i%PRINT_INFO_INDENT == 0) {
+    80000b20:	fc442783          	lw	a5,-60(s0)
+    80000b24:	07f7f793          	andi	a5,a5,127
+    80000b28:	0007879b          	sext.w	a5,a5
+    80000b2c:	02079263          	bnez	a5,80000b50 <main+0xaf0>
+				kprintf("Info: read value is 0x%x @ addr 0x%x", temp_data, base_addr - i);
+    80000b30:	fc442783          	lw	a5,-60(s0)
+    80000b34:	f9843703          	ld	a4,-104(s0)
+    80000b38:	40f707b3          	sub	a5,a4,a5
+    80000b3c:	00078613          	mv	a2,a5
+    80000b40:	f7843583          	ld	a1,-136(s0)
+    80000b44:	00001517          	auipc	a0,0x1
+    80000b48:	ce450513          	addi	a0,a0,-796 # 80001828 <kprintf+0x480>
+    80000b4c:	05d000ef          	jal	ra,800013a8 <kprintf>
+			}
+			_REG64(0x80000000UL, incr_addr - i) = temp_data;
+    80000b50:	fc442783          	lw	a5,-60(s0)
+    80000b54:	f6843703          	ld	a4,-152(s0)
+    80000b58:	40f70733          	sub	a4,a4,a5
+    80000b5c:	00100793          	li	a5,1
+    80000b60:	01f79793          	slli	a5,a5,0x1f
+    80000b64:	00f707b3          	add	a5,a4,a5
+    80000b68:	00078713          	mv	a4,a5
+    80000b6c:	f7843783          	ld	a5,-136(s0)
+    80000b70:	00f73023          	sd	a5,0(a4)
+			if(_REG64(0x80000000UL, incr_addr - i) != temp_data) {
+    80000b74:	fc442783          	lw	a5,-60(s0)
+    80000b78:	f6843703          	ld	a4,-152(s0)
+    80000b7c:	40f70733          	sub	a4,a4,a5
+    80000b80:	00100793          	li	a5,1
+    80000b84:	01f79793          	slli	a5,a5,0x1f
+    80000b88:	00f707b3          	add	a5,a4,a5
+    80000b8c:	0007b783          	ld	a5,0(a5)
+    80000b90:	f7843703          	ld	a4,-136(s0)
+    80000b94:	04f70263          	beq	a4,a5,80000bd8 <main+0xb78>
+				kprintf("Error: reg read value 0x%x - 0x%x @ addr 0x%x", MEMORY_REG64(incr_addr - i), temp_data, base_addr - i);
+    80000b98:	fc442783          	lw	a5,-60(s0)
+    80000b9c:	f6843703          	ld	a4,-152(s0)
+    80000ba0:	40f70733          	sub	a4,a4,a5
+    80000ba4:	00100793          	li	a5,1
+    80000ba8:	01f79793          	slli	a5,a5,0x1f
+    80000bac:	00f707b3          	add	a5,a4,a5
+    80000bb0:	0007b583          	ld	a1,0(a5)
+    80000bb4:	fc442783          	lw	a5,-60(s0)
+    80000bb8:	f9843703          	ld	a4,-104(s0)
+    80000bbc:	40f707b3          	sub	a5,a4,a5
+    80000bc0:	00078693          	mv	a3,a5
+    80000bc4:	f7843603          	ld	a2,-136(s0)
+    80000bc8:	00001517          	auipc	a0,0x1
+    80000bcc:	c8850513          	addi	a0,a0,-888 # 80001850 <kprintf+0x4a8>
+    80000bd0:	7d8000ef          	jal	ra,800013a8 <kprintf>
+    80000bd4:	0340006f          	j	80000c08 <main+0xba8>
+			}
+			else if(i%PRINT_INFO_INDENT == 0) {
+    80000bd8:	fc442783          	lw	a5,-60(s0)
+    80000bdc:	07f7f793          	andi	a5,a5,127
+    80000be0:	0007879b          	sext.w	a5,a5
+    80000be4:	02079263          	bnez	a5,80000c08 <main+0xba8>
+				kprintf("Info: read value is 0x%x @ addr 0x%x", temp_data, base_addr - i);
+    80000be8:	fc442783          	lw	a5,-60(s0)
+    80000bec:	f9843703          	ld	a4,-104(s0)
+    80000bf0:	40f707b3          	sub	a5,a4,a5
+    80000bf4:	00078613          	mv	a2,a5
+    80000bf8:	f7843583          	ld	a1,-136(s0)
+    80000bfc:	00001517          	auipc	a0,0x1
+    80000c00:	c2c50513          	addi	a0,a0,-980 # 80001828 <kprintf+0x480>
+    80000c04:	7a4000ef          	jal	ra,800013a8 <kprintf>
+		for(int i = SOC_IRAM_MAX_SIZE - 8; i >= 0; i = i - 8) {
+    80000c08:	fc442783          	lw	a5,-60(s0)
+    80000c0c:	ff87879b          	addiw	a5,a5,-8
+    80000c10:	fcf42223          	sw	a5,-60(s0)
+    80000c14:	fc442783          	lw	a5,-60(s0)
+    80000c18:	0007879b          	sext.w	a5,a5
+    80000c1c:	e407dae3          	bgez	a5,80000a70 <main+0xa10>
+	for(int incr = 3; incr >= 1; incr = incr - 1) {
+    80000c20:	fc842783          	lw	a5,-56(s0)
+    80000c24:	fff7879b          	addiw	a5,a5,-1
+    80000c28:	fcf42423          	sw	a5,-56(s0)
+    80000c2c:	fc842783          	lw	a5,-56(s0)
+    80000c30:	0007879b          	sext.w	a5,a5
+    80000c34:	def048e3          	bgtz	a5,80000a24 <main+0x9c4>
+			_REG32(_AC(0x51000000, UL), 0x18) = ((i%30) << 15) + ((i%30) << 10) + (6 << 5) + ((i%30));
+			#endif
+		} 
+	}
+
+	kprintf("Info: begin test cache addr");
+    80000c38:	00001517          	auipc	a0,0x1
+    80000c3c:	c9050513          	addi	a0,a0,-880 # 800018c8 <kprintf+0x520>
+    80000c40:	768000ef          	jal	ra,800013a8 <kprintf>
+	for(int i = 8; i >= 0; i--) {
+    80000c44:	00800793          	li	a5,8
+    80000c48:	fcf42023          	sw	a5,-64(s0)
+    80000c4c:	0a40006f          	j	80000cf0 <main+0xc90>
+		test_ptr = (void *)(test_addr[i]);
+    80000c50:	fc042783          	lw	a5,-64(s0)
+    80000c54:	00379793          	slli	a5,a5,0x3
+    80000c58:	ff040713          	addi	a4,s0,-16
+    80000c5c:	00f707b3          	add	a5,a4,a5
+    80000c60:	f287b783          	ld	a5,-216(a5)
+    80000c64:	f8f43823          	sd	a5,-112(s0)
+		*(test_ptr) = test_addr[i];
+    80000c68:	fc042783          	lw	a5,-64(s0)
+    80000c6c:	00379793          	slli	a5,a5,0x3
+    80000c70:	ff040713          	addi	a4,s0,-16
+    80000c74:	00f707b3          	add	a5,a4,a5
+    80000c78:	f287b783          	ld	a5,-216(a5)
+    80000c7c:	0007871b          	sext.w	a4,a5
+    80000c80:	f9043783          	ld	a5,-112(s0)
+    80000c84:	00e7a023          	sw	a4,0(a5)
+		*(test_ptr + 4) = test_addr[i] + 4;
+    80000c88:	fc042783          	lw	a5,-64(s0)
+    80000c8c:	00379793          	slli	a5,a5,0x3
+    80000c90:	ff040713          	addi	a4,s0,-16
+    80000c94:	00f707b3          	add	a5,a4,a5
+    80000c98:	f287b783          	ld	a5,-216(a5)
+    80000c9c:	0007871b          	sext.w	a4,a5
+    80000ca0:	f9043783          	ld	a5,-112(s0)
+    80000ca4:	01078793          	addi	a5,a5,16
+    80000ca8:	0047071b          	addiw	a4,a4,4
+    80000cac:	0007071b          	sext.w	a4,a4
+    80000cb0:	00e7a023          	sw	a4,0(a5)
+		kprintf("Info: test cache addr 0x%x - 0x%x", test_addr[i], *(test_ptr));
+    80000cb4:	fc042783          	lw	a5,-64(s0)
+    80000cb8:	00379793          	slli	a5,a5,0x3
+    80000cbc:	ff040713          	addi	a4,s0,-16
+    80000cc0:	00f707b3          	add	a5,a4,a5
+    80000cc4:	f287b703          	ld	a4,-216(a5)
+    80000cc8:	f9043783          	ld	a5,-112(s0)
+    80000ccc:	0007a783          	lw	a5,0(a5)
+    80000cd0:	00078613          	mv	a2,a5
+    80000cd4:	00070593          	mv	a1,a4
+    80000cd8:	00001517          	auipc	a0,0x1
+    80000cdc:	96050513          	addi	a0,a0,-1696 # 80001638 <kprintf+0x290>
+    80000ce0:	6c8000ef          	jal	ra,800013a8 <kprintf>
+	for(int i = 8; i >= 0; i--) {
+    80000ce4:	fc042783          	lw	a5,-64(s0)
+    80000ce8:	fff7879b          	addiw	a5,a5,-1
+    80000cec:	fcf42023          	sw	a5,-64(s0)
+    80000cf0:	fc042783          	lw	a5,-64(s0)
+    80000cf4:	0007879b          	sext.w	a5,a5
+    80000cf8:	f407dce3          	bgez	a5,80000c50 <main+0xbf0>
+
+	// kprintf("Test cfg global rst ! @ core: 0x%x", read_csr(mhartid));
+	// _REG32(_AC(0x51000000, UL), 0xd0) = 0x7a7a6f7f;  // SOC_LSYS global soft rst
+	// _REG32(_AC(0x51000000, UL), 0xd0) = 0x6868a7a8; 
+
+	DEBUG_REG64(0x0) = 0x5a5a5a5aUL;
+    80000cfc:	00000713          	li	a4,0
+    80000d00:	5a5a67b7          	lui	a5,0x5a5a6
+    80000d04:	a5a78793          	addi	a5,a5,-1446 # 5a5a5a5a <_prog_start-0x25a5a5a6>
+    80000d08:	00f73023          	sd	a5,0(a4)
+	kprintf("Info: debug ctrl value 0x%x", DEBUG_REG64(0x0));
+    80000d0c:	00000793          	li	a5,0
+    80000d10:	0007b783          	ld	a5,0(a5)
+    80000d14:	00078593          	mv	a1,a5
+    80000d18:	00001517          	auipc	a0,0x1
+    80000d1c:	bd050513          	addi	a0,a0,-1072 # 800018e8 <kprintf+0x540>
+    80000d20:	688000ef          	jal	ra,800013a8 <kprintf>
+
+	// mem ctrl ptr = (void *)0x81000000UL;
+	MEMORY_REG64(0x1000000UL) = 0x81000000UL;   // chiplink can only access to 0x10000_0000
+    80000d24:	08100793          	li	a5,129
+    80000d28:	01879793          	slli	a5,a5,0x18
+    80000d2c:	08100713          	li	a4,129
+    80000d30:	01871713          	slli	a4,a4,0x18
+    80000d34:	00e7b023          	sd	a4,0(a5)
+	MEMORY_REG64(0x2000000UL) = 0x82000000UL;
+    80000d38:	04100793          	li	a5,65
+    80000d3c:	01979793          	slli	a5,a5,0x19
+    80000d40:	04100713          	li	a4,65
+    80000d44:	01971713          	slli	a4,a4,0x19
+    80000d48:	00e7b023          	sd	a4,0(a5)
+	kprintf("Info: mem ctrl 0x%x - 0x%x", MEMORY_REG64(0x1000000UL), MEMORY_REG64(0x2000000UL));
+    80000d4c:	08100793          	li	a5,129
+    80000d50:	01879793          	slli	a5,a5,0x18
+    80000d54:	0007b703          	ld	a4,0(a5)
+    80000d58:	04100793          	li	a5,65
+    80000d5c:	01979793          	slli	a5,a5,0x19
+    80000d60:	0007b783          	ld	a5,0(a5)
+    80000d64:	00078613          	mv	a2,a5
+    80000d68:	00070593          	mv	a1,a4
+    80000d6c:	00001517          	auipc	a0,0x1
+    80000d70:	b9c50513          	addi	a0,a0,-1124 # 80001908 <kprintf+0x560>
+    80000d74:	634000ef          	jal	ra,800013a8 <kprintf>
+
+	// config pcie slave base awaddr to ddr
+	AXI_PCIE_HOST_1_00_A_REG(0x0) = 0x5a5a5a5aUL;
+    80000d78:	500007b7          	lui	a5,0x50000
+    80000d7c:	5a5a6737          	lui	a4,0x5a5a6
+    80000d80:	a5a7071b          	addiw	a4,a4,-1446
+    80000d84:	00e7a023          	sw	a4,0(a5) # 50000000 <_prog_start-0x30000000>
+	kprintf("Info: pcie slave value 0x%x", AXI_PCIE_HOST_1_00_A_REG(0x0));
+    80000d88:	500007b7          	lui	a5,0x50000
+    80000d8c:	0007a783          	lw	a5,0(a5) # 50000000 <_prog_start-0x30000000>
+    80000d90:	0007879b          	sext.w	a5,a5
+    80000d94:	00078593          	mv	a1,a5
+    80000d98:	00001517          	auipc	a0,0x1
+    80000d9c:	b9050513          	addi	a0,a0,-1136 # 80001928 <kprintf+0x580>
+    80000da0:	608000ef          	jal	ra,800013a8 <kprintf>
+	// _REG64(AXI_PCIE_CTRL_ADDR, 0x1000UL) = 0x5a5a5a5aUL;  // 0x2000000000UL + 0x1000UL
+	// kprintf("Info: pcie lsys value 0x%x", _REG64(AXI_PCIE_CTRL_ADDR, 0x1000UL));
+	// test iram for  0x%x Byte 4BYTE access
+	// test iram for  0x%x Byte 8BYTE access
+	
+	base_addr = 0x50000000UL;
+    80000da4:	500007b7          	lui	a5,0x50000
+    80000da8:	f8f43c23          	sd	a5,-104(s0)
+	test_ptr = (void *)(base_addr);
+    80000dac:	f9843783          	ld	a5,-104(s0)
+    80000db0:	f8f43823          	sd	a5,-112(s0)
+	kprintf("Info: test iram for 0x%x Byte MEM32 access @ addr 0x%x", soc_iram_max_size_64, base_addr);
+    80000db4:	f9843603          	ld	a2,-104(s0)
+    80000db8:	fa843583          	ld	a1,-88(s0)
+    80000dbc:	00001517          	auipc	a0,0x1
+    80000dc0:	b8c50513          	addi	a0,a0,-1140 # 80001948 <kprintf+0x5a0>
+    80000dc4:	5e4000ef          	jal	ra,800013a8 <kprintf>
+	for(int i = SOC_IRAM_MAX_SIZE - 4; i >= 0; i = i - 4) {
+    80000dc8:	1fc00793          	li	a5,508
+    80000dcc:	faf42e23          	sw	a5,-68(s0)
+    80000dd0:	1080006f          	j	80000ed8 <main+0xe78>
+		temp_data_32 = (base_addr + i);
+    80000dd4:	f9843783          	ld	a5,-104(s0)
+    80000dd8:	0007871b          	sext.w	a4,a5
+    80000ddc:	fbc42783          	lw	a5,-68(s0)
+    80000de0:	00f707bb          	addw	a5,a4,a5
+    80000de4:	f6f42a23          	sw	a5,-140(s0)
+		*(test_ptr + i/4) = temp_data_32;
+    80000de8:	fbc42783          	lw	a5,-68(s0)
+    80000dec:	41f7d71b          	sraiw	a4,a5,0x1f
+    80000df0:	01e7571b          	srliw	a4,a4,0x1e
+    80000df4:	00f707bb          	addw	a5,a4,a5
+    80000df8:	4027d79b          	sraiw	a5,a5,0x2
+    80000dfc:	0007879b          	sext.w	a5,a5
+    80000e00:	00279793          	slli	a5,a5,0x2
+    80000e04:	f9043703          	ld	a4,-112(s0)
+    80000e08:	00f707b3          	add	a5,a4,a5
+    80000e0c:	f7442703          	lw	a4,-140(s0)
+    80000e10:	00e7a023          	sw	a4,0(a5) # 50000000 <_prog_start-0x30000000>
+		if((*(test_ptr + i/4)) != temp_data_32) {
+    80000e14:	fbc42783          	lw	a5,-68(s0)
+    80000e18:	41f7d71b          	sraiw	a4,a5,0x1f
+    80000e1c:	01e7571b          	srliw	a4,a4,0x1e
+    80000e20:	00f707bb          	addw	a5,a4,a5
+    80000e24:	4027d79b          	sraiw	a5,a5,0x2
+    80000e28:	0007879b          	sext.w	a5,a5
+    80000e2c:	00279793          	slli	a5,a5,0x2
+    80000e30:	f9043703          	ld	a4,-112(s0)
+    80000e34:	00f707b3          	add	a5,a4,a5
+    80000e38:	0007a703          	lw	a4,0(a5)
+    80000e3c:	f7442783          	lw	a5,-140(s0)
+    80000e40:	0007879b          	sext.w	a5,a5
+    80000e44:	04e78a63          	beq	a5,a4,80000e98 <main+0xe38>
+			kprintf("Error: read value 0x%x - 0x%x @ addr 0x%x", (*(test_ptr + i/4)), temp_data_32, base_addr + i);
+    80000e48:	fbc42783          	lw	a5,-68(s0)
+    80000e4c:	41f7d71b          	sraiw	a4,a5,0x1f
+    80000e50:	01e7571b          	srliw	a4,a4,0x1e
+    80000e54:	00f707bb          	addw	a5,a4,a5
+    80000e58:	4027d79b          	sraiw	a5,a5,0x2
+    80000e5c:	0007879b          	sext.w	a5,a5
+    80000e60:	00279793          	slli	a5,a5,0x2
+    80000e64:	f9043703          	ld	a4,-112(s0)
+    80000e68:	00f707b3          	add	a5,a4,a5
+    80000e6c:	0007a583          	lw	a1,0(a5)
+    80000e70:	fbc42703          	lw	a4,-68(s0)
+    80000e74:	f9843783          	ld	a5,-104(s0)
+    80000e78:	00f70733          	add	a4,a4,a5
+    80000e7c:	f7442783          	lw	a5,-140(s0)
+    80000e80:	00070693          	mv	a3,a4
+    80000e84:	00078613          	mv	a2,a5
+    80000e88:	00001517          	auipc	a0,0x1
+    80000e8c:	af850513          	addi	a0,a0,-1288 # 80001980 <kprintf+0x5d8>
+    80000e90:	518000ef          	jal	ra,800013a8 <kprintf>
+    80000e94:	0380006f          	j	80000ecc <main+0xe6c>
+		}
+		else if(i%PRINT_INFO_INDENT == 0) {
+    80000e98:	fbc42783          	lw	a5,-68(s0)
+    80000e9c:	07f7f793          	andi	a5,a5,127
+    80000ea0:	0007879b          	sext.w	a5,a5
+    80000ea4:	02079463          	bnez	a5,80000ecc <main+0xe6c>
+			kprintf("Info: read value is 0x%x @ addr 0x%x", temp_data_32, base_addr + i);
+    80000ea8:	fbc42703          	lw	a4,-68(s0)
+    80000eac:	f9843783          	ld	a5,-104(s0)
+    80000eb0:	00f70733          	add	a4,a4,a5
+    80000eb4:	f7442783          	lw	a5,-140(s0)
+    80000eb8:	00070613          	mv	a2,a4
+    80000ebc:	00078593          	mv	a1,a5
+    80000ec0:	00001517          	auipc	a0,0x1
+    80000ec4:	96850513          	addi	a0,a0,-1688 # 80001828 <kprintf+0x480>
+    80000ec8:	4e0000ef          	jal	ra,800013a8 <kprintf>
+	for(int i = SOC_IRAM_MAX_SIZE - 4; i >= 0; i = i - 4) {
+    80000ecc:	fbc42783          	lw	a5,-68(s0)
+    80000ed0:	ffc7879b          	addiw	a5,a5,-4
+    80000ed4:	faf42e23          	sw	a5,-68(s0)
+    80000ed8:	fbc42783          	lw	a5,-68(s0)
+    80000edc:	0007879b          	sext.w	a5,a5
+    80000ee0:	ee07dae3          	bgez	a5,80000dd4 <main+0xd74>
+		// randomize cfg SOC_LSYS cfg pll cfg chiplink, main, cpu
+		_REG32(_AC(0x51000000, UL), 0x18) = ((i%30) << 15) + ((i%30) << 10) + (0x2 << 5) + (0x1);
+		#endif
+	}
+
+	test_ptr_64 = (void *)(base_addr);
+    80000ee4:	f9843783          	ld	a5,-104(s0)
+    80000ee8:	f8f43423          	sd	a5,-120(s0)
+	kprintf("Info: test iram for 0x%x Byte MEM64 access @ addr 0x%x", soc_iram_max_size_64, base_addr);
+    80000eec:	f9843603          	ld	a2,-104(s0)
+    80000ef0:	fa843583          	ld	a1,-88(s0)
+    80000ef4:	00001517          	auipc	a0,0x1
+    80000ef8:	abc50513          	addi	a0,a0,-1348 # 800019b0 <kprintf+0x608>
+    80000efc:	4ac000ef          	jal	ra,800013a8 <kprintf>
+	for(int i = SOC_IRAM_MAX_SIZE - 8; i >= 0; i = i - 8) {
+    80000f00:	1f800793          	li	a5,504
+    80000f04:	faf42c23          	sw	a5,-72(s0)
+    80000f08:	0f80006f          	j	80001000 <main+0xfa0>
+		temp_data = (base_addr + i);
+    80000f0c:	fb842783          	lw	a5,-72(s0)
+    80000f10:	f9843703          	ld	a4,-104(s0)
+    80000f14:	00f707b3          	add	a5,a4,a5
+    80000f18:	f6f43c23          	sd	a5,-136(s0)
+		*(test_ptr_64 + i/8) = temp_data;
+    80000f1c:	fb842783          	lw	a5,-72(s0)
+    80000f20:	41f7d71b          	sraiw	a4,a5,0x1f
+    80000f24:	01d7571b          	srliw	a4,a4,0x1d
+    80000f28:	00f707bb          	addw	a5,a4,a5
+    80000f2c:	4037d79b          	sraiw	a5,a5,0x3
+    80000f30:	0007879b          	sext.w	a5,a5
+    80000f34:	00379793          	slli	a5,a5,0x3
+    80000f38:	f8843703          	ld	a4,-120(s0)
+    80000f3c:	00f707b3          	add	a5,a4,a5
+    80000f40:	f7843703          	ld	a4,-136(s0)
+    80000f44:	00e7b023          	sd	a4,0(a5)
+		if((*(test_ptr_64 + i/8)) != temp_data) {
+    80000f48:	fb842783          	lw	a5,-72(s0)
+    80000f4c:	41f7d71b          	sraiw	a4,a5,0x1f
+    80000f50:	01d7571b          	srliw	a4,a4,0x1d
+    80000f54:	00f707bb          	addw	a5,a4,a5
+    80000f58:	4037d79b          	sraiw	a5,a5,0x3
+    80000f5c:	0007879b          	sext.w	a5,a5
+    80000f60:	00379793          	slli	a5,a5,0x3
+    80000f64:	f8843703          	ld	a4,-120(s0)
+    80000f68:	00f707b3          	add	a5,a4,a5
+    80000f6c:	0007b783          	ld	a5,0(a5)
+    80000f70:	f7843703          	ld	a4,-136(s0)
+    80000f74:	04f70863          	beq	a4,a5,80000fc4 <main+0xf64>
+			kprintf("Error: read value 0x%x - 0x%x @ addr 0x%x", (*(test_ptr_64 + i/8)), temp_data, base_addr + i);
+    80000f78:	fb842783          	lw	a5,-72(s0)
+    80000f7c:	41f7d71b          	sraiw	a4,a5,0x1f
+    80000f80:	01d7571b          	srliw	a4,a4,0x1d
+    80000f84:	00f707bb          	addw	a5,a4,a5
+    80000f88:	4037d79b          	sraiw	a5,a5,0x3
+    80000f8c:	0007879b          	sext.w	a5,a5
+    80000f90:	00379793          	slli	a5,a5,0x3
+    80000f94:	f8843703          	ld	a4,-120(s0)
+    80000f98:	00f707b3          	add	a5,a4,a5
+    80000f9c:	0007b583          	ld	a1,0(a5)
+    80000fa0:	fb842703          	lw	a4,-72(s0)
+    80000fa4:	f9843783          	ld	a5,-104(s0)
+    80000fa8:	00f707b3          	add	a5,a4,a5
+    80000fac:	00078693          	mv	a3,a5
+    80000fb0:	f7843603          	ld	a2,-136(s0)
+    80000fb4:	00001517          	auipc	a0,0x1
+    80000fb8:	9cc50513          	addi	a0,a0,-1588 # 80001980 <kprintf+0x5d8>
+    80000fbc:	3ec000ef          	jal	ra,800013a8 <kprintf>
+    80000fc0:	0340006f          	j	80000ff4 <main+0xf94>
+		}
+		else if(i%PRINT_INFO_INDENT == 0) {
+    80000fc4:	fb842783          	lw	a5,-72(s0)
+    80000fc8:	07f7f793          	andi	a5,a5,127
+    80000fcc:	0007879b          	sext.w	a5,a5
+    80000fd0:	02079263          	bnez	a5,80000ff4 <main+0xf94>
+			kprintf("Info: read value is 0x%x @ addr 0x%x", temp_data, base_addr + i);
+    80000fd4:	fb842703          	lw	a4,-72(s0)
+    80000fd8:	f9843783          	ld	a5,-104(s0)
+    80000fdc:	00f707b3          	add	a5,a4,a5
+    80000fe0:	00078613          	mv	a2,a5
+    80000fe4:	f7843583          	ld	a1,-136(s0)
+    80000fe8:	00001517          	auipc	a0,0x1
+    80000fec:	84050513          	addi	a0,a0,-1984 # 80001828 <kprintf+0x480>
+    80000ff0:	3b8000ef          	jal	ra,800013a8 <kprintf>
+	for(int i = SOC_IRAM_MAX_SIZE - 8; i >= 0; i = i - 8) {
+    80000ff4:	fb842783          	lw	a5,-72(s0)
+    80000ff8:	ff87879b          	addiw	a5,a5,-8
+    80000ffc:	faf42c23          	sw	a5,-72(s0)
+    80001000:	fb842783          	lw	a5,-72(s0)
+    80001004:	0007879b          	sext.w	a5,a5
+    80001008:	f007d2e3          	bgez	a5,80000f0c <main+0xeac>
+		// randomize cfg SOC_LSYS cfg pll cfg chiplink, main, cpu
+		_REG32(_AC(0x51000000, UL), 0x18) = ((i%15) << 15) + ((i%30) << 10) + (3 << 5) + ((i%30)); 
+		#endif
+	}
+
+	base_addr = 0x50000000UL;
+    8000100c:	500007b7          	lui	a5,0x50000
+    80001010:	f8f43c23          	sd	a5,-104(s0)
+	kprintf("Info: test iram for 0x%x Byte REG64 access @ addr 0x%x", soc_iram_max_size_64, base_addr);
+    80001014:	f9843603          	ld	a2,-104(s0)
+    80001018:	fa843583          	ld	a1,-88(s0)
+    8000101c:	00001517          	auipc	a0,0x1
+    80001020:	9cc50513          	addi	a0,a0,-1588 # 800019e8 <kprintf+0x640>
+    80001024:	384000ef          	jal	ra,800013a8 <kprintf>
+	for(int i = SOC_IRAM_MAX_SIZE - 8; i >= 0; i = i - 8) {
+    80001028:	1f800793          	li	a5,504
+    8000102c:	faf42a23          	sw	a5,-76(s0)
+    80001030:	0cc0006f          	j	800010fc <main+0x109c>
+		temp_data = ((base_addr + i + 4) << 32) + (base_addr + i);
+    80001034:	fb442703          	lw	a4,-76(s0)
+    80001038:	f9843783          	ld	a5,-104(s0)
+    8000103c:	00f707b3          	add	a5,a4,a5
+    80001040:	00478793          	addi	a5,a5,4 # 50000004 <_prog_start-0x2ffffffc>
+    80001044:	02079713          	slli	a4,a5,0x20
+    80001048:	fb442683          	lw	a3,-76(s0)
+    8000104c:	f9843783          	ld	a5,-104(s0)
+    80001050:	00f687b3          	add	a5,a3,a5
+    80001054:	00f707b3          	add	a5,a4,a5
+    80001058:	f6f43c23          	sd	a5,-136(s0)
+		_REG64(base_addr, i) = temp_data;
+    8000105c:	fb442703          	lw	a4,-76(s0)
+    80001060:	f9843783          	ld	a5,-104(s0)
+    80001064:	00f707b3          	add	a5,a4,a5
+    80001068:	00078713          	mv	a4,a5
+    8000106c:	f7843783          	ld	a5,-136(s0)
+    80001070:	00f73023          	sd	a5,0(a4) # 5a5a6000 <_prog_start-0x25a5a000>
+		if(_REG64(base_addr, i) != temp_data) {
+    80001074:	fb442703          	lw	a4,-76(s0)
+    80001078:	f9843783          	ld	a5,-104(s0)
+    8000107c:	00f707b3          	add	a5,a4,a5
+    80001080:	0007b783          	ld	a5,0(a5)
+    80001084:	f7843703          	ld	a4,-136(s0)
+    80001088:	02f70c63          	beq	a4,a5,800010c0 <main+0x1060>
+			kprintf("Error: read value 0x%x - 0x%x @ addr 0x%x", _REG64(base_addr, i), temp_data, base_addr + i);
+    8000108c:	fb442703          	lw	a4,-76(s0)
+    80001090:	f9843783          	ld	a5,-104(s0)
+    80001094:	00f707b3          	add	a5,a4,a5
+    80001098:	0007b583          	ld	a1,0(a5)
+    8000109c:	fb442703          	lw	a4,-76(s0)
+    800010a0:	f9843783          	ld	a5,-104(s0)
+    800010a4:	00f707b3          	add	a5,a4,a5
+    800010a8:	00078693          	mv	a3,a5
+    800010ac:	f7843603          	ld	a2,-136(s0)
+    800010b0:	00001517          	auipc	a0,0x1
+    800010b4:	8d050513          	addi	a0,a0,-1840 # 80001980 <kprintf+0x5d8>
+    800010b8:	2f0000ef          	jal	ra,800013a8 <kprintf>
+    800010bc:	0340006f          	j	800010f0 <main+0x1090>
+		}
+		else if(i%PRINT_INFO_INDENT == 0) {
+    800010c0:	fb442783          	lw	a5,-76(s0)
+    800010c4:	07f7f793          	andi	a5,a5,127
+    800010c8:	0007879b          	sext.w	a5,a5
+    800010cc:	02079263          	bnez	a5,800010f0 <main+0x1090>
+			kprintf("Info: read value is 0x%x @ addr 0x%x", temp_data, base_addr + i);
+    800010d0:	fb442703          	lw	a4,-76(s0)
+    800010d4:	f9843783          	ld	a5,-104(s0)
+    800010d8:	00f707b3          	add	a5,a4,a5
+    800010dc:	00078613          	mv	a2,a5
+    800010e0:	f7843583          	ld	a1,-136(s0)
+    800010e4:	00000517          	auipc	a0,0x0
+    800010e8:	74450513          	addi	a0,a0,1860 # 80001828 <kprintf+0x480>
+    800010ec:	2bc000ef          	jal	ra,800013a8 <kprintf>
+	for(int i = SOC_IRAM_MAX_SIZE - 8; i >= 0; i = i - 8) {
+    800010f0:	fb442783          	lw	a5,-76(s0)
+    800010f4:	ff87879b          	addiw	a5,a5,-8
+    800010f8:	faf42a23          	sw	a5,-76(s0)
+    800010fc:	fb442783          	lw	a5,-76(s0)
+    80001100:	0007879b          	sext.w	a5,a5
+    80001104:	f207d8e3          	bgez	a5,80001034 <main+0xfd4>
+		_REG32(_AC(0x51000000, UL), 0x18) = ((i%30) << 15) + ((i%30) << 10) + (4 << 5) + ((i%30));
+		#endif 
+	}
+
+	
+	base_addr = 0x50000000UL + 0x0003fff8UL;    // iram range 256KB 0x40000
+    80001108:	500407b7          	lui	a5,0x50040
+    8000110c:	ff878793          	addi	a5,a5,-8 # 5003fff8 <_prog_start-0x2ffc0008>
+    80001110:	f8f43c23          	sd	a5,-104(s0)
+	kprintf("Info: test iram for 0x%x Byte REG64 access @ addr 0x%x", soc_iram_max_size_64, base_addr);
+    80001114:	f9843603          	ld	a2,-104(s0)
+    80001118:	fa843583          	ld	a1,-88(s0)
+    8000111c:	00001517          	auipc	a0,0x1
+    80001120:	8cc50513          	addi	a0,a0,-1844 # 800019e8 <kprintf+0x640>
+    80001124:	284000ef          	jal	ra,800013a8 <kprintf>
+	for(int i = SOC_IRAM_MAX_SIZE - 8; i >= 0; i = i - 8) {
+    80001128:	1f800793          	li	a5,504
+    8000112c:	faf42823          	sw	a5,-80(s0)
+    80001130:	0cc0006f          	j	800011fc <main+0x119c>
+		temp_data = ((base_addr - i + 4) << 32) + (base_addr - i);
+    80001134:	fb042783          	lw	a5,-80(s0)
+    80001138:	f9843703          	ld	a4,-104(s0)
+    8000113c:	40f707b3          	sub	a5,a4,a5
+    80001140:	00478793          	addi	a5,a5,4
+    80001144:	02079713          	slli	a4,a5,0x20
+    80001148:	fb042783          	lw	a5,-80(s0)
+    8000114c:	f9843683          	ld	a3,-104(s0)
+    80001150:	40f687b3          	sub	a5,a3,a5
+    80001154:	00f707b3          	add	a5,a4,a5
+    80001158:	f6f43c23          	sd	a5,-136(s0)
+		_REG64(base_addr - i, 0) = temp_data;
+    8000115c:	fb042783          	lw	a5,-80(s0)
+    80001160:	f9843703          	ld	a4,-104(s0)
+    80001164:	40f707b3          	sub	a5,a4,a5
+    80001168:	00078713          	mv	a4,a5
+    8000116c:	f7843783          	ld	a5,-136(s0)
+    80001170:	00f73023          	sd	a5,0(a4)
+		if(_REG64(base_addr - i, 0) != temp_data) {
+    80001174:	fb042783          	lw	a5,-80(s0)
+    80001178:	f9843703          	ld	a4,-104(s0)
+    8000117c:	40f707b3          	sub	a5,a4,a5
+    80001180:	0007b783          	ld	a5,0(a5)
+    80001184:	f7843703          	ld	a4,-136(s0)
+    80001188:	02f70c63          	beq	a4,a5,800011c0 <main+0x1160>
+			kprintf("Error: read value 0x%x - 0x%x @ addr 0x%x", _REG64(base_addr - i, 0), temp_data, base_addr - i);
+    8000118c:	fb042783          	lw	a5,-80(s0)
+    80001190:	f9843703          	ld	a4,-104(s0)
+    80001194:	40f707b3          	sub	a5,a4,a5
+    80001198:	0007b583          	ld	a1,0(a5)
+    8000119c:	fb042783          	lw	a5,-80(s0)
+    800011a0:	f9843703          	ld	a4,-104(s0)
+    800011a4:	40f707b3          	sub	a5,a4,a5
+    800011a8:	00078693          	mv	a3,a5
+    800011ac:	f7843603          	ld	a2,-136(s0)
+    800011b0:	00000517          	auipc	a0,0x0
+    800011b4:	7d050513          	addi	a0,a0,2000 # 80001980 <kprintf+0x5d8>
+    800011b8:	1f0000ef          	jal	ra,800013a8 <kprintf>
+    800011bc:	0340006f          	j	800011f0 <main+0x1190>
+		}
+		else if(i%PRINT_INFO_INDENT == 0) {
+    800011c0:	fb042783          	lw	a5,-80(s0)
+    800011c4:	07f7f793          	andi	a5,a5,127
+    800011c8:	0007879b          	sext.w	a5,a5
+    800011cc:	02079263          	bnez	a5,800011f0 <main+0x1190>
+			kprintf("Info: read value is 0x%x @ addr 0x%x", temp_data, base_addr - i);
+    800011d0:	fb042783          	lw	a5,-80(s0)
+    800011d4:	f9843703          	ld	a4,-104(s0)
+    800011d8:	40f707b3          	sub	a5,a4,a5
+    800011dc:	00078613          	mv	a2,a5
+    800011e0:	f7843583          	ld	a1,-136(s0)
+    800011e4:	00000517          	auipc	a0,0x0
+    800011e8:	64450513          	addi	a0,a0,1604 # 80001828 <kprintf+0x480>
+    800011ec:	1bc000ef          	jal	ra,800013a8 <kprintf>
+	for(int i = SOC_IRAM_MAX_SIZE - 8; i >= 0; i = i - 8) {
+    800011f0:	fb042783          	lw	a5,-80(s0)
+    800011f4:	ff87879b          	addiw	a5,a5,-8
+    800011f8:	faf42823          	sw	a5,-80(s0)
+    800011fc:	fb042783          	lw	a5,-80(s0)
+    80001200:	0007879b          	sext.w	a5,a5
+    80001204:	f207d8e3          	bgez	a5,80001134 <main+0x10d4>
+		else if(i%PRINT_INFO_INDENT == 0) {
+			kprintf("Info: read value 0x%x @ addr 0x%x", temp_data, base_addr + i);
+		}
+	}
+	*/
+	_REG32(_AC(0x51000000,UL), 0x44UL) = 0x5a5a5a5aUL;  
+    80001208:	510007b7          	lui	a5,0x51000
+    8000120c:	04478793          	addi	a5,a5,68 # 51000044 <_prog_start-0x2effffbc>
+    80001210:	5a5a6737          	lui	a4,0x5a5a6
+    80001214:	a5a7071b          	addiw	a4,a4,-1446
+    80001218:	00e7a023          	sw	a4,0(a5)
+	kprintf("Info: soc lsys value 0x%x", _REG32(_AC(0x51000000,UL), 0x44UL));
+    8000121c:	510007b7          	lui	a5,0x51000
+    80001220:	04478793          	addi	a5,a5,68 # 51000044 <_prog_start-0x2effffbc>
+    80001224:	0007a783          	lw	a5,0(a5)
+    80001228:	0007879b          	sext.w	a5,a5
+    8000122c:	00078593          	mv	a1,a5
+    80001230:	00000517          	auipc	a0,0x0
+    80001234:	7f050513          	addi	a0,a0,2032 # 80001a20 <kprintf+0x678>
+    80001238:	170000ef          	jal	ra,800013a8 <kprintf>
+	_REG32(_AC(0x52000000,UL), 0x10UL) = 0x5a5a5a5aUL;  
+    8000123c:	520007b7          	lui	a5,0x52000
+    80001240:	01078793          	addi	a5,a5,16 # 52000010 <_prog_start-0x2dfffff0>
+    80001244:	5a5a6737          	lui	a4,0x5a5a6
+    80001248:	a5a7071b          	addiw	a4,a4,-1446
+    8000124c:	00e7a023          	sw	a4,0(a5)
+	kprintf("Info: spi_1 value 0x%x", _REG32(_AC(0x52000000,UL), 0x10UL));
+    80001250:	520007b7          	lui	a5,0x52000
+    80001254:	01078793          	addi	a5,a5,16 # 52000010 <_prog_start-0x2dfffff0>
+    80001258:	0007a783          	lw	a5,0(a5)
+    8000125c:	0007879b          	sext.w	a5,a5
+    80001260:	00078593          	mv	a1,a5
+    80001264:	00000517          	auipc	a0,0x0
+    80001268:	7dc50513          	addi	a0,a0,2012 # 80001a40 <kprintf+0x698>
+    8000126c:	13c000ef          	jal	ra,800013a8 <kprintf>
+	
+	kprintf("Test end ! @ core: 0x%x", read_csr(mhartid));
+    80001270:	f14027f3          	csrr	a5,mhartid
+    80001274:	f8f43023          	sd	a5,-128(s0)
+    80001278:	f8043783          	ld	a5,-128(s0)
+    8000127c:	00078593          	mv	a1,a5
+    80001280:	00000517          	auipc	a0,0x0
+    80001284:	7d850513          	addi	a0,a0,2008 # 80001a58 <kprintf+0x6b0>
+    80001288:	120000ef          	jal	ra,800013a8 <kprintf>
+
+	if (1){
+		kprintf("PASS");
+    8000128c:	00000517          	auipc	a0,0x0
+    80001290:	7e450513          	addi	a0,a0,2020 # 80001a70 <kprintf+0x6c8>
+    80001294:	114000ef          	jal	ra,800013a8 <kprintf>
+	}
+	else{
+		kprintf("FAIL");
+	}
+
+	kprintf(SHUTDOWN_FLAG_STR);  // donnot delete
+    80001298:	00000797          	auipc	a5,0x0
+    8000129c:	38878793          	addi	a5,a5,904 # 80001620 <kprintf+0x278>
+    800012a0:	00078513          	mv	a0,a5
+    800012a4:	104000ef          	jal	ra,800013a8 <kprintf>
+
+	return 0;
+    800012a8:	00000793          	li	a5,0
+}
+    800012ac:	00078513          	mv	a0,a5
+    800012b0:	0e813083          	ld	ra,232(sp)
+    800012b4:	0e013403          	ld	s0,224(sp)
+    800012b8:	0f010113          	addi	sp,sp,240
+    800012bc:	00008067          	ret
+
+00000000800012c0 <kputc>:
+#endif
+static volatile uint32_t * const uart = (void *)(UART_CTRL_ADDR);
+static char * const SHUTDOWN_FLAG_STR = "ST Simulation Ended!";
+
+static inline void kputc(char c)
+{
+    800012c0:	fd010113          	addi	sp,sp,-48
+    800012c4:	02813423          	sd	s0,40(sp)
+    800012c8:	03010413          	addi	s0,sp,48
+    800012cc:	00050793          	mv	a5,a0
+    800012d0:	fcf40fa3          	sb	a5,-33(s0)
+  //volatile uint32_t temp_value;
+	volatile uint32_t *tx = &REG32(uart, UART_REG_TXFIFO);
+    800012d4:	640007b7          	lui	a5,0x64000
+    800012d8:	fef43423          	sd	a5,-24(s0)
+#ifdef __riscv_atomic
+	int32_t r;
+	do {
+		__asm__ __volatile__ (
+    800012dc:	fe843683          	ld	a3,-24(s0)
+    800012e0:	fdf44783          	lbu	a5,-33(s0)
+    800012e4:	fe843703          	ld	a4,-24(s0)
+    800012e8:	40f6a7af          	amoor.w	a5,a5,(a3)
+    800012ec:	fef42223          	sw	a5,-28(s0)
+			"amoor.w %0, %2, %1\n"
+			: "=r" (r), "+A" (*tx)
+			: "r" (c));
+	} while (r < 0);
+    800012f0:	fe442783          	lw	a5,-28(s0)
+    800012f4:	0007879b          	sext.w	a5,a5
+    800012f8:	fe07c2e3          	bltz	a5,800012dc <kputc+0x1c>
+  //   temp_value = REG32(uart, UART_REG_TXFIFO);
+  // }
+  while ((int32_t)(*tx) < 0);
+	*tx = c;
+#endif
+}
+    800012fc:	00000013          	nop
+    80001300:	02813403          	ld	s0,40(sp)
+    80001304:	03010113          	addi	sp,sp,48
+    80001308:	00008067          	ret
+
+000000008000130c <_kputs>:
+#include <stdbool.h>
+
+#include "kprintf.h"
+
+static inline void _kputs(const char *s)
+{
+    8000130c:	fd010113          	addi	sp,sp,-48
+    80001310:	02113423          	sd	ra,40(sp)
+    80001314:	02813023          	sd	s0,32(sp)
+    80001318:	03010413          	addi	s0,sp,48
+    8000131c:	fca43c23          	sd	a0,-40(s0)
+	char c;
+	for (; (c = *s) != '\0'; s++)
+    80001320:	01c0006f          	j	8000133c <_kputs+0x30>
+		kputc(c);
+    80001324:	fef44783          	lbu	a5,-17(s0)
+    80001328:	00078513          	mv	a0,a5
+    8000132c:	f95ff0ef          	jal	ra,800012c0 <kputc>
+	for (; (c = *s) != '\0'; s++)
+    80001330:	fd843783          	ld	a5,-40(s0)
+    80001334:	00178793          	addi	a5,a5,1 # 64000001 <_prog_start-0x1bffffff>
+    80001338:	fcf43c23          	sd	a5,-40(s0)
+    8000133c:	fd843783          	ld	a5,-40(s0)
+    80001340:	0007c783          	lbu	a5,0(a5)
+    80001344:	fef407a3          	sb	a5,-17(s0)
+    80001348:	fef44783          	lbu	a5,-17(s0)
+    8000134c:	0ff7f793          	andi	a5,a5,255
+    80001350:	fc079ae3          	bnez	a5,80001324 <_kputs+0x18>
+}
+    80001354:	00000013          	nop
+    80001358:	02813083          	ld	ra,40(sp)
+    8000135c:	02013403          	ld	s0,32(sp)
+    80001360:	03010113          	addi	sp,sp,48
+    80001364:	00008067          	ret
+
+0000000080001368 <kputs>:
+
+void kputs(const char *s)
+{
+    80001368:	fe010113          	addi	sp,sp,-32
+    8000136c:	00113c23          	sd	ra,24(sp)
+    80001370:	00813823          	sd	s0,16(sp)
+    80001374:	02010413          	addi	s0,sp,32
+    80001378:	fea43423          	sd	a0,-24(s0)
+	_kputs(s);
+    8000137c:	fe843503          	ld	a0,-24(s0)
+    80001380:	f8dff0ef          	jal	ra,8000130c <_kputs>
+	kputc('\r');
+    80001384:	00d00513          	li	a0,13
+    80001388:	f39ff0ef          	jal	ra,800012c0 <kputc>
+	kputc('\n');
+    8000138c:	00a00513          	li	a0,10
+    80001390:	f31ff0ef          	jal	ra,800012c0 <kputc>
+}
+    80001394:	00000013          	nop
+    80001398:	01813083          	ld	ra,24(sp)
+    8000139c:	01013403          	ld	s0,16(sp)
+    800013a0:	02010113          	addi	sp,sp,32
+    800013a4:	00008067          	ret
+
+00000000800013a8 <kprintf>:
+
+void kprintf(const char *fmt, ...)
+{
+    800013a8:	f7010113          	addi	sp,sp,-144
+    800013ac:	04113423          	sd	ra,72(sp)
+    800013b0:	04813023          	sd	s0,64(sp)
+    800013b4:	05010413          	addi	s0,sp,80
+    800013b8:	faa43c23          	sd	a0,-72(s0)
+    800013bc:	00b43423          	sd	a1,8(s0)
+    800013c0:	00c43823          	sd	a2,16(s0)
+    800013c4:	00d43c23          	sd	a3,24(s0)
+    800013c8:	02e43023          	sd	a4,32(s0)
+    800013cc:	02f43423          	sd	a5,40(s0)
+    800013d0:	03043823          	sd	a6,48(s0)
+    800013d4:	03143c23          	sd	a7,56(s0)
+	va_list vl;
+	bool is_format, is_long, is_char;
+	char c;
+
+	va_start(vl, fmt);
+    800013d8:	04040793          	addi	a5,s0,64
+    800013dc:	fc878793          	addi	a5,a5,-56
+    800013e0:	fcf43023          	sd	a5,-64(s0)
+	is_format = false;
+    800013e4:	fe0407a3          	sb	zero,-17(s0)
+	is_long = false;
+    800013e8:	fe040723          	sb	zero,-18(s0)
+	is_char = false;
+    800013ec:	fe0406a3          	sb	zero,-19(s0)
+	
+	while ((c = *fmt++) != '\0') {
+    800013f0:	1b40006f          	j	800015a4 <kprintf+0x1fc>
+		if (is_format) {
+    800013f4:	fef44783          	lbu	a5,-17(s0)
+    800013f8:	0ff7f793          	andi	a5,a5,255
+    800013fc:	18078063          	beqz	a5,8000157c <kprintf+0x1d4>
+			switch (c) {
+    80001400:	fd744783          	lbu	a5,-41(s0)
+    80001404:	0007879b          	sext.w	a5,a5
+    80001408:	f9d7869b          	addiw	a3,a5,-99
+    8000140c:	0006871b          	sext.w	a4,a3
+    80001410:	01500793          	li	a5,21
+    80001414:	14e7ec63          	bltu	a5,a4,8000156c <kprintf+0x1c4>
+    80001418:	02069793          	slli	a5,a3,0x20
+    8000141c:	0207d793          	srli	a5,a5,0x20
+    80001420:	00279713          	slli	a4,a5,0x2
+    80001424:	00000797          	auipc	a5,0x0
+    80001428:	66c78793          	addi	a5,a5,1644 # 80001a90 <kprintf+0x6e8>
+    8000142c:	00f707b3          	add	a5,a4,a5
+    80001430:	0007a783          	lw	a5,0(a5)
+    80001434:	0007871b          	sext.w	a4,a5
+    80001438:	00000797          	auipc	a5,0x0
+    8000143c:	65878793          	addi	a5,a5,1624 # 80001a90 <kprintf+0x6e8>
+    80001440:	00f707b3          	add	a5,a4,a5
+    80001444:	00078067          	jr	a5
+			case 'l':
+				is_long = true;
+    80001448:	00100793          	li	a5,1
+    8000144c:	fef40723          	sb	a5,-18(s0)
+				continue;
+    80001450:	1540006f          	j	800015a4 <kprintf+0x1fc>
+			case 'h':
+				is_char = true;
+    80001454:	00100793          	li	a5,1
+    80001458:	fef406a3          	sb	a5,-19(s0)
+				continue;
+    8000145c:	1480006f          	j	800015a4 <kprintf+0x1fc>
+			case 'x': {
+				unsigned long n;
+				long i;
+				if (is_long) {
+    80001460:	fee44783          	lbu	a5,-18(s0)
+    80001464:	0ff7f793          	andi	a5,a5,255
+    80001468:	02078263          	beqz	a5,8000148c <kprintf+0xe4>
+					n = va_arg(vl, unsigned long);
+    8000146c:	fc043783          	ld	a5,-64(s0)
+    80001470:	00878713          	addi	a4,a5,8
+    80001474:	fce43023          	sd	a4,-64(s0)
+    80001478:	0007b783          	ld	a5,0(a5)
+    8000147c:	fef43023          	sd	a5,-32(s0)
+					i = (sizeof(unsigned long) << 3) - 4;
+    80001480:	03c00793          	li	a5,60
+    80001484:	fcf43c23          	sd	a5,-40(s0)
+    80001488:	09c0006f          	j	80001524 <kprintf+0x17c>
+				} else {
+					n = va_arg(vl, unsigned int);
+    8000148c:	fc043783          	ld	a5,-64(s0)
+    80001490:	00878713          	addi	a4,a5,8
+    80001494:	fce43023          	sd	a4,-64(s0)
+    80001498:	0007a783          	lw	a5,0(a5)
+    8000149c:	02079793          	slli	a5,a5,0x20
+    800014a0:	0207d793          	srli	a5,a5,0x20
+    800014a4:	fef43023          	sd	a5,-32(s0)
+					i = is_char ? 4 : (sizeof(unsigned int) << 3) - 4;
+    800014a8:	fed44783          	lbu	a5,-19(s0)
+    800014ac:	0ff7f793          	andi	a5,a5,255
+    800014b0:	00078663          	beqz	a5,800014bc <kprintf+0x114>
+    800014b4:	00400793          	li	a5,4
+    800014b8:	0080006f          	j	800014c0 <kprintf+0x118>
+    800014bc:	01c00793          	li	a5,28
+    800014c0:	fcf43c23          	sd	a5,-40(s0)
+				}
+				for (; i >= 0; i -= 4) {
+    800014c4:	0600006f          	j	80001524 <kprintf+0x17c>
+					long d;
+					d = (n >> i) & 0xF;
+    800014c8:	fd843783          	ld	a5,-40(s0)
+    800014cc:	0007879b          	sext.w	a5,a5
+    800014d0:	fe043703          	ld	a4,-32(s0)
+    800014d4:	00f757b3          	srl	a5,a4,a5
+    800014d8:	00f7f793          	andi	a5,a5,15
+    800014dc:	fcf43423          	sd	a5,-56(s0)
+					kputc(d < 10 ? '0' + d : 'a' + d - 10);
+    800014e0:	fc843703          	ld	a4,-56(s0)
+    800014e4:	00900793          	li	a5,9
+    800014e8:	00e7cc63          	blt	a5,a4,80001500 <kprintf+0x158>
+    800014ec:	fc843783          	ld	a5,-56(s0)
+    800014f0:	0ff7f793          	andi	a5,a5,255
+    800014f4:	0307879b          	addiw	a5,a5,48
+    800014f8:	0ff7f793          	andi	a5,a5,255
+    800014fc:	0140006f          	j	80001510 <kprintf+0x168>
+    80001500:	fc843783          	ld	a5,-56(s0)
+    80001504:	0ff7f793          	andi	a5,a5,255
+    80001508:	0577879b          	addiw	a5,a5,87
+    8000150c:	0ff7f793          	andi	a5,a5,255
+    80001510:	00078513          	mv	a0,a5
+    80001514:	dadff0ef          	jal	ra,800012c0 <kputc>
+				for (; i >= 0; i -= 4) {
+    80001518:	fd843783          	ld	a5,-40(s0)
+    8000151c:	ffc78793          	addi	a5,a5,-4
+    80001520:	fcf43c23          	sd	a5,-40(s0)
+    80001524:	fd843783          	ld	a5,-40(s0)
+    80001528:	fa07d0e3          	bgez	a5,800014c8 <kprintf+0x120>
+				}
+				break;
+    8000152c:	0400006f          	j	8000156c <kprintf+0x1c4>
+			}
+			case 's':
+				//kputc('s');
+				_kputs(va_arg(vl, const char *));
+    80001530:	fc043783          	ld	a5,-64(s0)
+    80001534:	00878713          	addi	a4,a5,8
+    80001538:	fce43023          	sd	a4,-64(s0)
+    8000153c:	0007b783          	ld	a5,0(a5)
+    80001540:	00078513          	mv	a0,a5
+    80001544:	dc9ff0ef          	jal	ra,8000130c <_kputs>
+				break;
+    80001548:	0240006f          	j	8000156c <kprintf+0x1c4>
+			case 'c':
+				kputc(va_arg(vl, int));
+    8000154c:	fc043783          	ld	a5,-64(s0)
+    80001550:	00878713          	addi	a4,a5,8
+    80001554:	fce43023          	sd	a4,-64(s0)
+    80001558:	0007a783          	lw	a5,0(a5)
+    8000155c:	0ff7f793          	andi	a5,a5,255
+    80001560:	00078513          	mv	a0,a5
+    80001564:	d5dff0ef          	jal	ra,800012c0 <kputc>
+				break;
+    80001568:	00000013          	nop
+			}
+			is_format = false;
+    8000156c:	fe0407a3          	sb	zero,-17(s0)
+			is_long = false;
+    80001570:	fe040723          	sb	zero,-18(s0)
+			is_char = false;
+    80001574:	fe0406a3          	sb	zero,-19(s0)
+    80001578:	02c0006f          	j	800015a4 <kprintf+0x1fc>
+		} else if (c == '%') {
+    8000157c:	fd744783          	lbu	a5,-41(s0)
+    80001580:	0ff7f713          	andi	a4,a5,255
+    80001584:	02500793          	li	a5,37
+    80001588:	00f71863          	bne	a4,a5,80001598 <kprintf+0x1f0>
+			is_format = true;
+    8000158c:	00100793          	li	a5,1
+    80001590:	fef407a3          	sb	a5,-17(s0)
+    80001594:	0100006f          	j	800015a4 <kprintf+0x1fc>
+		} else {
+			kputc(c);
+    80001598:	fd744783          	lbu	a5,-41(s0)
+    8000159c:	00078513          	mv	a0,a5
+    800015a0:	d21ff0ef          	jal	ra,800012c0 <kputc>
+	while ((c = *fmt++) != '\0') {
+    800015a4:	fb843783          	ld	a5,-72(s0)
+    800015a8:	00178713          	addi	a4,a5,1
+    800015ac:	fae43c23          	sd	a4,-72(s0)
+    800015b0:	0007c783          	lbu	a5,0(a5)
+    800015b4:	fcf40ba3          	sb	a5,-41(s0)
+    800015b8:	fd744783          	lbu	a5,-41(s0)
+    800015bc:	0ff7f793          	andi	a5,a5,255
+    800015c0:	e2079ae3          	bnez	a5,800013f4 <kprintf+0x4c>
+		}
+	}
+	kputc('\n');
+    800015c4:	00a00513          	li	a0,10
+    800015c8:	cf9ff0ef          	jal	ra,800012c0 <kputc>
+	va_end(vl);
+}
+    800015cc:	00000013          	nop
+    800015d0:	04813083          	ld	ra,72(sp)
+    800015d4:	04013403          	ld	s0,64(sp)
+    800015d8:	09010113          	addi	sp,sp,144
+    800015dc:	00008067          	ret
+	...

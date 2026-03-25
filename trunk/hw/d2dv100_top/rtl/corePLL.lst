@@ -1,0 +1,6 @@
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/top/MEISHAV100_DEFINE.v
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/cbb/pulse_expander.v
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/cbb/syncReg.sv
+-f ${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/cbb/tech_cells_generic/src_files.lst
+-f ${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/ip/common_cells-1.31.1/src_files.lst
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/ip/corePLL.v

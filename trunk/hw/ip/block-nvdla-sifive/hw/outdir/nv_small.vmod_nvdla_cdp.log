@@ -1,0 +1,166 @@
+command: cd vmod/nvdla/cdp;make PROJECT=nv_small 
+make[1]: Entering directory '/work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/nvdla/cdp'
+../../../tools/bin/vcp -i fp_format_cvt.v -o ../../../outdir/nv_small/vmod/nvdla/cdp/fp_format_cvt.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/cdp/fp_format_cvt.v ../../../outdir/nv_small/vmod/nvdla/cdp/fp_format_cvt.v.vcp 
+../../../tools/bin/vcp -i fp_sum_block.v -o ../../../outdir/nv_small/vmod/nvdla/cdp/fp_sum_block.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/cdp/fp_sum_block.v ../../../outdir/nv_small/vmod/nvdla/cdp/fp_sum_block.v.vcp 
+../../../tools/bin/vcp -i int_sum_block.v -o ../../../outdir/nv_small/vmod/nvdla/cdp/int_sum_block.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/cdp/int_sum_block.v ../../../outdir/nv_small/vmod/nvdla/cdp/int_sum_block.v.vcp 
+../../../tools/bin/vcp -i int_sum_block_tp1.v -o ../../../outdir/nv_small/vmod/nvdla/cdp/int_sum_block_tp1.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/cdp/int_sum_block_tp1.v ../../../outdir/nv_small/vmod/nvdla/cdp/int_sum_block_tp1.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_cdp.v -o ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_cdp.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_cdp.v ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_cdp.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_CDP_dp.v -o ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_dp.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_dp.v ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_dp.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_CDP_DP_bufferin.v -o ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_DP_bufferin.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_DP_bufferin.v ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_DP_bufferin.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_CDP_DP_bufferin_tp1.v -o ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_DP_bufferin_tp1.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_DP_bufferin_tp1.v ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_DP_bufferin_tp1.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_CDP_DP_cvtin.v -o ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_DP_cvtin.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_DP_cvtin.v ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_DP_cvtin.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_CDP_DP_cvtout.v -o ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_DP_cvtout.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_DP_cvtout.v ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_DP_cvtout.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_CDP_DP_intp.v -o ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_DP_intp.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_DP_intp.v ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_DP_intp.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_CDP_DP_INTP_unit.v -o ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_DP_INTP_unit.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_DP_INTP_unit.v ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_DP_INTP_unit.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_CDP_DP_lut.v -o ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_DP_lut.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_DP_lut.v ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_DP_lut.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_CDP_DP_LUT_ctrl.v -o ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_DP_LUT_ctrl.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_DP_LUT_ctrl.v ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_DP_LUT_ctrl.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_CDP_DP_LUT_CTRL_unit.v -o ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_DP_LUT_CTRL_unit.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_DP_LUT_CTRL_unit.v ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_DP_LUT_CTRL_unit.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_CDP_DP_mul.v -o ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_DP_mul.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_DP_mul.v ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_DP_mul.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_CDP_DP_MUL_unit.v -o ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_DP_MUL_unit.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_DP_MUL_unit.v ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_DP_MUL_unit.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_CDP_DP_nan.v -o ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_DP_nan.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_DP_nan.v ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_DP_nan.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_CDP_DP_sum.v -o ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_DP_sum.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_DP_sum.v ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_DP_sum.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_CDP_DP_syncfifo.v -o ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_DP_syncfifo.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_DP_syncfifo.v ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_DP_syncfifo.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_CDP_rdma.v -o ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_rdma.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_rdma.v ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_rdma.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_CDP_RDMA_cq.v -o ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_RDMA_cq.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_RDMA_cq.v ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_RDMA_cq.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_CDP_RDMA_eg.v -o ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_RDMA_eg.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_RDMA_eg.v ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_RDMA_eg.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_CDP_RDMA_ig.v -o ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_RDMA_ig.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_RDMA_ig.v ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_RDMA_ig.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_CDP_RDMA_reg.v -o ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_RDMA_reg.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_RDMA_reg.v ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_RDMA_reg.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_CDP_RDMA_REG_dual.v -o ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_RDMA_REG_dual.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_RDMA_REG_dual.v ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_RDMA_REG_dual.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_CDP_RDMA_REG_single.v -o ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_RDMA_REG_single.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_RDMA_REG_single.v ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_RDMA_REG_single.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_CDP_reg.v -o ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_reg.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_reg.v ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_reg.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_CDP_REG_dual.v -o ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_REG_dual.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_REG_dual.v ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_REG_dual.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_CDP_REG_single.v -o ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_REG_single.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_REG_single.v ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_REG_single.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_CDP_slcg.v -o ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_slcg.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_slcg.v ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_slcg.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_CDP_wdma.v -o ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_wdma.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_wdma.v ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_wdma.v.vcp 
+==============================================
+files are generated under /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/outdir/nv_small/vmod/nvdla/cdp
+==============================================
+make[1]: Leaving directory '/work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/nvdla/cdp'
+Processing fp_format_cvt.v into ../../../outdir/nv_small/vmod/nvdla/cdp/fp_format_cvt.v.vcp
+../../../outdir/nv_small/vmod/nvdla/cdp/fp_format_cvt.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/cdp/fp_format_cvt.v modified.
+Processing fp_sum_block.v into ../../../outdir/nv_small/vmod/nvdla/cdp/fp_sum_block.v.vcp
+../../../outdir/nv_small/vmod/nvdla/cdp/fp_sum_block.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/cdp/fp_sum_block.v modified.
+Processing int_sum_block.v into ../../../outdir/nv_small/vmod/nvdla/cdp/int_sum_block.v.vcp
+../../../outdir/nv_small/vmod/nvdla/cdp/int_sum_block.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/cdp/int_sum_block.v modified.
+Processing int_sum_block_tp1.v into ../../../outdir/nv_small/vmod/nvdla/cdp/int_sum_block_tp1.v.vcp
+../../../outdir/nv_small/vmod/nvdla/cdp/int_sum_block_tp1.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/cdp/int_sum_block_tp1.v modified.
+Processing NV_NVDLA_cdp.v into ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_cdp.v.vcp
+../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_cdp.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_cdp.v modified.
+Processing NV_NVDLA_CDP_dp.v into ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_dp.v.vcp
+../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_dp.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_dp.v modified.
+Processing NV_NVDLA_CDP_DP_bufferin.v into ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_DP_bufferin.v.vcp
+../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_DP_bufferin.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_DP_bufferin.v modified.
+Processing NV_NVDLA_CDP_DP_bufferin_tp1.v into ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_DP_bufferin_tp1.v.vcp
+../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_DP_bufferin_tp1.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_DP_bufferin_tp1.v modified.
+Processing NV_NVDLA_CDP_DP_cvtin.v into ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_DP_cvtin.v.vcp
+../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_DP_cvtin.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_DP_cvtin.v modified.
+Processing NV_NVDLA_CDP_DP_cvtout.v into ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_DP_cvtout.v.vcp
+../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_DP_cvtout.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_DP_cvtout.v modified.
+Processing NV_NVDLA_CDP_DP_intp.v into ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_DP_intp.v.vcp
+../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_DP_intp.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_DP_intp.v modified.
+Processing NV_NVDLA_CDP_DP_INTP_unit.v into ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_DP_INTP_unit.v.vcp
+../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_DP_INTP_unit.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_DP_INTP_unit.v modified.
+Processing NV_NVDLA_CDP_DP_lut.v into ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_DP_lut.v.vcp
+../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_DP_lut.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_DP_lut.v modified.
+Processing NV_NVDLA_CDP_DP_LUT_ctrl.v into ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_DP_LUT_ctrl.v.vcp
+../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_DP_LUT_ctrl.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_DP_LUT_ctrl.v modified.
+Processing NV_NVDLA_CDP_DP_LUT_CTRL_unit.v into ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_DP_LUT_CTRL_unit.v.vcp
+../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_DP_LUT_CTRL_unit.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_DP_LUT_CTRL_unit.v modified.
+Processing NV_NVDLA_CDP_DP_mul.v into ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_DP_mul.v.vcp
+../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_DP_mul.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_DP_mul.v modified.
+Processing NV_NVDLA_CDP_DP_MUL_unit.v into ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_DP_MUL_unit.v.vcp
+../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_DP_MUL_unit.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_DP_MUL_unit.v modified.
+Processing NV_NVDLA_CDP_DP_nan.v into ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_DP_nan.v.vcp
+../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_DP_nan.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_DP_nan.v modified.
+Processing NV_NVDLA_CDP_DP_sum.v into ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_DP_sum.v.vcp
+../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_DP_sum.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_DP_sum.v modified.
+Processing NV_NVDLA_CDP_DP_syncfifo.v into ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_DP_syncfifo.v.vcp
+../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_DP_syncfifo.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_DP_syncfifo.v modified.
+Processing NV_NVDLA_CDP_rdma.v into ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_rdma.v.vcp
+../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_rdma.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_rdma.v modified.
+Processing NV_NVDLA_CDP_RDMA_cq.v into ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_RDMA_cq.v.vcp
+../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_RDMA_cq.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_RDMA_cq.v modified.
+Processing NV_NVDLA_CDP_RDMA_eg.v into ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_RDMA_eg.v.vcp
+../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_RDMA_eg.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_RDMA_eg.v modified.
+Processing NV_NVDLA_CDP_RDMA_ig.v into ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_RDMA_ig.v.vcp
+../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_RDMA_ig.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_RDMA_ig.v modified.
+Processing NV_NVDLA_CDP_RDMA_reg.v into ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_RDMA_reg.v.vcp
+../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_RDMA_reg.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_RDMA_reg.v modified.
+Processing NV_NVDLA_CDP_RDMA_REG_dual.v into ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_RDMA_REG_dual.v.vcp
+../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_RDMA_REG_dual.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_RDMA_REG_dual.v modified.
+Processing NV_NVDLA_CDP_RDMA_REG_single.v into ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_RDMA_REG_single.v.vcp
+../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_RDMA_REG_single.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_RDMA_REG_single.v modified.
+Processing NV_NVDLA_CDP_reg.v into ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_reg.v.vcp
+../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_reg.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_reg.v modified.
+Processing NV_NVDLA_CDP_REG_dual.v into ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_REG_dual.v.vcp
+../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_REG_dual.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_REG_dual.v modified.
+Processing NV_NVDLA_CDP_REG_single.v into ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_REG_single.v.vcp
+../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_REG_single.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_REG_single.v modified.
+Processing NV_NVDLA_CDP_slcg.v into ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_slcg.v.vcp
+../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_slcg.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_slcg.v modified.
+Processing NV_NVDLA_CDP_wdma.v into ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_wdma.v.vcp
+../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_wdma.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/cdp/NV_NVDLA_CDP_wdma.v modified.

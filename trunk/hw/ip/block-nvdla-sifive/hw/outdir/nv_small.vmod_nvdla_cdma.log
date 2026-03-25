@@ -1,0 +1,136 @@
+command: cd vmod/nvdla/cdma;make PROJECT=nv_small 
+make[1]: Entering directory '/work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/nvdla/cdma'
+../../../tools/bin/vcp -i NV_NVDLA_cdma.v -o ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_cdma.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_cdma.v ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_cdma.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_CDMA_cvt.v -o ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_cvt.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_cvt.v ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_cvt.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_CDMA_CVT_cell.v -o ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_CVT_cell.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_CVT_cell.v ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_CVT_cell.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_CDMA_dc.v -o ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_dc.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_dc.v ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_dc.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_CDMA_DC_fifo.v -o ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_DC_fifo.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_DC_fifo.v ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_DC_fifo.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_CDMA_dma_mux.v -o ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_dma_mux.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_dma_mux.v ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_dma_mux.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_CDMA_dual_reg.v -o ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_dual_reg.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_dual_reg.v ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_dual_reg.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_CDMA_img.v -o ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_img.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_img.v ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_img.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_CDMA_IMG_ctrl.v -o ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_IMG_ctrl.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_IMG_ctrl.v ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_IMG_ctrl.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_CDMA_IMG_fifo.v -o ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_IMG_fifo.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_IMG_fifo.v ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_IMG_fifo.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_CDMA_IMG_pack.v -o ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_IMG_pack.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_IMG_pack.v ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_IMG_pack.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_CDMA_IMG_sg.v -o ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_IMG_sg.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_IMG_sg.v ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_IMG_sg.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_CDMA_IMG_sg2pack_fifo.v -o ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_IMG_sg2pack_fifo.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_IMG_sg2pack_fifo.v ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_IMG_sg2pack_fifo.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_CDMA_regfile.v -o ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_regfile.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_regfile.v ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_regfile.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_CDMA_shared_buffer.v -o ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_shared_buffer.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_shared_buffer.v ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_shared_buffer.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_CDMA_single_reg.v -o ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_single_reg.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_single_reg.v ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_single_reg.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_CDMA_slcg.v -o ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_slcg.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_slcg.v ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_slcg.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_CDMA_status.v -o ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_status.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_status.v ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_status.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_CDMA_wg.v -o ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_wg.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_wg.v ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_wg.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_CDMA_WG_fifo.v -o ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_WG_fifo.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_WG_fifo.v ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_WG_fifo.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_CDMA_wt.v -o ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_wt.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_wt.v ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_wt.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_CDMA_WT_fifo.v -o ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_WT_fifo.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_WT_fifo.v ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_WT_fifo.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_CDMA_WT_sp_arb.v -o ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_WT_sp_arb.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_WT_sp_arb.v ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_WT_sp_arb.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_CDMA_WT_wgs_fifo.v -o ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_WT_wgs_fifo.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_WT_wgs_fifo.v ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_WT_wgs_fifo.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_CDMA_WT_wrr_arb.v -o ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_WT_wrr_arb.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_WT_wrr_arb.v ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_WT_wrr_arb.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_cdma.swl -o ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_cdma.swl.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_cdma.swl ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_cdma.swl.vcp 
+==============================================
+files are generated under /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/outdir/nv_small/vmod/nvdla/cdma
+==============================================
+make[1]: Leaving directory '/work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/nvdla/cdma'
+Processing NV_NVDLA_cdma.v into ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_cdma.v.vcp
+../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_cdma.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_cdma.v modified.
+Processing NV_NVDLA_CDMA_cvt.v into ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_cvt.v.vcp
+../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_cvt.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_cvt.v modified.
+Processing NV_NVDLA_CDMA_CVT_cell.v into ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_CVT_cell.v.vcp
+../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_CVT_cell.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_CVT_cell.v modified.
+Processing NV_NVDLA_CDMA_dc.v into ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_dc.v.vcp
+../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_dc.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_dc.v modified.
+Processing NV_NVDLA_CDMA_DC_fifo.v into ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_DC_fifo.v.vcp
+../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_DC_fifo.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_DC_fifo.v modified.
+Processing NV_NVDLA_CDMA_dma_mux.v into ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_dma_mux.v.vcp
+../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_dma_mux.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_dma_mux.v modified.
+Processing NV_NVDLA_CDMA_dual_reg.v into ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_dual_reg.v.vcp
+../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_dual_reg.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_dual_reg.v modified.
+Processing NV_NVDLA_CDMA_img.v into ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_img.v.vcp
+../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_img.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_img.v modified.
+Processing NV_NVDLA_CDMA_IMG_ctrl.v into ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_IMG_ctrl.v.vcp
+../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_IMG_ctrl.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_IMG_ctrl.v modified.
+Processing NV_NVDLA_CDMA_IMG_fifo.v into ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_IMG_fifo.v.vcp
+../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_IMG_fifo.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_IMG_fifo.v modified.
+Processing NV_NVDLA_CDMA_IMG_pack.v into ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_IMG_pack.v.vcp
+../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_IMG_pack.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_IMG_pack.v modified.
+Processing NV_NVDLA_CDMA_IMG_sg.v into ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_IMG_sg.v.vcp
+../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_IMG_sg.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_IMG_sg.v modified.
+Processing NV_NVDLA_CDMA_IMG_sg2pack_fifo.v into ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_IMG_sg2pack_fifo.v.vcp
+../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_IMG_sg2pack_fifo.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_IMG_sg2pack_fifo.v modified.
+Processing NV_NVDLA_CDMA_regfile.v into ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_regfile.v.vcp
+../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_regfile.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_regfile.v modified.
+Processing NV_NVDLA_CDMA_shared_buffer.v into ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_shared_buffer.v.vcp
+../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_shared_buffer.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_shared_buffer.v modified.
+Processing NV_NVDLA_CDMA_single_reg.v into ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_single_reg.v.vcp
+../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_single_reg.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_single_reg.v modified.
+Processing NV_NVDLA_CDMA_slcg.v into ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_slcg.v.vcp
+../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_slcg.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_slcg.v modified.
+Processing NV_NVDLA_CDMA_status.v into ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_status.v.vcp
+../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_status.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_status.v modified.
+Processing NV_NVDLA_CDMA_wg.v into ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_wg.v.vcp
+../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_wg.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_wg.v modified.
+Processing NV_NVDLA_CDMA_WG_fifo.v into ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_WG_fifo.v.vcp
+../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_WG_fifo.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_WG_fifo.v modified.
+Processing NV_NVDLA_CDMA_wt.v into ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_wt.v.vcp
+../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_wt.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_wt.v modified.
+Processing NV_NVDLA_CDMA_WT_fifo.v into ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_WT_fifo.v.vcp
+../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_WT_fifo.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_WT_fifo.v modified.
+Processing NV_NVDLA_CDMA_WT_sp_arb.v into ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_WT_sp_arb.v.vcp
+../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_WT_sp_arb.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_WT_sp_arb.v modified.
+Processing NV_NVDLA_CDMA_WT_wgs_fifo.v into ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_WT_wgs_fifo.v.vcp
+../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_WT_wgs_fifo.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_WT_wgs_fifo.v modified.
+Processing NV_NVDLA_CDMA_WT_wrr_arb.v into ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_WT_wrr_arb.v.vcp
+../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_WT_wrr_arb.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_WT_wrr_arb.v modified.
+Processing NV_NVDLA_cdma.swl into ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_cdma.swl.vcp
+../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_cdma.swl.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_cdma.swl modified.

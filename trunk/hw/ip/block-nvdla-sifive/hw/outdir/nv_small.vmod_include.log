@@ -1,0 +1,21 @@
+command: cd vmod/include;make PROJECT=nv_small 
+make[1]: Entering directory '/work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include'
+../../tools/bin/vcp -i NV_HWACC_NVDLA_tick_defines.vh -o ../../outdir/nv_small/vmod/include/NV_HWACC_NVDLA_tick_defines.vh.vcp -imacros ../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../vmod/plugins -Meperl ../../tools/bin/eperl -o ../../outdir/nv_small/vmod/include/NV_HWACC_NVDLA_tick_defines.vh ../../outdir/nv_small/vmod/include/NV_HWACC_NVDLA_tick_defines.vh.vcp 
+../../tools/bin/vcp -i NV_NVDLA_MCIF_define.vh -o ../../outdir/nv_small/vmod/include/NV_NVDLA_MCIF_define.vh.vcp -imacros ../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../vmod/plugins -Meperl ../../tools/bin/eperl -o ../../outdir/nv_small/vmod/include/NV_NVDLA_MCIF_define.vh ../../outdir/nv_small/vmod/include/NV_NVDLA_MCIF_define.vh.vcp 
+../../tools/bin/vcp -i simulate_x_tick.vh -o ../../outdir/nv_small/vmod/include/simulate_x_tick.vh.vcp -imacros ../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../vmod/plugins -Meperl ../../tools/bin/eperl -o ../../outdir/nv_small/vmod/include/simulate_x_tick.vh ../../outdir/nv_small/vmod/include/simulate_x_tick.vh.vcp 
+==============================================
+files are generated under /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/outdir/nv_small/vmod/include
+==============================================
+make[1]: Leaving directory '/work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include'
+Processing NV_HWACC_NVDLA_tick_defines.vh into ../../outdir/nv_small/vmod/include/NV_HWACC_NVDLA_tick_defines.vh.vcp
+../../outdir/nv_small/vmod/include/NV_HWACC_NVDLA_tick_defines.vh.vcp successfully written
+eperl: ../../outdir/nv_small/vmod/include/NV_HWACC_NVDLA_tick_defines.vh modified.
+Processing NV_NVDLA_MCIF_define.vh into ../../outdir/nv_small/vmod/include/NV_NVDLA_MCIF_define.vh.vcp
+../../outdir/nv_small/vmod/include/NV_NVDLA_MCIF_define.vh.vcp successfully written
+eperl: ../../outdir/nv_small/vmod/include/NV_NVDLA_MCIF_define.vh modified.
+Processing simulate_x_tick.vh into ../../outdir/nv_small/vmod/include/simulate_x_tick.vh.vcp
+../../outdir/nv_small/vmod/include/simulate_x_tick.vh.vcp successfully written
+eperl: ../../outdir/nv_small/vmod/include/simulate_x_tick.vh modified.

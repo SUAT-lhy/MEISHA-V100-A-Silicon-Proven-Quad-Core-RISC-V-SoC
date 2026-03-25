@@ -1,0 +1,25 @@
+command: cd spec/odif;make PROJECT=nv_small 
+make[1]: Entering directory '/work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/spec/odif'
+../../tools/bin/vcp -i ./example.interface.odif -o /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/outdir/nv_small/spec/odif/./example.interface.odif -imacros ../../outdir/nv_small/spec/defs/project.h -cpp /usr/bin/cpp-4.8
+../../tools/bin/vcp -i ./example.module.odif -o /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/outdir/nv_small/spec/odif/./example.module.odif -imacros ../../outdir/nv_small/spec/defs/project.h -cpp /usr/bin/cpp-4.8
+../../tools/bin/vcp -i ./example.top.odif -o /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/outdir/nv_small/spec/odif/./example.top.odif -imacros ../../outdir/nv_small/spec/defs/project.h -cpp /usr/bin/cpp-4.8
+../../tools/bin/vcp -i ./nvdla.interface.odif -o /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/outdir/nv_small/spec/odif/./nvdla.interface.odif -imacros ../../outdir/nv_small/spec/defs/project.h -cpp /usr/bin/cpp-4.8
+../../tools/bin/vcp -i ./nvdla.module.odif -o /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/outdir/nv_small/spec/odif/./nvdla.module.odif -imacros ../../outdir/nv_small/spec/defs/project.h -cpp /usr/bin/cpp-4.8
+../../tools/bin/vcp -i ./nvdla.top.odif -o /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/outdir/nv_small/spec/odif/./nvdla.top.odif -imacros ../../outdir/nv_small/spec/defs/project.h -cpp /usr/bin/cpp-4.8
+/usr/bin/perl /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/spec/odif/ODIF2others.pl -o /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/outdir/nv_small/spec/odif -f /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/outdir/nv_small/spec/odif/nvdla.top.odif -c -sv -v -m
+==============================================
+files are generated under /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/outdir/nv_small/spec/odif
+==============================================
+make[1]: Leaving directory '/work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/spec/odif'
+Processing ./example.interface.odif into /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/outdir/nv_small/spec/odif/./example.interface.odif
+/work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/outdir/nv_small/spec/odif/./example.interface.odif successfully written
+Processing ./example.module.odif into /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/outdir/nv_small/spec/odif/./example.module.odif
+/work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/outdir/nv_small/spec/odif/./example.module.odif successfully written
+Processing ./example.top.odif into /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/outdir/nv_small/spec/odif/./example.top.odif
+/work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/outdir/nv_small/spec/odif/./example.top.odif successfully written
+Processing ./nvdla.interface.odif into /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/outdir/nv_small/spec/odif/./nvdla.interface.odif
+/work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/outdir/nv_small/spec/odif/./nvdla.interface.odif successfully written
+Processing ./nvdla.module.odif into /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/outdir/nv_small/spec/odif/./nvdla.module.odif
+/work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/outdir/nv_small/spec/odif/./nvdla.module.odif successfully written
+Processing ./nvdla.top.odif into /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/outdir/nv_small/spec/odif/./nvdla.top.odif
+/work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/outdir/nv_small/spec/odif/./nvdla.top.odif successfully written

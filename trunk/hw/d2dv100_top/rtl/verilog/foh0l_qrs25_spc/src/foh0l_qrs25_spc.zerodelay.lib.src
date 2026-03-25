@@ -1,0 +1,4546 @@
+///////////////////////////////////////////////////////////////////////////////////////
+// (C) Copyright: Please refer to Document Copyright Statement enclosed herein.
+// 
+//   NC-Verilog Simulation Library
+//   Cell Library            : foh0l_qrs25_spc.lib.src
+//   Library Release Version : 1.10.3
+//   Date                    : Fri Sep 27 10:59:20 CST 2024 
+///////////////////////////////////////////////////////////////////////////////////////
+//
+//   Note : This library uses delayed signals to support negative
+//          timing checks.
+//          Please add command-line options
+//             "+neg_tchk" and "+nowarnNTCDSN" when runnning simulation with Verilog-XL
+//             "+neg_tchk" when runnning simulation with NC-verilog & VCS
+//          to support negative timing checks.
+//
+///////////////////////////////////////////////////////////////////////////////////////
+
+`timescale 10ps / 1ps
+
+//-- FTC standard cell revision 1.1 --//
+`resetall
+`timescale 10ps/1ps
+`celldefine
+module PDTLF (OE18V);
+  output OE18V;
+  supply1 vcc;
+        
+  //Function Block
+ `protect
+   buf g1(OE18V, vcc);
+                
+  //Specify Block
+     specify
+     endspecify
+  `endprotect
+ endmodule
+  `endcelldefine
+ 
+
+//-- FTC standard cell revision 1.1 --//
+`resetall
+`timescale 10ps/1ps
+`celldefine
+module WRNE4GSLAX250 (O, I, IO, E, E4, E8, SR, IE, PU, PD, SMT);
+   output O;
+   input I, E, E4, E8, SR, IE, SMT, PU, PD;
+   inout IO;
+
+//Function Block
+`protect
+   // Avoide MIPD
+   buf b1 (E4_,E4);
+   buf b2 (E8_,E8);
+   buf b3 (SR_,SR);
+   buf b4 (SMT_,SMT);
+
+   pullup_down_keep_IO g1 (IO, I, E, PU, PD);
+   and    g2(O, IO, IE);
+
+//Specify Block
+   specify
+
+      //  Module Path Delay (state dependent)
+      if (E4 == 0 && E8 == 0 && SR == 0) (I *> IO) = (0.0, 0.0);
+      if (E4 == 0 && E8 == 1 && SR == 0) (I *> IO) = (0.0, 0.0);
+      if (E4 == 1 && E8 == 0 && SR == 1) (I *> IO) = (0.0, 0.0);
+      if (E4 == 1 && E8 == 1 && SR == 1) (I *> IO) = (0.0, 0.0);
+      if (E4 == 0 && E8 == 0 && SR == 1) (I *> IO) = (0.0, 0.0);
+      if (E4 == 1 && E8 == 0 && SR == 0) (I *> IO) = (0.0, 0.0);
+      if (E4 == 0 && E8 == 1 && SR == 1) (I *> IO) = (0.0, 0.0);
+      if (E4 == 1 && E8 == 1 && SR == 0) (I *> IO) = (0.0, 0.0);
+      if (E == 0) (I *> IO) = (0:0:0, 0:0:0);
+      ifnone (I *> IO) = (0.0, 0.0);
+      if (SMT == 0) (IE *> O) = (0.0, 0.0);
+      if (SMT == 1) (IE *> O) = (0.0, 0.0);
+      ifnone (IE *> O) = (0.0, 0.0);
+      if (SMT == 1) (IO *> O) = (0.0, 0.0);
+      if (SMT == 0) (IO *> O) = (0.0, 0.0);
+      ifnone (IO *> O) = (0.0, 0.0);
+      if (E4 == 1 && E8 == 0 && SR == 1) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 1 && E8 == 1 && SR == 1) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 1 && E8 == 0 && SR == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 0 && E8 == 0 && SR == 1) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 1 && E8 == 1 && SR == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 0 && E8 == 1 && SR == 1) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 0 && E8 == 0 && SR == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 0 && E8 == 1 && SR == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      ifnone (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      //  Module Path Delay (state dependent)
+      //  Module Path Delay
+      if (E == 0) (PU *> IO) = (0.0:0.0:0.0);
+      ifnone (PU *> IO) = (0.0:0.0:0.0);
+      if (E == 0) (PD *> IO) = (0.0:0.0:0.0);
+      ifnone (PD *> IO) = (0.0:0.0:0.0);
+   endspecify
+`endprotect
+endmodule
+`endcelldefine
+
+//-- FTC standard cell revision 1.2 --//
+`resetall
+`timescale 10ps/1ps
+`celldefine
+module WROSCAHINTLA (O, I, IO, E, EB, S0, S1, FEB);
+   input I, E, EB, FEB, S0, S1;
+   inout IO;
+   output O;
+
+//Function Block
+`protect
+   // Avoide MIPD
+   buf b1 (S0_,S0);
+   buf b2 (S1_,S1);
+   buf b3 (FEB_,FEB);
+
+   nand g1 (io_tmp,I,E);
+   bufif0 (weak1, weak0) g2 (IO,io_tmp,EB);
+   not g3 (eb_, EB);
+   or g4 (or_o, eb_, E);
+   and g5 (O, IO, or_o);
+
+//Specify Block
+   specify
+
+      //  Module Path Delay (state dependent)
+      if (S0 == 0 && S1 == 0) (E *> IO) = (0.0, 0.0);
+      if (S0 == 1 && S1 == 0) (E *> IO) = (0.0, 0.0);
+      if (S0 == 0 && S1 == 1) (E *> IO) = (0.0, 0.0);
+      if (S0 == 1 && S1 == 1) (E *> IO) = (0.0, 0.0);
+      ifnone (E *> IO) = (0.0, 0.0);
+      if (S0 == 1 && S1 == 1) (EB *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (S0 == 0 && S1 == 0) (EB *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (S0 == 1 && S1 == 0) (EB *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (S0 == 0 && S1 == 1) (EB *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      ifnone (EB *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (S0 == 0 && S1 == 1) (I *> IO) = (0.0, 0.0);
+      if (S0 == 1 && S1 == 1) (I *> IO) = (0.0, 0.0);
+      if (S0 == 0 && S1 == 0) (I *> IO) = (0.0, 0.0);
+      if (S0 == 1 && S1 == 0) (I *> IO) = (0.0, 0.0);
+      ifnone (I *> IO) = (0.0, 0.0);
+      //  Module Path Delay
+      (E *> O) = (0.0, 0.0);
+      (EB *> O) = (0.0, 0.0);
+      (IO *> O) = (0.0, 0.0);
+   endspecify
+`endprotect
+endmodule
+`endcelldefine
+
+
+//-- FTC standard cell revision 1.1 --//
+`resetall
+`timescale 10ps/1ps
+`celldefine
+module WRTRNE28SLB (O, I, IO, E, E2, E4, SR, IE, PU, PD, SMT);
+   output O;
+   input I, E, E2, E4, SR, IE, SMT, PU, PD;
+   inout IO;
+
+//Function Block
+`protect
+   // Avoide MIPD
+   buf b1 (E2_,E2);
+   buf b2 (E4_,E4);
+   buf b3 (SR_,SR);
+   buf b4 (SMT_,SMT);
+
+   pullup_down_keep_IO_IE g1 (IO, I, E, IE, PU, PD);
+   and    g2(O, IO, IE);
+
+//Specify Block
+   specify
+
+      //  Module Path Delay (state dependent)
+      if (E2 == 0 && E4 == 0 && SR == 1) (I *> IO) = (0.0, 0.0);
+      if (E2 == 1 && E4 == 0 && SR == 0) (I *> IO) = (0.0, 0.0);
+      if (E2 == 0 && E4 == 1 && SR == 1) (I *> IO) = (0.0, 0.0);
+      if (E2 == 1 && E4 == 1 && SR == 0) (I *> IO) = (0.0, 0.0);
+      if (E2 == 0 && E4 == 0 && SR == 0) (I *> IO) = (0.0, 0.0);
+      if (E2 == 0 && E4 == 1 && SR == 0) (I *> IO) = (0.0, 0.0);
+      if (E2 == 1 && E4 == 0 && SR == 1) (I *> IO) = (0.0, 0.0);
+      if (E2 == 1 && E4 == 1 && SR == 1) (I *> IO) = (0.0, 0.0);
+      if (E == 0) (I *> IO) = (0:0:0, 0:0:0);
+      ifnone (I *> IO) = (0.0, 0.0);
+      if (SMT == 0) (IE *> O) = (0.0, 0.0);
+      if (SMT == 1) (IE *> O) = (0.0, 0.0);
+      ifnone (IE *> O) = (0.0, 0.0);
+      if (SMT == 1) (IO *> O) = (0.0, 0.0);
+      if (SMT == 0) (IO *> O) = (0.0, 0.0);
+      ifnone (IO *> O) = (0.0, 0.0);
+      if (E2 == 1 && E4 == 0 && SR == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E2 == 0 && E4 == 0 && SR == 1) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E2 == 1 && E4 == 1 && SR == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E2 == 0 && E4 == 1 && SR == 1) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E2 == 0 && E4 == 0 && SR == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E2 == 0 && E4 == 1 && SR == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E2 == 1 && E4 == 0 && SR == 1) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E2 == 1 && E4 == 1 && SR == 1) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      ifnone (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+
+      //  Module Path Delay (state dependent)
+
+      //  Module Path Delay
+      if (E == 0) (PU *> IO) = (0.0:0.0:0.0);
+      ifnone (PU *> IO) = (0.0:0.0:0.0);
+      if (E == 0) (PD *> IO) = (0.0:0.0:0.0);
+      ifnone (PD *> IO) = (0.0:0.0:0.0);
+   endspecify
+`endprotect
+endmodule
+`endcelldefine
+
+//-- FTC standard cell revision 1.1 --//
+`resetall
+`timescale 10ps/1ps
+`celldefine
+module WYNE2ASLA (O, I, IO, E, E4, E8, SR, IE, PU, PD, SMT);
+   output O;
+   input I, E, E4, E8, SR, IE, PU, PD, SMT;
+   inout IO;
+
+//Function Block
+`protect
+   // Avoide MIPD
+   buf b1 (E4_,E4);
+   buf b2 (E8_,E8);
+   buf b3 (SR_,SR);
+   buf b4 (SMT_,SMT);
+
+   pullup_down_keep_IO_IE g1 (IO, I, E, IE, PU, PD);
+   and    g2(O, IO, IE);
+
+//Specify Block
+   specify
+
+      //  Module Path Delay (state dependent)
+      if (E4 == 0 && E8 == 0 && SR == 0) (I *> IO) = (0.0, 0.0);
+      if (E4 == 0 && E8 == 1 && SR == 0) (I *> IO) = (0.0, 0.0);
+      if (E4 == 1 && E8 == 0 && SR == 1) (I *> IO) = (0.0, 0.0);
+      if (E4 == 1 && E8 == 1 && SR == 1) (I *> IO) = (0.0, 0.0);
+      if (E4 == 0 && E8 == 0 && SR == 1) (I *> IO) = (0.0, 0.0);
+      if (E4 == 1 && E8 == 0 && SR == 0) (I *> IO) = (0.0, 0.0);
+      if (E4 == 0 && E8 == 1 && SR == 1) (I *> IO) = (0.0, 0.0);
+      if (E4 == 1 && E8 == 1 && SR == 0) (I *> IO) = (0.0, 0.0);
+      if (E == 0) (I *> IO) = (0:0:0, 0:0:0);
+      ifnone (I *> IO) = (0.0, 0.0);
+      if (SMT == 0) (IE *> O) = (0.0, 0.0);
+      if (SMT == 1) (IE *> O) = (0.0, 0.0);
+      ifnone (IE *> O) = (0.0, 0.0);
+      if (SMT == 1) (IO *> O) = (0.0, 0.0);
+      if (SMT == 0) (IO *> O) = (0.0, 0.0);
+      ifnone (IO *> O) = (0.0, 0.0);
+      if (E4 == 1 && E8 == 0 && SR == 1) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 1 && E8 == 1 && SR == 1) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 1 && E8 == 0 && SR == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 0 && E8 == 0 && SR == 1) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 1 && E8 == 1 && SR == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 0 && E8 == 1 && SR == 1) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 0 && E8 == 0 && SR == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 0 && E8 == 1 && SR == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      ifnone (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+
+      //  Module Path Delay (state dependent)
+
+      //  Module Path Delay
+      if (E == 0) (PU *> IO) = (0.0:0.0:0.0);
+      ifnone (PU *> IO) = (0.0:0.0:0.0);
+      if (E == 0) (PD *> IO) = (0.0:0.0:0.0);
+      ifnone (PD *> IO) = (0.0:0.0:0.0);
+   endspecify
+`endprotect
+endmodule
+`endcelldefine
+
+
+
+//-- FTC standard cell revision 1.2 --//
+`resetall
+`timescale 10ps/1ps
+`celldefine
+module XOSCAHINTLAX1 (O, I, IO, E, EB, S0, S1, FEB, E3VB);
+   input I, E, EB, FEB, S0, S1, E3VB;
+   inout IO;
+   output O;
+
+//Function Block
+`protect
+   not (e3v, E3VB);
+	not (eb_b, EB);
+	not (e_b, E);
+	not (i_b, I);
+	and (ioc, e3v, eb_b);
+	or  (ioi, i_b, e_b);
+
+	bufif1 (IO, ioi, ioc);
+
+	and (e3v_1, e3v, E);
+	and (e3v_2, e3v, eb_b);
+	or  (o_1, e3v_1, e3v_2);
+	and (O, IO, o_1);
+
+//Specify Block
+   specify
+
+      //  Module Path Delay (state dependent)
+      if (S0 == 0 && S1 == 0) (E *> IO) = (0.0, 0.0);
+      if (S0 == 1 && S1 == 0) (E *> IO) = (0.0, 0.0);
+      if (S0 == 0 && S1 == 1) (E *> IO) = (0.0, 0.0);
+      if (S0 == 1 && S1 == 1) (E *> IO) = (0.0, 0.0);
+      ifnone (E *> IO) = (0.0, 0.0);
+      if (S0 == 1 && S1 == 1) (EB *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (S0 == 0 && S1 == 0) (EB *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (S0 == 1 && S1 == 0) (EB *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (S0 == 0 && S1 == 1) (EB *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      ifnone (EB *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (S0 == 0 && S1 == 1) (I *> IO) = (0.0, 0.0);
+      if (S0 == 1 && S1 == 1) (I *> IO) = (0.0, 0.0);
+      if (S0 == 0 && S1 == 0) (I *> IO) = (0.0, 0.0);
+      if (S0 == 1 && S1 == 0) (I *> IO) = (0.0, 0.0);
+      ifnone (I *> IO) = (0.0, 0.0);
+      //  Module Path Delay
+      (E *> O) = (0.0, 0.0);
+      (EB *> O) = (0.0, 0.0);
+      (IO *> O) = (0.0, 0.0);
+   endspecify
+`endprotect
+endmodule
+`endcelldefine
+
+//-- FTC standard cell revision 1.2 --//
+`resetall
+`timescale 10ps/1ps
+`celldefine
+module XOSCAHINTLAX2 (O, I, IO, E, EB, S0, S1, FEB, E3V);
+   input I, E, EB, FEB, S0, S1, E3V;
+   inout IO;
+   output O;
+
+//Function Block
+`protect
+   //nand g1 (io_tmp,I,E);
+   //bufif0 (weak1, weak0) g2 (IO,io_tmp,EB);
+   //not g3 (eb_, EB);
+   //or g4 (or_o, eb_, E);
+   //and g5 (O, IO, or_o);
+   
+	not (eb_b, EB);
+	not (e_b, E);
+	not (i_b, I);
+	and (ioc, E3V, eb_b);
+	or  (ioi, i_b, e_b);
+
+	bufif1 (IO, ioi, ioc);
+
+	and (e3v_1, E3V, E);
+	and (e3v_2, E3V, eb_b);
+	or  (o_1, e3v_1, e3v_2);
+	and (O, IO, o_1);
+
+//Specify Block
+   specify
+
+      //  Module Path Delay (state dependent)
+      if (S0 == 0 && S1 == 0) (E *> IO) = (0.0, 0.0);
+      if (S0 == 1 && S1 == 0) (E *> IO) = (0.0, 0.0);
+      if (S0 == 0 && S1 == 1) (E *> IO) = (0.0, 0.0);
+      if (S0 == 1 && S1 == 1) (E *> IO) = (0.0, 0.0);
+      ifnone (E *> IO) = (0.0, 0.0);
+      if (S0 == 1 && S1 == 1) (EB *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (S0 == 0 && S1 == 0) (EB *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (S0 == 1 && S1 == 0) (EB *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (S0 == 0 && S1 == 1) (EB *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      ifnone (EB *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (S0 == 0 && S1 == 1) (I *> IO) = (0.0, 0.0);
+      if (S0 == 1 && S1 == 1) (I *> IO) = (0.0, 0.0);
+      if (S0 == 0 && S1 == 0) (I *> IO) = (0.0, 0.0);
+      if (S0 == 1 && S1 == 0) (I *> IO) = (0.0, 0.0);
+      ifnone (I *> IO) = (0.0, 0.0);
+      //  Module Path Delay
+      (E *> O) = (0.0, 0.0);
+      (EB *> O) = (0.0, 0.0);
+      (IO *> O) = (0.0, 0.0);
+   endspecify
+`endprotect
+endmodule
+`endcelldefine
+
+//-- FTC standard cell revision 1.1 --//
+`resetall
+`timescale 10ps/1ps
+`celldefine
+module XTRNELAX1 (O, I, IE, PU, PD, SMT, E3V);
+   output O;
+   input I, IE, PU, PD, SMT, E3V;
+   supply1 vcc;
+
+//Function Block
+`protect
+   // Avoide MIPD
+   buf b1 (SMT_,SMT);
+`ifdef atpgmodel
+   and g1 (O, I, IE);
+`else
+   nmos   g1(io1, I, vcc);
+   not    g2(pub, PU);
+   not    g3(pdb, PD);
+   and    g4(pupd, PU, PD);
+   and    g5(pu_pd_, pub, pdb);
+   or     g6(pcon, pupd, pu_pd_);
+   or     g7(pull_down1, pdb, PU);
+   rpmos  g8(io1, pull_down1, pcon);
+   and    g9(o_, io1, IE);
+   and      (O, o_, E3V);
+   //-- bus holder for "keep" function --//
+   buf    g10 (z,io1);
+   buf    g11 (H,z);
+   rnmos  g12 (io1, H, pupd);
+`endif
+
+//Specify Block
+   specify
+
+      //  Module Path Delay (state dependent)
+      if (SMT == 0) (I *> O) = (0.0, 0.0);
+      if (SMT == 1) (I *> O) = (0.0, 0.0);
+      ifnone (I *> O) = (0.0, 0.0);
+      if (SMT == 1) (IE *> O) = (0.0, 0.0);
+      if (SMT == 0) (IE *> O) = (0.0, 0.0);
+      ifnone (IE *> O) = (0.0, 0.0);
+
+      //  Module Path Delay
+
+   endspecify
+`endprotect
+endmodule
+`endcelldefine
+
+
+//-- FTC standard cell revision 1.1 --//
+`resetall
+`timescale 10ps/1ps
+`celldefine
+module XTRNELAX2 (O, I, IE, PU, PD, SMT);
+   output O;
+   input I, IE, PU, PD, SMT;
+   supply1 vcc;
+
+//Function Block
+`protect
+   // Avoide MIPD
+   buf b1 (SMT_,SMT);
+`ifdef atpgmodel
+   and g1 (O, I, IE);
+`else
+   nmos   g1(io1, I, vcc);
+   not    g2(pub, PU);
+   not    g3(pdb, PD);
+   and    g4(pupd, PU, PD);
+   and    g5(pu_pd_, pub, pdb);
+   or     g6(pcon, pupd, pu_pd_);
+   or     g7(pull_down1, pdb, PU);
+   rpmos  g8(io1, pull_down1, pcon);
+   and    g9(O, io1, IE);
+   //-- bus holder for "keep" function --//
+   buf    g10 (z,io1);
+   buf    g11 (H,z);
+   rnmos  g12 (io1, H, pupd);
+`endif
+
+//Specify Block
+   specify
+
+      //  Module Path Delay (state dependent)
+      if (SMT == 0) (I *> O) = (0.0, 0.0);
+      if (SMT == 1) (I *> O) = (0.0, 0.0);
+      ifnone (I *> O) = (0.0, 0.0);
+      if (SMT == 1) (IE *> O) = (0.0, 0.0);
+      if (SMT == 0) (IE *> O) = (0.0, 0.0);
+      ifnone (IE *> O) = (0.0, 0.0);
+
+      //  Module Path Delay
+
+   endspecify
+`endprotect
+endmodule
+`endcelldefine
+
+
+//-- FTC standard cell revision 1.1 --//
+`resetall
+`timescale 10ps/1ps
+`celldefine
+module ZFNE4GSLBX1 (O, I, IO, E, E4, E8, SR, IE, PU, PD, SMT, E3VB);
+   output O;
+   input I, E, E4, E8, SR, IE, SMT, PU, PD, E3VB;
+   inout IO;
+
+//Function Block
+`protect
+   // Avoide MIPD
+   buf b2 (E4_,E4);
+   buf b1 (E8_,E8);
+   buf b3 (SR_,SR);
+   buf b4 (SMT_,SMT);
+
+   not (e3v, E3VB);
+   and (e_and, E, e3v);
+   and (ie_and, IE, e3v);
+   
+   or    g_or (ctrl_o ,E, IE);
+   and   pu_g0(pu_o, PU, ctrl_o);
+   and   pd_g0(pd_o, PD, ctrl_o);
+   pullup_down_keep_IO_IE g1 (IO, I, e_and, IE, pu_o, pd_o);
+   and   g2(O, IO, ie_and);
+
+//Specify Block
+   specify
+
+      //  Module Path Delay (state dependent)
+      if (E4 == 0 && E8 == 0 && SR == 0) (I *> IO) = (0.0, 0.0);
+      if (E4 == 0 && E8 == 1 && SR == 0) (I *> IO) = (0.0, 0.0);
+      if (E4 == 1 && E8 == 0 && SR == 1) (I *> IO) = (0.0, 0.0);
+      if (E4 == 1 && E8 == 1 && SR == 1) (I *> IO) = (0.0, 0.0);
+      if (E4 == 0 && E8 == 0 && SR == 1) (I *> IO) = (0.0, 0.0);
+      if (E4 == 1 && E8 == 0 && SR == 0) (I *> IO) = (0.0, 0.0);
+      if (E4 == 0 && E8 == 1 && SR == 1) (I *> IO) = (0.0, 0.0);
+      if (E4 == 1 && E8 == 1 && SR == 0) (I *> IO) = (0.0, 0.0);
+      if (E == 0) (I *> IO) = (0:0:0, 0:0:0);
+      ifnone (I *> IO) = (0.0, 0.0);
+      if (SMT == 0) (IE *> O) = (0.0, 0.0);
+      if (SMT == 1) (IE *> O) = (0.0, 0.0);
+      ifnone (IE *> O) = (0.0, 0.0);
+      if (SMT == 1) (IO *> O) = (0.0, 0.0);
+      if (SMT == 0) (IO *> O) = (0.0, 0.0);
+      ifnone (IO *> O) = (0.0, 0.0);
+      if (E4 == 1 && E8 == 0 && SR == 1) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 1 && E8 == 1 && SR == 1) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 1 && E8 == 0 && SR == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 0 && E8 == 0 && SR == 1) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 1 && E8 == 1 && SR == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 0 && E8 == 1 && SR == 1) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 0 && E8 == 0 && SR == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 0 && E8 == 1 && SR == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      ifnone (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+
+      //  Module Path Delay
+      
+      if (E == 0) (PU *> IO) = (0.0:0.0:0.0);
+      ifnone (PU *> IO) = (0.0:0.0:0.0);
+      if (E == 0) (PD *> IO) = (0.0:0.0:0.0);
+      ifnone (PD *> IO) = (0.0:0.0:0.0);
+   endspecify
+`endprotect
+endmodule
+`endcelldefine
+
+
+
+//-- FTC standard cell revision 1.1 --//
+`resetall
+`timescale 10ps/1ps
+`celldefine
+module ZTRNDEM51LF (O, I, IO, E, EA, EB, EC, SR, IE, PU0, PU1, PD, SMT, OD, E18V);
+   output O;
+   input I, E, EA, EB, EC, SR, IE, PU0, PU1, PD, SMT, OD, E18V;
+   inout IO;
+
+//Function Block
+`protect
+   // Avoide MI 
+   buf b1 (EA_,EA);
+   buf b2 (EB_,EB);
+   buf b3 (EC_,EC);
+   buf b4 (SR_,SR);
+   buf b5 (SMT_,SMT);
+
+   and a6 (t0, E18V, ~OD, E);
+   and a7 (t1, E18V, ~I, OD);
+   or  o4 (s0, t0, t1);
+
+   and a1 (pd_,  E18V, ~PU0, ~PU1,  PD);
+   and a3 (pu1_, E18V, ~PU0,  PU1, ~PD);
+   and a4 (pu2_, E18V,  PU0, ~PU1, ~PD);
+   or  o2 (pu_, ~E18V,  pu1_, pu2_);
+
+   pullup_down_keep_IO_IE g1 (IO, I, s0, IE, pu_, pd_);
+
+   or  o3 (c1, E18V, SMT, IE);
+   bufif1 bg1 (O1, IO, c1);
+   and a9 (O, O1, IE);
+
+//Specify Block
+   specify
+
+      //  Module Path Delay (state dependent)
+      if (EA == 0 && EB == 0 && EC == 1 && SR == 0 && OD == 0) (I *> IO) = (0.0, 0.0);
+      if (EA == 1 && EB == 1 && EC == 0 && SR == 0 && OD == 0) (I *> IO) = (0.0, 0.0);
+      if (EA == 0 && EB == 1 && EC == 0 && SR == 1 && OD == 1) (I *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (EA == 1 && EB == 1 && EC == 1 && SR == 0 && OD == 1) (I *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (EA == 0 && EB == 0 && EC == 0 && SR == 0 && OD == 0) (I *> IO) = (0.0, 0.0);
+      if (EA == 0 && EB == 0 && EC == 1 && SR == 0 && OD == 1) (I *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (EA == 1 && EB == 0 && EC == 1 && SR == 1 && OD == 0) (I *> IO) = (0.0, 0.0);
+      if (EA == 1 && EB == 1 && EC == 0 && SR == 0 && OD == 1) (I *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (EA == 0 && EB == 0 && EC == 0 && SR == 0 && OD == 1) (I *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (EA == 0 && EB == 1 && EC == 1 && SR == 0 && OD == 0) (I *> IO) = (0.0, 0.0);
+      if (EA == 1 && EB == 0 && EC == 0 && SR == 1 && OD == 0) (I *> IO) = (0.0, 0.0);
+      if (EA == 1 && EB == 0 && EC == 1 && SR == 1 && OD == 1) (I *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (EA == 0 && EB == 1 && EC == 0 && SR == 0 && OD == 0) (I *> IO) = (0.0, 0.0);
+      if (EA == 0 && EB == 1 && EC == 1 && SR == 0 && OD == 1) (I *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (EA == 1 && EB == 0 && EC == 0 && SR == 1 && OD == 1) (I *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (EA == 1 && EB == 1 && EC == 1 && SR == 1 && OD == 0) (I *> IO) = (0.0, 0.0);
+      if (EA == 0 && EB == 1 && EC == 0 && SR == 0 && OD == 1) (I *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (EA == 0 && EB == 0 && EC == 1 && SR == 1 && OD == 0) (I *> IO) = (0.0, 0.0);
+      if (EA == 1 && EB == 1 && EC == 0 && SR == 1 && OD == 0) (I *> IO) = (0.0, 0.0);
+      if (EA == 1 && EB == 1 && EC == 1 && SR == 1 && OD == 1) (I *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (EA == 0 && EB == 0 && EC == 0 && SR == 1 && OD == 0) (I *> IO) = (0.0, 0.0);
+      if (EA == 1 && EB == 0 && EC == 1 && SR == 0 && OD == 0) (I *> IO) = (0.0, 0.0);
+      if (EA == 0 && EB == 0 && EC == 1 && SR == 1 && OD == 1) (I *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (EA == 1 && EB == 1 && EC == 0 && SR == 1 && OD == 1) (I *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (EA == 1 && EB == 0 && EC == 0 && SR == 0 && OD == 0) (I *> IO) = (0.0, 0.0);
+      if (EA == 0 && EB == 0 && EC == 0 && SR == 1 && OD == 1) (I *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (EA == 0 && EB == 1 && EC == 1 && SR == 1 && OD == 0) (I *> IO) = (0.0, 0.0);
+      if (EA == 1 && EB == 0 && EC == 1 && SR == 0 && OD == 1) (I *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (EA == 0 && EB == 1 && EC == 0 && SR == 1 && OD == 0) (I *> IO) = (0.0, 0.0);
+      if (EA == 1 && EB == 0 && EC == 0 && SR == 0 && OD == 1) (I *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (EA == 1 && EB == 1 && EC == 1 && SR == 0 && OD == 0) (I *> IO) = (0.0, 0.0);
+      if (EA == 0 && EB == 1 && EC == 1 && SR == 1 && OD == 1) (I *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E == 0) (I *> IO) = (0:0:0, 0:0:0);
+      ifnone (I *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E == 0 && EA == 1 && EB == 1 && EC == 1 && SR == 1) (OD *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E == 0 && EA == 0 && EB == 1 && EC == 0 && SR == 0) (OD *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E == 1 && EA == 1 && EB == 0 && EC == 0 && SR == 0) (OD *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E == 0 && EA == 1 && EB == 0 && EC == 1 && SR == 1) (OD *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E == 1 && EA == 1 && EB == 1 && EC == 0 && SR == 1) (OD *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E == 0 && EA == 0 && EB == 0 && EC == 0 && SR == 0) (OD *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E == 0 && EA == 0 && EB == 1 && EC == 0 && SR == 1) (OD *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E == 1 && EA == 1 && EB == 0 && EC == 0 && SR == 1) (OD *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E == 1 && EA == 0 && EB == 1 && EC == 1 && SR == 0) (OD *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E == 0 && EA == 0 && EB == 0 && EC == 0 && SR == 1) (OD *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E == 1 && EA == 0 && EB == 0 && EC == 1 && SR == 0) (OD *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E == 0 && EA == 1 && EB == 1 && EC == 0 && SR == 0) (OD *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E == 1 && EA == 0 && EB == 1 && EC == 1 && SR == 1) (OD *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E == 0 && EA == 1 && EB == 0 && EC == 0 && SR == 0) (OD *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E == 1 && EA == 0 && EB == 0 && EC == 1 && SR == 1) (OD *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E == 0 && EA == 1 && EB == 1 && EC == 0 && SR == 1) (OD *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E == 1 && EA == 1 && EB == 1 && EC == 1 && SR == 0) (OD *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E == 0 && EA == 0 && EB == 1 && EC == 1 && SR == 0) (OD *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E == 0 && EA == 1 && EB == 0 && EC == 0 && SR == 1) (OD *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E == 1 && EA == 1 && EB == 0 && EC == 1 && SR == 0) (OD *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E == 1 && EA == 1 && EB == 1 && EC == 1 && SR == 1) (OD *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E == 0 && EA == 0 && EB == 0 && EC == 1 && SR == 0) (OD *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E == 1 && EA == 0 && EB == 1 && EC == 0 && SR == 0) (OD *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E == 0 && EA == 0 && EB == 1 && EC == 1 && SR == 1) (OD *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E == 1 && EA == 1 && EB == 0 && EC == 1 && SR == 1) (OD *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E == 1 && EA == 0 && EB == 0 && EC == 0 && SR == 0) (OD *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E == 0 && EA == 0 && EB == 0 && EC == 1 && SR == 1) (OD *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E == 1 && EA == 0 && EB == 1 && EC == 0 && SR == 1) (OD *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E == 0 && EA == 1 && EB == 1 && EC == 1 && SR == 0) (OD *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E == 1 && EA == 0 && EB == 0 && EC == 0 && SR == 1) (OD *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E == 0 && EA == 1 && EB == 0 && EC == 1 && SR == 0) (OD *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E == 1 && EA == 1 && EB == 1 && EC == 0 && SR == 0) (OD *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      ifnone (OD *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (SMT == 0) (IE *> O) = (0.0, 0.0);
+      if (SMT == 1) (IE *> O) = (0.0, 0.0);
+      ifnone (IE *> O) = (0.0, 0.0);
+      if (SMT == 1) (IO *> O) = (0.0, 0.0);
+      if (SMT == 0) (IO *> O) = (0.0, 0.0);
+      ifnone (IO *> O) = (0.0, 0.0);
+      if (EA == 0 && EB == 0 && EC == 0 && SR == 1 && OD == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (EA == 1 && EB == 0 && EC == 1 && SR == 0 && OD == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (EA == 1 && EB == 0 && EC == 0 && SR == 0 && OD == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (EA == 0 && EB == 1 && EC == 1 && SR == 1 && OD == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (EA == 0 && EB == 1 && EC == 0 && SR == 1 && OD == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (EA == 1 && EB == 1 && EC == 1 && SR == 0 && OD == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (EA == 0 && EB == 0 && EC == 1 && SR == 0 && OD == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (EA == 1 && EB == 1 && EC == 0 && SR == 0 && OD == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (EA == 0 && EB == 0 && EC == 0 && SR == 0 && OD == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (EA == 1 && EB == 0 && EC == 1 && SR == 1 && OD == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (EA == 1 && EB == 0 && EC == 0 && SR == 1 && OD == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (EA == 0 && EB == 1 && EC == 1 && SR == 0 && OD == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (EA == 0 && EB == 1 && EC == 0 && SR == 0 && OD == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (EA == 1 && EB == 1 && EC == 1 && SR == 1 && OD == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (EA == 0 && EB == 0 && EC == 1 && SR == 1 && OD == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (EA == 1 && EB == 1 && EC == 0 && SR == 1 && OD == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      ifnone (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      //  Module Path Delay (state dependent)
+   endspecify
+`endprotect
+endmodule
+`endcelldefine
+//-- FTC standard cell revision 1.1 --//
+`resetall
+`timescale 10ps/1ps
+`celldefine
+module ZTRNDSD3LN (O, I, IO, E, EA, EB, IE, PU, PD, SMT, SR);
+   output O;
+   input I, E, EA, EB, IE, PU, PD, SMT, SR;
+   inout IO;
+
+//Function Block
+`protect
+   pullup_down_keep_IO g1 (IO, I, E, PU, PD);
+   and    g2(O, IO, IE); 
+
+//Specify Block
+   specify
+
+      //  Module Path Delay (state dependent)
+      if (EA == 0 && EB == 0 && SR == 1) (I *> IO) = (0.0, 0.0);
+      if (EA == 1 && EB == 0 && SR == 0) (I *> IO) = (0.0, 0.0);
+      if (EA == 0 && EB == 1 && SR == 1) (I *> IO) = (0.0, 0.0);
+      if (EA == 1 && EB == 1 && SR == 0) (I *> IO) = (0.0, 0.0);
+      if (EA == 0 && EB == 0 && SR == 0) (I *> IO) = (0.0, 0.0);
+      if (EA == 0 && EB == 1 && SR == 0) (I *> IO) = (0.0, 0.0);
+      if (EA == 1 && EB == 0 && SR == 1) (I *> IO) = (0.0, 0.0);
+      if (EA == 1 && EB == 1 && SR == 1) (I *> IO) = (0.0, 0.0);
+      if (E == 0) (I *> IO) = (0:0:0, 0:0:0);
+      ifnone (I *> IO) = (0.0, 0.0);
+      if (SMT == 0) (IE *> O) = (0.0, 0.0);
+      if (SMT == 1) (IE *> O) = (0.0, 0.0);
+      ifnone (IE *> O) = (0.0, 0.0);
+      if (SMT == 1) (IO *> O) = (0.0, 0.0);
+      if (SMT == 0) (IO *> O) = (0.0, 0.0);
+      ifnone (IO *> O) = (0.0, 0.0);
+      if (EA == 0 && EB == 0 && SR == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (EA == 0 && EB == 1 && SR == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (EA == 1 && EB == 0 && SR == 1) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (EA == 1 && EB == 1 && SR == 1) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (EA == 1 && EB == 0 && SR == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (EA == 0 && EB == 0 && SR == 1) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (EA == 1 && EB == 1 && SR == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (EA == 0 && EB == 1 && SR == 1) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      ifnone (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      //Module Path Delay
+      if (E == 0) (PU *> IO) = (0.0:0.0:0.0);
+      ifnone (PU *> IO) = (0.0:0.0:0.0);
+      if (E == 0) (PD *> IO) = (0.0:0.0:0.0);
+      ifnone (PD *> IO) = (0.0:0.0:0.0);
+   endspecify
+`endprotect
+endmodule
+`endcelldefine
+
+
+
+//-- FTC standard cell revision 1.1 --//
+`resetall
+`timescale 10ps/1ps
+`celldefine
+module ZTRNE28SLAX1 (O, I, IO, E, E2, E4, SR, IE, PU, PD, SMT, E3V);
+   output O;
+   input I, E, E2, E4, SR, IE, SMT, PU, PD, E3V;
+   inout IO;
+
+//Function Block
+`protect
+   // Avoide MIPD
+   buf b1 (E2_,E2);
+   buf b2 (E4_,E4);
+   buf b3 (SR_,SR);
+   buf b4 (SMT_,SMT);
+
+   and (e_and, E, E3V);
+   and (ie_and, IE, E3V);
+
+   pullup_down_keep_IO g1 (IO, I, e_and, PU, PD);
+   and    g2(O, IO, ie_and);
+
+//Specify Block
+   specify
+
+      //  Module Path Delay (state dependent)
+      if (E2 == 0 && E4 == 0 && SR == 1) (I *> IO) = (0.0, 0.0);
+      if (E2 == 1 && E4 == 0 && SR == 0) (I *> IO) = (0.0, 0.0);
+      if (E2 == 0 && E4 == 1 && SR == 1) (I *> IO) = (0.0, 0.0);
+      if (E2 == 1 && E4 == 1 && SR == 0) (I *> IO) = (0.0, 0.0);
+      if (E2 == 0 && E4 == 0 && SR == 0) (I *> IO) = (0.0, 0.0);
+      if (E2 == 0 && E4 == 1 && SR == 0) (I *> IO) = (0.0, 0.0);
+      if (E2 == 1 && E4 == 0 && SR == 1) (I *> IO) = (0.0, 0.0);
+      if (E2 == 1 && E4 == 1 && SR == 1) (I *> IO) = (0.0, 0.0);
+      if (E == 0) (I *> IO) = (0:0:0, 0:0:0);
+      ifnone (I *> IO) = (0.0, 0.0);
+      if (SMT == 0) (IE *> O) = (0.0, 0.0);
+      if (SMT == 1) (IE *> O) = (0.0, 0.0);
+      ifnone (IE *> O) = (0.0, 0.0);
+      if (SMT == 1) (IO *> O) = (0.0, 0.0);
+      if (SMT == 0) (IO *> O) = (0.0, 0.0);
+      ifnone (IO *> O) = (0.0, 0.0);
+      if (E2 == 1 && E4 == 0 && SR == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E2 == 0 && E4 == 0 && SR == 1) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E2 == 1 && E4 == 1 && SR == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E2 == 0 && E4 == 1 && SR == 1) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E2 == 0 && E4 == 0 && SR == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E2 == 0 && E4 == 1 && SR == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E2 == 1 && E4 == 0 && SR == 1) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E2 == 1 && E4 == 1 && SR == 1) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      ifnone (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+
+      //  Module Path Delay (state dependent)
+
+      //  Module Path Delay
+      if (E == 0) (PU *> IO) = (0.0:0.0:0.0);
+      ifnone (PU *> IO) = (0.0:0.0:0.0);
+      if (E == 0) (PD *> IO) = (0.0:0.0:0.0);
+      ifnone (PD *> IO) = (0.0:0.0:0.0);
+   endspecify
+`endprotect
+endmodule
+`endcelldefine
+
+//-- FTC standard cell revision 1.1 --//
+`resetall
+`timescale 10ps/1ps
+`celldefine
+module ZTRNE28SLBXULP (O, I, IO, E, E2, E4, SR, IE, PU, PD, SMT);
+   output O;
+   input I, E, E2, E4, SR, IE, SMT, PU, PD;
+   inout IO;
+
+//Function Block
+`protect
+   // Avoide MIPD
+   buf b1 (E2_,E2);
+   buf b2 (E4_,E4);
+   buf b3 (SR_,SR);
+   buf b4 (SMT_,SMT);
+
+   pullup_down_keep_IO_IE g1 (IO, I, E, IE, PU, PD);
+   and    g2(O, IO, IE);
+
+//Specify Block
+   specify
+
+      //  Module Path Delay (state dependent)
+      if (E2 == 0 && E4 == 0 && SR == 1) (I *> IO) = (0.0, 0.0);
+      if (E2 == 1 && E4 == 0 && SR == 0) (I *> IO) = (0.0, 0.0);
+      if (E2 == 0 && E4 == 1 && SR == 1) (I *> IO) = (0.0, 0.0);
+      if (E2 == 1 && E4 == 1 && SR == 0) (I *> IO) = (0.0, 0.0);
+      if (E2 == 0 && E4 == 0 && SR == 0) (I *> IO) = (0.0, 0.0);
+      if (E2 == 0 && E4 == 1 && SR == 0) (I *> IO) = (0.0, 0.0);
+      if (E2 == 1 && E4 == 0 && SR == 1) (I *> IO) = (0.0, 0.0);
+      if (E2 == 1 && E4 == 1 && SR == 1) (I *> IO) = (0.0, 0.0);
+      if (E == 0) (I *> IO) = (0:0:0, 0:0:0);
+      ifnone (I *> IO) = (0.0, 0.0);
+      if (SMT == 0) (IE *> O) = (0.0, 0.0);
+      if (SMT == 1) (IE *> O) = (0.0, 0.0);
+      ifnone (IE *> O) = (0.0, 0.0);
+      if (SMT == 1) (IO *> O) = (0.0, 0.0);
+      if (SMT == 0) (IO *> O) = (0.0, 0.0);
+      ifnone (IO *> O) = (0.0, 0.0);
+      if (E2 == 1 && E4 == 0 && SR == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E2 == 0 && E4 == 0 && SR == 1) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E2 == 1 && E4 == 1 && SR == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E2 == 0 && E4 == 1 && SR == 1) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E2 == 0 && E4 == 0 && SR == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E2 == 0 && E4 == 1 && SR == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E2 == 1 && E4 == 0 && SR == 1) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E2 == 1 && E4 == 1 && SR == 1) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      ifnone (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+
+      //  Module Path Delay (state dependent)
+
+      //  Module Path Delay
+      if (E == 0) (PU *> IO) = (0.0:0.0:0.0);
+      ifnone (PU *> IO) = (0.0:0.0:0.0);
+      if (E == 0) (PD *> IO) = (0.0:0.0:0.0);
+      ifnone (PD *> IO) = (0.0:0.0:0.0);
+   endspecify
+`endprotect
+endmodule
+`endcelldefine
+
+//-- FTC standard cell revision 1.1 --//
+`resetall
+`timescale 10ps/1ps
+`celldefine
+module ZTRNE3ISLFX180 (O, I, IO, E, E4, E8, SR, IE, PU, PD, SMT);
+   output O;
+   input I, E, E4, E8, SR, IE, PU, PD, SMT;
+   inout IO;
+
+//Function Block
+`protect
+   // Avoide MIPD
+   buf b1 (E4_,E4);
+   buf b2 (E8_,E8);
+   buf b3 (SR_,SR);
+   buf b4 (SMT_,SMT);
+
+   pullup_down_keep_IO_IE g1 (IO, I, E, IE, PU, PD);
+   and    g2(O, IO, IE);
+
+//Specify Block
+   specify
+
+      //  Module Path Delay (state dependent)
+      if (E4 == 0 && E8 == 0 && SR == 0) (I *> IO) = (0.0, 0.0);
+      if (E4 == 0 && E8 == 1 && SR == 0) (I *> IO) = (0.0, 0.0);
+      if (E4 == 1 && E8 == 0 && SR == 1) (I *> IO) = (0.0, 0.0);
+      if (E4 == 1 && E8 == 1 && SR == 1) (I *> IO) = (0.0, 0.0);
+      if (E4 == 0 && E8 == 0 && SR == 1) (I *> IO) = (0.0, 0.0);
+      if (E4 == 1 && E8 == 0 && SR == 0) (I *> IO) = (0.0, 0.0);
+      if (E4 == 0 && E8 == 1 && SR == 1) (I *> IO) = (0.0, 0.0);
+      if (E4 == 1 && E8 == 1 && SR == 0) (I *> IO) = (0.0, 0.0);
+      if (E == 0) (I *> IO) = (0:0:0, 0:0:0);
+      ifnone (I *> IO) = (0.0, 0.0);
+      if (SMT == 0) (IE *> O) = (0.0, 0.0);
+      if (SMT == 1) (IE *> O) = (0.0, 0.0);
+      ifnone (IE *> O) = (0.0, 0.0);
+      if (SMT == 1) (IO *> O) = (0.0, 0.0);
+      if (SMT == 0) (IO *> O) = (0.0, 0.0);
+      ifnone (IO *> O) = (0.0, 0.0);
+      if (E4 == 1 && E8 == 0 && SR == 1) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 1 && E8 == 1 && SR == 1) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 1 && E8 == 0 && SR == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 0 && E8 == 0 && SR == 1) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 1 && E8 == 1 && SR == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 0 && E8 == 1 && SR == 1) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 0 && E8 == 0 && SR == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 0 && E8 == 1 && SR == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      ifnone (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+
+      //  Module Path Delay (state dependent)
+
+      //  Module Path Delay
+      if (E == 0) (PU *> IO) = (0.0:0.0:0.0);
+      ifnone (PU *> IO) = (0.0:0.0:0.0);
+      if (E == 0) (PD *> IO) = (0.0:0.0:0.0);
+      ifnone (PD *> IO) = (0.0:0.0:0.0);
+   endspecify
+`endprotect
+endmodule
+`endcelldefine
+
+
+
+//-- FTC standard cell revision 1.1 --//
+`resetall
+`timescale 10ps/1ps
+`celldefine
+module ZTRNE4GSLAX125 (O, I, IO, E, E4, E8, SR, IE, PU, PD, SMT, LS3V);
+   output O;
+   input I, E, E4, E8, SR, IE, PU, PD, SMT, LS3V;
+   inout IO;
+
+//Function Block
+`protect
+   // Avoide MIPD
+   buf b1 (E4_,E4);
+   buf b2 (E8_,E8);
+   buf b3 (SR_,SR);
+   buf b4 (SMT_,SMT);
+
+   pullup_down_keep_IO g1 (IO, I, E, PU, PD);
+   and    g2(O, IO, IE);
+
+//Specify Block
+   specify
+
+      //  Module Path Delay (state dependent)
+      if (E4 == 0 && E8 == 0 && SR == 0 && LS3V == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 1 && E8 == 0 && SR == 0 && LS3V == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 0 && E8 == 0 && SR == 1 && LS3V == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 1 && E8 == 0 && SR == 1 && LS3V == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 0 && E8 == 1 && SR == 0 && LS3V == 1) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 1 && E8 == 1 && SR == 0 && LS3V == 1) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 0 && E8 == 1 && SR == 1 && LS3V == 1) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 1 && E8 == 1 && SR == 1 && LS3V == 1) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 0 && E8 == 0 && SR == 0 && LS3V == 1) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 0 && E8 == 1 && SR == 0 && LS3V == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 1 && E8 == 1 && SR == 0 && LS3V == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 1 && E8 == 0 && SR == 0 && LS3V == 1) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 0 && E8 == 1 && SR == 1 && LS3V == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 0 && E8 == 0 && SR == 1 && LS3V == 1) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 1 && E8 == 1 && SR == 1 && LS3V == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 1 && E8 == 0 && SR == 1 && LS3V == 1) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      ifnone (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 0 && E8 == 0 && SR == 0 && LS3V == 1) (I *> IO) = (0.0, 0.0);
+      if (E4 == 0 && E8 == 1 && SR == 0 && LS3V == 0) (I *> IO) = (0.0, 0.0);
+      if (E4 == 1 && E8 == 1 && SR == 0 && LS3V == 0) (I *> IO) = (0.0, 0.0);
+      if (E4 == 1 && E8 == 0 && SR == 0 && LS3V == 1) (I *> IO) = (0.0, 0.0);
+      if (E4 == 0 && E8 == 1 && SR == 1 && LS3V == 0) (I *> IO) = (0.0, 0.0);
+      if (E4 == 0 && E8 == 0 && SR == 1 && LS3V == 1) (I *> IO) = (0.0, 0.0);
+      if (E4 == 1 && E8 == 1 && SR == 1 && LS3V == 0) (I *> IO) = (0.0, 0.0);
+      if (E4 == 1 && E8 == 0 && SR == 1 && LS3V == 1) (I *> IO) = (0.0, 0.0);
+      if (E4 == 0 && E8 == 0 && SR == 0 && LS3V == 0) (I *> IO) = (0.0, 0.0);
+      if (E4 == 1 && E8 == 0 && SR == 0 && LS3V == 0) (I *> IO) = (0.0, 0.0);
+      if (E4 == 0 && E8 == 0 && SR == 1 && LS3V == 0) (I *> IO) = (0.0, 0.0);
+      if (E4 == 1 && E8 == 0 && SR == 1 && LS3V == 0) (I *> IO) = (0.0, 0.0);
+      if (E4 == 0 && E8 == 1 && SR == 0 && LS3V == 1) (I *> IO) = (0.0, 0.0);
+      if (E4 == 1 && E8 == 1 && SR == 0 && LS3V == 1) (I *> IO) = (0.0, 0.0);
+      if (E4 == 0 && E8 == 1 && SR == 1 && LS3V == 1) (I *> IO) = (0.0, 0.0);
+      if (E4 == 1 && E8 == 1 && SR == 1 && LS3V == 1) (I *> IO) = (0.0, 0.0);
+      if (E == 0) (I *> IO) = (0:0:0, 0:0:0);
+      ifnone (I *> IO) = (0.0, 0.0);
+      if (SMT == 0 && LS3V == 0) (IE *> O) = (0.0, 0.0);
+      if (SMT == 1 && LS3V == 0) (IE *> O) = (0.0, 0.0);
+      if (SMT == 0 && LS3V == 1) (IE *> O) = (0.0, 0.0);
+      if (SMT == 1 && LS3V == 1) (IE *> O) = (0.0, 0.0);
+      ifnone (IE *> O) = (0.0, 0.0);
+      if (SMT == 0 && LS3V == 1) (IO *> O) = (0.0, 0.0);
+      if (SMT == 1 && LS3V == 1) (IO *> O) = (0.0, 0.0);
+      if (SMT == 0 && LS3V == 0) (IO *> O) = (0.0, 0.0);
+      if (SMT == 1 && LS3V == 0) (IO *> O) = (0.0, 0.0);
+      ifnone (IO *> O) = (0.0, 0.0);
+      //  Module Path Delay (state dependent)
+      //  Module Path Delay
+      if (E == 0) (PU *> IO) = (0.0:0.0:0.0);
+      ifnone (PU *> IO) = (0.0:0.0:0.0);
+      if (E == 0) (PD *> IO) = (0.0:0.0:0.0);
+      ifnone (PD *> IO) = (0.0:0.0:0.0);
+   endspecify
+`endprotect
+endmodule
+`endcelldefine
+
+
+
+//-- FTC standard cell revision 1.1 --//
+`resetall
+`timescale 10ps/1ps
+`celldefine
+module ZTRNE4GSLAX150 (O, I, IO, E, E4, E8, SR, IE, PU, PD, SMT, LS3V);
+   output O;
+   input I, E, E4, E8, SR, IE, PU, PD, SMT, LS3V;
+   inout IO;
+
+//Function Block
+`protect
+   // Avoide MIPD
+   buf b1 (E4_,E4);
+   buf b2 (E8_,E8);
+   buf b3 (SR_,SR);
+   buf b4 (SMT_,SMT);
+
+   pullup_down_keep_IO g1 (IO, I, E, PU, PD);
+   and    g2(O, IO, IE);
+
+//Specify Block
+   specify
+
+      //  Module Path Delay (state dependent)
+      if (E4 == 0 && E8 == 0 && SR == 0 && LS3V == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 1 && E8 == 0 && SR == 0 && LS3V == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 0 && E8 == 0 && SR == 1 && LS3V == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 1 && E8 == 0 && SR == 1 && LS3V == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 0 && E8 == 1 && SR == 0 && LS3V == 1) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 1 && E8 == 1 && SR == 0 && LS3V == 1) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 0 && E8 == 1 && SR == 1 && LS3V == 1) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 1 && E8 == 1 && SR == 1 && LS3V == 1) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 0 && E8 == 0 && SR == 0 && LS3V == 1) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 0 && E8 == 1 && SR == 0 && LS3V == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 1 && E8 == 1 && SR == 0 && LS3V == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 1 && E8 == 0 && SR == 0 && LS3V == 1) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 0 && E8 == 1 && SR == 1 && LS3V == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 0 && E8 == 0 && SR == 1 && LS3V == 1) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 1 && E8 == 1 && SR == 1 && LS3V == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 1 && E8 == 0 && SR == 1 && LS3V == 1) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      ifnone (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 0 && E8 == 0 && SR == 0 && LS3V == 1) (I *> IO) = (0.0, 0.0);
+      if (E4 == 0 && E8 == 1 && SR == 0 && LS3V == 0) (I *> IO) = (0.0, 0.0);
+      if (E4 == 1 && E8 == 1 && SR == 0 && LS3V == 0) (I *> IO) = (0.0, 0.0);
+      if (E4 == 1 && E8 == 0 && SR == 0 && LS3V == 1) (I *> IO) = (0.0, 0.0);
+      if (E4 == 0 && E8 == 1 && SR == 1 && LS3V == 0) (I *> IO) = (0.0, 0.0);
+      if (E4 == 0 && E8 == 0 && SR == 1 && LS3V == 1) (I *> IO) = (0.0, 0.0);
+      if (E4 == 1 && E8 == 1 && SR == 1 && LS3V == 0) (I *> IO) = (0.0, 0.0);
+      if (E4 == 1 && E8 == 0 && SR == 1 && LS3V == 1) (I *> IO) = (0.0, 0.0);
+      if (E4 == 0 && E8 == 0 && SR == 0 && LS3V == 0) (I *> IO) = (0.0, 0.0);
+      if (E4 == 1 && E8 == 0 && SR == 0 && LS3V == 0) (I *> IO) = (0.0, 0.0);
+      if (E4 == 0 && E8 == 0 && SR == 1 && LS3V == 0) (I *> IO) = (0.0, 0.0);
+      if (E4 == 1 && E8 == 0 && SR == 1 && LS3V == 0) (I *> IO) = (0.0, 0.0);
+      if (E4 == 0 && E8 == 1 && SR == 0 && LS3V == 1) (I *> IO) = (0.0, 0.0);
+      if (E4 == 1 && E8 == 1 && SR == 0 && LS3V == 1) (I *> IO) = (0.0, 0.0);
+      if (E4 == 0 && E8 == 1 && SR == 1 && LS3V == 1) (I *> IO) = (0.0, 0.0);
+      if (E4 == 1 && E8 == 1 && SR == 1 && LS3V == 1) (I *> IO) = (0.0, 0.0);
+      if (E == 0) (I *> IO) = (0:0:0, 0:0:0);
+      ifnone (I *> IO) = (0.0, 0.0);
+      if (SMT == 0 && LS3V == 0) (IE *> O) = (0.0, 0.0);
+      if (SMT == 1 && LS3V == 0) (IE *> O) = (0.0, 0.0);
+      if (SMT == 0 && LS3V == 1) (IE *> O) = (0.0, 0.0);
+      if (SMT == 1 && LS3V == 1) (IE *> O) = (0.0, 0.0);
+      ifnone (IE *> O) = (0.0, 0.0);
+      if (SMT == 0 && LS3V == 1) (IO *> O) = (0.0, 0.0);
+      if (SMT == 1 && LS3V == 1) (IO *> O) = (0.0, 0.0);
+      if (SMT == 0 && LS3V == 0) (IO *> O) = (0.0, 0.0);
+      if (SMT == 1 && LS3V == 0) (IO *> O) = (0.0, 0.0);
+      ifnone (IO *> O) = (0.0, 0.0);
+      //  Module Path Delay (state dependent)
+      //  Module Path Delay
+      if (E == 0) (PU *> IO) = (0.0:0.0:0.0);
+      ifnone (PU *> IO) = (0.0:0.0:0.0);
+      if (E == 0) (PD *> IO) = (0.0:0.0:0.0);
+      ifnone (PD *> IO) = (0.0:0.0:0.0);
+   endspecify
+`endprotect
+endmodule
+`endcelldefine
+
+
+
+//-- FTC standard cell revision 1.1 --//
+`resetall
+`timescale 10ps/1ps
+`celldefine
+module ZTRNE4GSLAXAIO (O, I, IO, E, E4, E8, SR, IE, PU, PD, SMT, AIO, AIO50);
+   output O, AIO, AIO50;
+   input I, E, E4, E8, SR, IE, PU, PD, SMT;
+   inout IO;
+
+//Function Block
+`protect
+   // Avoide MIPD
+   buf b1 (E4_,E4);
+   buf b2 (E8_,E8);
+   buf b3 (SR_,SR);
+   buf b4 (SMT_,SMT);
+
+   pullup_down_keep_IO_IE g1 (IO, I, E, IE, PU, PD);
+   and    g2(O, IO, IE);
+   nmos (AIO, IO, 1'b1);
+   nmos (AIO50, IO, 1'b1);
+
+//Specify Block
+   specify
+
+      //  Module Path Delay (state dependent)
+      if (E4 == 0 && E8 == 0 && SR == 0) (I *> IO) = (0.0, 0.0);
+      if (E4 == 0 && E8 == 1 && SR == 0) (I *> IO) = (0.0, 0.0);
+      if (E4 == 1 && E8 == 0 && SR == 1) (I *> IO) = (0.0, 0.0);
+      if (E4 == 1 && E8 == 1 && SR == 1) (I *> IO) = (0.0, 0.0);
+      if (E4 == 0 && E8 == 0 && SR == 1) (I *> IO) = (0.0, 0.0);
+      if (E4 == 1 && E8 == 0 && SR == 0) (I *> IO) = (0.0, 0.0);
+      if (E4 == 0 && E8 == 1 && SR == 1) (I *> IO) = (0.0, 0.0);
+      if (E4 == 1 && E8 == 1 && SR == 0) (I *> IO) = (0.0, 0.0);
+      if (E == 0) (I *> IO) = (0:0:0, 0:0:0);
+      ifnone (I *> IO) = (0.0, 0.0);
+      if (SMT == 0) (IE *> O) = (0.0, 0.0);
+      if (SMT == 1) (IE *> O) = (0.0, 0.0);
+      ifnone (IE *> O) = (0.0, 0.0);
+      if (SMT == 1) (IO *> O) = (0.0, 0.0);
+      if (SMT == 0) (IO *> O) = (0.0, 0.0);
+      ifnone (IO *> O) = (0.0, 0.0);
+      if (E4 == 1 && E8 == 0 && SR == 1) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 1 && E8 == 1 && SR == 1) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 1 && E8 == 0 && SR == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 0 && E8 == 0 && SR == 1) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 1 && E8 == 1 && SR == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 0 && E8 == 1 && SR == 1) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 0 && E8 == 0 && SR == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 0 && E8 == 1 && SR == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      ifnone (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      //  Module Path Delay (state dependent)
+
+      //  Module Path Delay
+      if (E == 0) (PU *> IO) = (0.0:0.0:0.0);
+      ifnone (PU *> IO) = (0.0:0.0:0.0);
+      if (E == 0) (PD *> IO) = (0.0:0.0:0.0);
+      ifnone (PD *> IO) = (0.0:0.0:0.0);
+   endspecify
+`endprotect
+endmodule
+`endcelldefine
+
+
+
+//-- FTC standard cell revision 1.1 --//
+`resetall
+`timescale 10ps/1ps
+`celldefine
+module ZTRNE4GSLBX150 (O, I, IO, E, E4, E8, SR, IE, PU, PD, SMT, LS3V);
+   output O;
+   input I, E, E4, E8, SR, IE, PU, PD, SMT, LS3V;
+   inout IO;
+
+//Function Block
+`protect
+   // Avoide MIPD
+   buf b1 (E4_,E4);
+   buf b2 (E8_,E8);
+   buf b3 (SR_,SR);
+   buf b4 (SMT_,SMT);
+
+   pullup_down_keep_IO g1 (IO, I, E, PU, PD);
+   and    g2(O, IO, IE);
+
+//Specify Block
+   specify
+
+      //  Module Path Delay (state dependent)
+      if (E4 == 0 && E8 == 0 && SR == 0 && LS3V == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 1 && E8 == 0 && SR == 0 && LS3V == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 0 && E8 == 0 && SR == 1 && LS3V == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 1 && E8 == 0 && SR == 1 && LS3V == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 0 && E8 == 1 && SR == 0 && LS3V == 1) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 1 && E8 == 1 && SR == 0 && LS3V == 1) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 0 && E8 == 1 && SR == 1 && LS3V == 1) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 1 && E8 == 1 && SR == 1 && LS3V == 1) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 0 && E8 == 0 && SR == 0 && LS3V == 1) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 0 && E8 == 1 && SR == 0 && LS3V == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 1 && E8 == 1 && SR == 0 && LS3V == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 1 && E8 == 0 && SR == 0 && LS3V == 1) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 0 && E8 == 1 && SR == 1 && LS3V == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 0 && E8 == 0 && SR == 1 && LS3V == 1) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 1 && E8 == 1 && SR == 1 && LS3V == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 1 && E8 == 0 && SR == 1 && LS3V == 1) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      ifnone (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 0 && E8 == 0 && SR == 0 && LS3V == 1) (I *> IO) = (0.0, 0.0);
+      if (E4 == 0 && E8 == 1 && SR == 0 && LS3V == 0) (I *> IO) = (0.0, 0.0);
+      if (E4 == 1 && E8 == 1 && SR == 0 && LS3V == 0) (I *> IO) = (0.0, 0.0);
+      if (E4 == 1 && E8 == 0 && SR == 0 && LS3V == 1) (I *> IO) = (0.0, 0.0);
+      if (E4 == 0 && E8 == 1 && SR == 1 && LS3V == 0) (I *> IO) = (0.0, 0.0);
+      if (E4 == 0 && E8 == 0 && SR == 1 && LS3V == 1) (I *> IO) = (0.0, 0.0);
+      if (E4 == 1 && E8 == 1 && SR == 1 && LS3V == 0) (I *> IO) = (0.0, 0.0);
+      if (E4 == 1 && E8 == 0 && SR == 1 && LS3V == 1) (I *> IO) = (0.0, 0.0);
+      if (E4 == 0 && E8 == 0 && SR == 0 && LS3V == 0) (I *> IO) = (0.0, 0.0);
+      if (E4 == 1 && E8 == 0 && SR == 0 && LS3V == 0) (I *> IO) = (0.0, 0.0);
+      if (E4 == 0 && E8 == 0 && SR == 1 && LS3V == 0) (I *> IO) = (0.0, 0.0);
+      if (E4 == 1 && E8 == 0 && SR == 1 && LS3V == 0) (I *> IO) = (0.0, 0.0);
+      if (E4 == 0 && E8 == 1 && SR == 0 && LS3V == 1) (I *> IO) = (0.0, 0.0);
+      if (E4 == 1 && E8 == 1 && SR == 0 && LS3V == 1) (I *> IO) = (0.0, 0.0);
+      if (E4 == 0 && E8 == 1 && SR == 1 && LS3V == 1) (I *> IO) = (0.0, 0.0);
+      if (E4 == 1 && E8 == 1 && SR == 1 && LS3V == 1) (I *> IO) = (0.0, 0.0);
+      if (E == 0) (I *> IO) = (0:0:0, 0:0:0);
+      ifnone (I *> IO) = (0.0, 0.0);
+      if (SMT == 0 && LS3V == 0) (IE *> O) = (0.0, 0.0);
+      if (SMT == 1 && LS3V == 0) (IE *> O) = (0.0, 0.0);
+      if (SMT == 0 && LS3V == 1) (IE *> O) = (0.0, 0.0);
+      if (SMT == 1 && LS3V == 1) (IE *> O) = (0.0, 0.0);
+      ifnone (IE *> O) = (0.0, 0.0);
+      if (SMT == 0 && LS3V == 1) (IO *> O) = (0.0, 0.0);
+      if (SMT == 1 && LS3V == 1) (IO *> O) = (0.0, 0.0);
+      if (SMT == 0 && LS3V == 0) (IO *> O) = (0.0, 0.0);
+      if (SMT == 1 && LS3V == 0) (IO *> O) = (0.0, 0.0);
+      ifnone (IO *> O) = (0.0, 0.0);
+      //  Module Path Delay (state dependent)
+      //  Module Path Delay
+      if (E == 0) (PU *> IO) = (0.0:0.0:0.0);
+      ifnone (PU *> IO) = (0.0:0.0:0.0);
+      if (E == 0) (PD *> IO) = (0.0:0.0:0.0);
+      ifnone (PD *> IO) = (0.0:0.0:0.0);
+   endspecify
+`endprotect
+endmodule
+`endcelldefine
+
+
+
+//-- FTC standard cell revision 1.1 --//
+`resetall
+`timescale 10ps/1ps
+`celldefine
+module ZTRNE4GSLBX1 (O, I, IO, E, E4, E8, SR, IE, PU, PD, SMT, E3VB);
+   output O;
+   input I, E, E4, E8, SR, IE, PU, PD, SMT, E3VB;
+   inout IO;
+
+//Function Block
+`protect
+   // Avoide MIPD
+   buf b1 (E4_,E4);
+   buf b2 (E8_,E8);
+   buf b3 (SR_,SR);
+   buf b4 (SMT_,SMT);
+
+   not (e3v, E3VB);
+   and (e_and, E, e3v);
+   and (ie_and, IE, e3v);
+
+   pullup_down_keep_IO g1 (IO, I, e_and, PU, PD);
+   and    g2(O, IO, ie_and);
+
+//Specify Block
+   specify
+
+      //  Module Path Delay (state dependent)
+      if (E4 == 0 && E8 == 0 && SR == 0) (I *> IO) = (0.0, 0.0);
+      if (E4 == 0 && E8 == 1 && SR == 0) (I *> IO) = (0.0, 0.0);
+      if (E4 == 1 && E8 == 0 && SR == 1) (I *> IO) = (0.0, 0.0);
+      if (E4 == 1 && E8 == 1 && SR == 1) (I *> IO) = (0.0, 0.0);
+      if (E4 == 0 && E8 == 0 && SR == 1) (I *> IO) = (0.0, 0.0);
+      if (E4 == 1 && E8 == 0 && SR == 0) (I *> IO) = (0.0, 0.0);
+      if (E4 == 0 && E8 == 1 && SR == 1) (I *> IO) = (0.0, 0.0);
+      if (E4 == 1 && E8 == 1 && SR == 0) (I *> IO) = (0.0, 0.0);
+      if (E == 0) (I *> IO) = (0:0:0, 0:0:0);
+      ifnone (I *> IO) = (0.0, 0.0);
+      if (SMT == 0) (IE *> O) = (0.0, 0.0);
+      if (SMT == 1) (IE *> O) = (0.0, 0.0);
+      ifnone (IE *> O) = (0.0, 0.0);
+      if (SMT == 1) (IO *> O) = (0.0, 0.0);
+      if (SMT == 0) (IO *> O) = (0.0, 0.0);
+      ifnone (IO *> O) = (0.0, 0.0);
+      if (E4 == 1 && E8 == 0 && SR == 1) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 1 && E8 == 1 && SR == 1) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 1 && E8 == 0 && SR == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 0 && E8 == 0 && SR == 1) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 1 && E8 == 1 && SR == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 0 && E8 == 1 && SR == 1) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 0 && E8 == 0 && SR == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 0 && E8 == 1 && SR == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      ifnone (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+
+      //  Module Path Delay (state dependent)
+
+      //  Module Path Delay
+      if (E == 0) (PU *> IO) = (0.0:0.0:0.0);
+      ifnone (PU *> IO) = (0.0:0.0:0.0);
+      if (E == 0) (PD *> IO) = (0.0:0.0:0.0);
+      ifnone (PD *> IO) = (0.0:0.0:0.0);
+   endspecify
+`endprotect
+endmodule
+`endcelldefine
+
+
+
+//-- FTC standard cell revision 1.1 --//
+`resetall
+`timescale 10ps/1ps
+`celldefine
+module ZTRNE4GSLBX2 (O, I, IO, E, E4, E8, SR, IE, PU, PD, SMT);
+   output O;
+   input I, E, E4, E8, SR, IE, PU, PD, SMT;
+   inout IO;
+
+//Function Block
+`protect
+   // Avoide MIPD
+   buf b1 (E4_,E4);
+   buf b2 (E8_,E8);
+   buf b3 (SR_,SR);
+   buf b4 (SMT_,SMT);
+
+   pullup_down_keep_IO_IE g1 (IO, I, E, IE, PU, PD);
+   and    g2(O, IO, IE);
+
+//Specify Block
+   specify
+
+      //  Module Path Delay (state dependent)
+      if (E4 == 0 && E8 == 0 && SR == 0) (I *> IO) = (0.0, 0.0);
+      if (E4 == 0 && E8 == 1 && SR == 0) (I *> IO) = (0.0, 0.0);
+      if (E4 == 1 && E8 == 0 && SR == 1) (I *> IO) = (0.0, 0.0);
+      if (E4 == 1 && E8 == 1 && SR == 1) (I *> IO) = (0.0, 0.0);
+      if (E4 == 0 && E8 == 0 && SR == 1) (I *> IO) = (0.0, 0.0);
+      if (E4 == 1 && E8 == 0 && SR == 0) (I *> IO) = (0.0, 0.0);
+      if (E4 == 0 && E8 == 1 && SR == 1) (I *> IO) = (0.0, 0.0);
+      if (E4 == 1 && E8 == 1 && SR == 0) (I *> IO) = (0.0, 0.0);
+      if (E == 0) (I *> IO) = (0:0:0, 0:0:0);
+      ifnone (I *> IO) = (0.0, 0.0);
+      if (SMT == 0) (IE *> O) = (0.0, 0.0);
+      if (SMT == 1) (IE *> O) = (0.0, 0.0);
+      ifnone (IE *> O) = (0.0, 0.0);
+      if (SMT == 1) (IO *> O) = (0.0, 0.0);
+      if (SMT == 0) (IO *> O) = (0.0, 0.0);
+      ifnone (IO *> O) = (0.0, 0.0);
+      if (E4 == 1 && E8 == 0 && SR == 1) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 1 && E8 == 1 && SR == 1) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 1 && E8 == 0 && SR == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 0 && E8 == 0 && SR == 1) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 1 && E8 == 1 && SR == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 0 && E8 == 1 && SR == 1) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 0 && E8 == 0 && SR == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 0 && E8 == 1 && SR == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      ifnone (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+
+      //  Module Path Delay (state dependent)
+
+      //  Module Path Delay
+      if (E == 0) (PU *> IO) = (0.0:0.0:0.0);
+      ifnone (PU *> IO) = (0.0:0.0:0.0);
+      if (E == 0) (PD *> IO) = (0.0:0.0:0.0);
+      ifnone (PD *> IO) = (0.0:0.0:0.0);
+   endspecify
+`endprotect
+endmodule
+`endcelldefine
+
+
+
+//-- FTC standard cell revision 1.1 --//
+`resetall
+`timescale 10ps/1ps
+`celldefine
+module ZTRNE4GSLBXAIO (O, I, IO, E, E4, E8, SR, IE, PU, PD, SMT, AIO, AIO50);
+   output O, AIO, AIO50;
+   input I, E, E4, E8, SR, IE, PU, PD, SMT;
+   inout IO;
+
+//Function Block
+`protect
+   // Avoide MIPD
+   buf b1 (E4_,E4);
+   buf b2 (E8_,E8);
+   buf b3 (SR_,SR);
+   buf b4 (SMT_,SMT);
+
+   pullup_down_keep_IO_IE g1 (IO, I, E, IE, PU, PD);
+   and    g2(O, IO, IE);
+   nmos (AIO, IO, 1'b1);
+   nmos (AIO50, IO, 1'b1);
+
+//Specify Block
+   specify
+
+      //  Module Path Delay (state dependent)
+      if (E4 == 0 && E8 == 0 && SR == 0) (I *> IO) = (0.0, 0.0);
+      if (E4 == 0 && E8 == 1 && SR == 0) (I *> IO) = (0.0, 0.0);
+      if (E4 == 1 && E8 == 0 && SR == 1) (I *> IO) = (0.0, 0.0);
+      if (E4 == 1 && E8 == 1 && SR == 1) (I *> IO) = (0.0, 0.0);
+      if (E4 == 0 && E8 == 0 && SR == 1) (I *> IO) = (0.0, 0.0);
+      if (E4 == 1 && E8 == 0 && SR == 0) (I *> IO) = (0.0, 0.0);
+      if (E4 == 0 && E8 == 1 && SR == 1) (I *> IO) = (0.0, 0.0);
+      if (E4 == 1 && E8 == 1 && SR == 0) (I *> IO) = (0.0, 0.0);
+      if (E == 0) (I *> IO) = (0:0:0, 0:0:0);
+      ifnone (I *> IO) = (0.0, 0.0);
+      if (SMT == 0) (IE *> O) = (0.0, 0.0);
+      if (SMT == 1) (IE *> O) = (0.0, 0.0);
+      ifnone (IE *> O) = (0.0, 0.0);
+      if (SMT == 1) (IO *> O) = (0.0, 0.0);
+      if (SMT == 0) (IO *> O) = (0.0, 0.0);
+      ifnone (IO *> O) = (0.0, 0.0);
+      if (E4 == 1 && E8 == 0 && SR == 1) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 1 && E8 == 1 && SR == 1) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 1 && E8 == 0 && SR == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 0 && E8 == 0 && SR == 1) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 1 && E8 == 1 && SR == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 0 && E8 == 1 && SR == 1) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 0 && E8 == 0 && SR == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 0 && E8 == 1 && SR == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      ifnone (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      //  Module Path Delay (state dependent)
+
+      //  Module Path Delay
+      if (E == 0) (PU *> IO) = (0.0:0.0:0.0);
+      ifnone (PU *> IO) = (0.0:0.0:0.0);
+      if (E == 0) (PD *> IO) = (0.0:0.0:0.0);
+      ifnone (PD *> IO) = (0.0:0.0:0.0);
+   endspecify
+`endprotect
+endmodule
+`endcelldefine
+
+
+
+//-- FTC standard cell revision 1.1 --//
+`resetall
+`timescale 10ps/1ps
+`celldefine
+module ZTRNE4GSLEX150 (O, I, IO, E, E4, E8, SR, IE, PU, PD, SMT, LS3V);
+   output O;
+   input I, E, E4, E8, SR, IE, PU, PD, SMT, LS3V;
+   inout IO;
+
+//Function Block
+`protect
+   // Avoide MIPD
+   buf b1 (E4_,E4);
+   buf b2 (E8_,E8);
+   buf b3 (SR_,SR);
+   buf b4 (SMT_,SMT);
+
+   pullup_down_keep_IO g1 (IO, I, E, PU, PD);
+   and    g2(O, IO, IE);
+
+//Specify Block
+   specify
+
+      //  Module Path Delay (state dependent)
+      if (E4 == 0 && E8 == 0 && SR == 0 && LS3V == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 1 && E8 == 0 && SR == 0 && LS3V == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 0 && E8 == 0 && SR == 1 && LS3V == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 1 && E8 == 0 && SR == 1 && LS3V == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 0 && E8 == 1 && SR == 0 && LS3V == 1) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 1 && E8 == 1 && SR == 0 && LS3V == 1) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 0 && E8 == 1 && SR == 1 && LS3V == 1) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 1 && E8 == 1 && SR == 1 && LS3V == 1) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 0 && E8 == 0 && SR == 0 && LS3V == 1) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 0 && E8 == 1 && SR == 0 && LS3V == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 1 && E8 == 1 && SR == 0 && LS3V == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 1 && E8 == 0 && SR == 0 && LS3V == 1) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 0 && E8 == 1 && SR == 1 && LS3V == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 0 && E8 == 0 && SR == 1 && LS3V == 1) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 1 && E8 == 1 && SR == 1 && LS3V == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 1 && E8 == 0 && SR == 1 && LS3V == 1) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      ifnone (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 0 && E8 == 0 && SR == 0 && LS3V == 1) (I *> IO) = (0.0, 0.0);
+      if (E4 == 0 && E8 == 1 && SR == 0 && LS3V == 0) (I *> IO) = (0.0, 0.0);
+      if (E4 == 1 && E8 == 1 && SR == 0 && LS3V == 0) (I *> IO) = (0.0, 0.0);
+      if (E4 == 1 && E8 == 0 && SR == 0 && LS3V == 1) (I *> IO) = (0.0, 0.0);
+      if (E4 == 0 && E8 == 1 && SR == 1 && LS3V == 0) (I *> IO) = (0.0, 0.0);
+      if (E4 == 0 && E8 == 0 && SR == 1 && LS3V == 1) (I *> IO) = (0.0, 0.0);
+      if (E4 == 1 && E8 == 1 && SR == 1 && LS3V == 0) (I *> IO) = (0.0, 0.0);
+      if (E4 == 1 && E8 == 0 && SR == 1 && LS3V == 1) (I *> IO) = (0.0, 0.0);
+      if (E4 == 0 && E8 == 0 && SR == 0 && LS3V == 0) (I *> IO) = (0.0, 0.0);
+      if (E4 == 1 && E8 == 0 && SR == 0 && LS3V == 0) (I *> IO) = (0.0, 0.0);
+      if (E4 == 0 && E8 == 0 && SR == 1 && LS3V == 0) (I *> IO) = (0.0, 0.0);
+      if (E4 == 1 && E8 == 0 && SR == 1 && LS3V == 0) (I *> IO) = (0.0, 0.0);
+      if (E4 == 0 && E8 == 1 && SR == 0 && LS3V == 1) (I *> IO) = (0.0, 0.0);
+      if (E4 == 1 && E8 == 1 && SR == 0 && LS3V == 1) (I *> IO) = (0.0, 0.0);
+      if (E4 == 0 && E8 == 1 && SR == 1 && LS3V == 1) (I *> IO) = (0.0, 0.0);
+      if (E4 == 1 && E8 == 1 && SR == 1 && LS3V == 1) (I *> IO) = (0.0, 0.0);
+      if (E == 0) (I *> IO) = (0:0:0, 0:0:0);
+      ifnone (I *> IO) = (0.0, 0.0);
+      if (SMT == 0 && LS3V == 0) (IE *> O) = (0.0, 0.0);
+      if (SMT == 1 && LS3V == 0) (IE *> O) = (0.0, 0.0);
+      if (SMT == 0 && LS3V == 1) (IE *> O) = (0.0, 0.0);
+      if (SMT == 1 && LS3V == 1) (IE *> O) = (0.0, 0.0);
+      ifnone (IE *> O) = (0.0, 0.0);
+      if (SMT == 0 && LS3V == 1) (IO *> O) = (0.0, 0.0);
+      if (SMT == 1 && LS3V == 1) (IO *> O) = (0.0, 0.0);
+      if (SMT == 0 && LS3V == 0) (IO *> O) = (0.0, 0.0);
+      if (SMT == 1 && LS3V == 0) (IO *> O) = (0.0, 0.0);
+      ifnone (IO *> O) = (0.0, 0.0);
+      //  Module Path Delay (state dependent)
+      //  Module Path Delay
+      if (E == 0) (PU *> IO) = (0.0:0.0:0.0);
+      ifnone (PU *> IO) = (0.0:0.0:0.0);
+      if (E == 0) (PD *> IO) = (0.0:0.0:0.0);
+      ifnone (PD *> IO) = (0.0:0.0:0.0);
+   endspecify
+`endprotect
+endmodule
+`endcelldefine
+
+
+
+//-- FTC standard cell revision 1.1 --//
+`resetall
+`timescale 10ps/1ps
+`celldefine
+module ZTRNE5MSLM (O, I, IO, E, EA, EB, EC, SR, IE, PU, PD, SMT, LS3V);
+   output O;
+   input I, E, EA, EB, EC, SR, IE, PU, PD, SMT, LS3V;
+   inout IO;
+
+//Function Block
+`protect
+   // Avoide MI 
+   buf b1 (EA_,EA);
+   buf b2 (EB_,EB);
+   buf b3 (EC_,EC);
+   buf b4 (SR_,SR);
+   buf b5 (SMT_,SMT);
+
+   pullup_down_IO g1 (IO, I, E, PU, PD);
+   and a9 (O, IO, IE);
+
+//Specify Block
+   specify
+
+      //  Module Path Delay (state dependent)
+      if (EA == 0 && EB == 0 && EC == 1 && SR == 0) (I *> IO) = (0.0, 0.0);
+      if (EA == 1 && EB == 0 && EC == 0 && SR == 0) (I *> IO) = (0.0, 0.0);
+      if (EA == 0 && EB == 1 && EC == 0 && SR == 1) (I *> IO) = (0.0, 0.0);
+      if (EA == 1 && EB == 0 && EC == 1 && SR == 0) (I *> IO) = (0.0, 0.0);
+      if (EA == 1 && EB == 1 && EC == 0 && SR == 1) (I *> IO) = (0.0, 0.0);
+      if (EA == 0 && EB == 1 && EC == 1 && SR == 1) (I *> IO) = (0.0, 0.0);
+      if (EA == 1 && EB == 1 && EC == 1 && SR == 1) (I *> IO) = (0.0, 0.0);
+      if (EA == 0 && EB == 0 && EC == 0 && SR == 1) (I *> IO) = (0.0, 0.0);
+      if (EA == 0 && EB == 1 && EC == 0 && SR == 0) (I *> IO) = (0.0, 0.0);
+      if (EA == 1 && EB == 1 && EC == 0 && SR == 0) (I *> IO) = (0.0, 0.0);
+      if (EA == 0 && EB == 0 && EC == 1 && SR == 1) (I *> IO) = (0.0, 0.0);
+      if (EA == 0 && EB == 1 && EC == 1 && SR == 0) (I *> IO) = (0.0, 0.0);
+      if (EA == 1 && EB == 0 && EC == 0 && SR == 1) (I *> IO) = (0.0, 0.0);
+      if (EA == 1 && EB == 1 && EC == 1 && SR == 0) (I *> IO) = (0.0, 0.0);
+      if (EA == 1 && EB == 0 && EC == 1 && SR == 1) (I *> IO) = (0.0, 0.0);
+      if (EA == 0 && EB == 0 && EC == 0 && SR == 0) (I *> IO) = (0.0, 0.0);
+      if (E == 0) (I *> IO) = (0:0:0, 0:0:0);
+      ifnone (I *> IO) = (0.0, 0.0);
+      if (SMT == 0) (IE *> O) = (0.0, 0.0);
+      if (SMT == 1) (IE *> O) = (0.0, 0.0);
+      ifnone (IE *> O) = (0.0, 0.0);
+      if (SMT == 1) (IO *> O) = (0.0, 0.0);
+      if (SMT == 0) (IO *> O) = (0.0, 0.0);
+      ifnone (IO *> O) = (0.0, 0.0);
+      if (EA == 0 && EB == 1 && EC == 0 && SR == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (EA == 0 && EB == 0 && EC == 0 && SR == 1) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (EA == 1 && EB == 1 && EC == 0 && SR == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (EA == 1 && EB == 0 && EC == 0 && SR == 1) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (EA == 0 && EB == 1 && EC == 1 && SR == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (EA == 0 && EB == 0 && EC == 1 && SR == 1) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (EA == 1 && EB == 1 && EC == 1 && SR == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (EA == 1 && EB == 0 && EC == 1 && SR == 1) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (EA == 0 && EB == 0 && EC == 0 && SR == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (EA == 1 && EB == 0 && EC == 0 && SR == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (EA == 0 && EB == 0 && EC == 1 && SR == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (EA == 1 && EB == 0 && EC == 1 && SR == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (EA == 0 && EB == 1 && EC == 0 && SR == 1) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (EA == 1 && EB == 1 && EC == 0 && SR == 1) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (EA == 0 && EB == 1 && EC == 1 && SR == 1) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (EA == 1 && EB == 1 && EC == 1 && SR == 1) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      ifnone (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      //  Module Path Delay (state dependent)
+
+      if (E == 0) (PU *> IO) = (0.0:0.0:0.0);
+      ifnone (PU *> IO) = (0.0:0.0:0.0);
+      if (E == 0) (PD *> IO) = (0.0:0.0:0.0);
+      ifnone (PD *> IO) = (0.0:0.0:0.0);
+   endspecify
+`endprotect
+endmodule
+`endcelldefine
+
+
+
+//-- FTC standard cell revision 1.1 --//
+`resetall
+`timescale 10ps/1ps
+`celldefine
+module ZTRNE9ISLFX180 (O, I, IO, E, E4, E8, SR, IE, PU, PD, SMT);
+   output O;
+   input I, E, E4, E8, SR, IE, PU, PD, SMT;
+   inout IO;
+
+//Function Block
+`protect
+   // Avoide MIPD
+   buf b1 (E4_,E4);
+   buf b2 (E8_,E8);
+   buf b3 (SR_,SR);
+   buf b4 (SMT_,SMT);
+
+   pullup_down_keep_IO_IE g1 (IO, I, E, IE, PU, PD);
+   and    g2(O, IO, IE);
+
+//Specify Block
+   specify
+
+      //  Module Path Delay (state dependent)
+      if (E4 == 0 && E8 == 0 && SR == 0) (I *> IO) = (0.0, 0.0);
+      if (E4 == 0 && E8 == 1 && SR == 0) (I *> IO) = (0.0, 0.0);
+      if (E4 == 1 && E8 == 0 && SR == 1) (I *> IO) = (0.0, 0.0);
+      if (E4 == 1 && E8 == 1 && SR == 1) (I *> IO) = (0.0, 0.0);
+      if (E4 == 0 && E8 == 0 && SR == 1) (I *> IO) = (0.0, 0.0);
+      if (E4 == 1 && E8 == 0 && SR == 0) (I *> IO) = (0.0, 0.0);
+      if (E4 == 0 && E8 == 1 && SR == 1) (I *> IO) = (0.0, 0.0);
+      if (E4 == 1 && E8 == 1 && SR == 0) (I *> IO) = (0.0, 0.0);
+      if (E == 0) (I *> IO) = (0:0:0, 0:0:0);
+      ifnone (I *> IO) = (0.0, 0.0);
+      if (SMT == 0) (IE *> O) = (0.0, 0.0);
+      if (SMT == 1) (IE *> O) = (0.0, 0.0);
+      ifnone (IE *> O) = (0.0, 0.0);
+      if (SMT == 1) (IO *> O) = (0.0, 0.0);
+      if (SMT == 0) (IO *> O) = (0.0, 0.0);
+      ifnone (IO *> O) = (0.0, 0.0);
+      if (E4 == 1 && E8 == 0 && SR == 1) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 1 && E8 == 1 && SR == 1) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 1 && E8 == 0 && SR == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 0 && E8 == 0 && SR == 1) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 1 && E8 == 1 && SR == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 0 && E8 == 1 && SR == 1) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 0 && E8 == 0 && SR == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      if (E4 == 0 && E8 == 1 && SR == 0) (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+      ifnone (E *> IO) = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+
+      //  Module Path Delay (state dependent)
+
+      //  Module Path Delay
+      if (E == 0) (PU *> IO) = (0.0:0.0:0.0);
+      ifnone (PU *> IO) = (0.0:0.0:0.0);
+      if (E == 0) (PD *> IO) = (0.0:0.0:0.0);
+      ifnone (PD *> IO) = (0.0:0.0:0.0);
+   endspecify
+`endprotect
+endmodule
+`endcelldefine
+
+
+
+
+// END_OF_CELL
+
+///////////////////////////////////////////////
+// Cell Name : ddrio_6ns_unknown
+// Cell Type : Module
+// Version   : 1.0
+// Revised on: 01/08  `16
+///////////////////////////////////////////////
+
+module ddrio_6ns_unknown (out, in, ctrl);
+	input in, ctrl;
+	output out;
+`protect
+   `ifdef ftc_gatelevel
+       buf b1 (out, in);
+   `else
+       reg sel;
+
+       initial begin
+          sel = 0;
+       end
+
+       always @(posedge ctrl) begin
+          sel <= 1;
+          #(600)
+          sel <= 0;
+       end
+    
+       and a1 (an1, in  , ~sel);
+   	   and a2 (an2, 1'bx, sel);
+       or o1  (out, an1 , an2);
+
+       //   sel    q
+       //    0     in
+       //    1    1'bx
+   `endif
+`endprotect
+endmodule
+///////////////////////////////////////////////
+// Cell Name : dffrsb_udp
+// Cell Type : Primitive
+// Revised on: 11/02 2001
+// Version   : 1.5
+///////////////////////////////////////////////
+
+primitive   dffrsb_udp(q, d, ck, rb, sb, flag);
+   output q;
+   input d, ck, rb, sb, flag;
+   reg q;
+
+
+`protect
+   table
+//     D    CK    RB    SB  FLAG :    Qt :  Qt+1
+       1  (01)     1     1     ? :     ? :     1;// clocked  data
+       1  (01)     1     x     ? :     ? :     1;// pessimism
+
+       1     ?     1     x     ? :     1 :     1;// pessimism
+       0     x     1     x     ? :     1 :     x;// pessimism
+       0     b     1     x     ? :     1 :     1;// pessimism
+       x     ?     1     x     ? :     1 :     x;// pessimism
+       x     ?     1     x     ? :     0 :     x;// pessimism
+       x     ?     1     x     ? :     x :     x;// pessimism
+
+
+       0  (01)     1     1     ? :     ? :     0;
+       0  (01)     x     1     ? :     ? :     0;// pessimism
+
+       1     x     x     1     ? :     0 :     x;// pessimism
+       1     b     x     1     ? :     0 :     0;// pessimism
+       0     ?     x     1     ? :     0 :     0;// pessimism
+       x     ?     x     1     ? :     0 :     x;// pessimism
+       x     ?     x     1     ? :     1 :     x;// pessimism
+       x     ?     x     1     ? :     x :     x;// pessimism
+
+       1  (x1)     1     ?     ? :     1 :     1;// reducing pessimism
+       0  (x1)     ?     1     ? :     0 :     0;
+       1  (0x)     1     ?     ? :     1 :     1;
+       1  (0x)     1     ?     ? :     0 :     0;
+       0  (0x)     ?     1     ? :     0 :     0;
+       0  (0x)     ?     1     ? :     1 :     1;
+       ?     ?     0     1     ? :     ? :     0;// asynchronous clear
+       ?     ?     1     0     ? :     ? :     1;// asynchronous   set
+       ?     ?     0     0     ? :     ? :     0;// preset override
+       ?     ?     0     x     ? :     ? :     0;// pessimism
+       ?  (?0)     1     1     ? :     ? :     -;// ignore falling clock
+
+       // deal with clk "x"
+       1  (1x)     1     ?     ? :     1 :     1;
+       0  (1x)     ?     1     ? :     0 :     0;
+       *     b     1     1     ? :     ? :     -;// ignore  data edges
+
+       ?     b  (?1)     1     ? :     ? :     -;// ignore   the edges    on
+       ?     b     1  (?1)     ? :     ? :     -;//   set   and clear
+       0     x  (?1)     1     ? :     ? :     -;
+       1     x     1  (?1)     ? :     ? :     -;
+       ?     ?     ?     ?     * :     ? :     x;
+   endtable
+`endprotect
+endprimitive
+///////////////////////////////////////////////
+// Cell Name : dffrsb_v_udp
+// Cell Type : Primitive
+// Version   : 1.1
+// Date      : 04/08 2024
+// Reason    :
+//      1.1  : Initial.
+///////////////////////////////////////////////
+
+primitive dffrsb_v_udp (q, flag, ck, d, sb, rb, xcr);
+   output q;
+   reg q;
+   input flag, ck, d, sb, rb, xcr;
+
+`protect
+   table
+// flag, ck, d, sb, rb : q' : q;
+
+      *  ?   ?   ?   ?   ? : ? : x;
+      ?  ?   ?   ?   1   ? : ? : 0;
+      ?  ?   ?   1   0   ? : ? : 1;
+      ?  b   ? (1?)  0   ? : 1 : -;
+      ?  x   1 (1?)  0   ? : 1 : -;
+      ?  ?   ? (10)  0   ? : ? : -;
+      ?  ?   ? (x0)  0   ? : ? : -;
+      ?  ?   ? (0x)  0   ? : 1 : -;
+      ?  b   ?  0   (1?) ? : 0 : -;
+      ?  x   0  0   (1?) ? : 0 : -;
+      ?  ?   ?  0   (10) ? : ? : -;
+      ?  ?   ?  0   (x0) ? : ? : -;
+      ?  ?   ?  0   (0x) ? : 0 : -;
+      ? (x1) 0  0    ?   0 : ? : 0;
+      ? (x1) 1  ?    0   0 : ? : 1;
+      ? (x1) 0  0    ?   1 : 0 : 0;
+      ? (x1) 1  ?    0   1 : 1 : 1;
+      ? (x1) ?  ?    0   x : ? : -;
+      ? (x1) ?  0    ?   x : ? : -;
+      ? (1x) 0  0    ?   ? : 0 : -;
+      ? (1x) 1  ?    0   ? : 1 : -;
+      ? (x0) 0  0    ?   ? : ? : -;
+      ? (x0) 1  ?    0   ? : ? : -;
+      ? (x0) ?  0    0   x : ? : -;
+      ? (0x) 0  0    ?   ? : 0 : -;
+      ? (0x) 1  ?    0   ? : 1 : -;
+      ? (01) 0  0    ?   ? : ? : 0;
+      ? (01) 1  ?    0   ? : ? : 1;
+      ? (10) ?  0    ?   ? : ? : -;
+      ? (10) ?  ?    0   ? : ? : -;
+      ?  b   *  0    ?   ? : ? : -;
+      ?  b   *  ?    0   ? : ? : -;
+      ?  ?   ?  ?    ?   * : ? : -;
+   endtable
+`endprotect
+endprimitive
+///////////////////////////////////////////////
+// Cell Name : dlhrb_udp
+// Cell Type : Primitive
+// Version   : 1.1
+// Date      : 10/02 2001
+// Reason    :
+//      1.1  : Initial.
+///////////////////////////////////////////////
+
+primitive   dlhrb_udp (q, d, ck, rb, flag);
+
+   output q;
+   reg q;
+   input d, ck, rb, flag;
+
+`protect
+   table
+//     D    CK    RB  FLAG :   Qtn : Qtn+1
+
+       ?   (?0)    ?    ?  :    ?  :   -; // Latch state
+       *    0      1    ?  :    ?  :   -; 
+
+      (?0)  1      1    ?  :    ?  :   0; // Latch data
+       0   (?1)    1    ?  :    ?  :   0;
+       0    1     (?1)  ?  :    ?  :   0;
+
+      (?1)  1      1    ?  :    ?  :   1; // Latch data
+       1   (?1)    1    ?  :    ?  :   1;
+       1    1     (?1)  ?  :    ?  :   1;
+
+     (?1)   x      1    ?  :    1  :   1;
+       1   (?x)    1    ?  :    1  :   1;
+ 
+     (?0)   x      1    ?  :    0  :   0;
+       0   (?x)    1    ?  :    0  :   0;
+
+       ?    ?      0    ?  :    ?  :   0; // Asyn. reset
+
+      (?0)  1      x    ?  :    ?  :   0;
+       0  (?1)     x    ?  :    ?  :   0;
+       0    1     (?x)  ?  :    ?  :   0;
+
+      (?0)  ?      x    ?  :    0  :   0;
+       0    *      x    ?  :    0  :   0;
+       0    ?      *    ?  :    0  :   0;
+       *    0      x    ?  :    0  :   0;
+       ?    0     (?x)  ?  :    0  :   0;
+
+       ?    0     (?1)  ?  :    ?  :   -;
+
+       ?    ?      ?     * :    ? :    x; // Timing violation toggle
+   endtable
+`endprotect
+endprimitive
+
+///////////////////////////////////////////////
+// Cell Name : dlhrsb_udp
+// Cell Type : Primitive
+// Version   : 1.1
+// Date      : 10/02 2001
+// Reason    :
+//      1.1  : Initial.
+///////////////////////////////////////////////
+
+primitive dlhrsb_udp (q, d, ck, rb, sb, flag);
+   output q;
+   reg q;
+   input d, ck, rb, sb, flag;
+
+`protect
+   table
+//     D    CK    RB   SB   FLAG :   Qtn : Qtn+1
+
+       ?   (?0)    1    1     ?  :    ?  :   -; //Latch state
+       *    0      1    1     ?  :    ?  :   -;
+
+      (?0)  1      1    1     ?  :    ?  :   0; //Latch data
+       0   (?1)    1    1     ?  :    ?  :   0;
+       0    1     (?1)  1     ?  :    ?  :   0;
+       0    1      1  (?1)    ?  :    ?  :   0;
+
+      (?1)  1      1    1     ?  :    ?  :   1; //Latch data
+       1   (?1)    1    1     ?  :    ?  :   1;
+       1    1     (?1)  1     ?  :    ?  :   1;
+       1    1      1  (?1)    ?  :    ?  :   1;
+ 
+     (?1)   x      1    1     ?  :    1  :   1;
+       1   (?x)    1    1     ?  :    1  :   1;
+
+     (?0)   x      1    1     ?  :    0  :   0;
+       0   (?x)    1    1     ?  :    0  :   0;
+
+       ?    ?      0    ?     ?  :    ?  :   0; //Asyn. reset
+       ?    ?      1    0     ?  :    ?  :   1; //Asyn. preset
+
+      (?0)  1      x    1     ?  :    ?  :   0;
+       0  (?1)     x    1     ?  :    ?  :   0;
+       0    1     (?x)  1     ?  :    ?  :   0;
+       0    1      x   (?1)   ?  :    ?  :   0;
+
+      (?0)  ?      x    1     ?  :    0  :   0;
+       0    *      x    1     ?  :    0  :   0;
+       0    ?      *    1     ?  :    0  :   0;
+       0    x      x   (?1)   ?  :    0  :   0;
+       *    0      x    1     ?  :    0  :   0;
+
+      (?1)  1      1    x     ?  :    ?  :   1;
+       1  (?1)     1    x     ?  :    ?  :   1;
+       1    1      1   (?x)   ?  :    ?  :   1;
+       1    1     (?1)  x     ?  :    ?  :   1;
+
+      (?1)  ?      1    x     ?  :    1  :   1;
+       1    *      1    x     ?  :    1  :   1;
+       1    ?      1    *     ?  :    1  :   1;
+       1    x     (?1)  x     ?  :    1  :   1;
+       *    0      1    x     ?  :    1  :   1;
+
+       ?    0     (?1)  1     ?  :    ?  :   -;
+       ?    0      1   (?1)   ?  :    ?  :   -;
+       
+       ?    ?      ?    ?     *  :    ?  :   x; //Timing violation toggle
+   endtable
+`endprotect
+endprimitive
+///////////////////////////////////////////////
+// Cell Name : dlhsb_udp
+// Cell Type : Primitive
+// Version   : 1.1
+// Date      : 10/02 2001
+// Reason    :
+//      1.1  : Initial.
+///////////////////////////////////////////////
+
+primitive   dlhsb_udp (q, d, ck, sb, flag);
+
+   output q;
+   reg q;
+   input d, ck, sb, flag;
+`protect
+   table
+//     D    CK    SB  FLAG :   Qtn : Qtn+1
+
+       ?   (?0)    ?    ?  :    ?  :   -; // Latch state
+       *    0      1    ?  :    ?  :   -; 
+
+      (?0)  1      1    ?  :    ?  :   0; // Latch data
+       0   (?1)    1    ?  :    ?  :   0;
+       0    1     (?1)  ?  :    ?  :   0;
+
+      (?1)  1      1    ?  :    ?  :   1; // Latch data
+       1   (?1)    1    ?  :    ?  :   1;
+       1    1     (?1)  ?  :    ?  :   1;
+
+     (?1)   x      1    ?  :    1  :   1;
+       1   (?x)    1    ?  :    1  :   1;
+
+     (?0)   x      1    ?  :    0  :   0;
+       0   (?x)    1    ?  :    0  :   0;
+
+       ?    ?      0    ?  :    ?  :   1; // Asyn. preset
+ 
+      (?1)  1      x    ?  :    ?  :   1;
+       1  (?1)     x    ?  :    ?  :   1;
+       1    1     (?x)  ?  :    ?  :   1;
+
+      (?1)  ?      x    ?  :    1  :   1;
+       1    *      x    ?  :    1  :   1;
+       1    ?      *    ?  :    1  :   1;
+       *    0      x    ?  :    1  :   1;
+       ?    0     (?x)  ?  :    1  :   1;
+
+       ?    0     (?1)  ?  :    ?  :   -;
+
+       ?    ?      ?     * :    ? :    x; // Timing violation toggle
+
+   endtable
+`endprotect
+endprimitive
+///////////////////////////////////////////////
+// Cell Name : dlhsrb_udp
+// Cell Type : Primitive
+// Version   : 1.1
+// Date      : 02/12 2011
+// Reason    :
+//      1.1  : Initial.
+///////////////////////////////////////////////
+
+primitive dlhsrb_udp (q, d, ck, rb, sb, flag);
+   output q;
+   reg q;
+   input d, ck, rb, sb, flag;
+
+`protect
+   table
+//     D    CK    RB   SB   FLAG :   Qtn : Qtn+1
+
+       ?   (?0)    1    1     ?  :    ?  :   -; //Latch state
+       *    0      1    1     ?  :    ?  :   -;
+
+      (?0)  1      1    1     ?  :    ?  :   0; //Latch data
+       0   (?1)    1    1     ?  :    ?  :   0;
+       0    1     (?1)  1     ?  :    ?  :   0;
+       0    1      1  (?1)    ?  :    ?  :   0;
+
+      (?1)  1      1    1     ?  :    ?  :   1; //Latch data
+       1   (?1)    1    1     ?  :    ?  :   1;
+       1    1     (?1)  1     ?  :    ?  :   1;
+       1    1      1  (?1)    ?  :    ?  :   1;
+ 
+     (?1)   x      1    1     ?  :    1  :   1;
+       1   (?x)    1    1     ?  :    1  :   1;
+
+     (?0)   x      1    1     ?  :    0  :   0;
+       0   (?x)    1    1     ?  :    0  :   0;
+
+       ?    ?      0    1     ?  :    ?  :   0; //Asyn. reset
+       ?    ?      ?    0     ?  :    ?  :   1; //Asyn. preset
+
+      (?0)  1      x    1     ?  :    ?  :   0;
+       0  (?1)     x    1     ?  :    ?  :   0;
+       0    1     (?x)  1     ?  :    ?  :   0;
+       0    1      x   (?1)   ?  :    ?  :   0;
+
+      (?0)  ?      x    1     ?  :    0  :   0;
+       0    *      x    1     ?  :    0  :   0;
+       0    ?      *    1     ?  :    0  :   0;
+       0    x      x   (?1)   ?  :    0  :   0;
+       *    0      x    1     ?  :    0  :   0;
+
+      (?1)  1      1    x     ?  :    ?  :   1;
+       1  (?1)     1    x     ?  :    ?  :   1;
+       1    1      1   (?x)   ?  :    ?  :   1;
+       1    1     (?1)  x     ?  :    ?  :   1;
+
+      (?1)  ?      1    x     ?  :    1  :   1;
+       1    *      1    x     ?  :    1  :   1;
+       1    ?      1    *     ?  :    1  :   1;
+       1    x     (?1)  x     ?  :    1  :   1;
+       *    0      1    x     ?  :    1  :   1;
+
+       ?    0     (?1)  1     ?  :    ?  :   -;
+       ?    0      1   (?1)   ?  :    ?  :   -;
+       
+       ?    ?      ?    ?     *  :    ?  :   x; //Timing violation toggle
+   endtable
+`endprotect
+endprimitive
+///////////////////////////////////////////////
+// Cell Name : dlh_v_udp
+// Cell Type : Primitive
+// Version   : 1.1
+// Date      : 04/08 2024
+// Reason    :
+//      1.1  : Initial.
+///////////////////////////////////////////////
+
+
+primitive dlh_v_udp (q, flag, ck, d);
+   output q;
+   reg q;
+   input flag, ck, d;
+   
+`protect   
+   table
+       * ? ? : ? : x;
+       x 1 0 : ? : 0;
+       x 1 1 : ? : 1;
+       x x 0 : 0 : -;
+       x x 1 : 1 : -;
+       x 0 ? : ? : -;
+   endtable
+`endprotect   
+endprimitive
+///////////////////////////////////////////////
+// Cell Name : jkffrsb_udp
+// Cell Type : Primitive
+// Version   : 1.3
+// Date      : 11/02 2001
+// Reason    :
+//      1.3  : modify protection method.
+//      1.2  : Deal with unknown ck.
+//      1.1  : Initial.
+///////////////////////////////////////////////
+
+primitive   jkffrsb_udp (q, j, k, ck, rb, sb, flag);
+
+// JK FLIP FLOP, WITH RB/SB /STANDARD DRIVE
+   output q;
+   reg q;
+   input j,k,ck,rb,sb,flag;
+
+
+`protect
+   table
+//     J     K    CK    RB    SB  FLAG :   Qtn : Qtn+1
+       0     0     r     1     1     ? :     ? :     -;// Output retains the
+                                                       // current state if both
+                                                       // J and K are 0.
+       0     1     r     ?     1     ? :     ? :     0;// Clocked J & K.
+       1     0     r     1     ?     ? :     ? :     1;
+       1     1     r     1     ?     ? :     0 :     1;// Clocked toggle.
+       1     1     r     ?     1     ? :     1 :     0;
+
+       1     x     r     1     1     ? :     0 :     1;// toggle previous one
+       x     1     r     1     1     ? :     1 :     0;// toggle previous one
+       ?     1     r     x     1     ? :     1 :     0;//pessimism
+       1     ?     r     1     x     ? :     0 :     1;
+
+       ?     0     r     1     ?     ? :     1 :     1;// conflict statements
+       0     ?     r     ?     1     ? :     0 :     0;// conflict statement
+
+       ?     ?     f     ?     ?     ? :     ? :     -;// Output state is
+						       // insensitive to the
+						       // falling edge of
+						       // the clock.
+       0     0  (x1)     1     1     ? :     ? :     -;// possible clocked JK
+       0     ?  (x1)     ?     1     ? :     0 :     0;
+       ?     0  (x1)     1     ?     ? :     1 :     1;
+
+       0     0  (?x)     1     1     ? :     ? :     -;
+       0     ?  (?x)     ?     1     ? :     0 :     0;
+       ?     0  (?x)     1     ?     ? :     1 :     1;
+
+       0     ?     ?     x     1     ? :     0 :     0;//pessimism
+       ?     0     ?     1     x     ? :     1 :     1;//pessimism
+
+       // deal with clk "x"
+       *     ?     b     1     1     ? :     ? :     -;
+       *     0     x     1     1     ? :     1 :     1;
+       ?     *     b     1     1     ? :     ? :     -;
+       0     *     x     1     1     ? :     0 :     0;
+						       
+       ?     ?     ?     0     ?     ? :     ? :     0;// Clear.
+       ?     ?     ?     1     0     ? :     ? :     1;// Set.
+
+       ?     ?  (?0)     1     1     ? :     ? :     -;// ignore falling clock.
+
+       // deal with clk "x"
+       ?     ?     b  (?1)     1     ? :     ? :     -;
+       0     0     x  (?1)     1     ? :     ? :     -;
+       0     ?     x  (?1)     1     ? :     0 :     0;
+       ?     ?     b     1  (?1)     ? :     ? :     -;
+       0     0     x     1  (?1)     ? :     ? :     -;
+       ?     0     x     1  (?1)     ? :     1 :     1;
+
+       ?     ?     ?     ?     ?     * :     ? :     x;
+   endtable
+`endprotect
+endprimitive
+///////////////////////////////////////////////
+// Cell Name : mux2_udp
+// Cell Type : Primitive
+// Revised on: Wed Feb 26 17:03:31 1992
+///////////////////////////////////////////////
+primitive   mux2_udp (q, a, b, sl);
+   output q;
+   input a, b, sl;
+   // FUNCTION : TWO TO ONE MULTIPLEXER
+`protect
+   table
+   // A B SL : Q
+      0 0 ?  : 0 ;
+      1 1 ?  : 1 ;
+      0 ? 0  : 0 ;
+      1 ? 0  : 1 ;
+      ? 0 1  : 0 ;
+      ? 1 1  : 1 ;
+   endtable
+`endprotect
+endprimitive
+
+
+///////////////////////////////////////////////
+// Cell Name : mux3_udp
+// Cell Type : Primitive
+// Revised on: Wed Feb 26 17:03:31 1992
+///////////////////////////////////////////////
+primitive   mux3_udp (Y, D0, D1, D2, S0, S1);
+   input D0, D1, D2, S0, S1;
+   output Y;
+   // FUNCTION : THREE TO ONE MULTIPLEXER WITH 2 SELECT CONTROLS
+`protect
+   table
+   // D0 D1 D2 S0 S1 : Y
+       0  ?  ?  0  0 : 0 ;
+       1  ?  ?  0  0 : 1 ;
+       ?  0  ?  1  0 : 0 ;
+       ?  1  ?  1  0 : 1 ;
+       ?  ?  0  ?  1 : 0 ;
+       ?  ?  1  ?  1 : 1 ;
+       0  0  0  ?  ? : 0 ; //pessimism
+       1  1  1  ?  ? : 1 ;
+       0  0  ?  ?  0 : 0 ; //pessimism
+       1  1  ?  ?  0 : 1 ; //pessimism
+       0  ?  0  0  ? : 0 ;
+       1  ?  1  0  ? : 1 ;
+       ?  0  0  1  ? : 0 ;
+       ?  1  1  1  ? : 1 ;
+   endtable
+`endprotect
+endprimitive
+
+
+///////////////////////////////////////////////
+// Cell Name : mux4_udp
+// Cell Type : Primitive
+// Revised on: Wed Feb 26 17:03:35 1992
+///////////////////////////////////////////////
+primitive   mux4_udp (y, d0, d1, d2, d3, s0, s1);
+   input d0, d1, d2, d3, s0, s1;
+   output y;
+   // FUNCTION : FOUR TO ONE MULTIPLEXER WITH 2 SELECT CONTROLS
+`protect
+   table
+   // D0 D1 D2 D3 S0 S1 : Y
+      0   ?  ?  ?  0  0 : 0 ;
+      1   ?  ?  ?  0  0 : 1 ;
+      ?   0  ?  ?  1  0 : 0 ;
+      ?   1  ?  ?  1  0 : 1 ;
+      ?   ?  0  ?  0  1 : 0 ;
+      ?   ?  1  ?  0  1 : 1 ;
+      ?   ?  ?  0  1  1 : 0 ;
+      ?   ?  ?  1  1  1 : 1 ;
+      0   0  0  0  ?  ? : 0 ;
+      1   1  1  1  ?  ? : 1 ;
+      0   0  ?  ?  ?  0 : 0 ;
+      1   1  ?  ?  ?  0 : 1 ;
+      ?   ?  0  0  ?  1 : 0 ;
+      ?   ?  1  1  ?  1 : 1 ;
+      0   ?  0  ?  0  ? : 0 ;
+      1   ?  1  ?  0  ? : 1 ;
+      ?   0  ?  0  1  ? : 0 ;
+      ?   1  ?  1  1  ? : 1 ;
+   endtable
+`endprotect
+endprimitive
+
+
+///////////////////////////////////////////////
+// Cell Name : pulldown_IO
+// Cell Type : Primitive
+// Version   : 1.3
+// Revised on: 8/20 '02
+///////////////////////////////////////////////
+module  pulldown_IO (io, i, e);
+
+  input i, e;
+  inout io;
+
+`protect
+`ifdef ftc_gatelevel
+  tri0 io;
+
+  bufif1 (io, i, e);
+`else
+
+  `ifdef ftc_verify
+     parameter THZ   = 4;
+  `else
+     parameter THZ   = 400000;
+  `endif
+
+   supply1 vcc;
+   reg  io_e, pre;
+   wire e_tmp, io_i, ne;
+   wire io_i_tmp;
+
+   event EventTHZ;
+
+// Function
+
+   buf    g1 (e_tmp, e);
+   bufif1 g2 (io_i, i, e_tmp);
+   not    g3 (ne,   e_tmp);
+   rnmos  g4 (io_i_tmp, io_e, ne);  //-- pull level
+   rnmos  g5 (io_i, io_i_tmp, vcc);  //-- added for down scale to weak level   
+   nmos   g6 (io,   io_i, vcc);
+
+   always @(e_tmp)
+   begin
+     if (e_tmp == 1'b1)
+     begin
+       disable BlockTHZ;
+     end
+     else if (e_tmp == 1'b0)
+     begin
+       if (io == 1'b0)
+         io_e <= 1'b0;
+       else
+       begin
+         io_e <= 1'bz;
+       end
+     end
+   end
+
+   always @(io)
+   begin
+     if (e_tmp ==1'b0)
+     begin
+       if (io===1'b0)
+       begin
+         disable BlockTHZ;
+         io_e = 1'b0;
+       end
+       else if (io===1'b1)
+       begin
+         disable BlockTHZ;
+         io_e = 1'bz;
+       end
+       else if (io===1'bx)
+       begin
+         disable BlockTHZ;
+         io_e = 1'bz;
+       end
+       else if (io===1'bz)
+       begin
+         disable BlockTHZ;
+         io_e = 1'bz;
+         #0 ->EventTHZ;
+       end
+     end
+   end
+
+   always @(EventTHZ)
+   begin:BlockTHZ
+     io_e = #THZ 1'b0;
+   end
+`endif
+`endprotect
+endmodule
+///////////////////////////////////////////////
+// Cell Name : pullup_down_IO
+// Cell Type : Primitive
+// Version   : 1.4
+// Revised on: 3/19 '03
+///////////////////////////////////////////////
+module  pullup2_down_IO (io, i, e, pu1, pu2, pd);
+
+   input i, e, pu1, pu2, pd;
+   inout io;
+   wire io1_tmp;
+   
+`protect
+
+`ifdef ftc_gatelevel
+
+`else
+
+`ifdef ftc_verify
+   parameter THZ   = 4;
+`else
+   parameter THZ   = 399999.9;
+`endif
+
+   supply1 vcc;
+   reg  io_e;
+   wire io_i, ne;
+   wire e_tmp, pu1_tmp, pu2_tmp, pd_tmp;
+   wire io_i_pull, io_i_weak, io_i_med;
+   wire str_ctl, io_i_tmp;
+
+   reg io_pre, ioe_ok;
+
+   event Event_PU,
+         Event_PD,
+         Event_DisableAll;
+
+   buf  g1 (pu1_tmp, pu1);
+   buf  g2 (pu2_tmp, pu2);
+   buf  g3 (pd_tmp, pd);
+   buf  g4 (e_tmp, e);
+
+   bufif1 g5 (io_i, i, e_tmp);
+   not    g6 (ne, e_tmp);
+   rnmos  g7 (io_i_pull, io_e, ne);  //-- pull level
+   rnmos  g8 (io_i_weak, io_i_pull, vcc);  //-- weak level
+   rnmos  g9 (io_i_med, io_i_weak, vcc);  //-- medium level
+   nmos   ga (io_i, io_i_tmp, vcc);     
+   nmos #0.1 gb (io,   io_i, vcc);
+
+   // assign str_ctl = (!pd_tmp) & (!pu1_tmp) & pu2_tmp;
+   not 	  ga1 (pd_tmp_bar, pd_tmp);
+   not    ga2(pu1_tmp_bar, pu1_tmp);
+   and    ga3 (str_ctl, pd_tmp_bar, pu1_tmp_bar, pu2_tmp);
+   not    ga4 (str_ctl_bar, str_ctl);
+   // assign io_i_tmp = (str_ctl)? io_i_med : io_i_pull;
+   nmos   ga5 (io_i_tmp, io_i_pull, str_ctl_bar);     
+   nmos   ga6 (io_i_tmp, io_i_med, str_ctl);        
+   // assign pu_tmp = pu1_tmp & pu2_tmp;
+   or     ga7 (pu_tmp, pu1_tmp, pu2_tmp);
+      
+   always @(e_tmp or pu_tmp or pd_tmp)
+   begin
+     ->Event_DisableAll;
+     if (e_tmp == 1'b0)
+     begin
+       case ({pu_tmp,pd_tmp})
+         2'b10 :
+         begin
+           if (io == 1'b1)
+             io_e <= 1'b1;
+           else
+           begin
+             if (io_e !== 1'bz)
+               io_e <= 1'bz;
+             else
+             begin
+	       #0 ->Event_PU;
+             end 
+           end
+         end
+         2'b01 :
+         begin
+           if (io == 1'b0)
+             io_e <= 1'b0;
+           else
+           begin
+             if (io_e !== 1'bz)
+             io_e <= 1'bz;
+             else
+             begin
+               #0 ->Event_PD;
+             end
+           end
+         end
+         2'b00,
+         2'b11 :
+         begin
+           io_e <= 1'bz; 
+         end
+         default : 
+	 begin
+	   io_e <= 1'bx; 	 
+	 end
+       endcase 
+     end
+   end
+
+   always @(io)
+   begin 
+     if (e_tmp==1'b0)
+     begin
+       case ({pu_tmp,pd_tmp})
+         2'b10 :
+         begin
+           if (io===1'b1)
+           begin
+             disable BlockPU;
+             io_e = 1'b1;
+           end
+           else if (io===1'b0)
+           begin
+             disable BlockPU;
+             io_e = 1'bz;
+           end
+           else if (io===1'bx)
+           begin
+             disable BlockPU;
+             io_e = 1'bz;
+           end
+           else if (io===1'bz)
+           begin
+             disable BlockPU;
+             io_e = 1'bz;
+             #0 ->Event_PU;
+           end
+         end
+         2'b01 :
+         begin
+           if (io===1'b0)
+           begin
+             disable BlockPD;
+             io_e = 1'b0;
+           end
+           else if (io===1'b1)
+           begin
+             disable BlockPD;
+             io_e = 1'bz;
+           end
+           else if (io===1'bx)
+           begin
+             disable BlockPD;
+             io_e = 1'bz;
+           end
+           else if (io===1'bz)
+           begin
+             disable BlockPD;
+             io_e = 1'bz;
+             #0 ->Event_PD;
+           end
+         end
+         2'b00,
+         2'b11 :
+         begin
+           // do nothing;
+         end
+         default : 
+         begin
+	   io_e = 1'bx; 	 
+         end
+       endcase
+     end
+   end
+
+   always @(Event_DisableAll)
+   begin:BlockDisableAll
+     disable BlockPU;
+     disable BlockPD;
+   end
+
+   always @(Event_PU)
+   begin:BlockPU
+     io_e = #THZ 1'b1;
+   end
+
+   always @(Event_PD)
+   begin:BlockPD
+     io_e = #THZ 1'b0;
+   end
+
+`endif
+`endprotect
+endmodule
+///////////////////////////////////////////////
+// Cell Name : pullup_down_ene_IO
+// Cell Type : Primitive
+// Version   : 1.2
+// Revised on: 3/19 '03
+///////////////////////////////////////////////
+module  pullup_down_ene_IO (io, i, e, ne, pu, pd);
+
+   input i, e, ne, pu, pd;
+   inout io;
+
+`protect
+
+`ifdef ftc_gatelevel
+
+`else
+  `ifdef ftc_verify
+    parameter THZ   = 4;
+  `else
+    parameter THZ   = 399999.9;
+  `endif
+ 
+  supply1 vcc;
+  reg  io_e;
+  wire io_i;
+  wire e_tmp,ne_tmp,pu_tmp,pd_tmp;
+  wire io_i_tmp;
+ 
+  event Event_PU,
+        Event_PD,
+        Event_DisableAll;
+ 
+  buf  g1 (pu_tmp, pu);
+  buf  g2 (pd_tmp, pd);
+  buf  g3 (e_tmp, e);
+  buf  g4 (ne_tmp, ne);
+ 
+  bufif1 g5 (io_i, i, e_tmp);
+  rnmos  g6 (io_i_tmp, io_e, ne_tmp);  //-- pull level
+  rnmos  g7 (io_i, io_i_tmp, vcc);  //-- added for down scale to weak level   
+  nmos #0.1 g8 (io,   io_i, vcc);
+ 
+  always @(e_tmp or pu_tmp or pd_tmp)
+  begin
+    ->Event_DisableAll;
+    if (e_tmp == 1'b0)
+    begin
+      case ({pu_tmp,pd_tmp})
+        2'b10 :
+        begin
+          if (io == 1'b1)
+            io_e <= 1'b1;
+          else
+          begin
+            if (io_e !== 1'bz)
+              io_e <= 1'bz;
+            else
+            begin
+	      #0 ->Event_PU;
+            end 
+          end
+        end
+        2'b01 :
+        begin
+          if (io == 1'b0)
+            io_e <= 1'b0;
+          else
+          begin
+            if (io_e !== 1'bz)
+              io_e <= 1'bz;
+            else
+            begin
+              #0 ->Event_PD;
+            end
+          end
+        end
+        2'b00,
+        2'b11 :
+        begin
+          io_e <= 1'bz; 
+        end
+        default : 
+	begin
+          io_e <= 1'bx; 	 
+	end
+      endcase 
+    end
+  end
+
+  always @(io)
+  begin 
+    if (e_tmp==1'b0)
+    begin
+      case ({pu_tmp,pd_tmp})
+        2'b10 :
+        begin
+          if (io===1'b1)
+          begin
+            disable BlockPU;
+            io_e = 1'b1;
+          end
+          else if (io===1'b0)
+          begin
+            disable BlockPU;
+            io_e = 1'bz;
+          end
+          else if (io===1'bx)
+          begin
+            disable BlockPU;
+            io_e = 1'bz;
+          end
+          else if (io===1'bz)
+          begin
+            disable BlockPU;
+            io_e = 1'bz;
+            #0 ->Event_PU;
+          end
+        end
+        2'b01 :
+        begin
+          if (io===1'b0)
+          begin
+            disable BlockPD;
+            io_e = 1'b0;
+          end
+          else if (io===1'b1)
+          begin
+            disable BlockPD;
+            io_e = 1'bz;
+          end
+          else if (io===1'bx)
+          begin
+            disable BlockPD;
+            io_e = 1'bz;
+          end
+          else if (io===1'bz)
+          begin
+            disable BlockPD;
+            io_e = 1'bz;
+            #0 ->Event_PD;
+          end
+        end
+        2'b00,
+        2'b11 :
+        begin
+          // do nothing;
+        end
+        default : 
+        begin
+	  io_e = 1'bx; 	 
+        end
+      endcase
+    end
+  end
+
+  always @(Event_DisableAll)
+  begin:BlockDisableAll
+    disable BlockPU;
+    disable BlockPD;
+  end
+
+  always @(Event_PU)
+  begin:BlockPU
+    io_e = #THZ 1'b1;
+  end
+
+  always @(Event_PD)
+  begin:BlockPD
+    io_e = #THZ 1'b0;
+  end
+
+`endif
+`endprotect
+endmodule
+///////////////////////////////////////////////
+// Cell Name : pullup_down_IO_IEO
+// Cell Type : Primitive
+// Version   : 1.2
+// Revised on: 11/18 '03
+///////////////////////////////////////////////
+module  pullup_down_IO_IEO (io, o, i, e, ie, pu, pd);
+
+   input i, e, ie, pu, pd;
+   inout io; 
+   output o;
+   wire io1_tmp;
+
+`protect
+`ifdef ftc_gatelevel
+`else
+
+`ifdef ftc_verify
+   parameter THZ   = 4;
+`else
+   parameter THZ   = 399999.9;
+`endif
+
+  supply1 vcc;
+  reg  io_e, io_e1;
+  wire io_i, ne, nie;
+  wire e_tmp, ie_tmp, pu_tmp, pd_tmp;
+  wire i0, i1;
+  wire io_i_tmp;
+
+  event Event_PU,
+        Event_PD,
+        Event_DisableAll,
+        Event_PU1,
+        Event_PD1,
+        Event_DisableAll1;
+
+  buf  b1 (pu_tmp, pu);
+  buf  b2 (pd_tmp, pd);
+  buf  b3 (e_tmp, e);
+  buf  b4 (ie_tmp, ie);
+  and  g4 (pu_tmp1, ie, pu_tmp);
+
+  bufif1  g5 (io_i, i, e_tmp);
+  not     g6 (ne, e_tmp);
+  not     g7 (nie, ie_tmp);
+  rnmos   g8 (io_i_tmp, io_e, ne);  //-- pull level
+  rnmos   g9 (io_i, io_i_tmp, vcc);  //-- added for down scale to weak level   
+  nmos #0.1 ga (io,   io_i, vcc);
+  //--- mux2 ----
+  and gb (i0, io_e1, nie);
+  and gc (i1, io, ie_tmp);
+  or #0.1 gd (o, i0, i1);
+
+  always @(ie_tmp or pu_tmp or pd_tmp)
+  begin
+    ->Event_DisableAll1;
+    if (ie_tmp === 1'b0)
+    begin
+     case (pu_tmp)
+        1'b1:
+        begin
+          if (pd_tmp === 1'b0)
+          begin
+            if (o === 1'b1)
+              io_e1 <= 1'b1;
+            else
+            begin
+              if (io_e1 !== 1'bz)
+              begin
+                io_e1 <= 1'bz;
+              end 
+              else
+              begin
+	        #0 ->Event_PU1;
+              end 
+            end
+          end
+	  else if (pd_tmp === 1'b1)
+            io_e1 <= 1'bz; 
+	  else
+            io_e1 <= 1'bx; 
+        end
+        1'b0:
+        begin
+          io_e1 <= 1'bz; 
+        end
+        default : 
+	begin
+          io_e1 <= 1'bx; 	 
+	end
+      endcase 
+    end
+  end
+
+  always @(e_tmp or ie_tmp or pu_tmp or pd_tmp)
+  begin
+    ->Event_DisableAll;
+    if (e_tmp === 1'b0)
+    begin
+      case ({pu_tmp1,pd_tmp})
+        2'b10 :
+        begin
+          if (io === 1'b1)
+            io_e <= 1'b1;
+          else
+          begin
+            if (io_e !== 1'bz)
+              io_e <= 1'bz;
+            else
+            begin
+	      #0 ->Event_PU;
+            end 
+          end
+        end
+        2'b01 :
+        begin
+          if (pu_tmp === 1'b0)
+          begin
+            if (io === 1'b0)
+              io_e <= 1'b0;
+            else
+            begin
+              if (io_e !== 1'bz)
+                io_e <= 1'bz;
+              else
+              begin
+                #0 ->Event_PD;
+              end
+            end
+          end
+	  else if (pu_tmp === 1'b1)
+            io_e <= 1'bz; 
+	  else
+            io_e <= 1'bx; 
+	end
+        2'b00,
+        2'b11 :
+        begin
+          io_e <= 1'bz; 
+        end
+        default : 
+	begin
+          io_e <= 1'bx; 	 
+	end
+      endcase 
+    end
+  end
+
+  always @(io)
+  begin 
+    if (e_tmp===1'b0)
+    begin
+      case ({pu_tmp1,pd_tmp})
+        2'b10 :
+        begin
+          if (io===1'b1)
+          begin
+            disable BlockPU;
+            io_e = 1'b1;
+          end
+          else if (io===1'b0)
+          begin
+            disable BlockPU;
+            io_e = 1'bz;
+          end
+          else if (io===1'bx)
+          begin
+            disable BlockPU;
+            io_e = 1'bz;
+          end
+          else if (io===1'bz)
+          begin
+            disable BlockPU;
+            io_e = 1'bz;
+            #0 ->Event_PU;
+          end
+        end
+        2'b01 :
+        begin
+          if (pu_tmp === 1'b0)
+          begin
+            if (io===1'b0)
+            begin
+              disable BlockPD;
+              io_e = 1'b0;
+            end
+            else if (io===1'b1)
+            begin
+              disable BlockPD;
+              io_e = 1'bz;
+            end
+            else if (io===1'bx)
+            begin
+              disable BlockPD;
+              io_e = 1'bz;
+            end
+            else if (io===1'bz)
+            begin
+              disable BlockPD;
+              io_e = 1'bz;
+              #0 ->Event_PD;
+            end
+          end
+	  else if (pu_tmp === 1'b1) 
+            io_e <= 1'bz; 
+	  else
+            io_e <= 1'bx; 
+        end
+        2'b00,
+        2'b11 :
+        begin
+          // do nothing;
+        end
+        default : 
+        begin
+	  io_e = 1'bx; 	 
+        end
+      endcase
+    end
+  end
+
+  always @(Event_DisableAll)
+  begin:BlockDisableAll
+    disable BlockPU;
+    disable BlockPD;
+  end
+
+  always @(Event_DisableAll1)
+  begin:BlockDisableAll1
+    disable BlockPU1;
+    disable BlockPD1;
+  end
+
+  always @(Event_PU)
+  begin:BlockPU
+    io_e = #THZ 1'b1;
+  end
+
+  always @(Event_PU1)
+  begin:BlockPU1
+   io_e1 = #THZ 1'b1;
+  end
+
+  always @(Event_PD)
+  begin:BlockPD
+    io_e = #THZ 1'b0;
+  end
+
+  always @(Event_PD1)
+  begin:BlockPD1
+    io_e1 = #THZ 1'b0;
+  end
+
+`endif
+`endprotect
+endmodule
+///////////////////////////////////////////////
+// Cell Name : pullup_down_IO_PSCN
+// Cell Type : Primitive
+// Version   : 1.4
+// Revised on: 3/19 '03
+///////////////////////////////////////////////
+module  pullup_down_IO_PSCN (o, io, i, e, pu, pd, pscn, ieb);
+
+   input i, e, pu, pd, pscn, ieb;
+   inout io;
+   output o;
+   wire io1_tmp;
+
+`protect
+
+`ifdef ftc_gatelevel
+   supply1 vcc;
+
+   buf    gb(e_tmp, e);
+   buf    gc(pscn_tmp, pscn);
+   and    gd(e_pscn, e_tmp, pscn_tmp);
+   bufif1 g1(io1, i, e_pscn);
+   not    ge(pscnb, pscn_tmp);
+   or     gf(pu_tmp, pu, pscnb);
+   and    gg(pd_tmp, pd, pscn_tmp);
+   not    g2(pub, pu_tmp);
+   not    g3(pdb, pd_tmp);
+   and    g4(pupd, pu, pd);
+   and    g5(pu_pd_, pub, pdb);
+   or     g6(pcon, pupd, pu_pd_);
+   or     g7(pull_down1, pdb, pu);
+   rpmos  g8(io1_tmp, pull_down1, pcon);  //-- pull level
+   rnmos  g9(io1, io1_tmp, vcc);  //-- added for down scale to weak level   
+   nmos   ga(io,io1,vcc);
+   or     gh(o_tmp, io, ieb);
+   and    gi(o, o_tmp, pscn_tmp);
+   
+`else
+
+`ifdef ftc_verify
+   parameter THZ   = 4;
+`else
+   parameter THZ   = 399999.9;
+`endif
+
+  supply1 vcc;
+  reg  io_e;
+  reg o;
+  wire io_i, ne;
+  wire e_tmp,pu_tmp,pd_tmp;
+  wire io_i_tmp;
+
+  event Event_PU,
+        Event_PD,
+        Event_DisableAll;
+
+  buf  g1 (pu_tmp, pu);
+  buf  g2 (pd_tmp, pd);
+  buf  g3 (e_tmp, e);
+  buf  g4 (pscn_tmp, pscn);
+  and  b1 (e_pscn, e_tmp, pscn_tmp);
+
+  bufif1  g5 (io_i, i, e_pscn); //-- when e=0; io_i=HiZ
+  not     g6 (ne, e_pscn);
+  rnmos   g7 (io_i_tmp, io_e, ne);  //-- pull level;pass io_e to io_i when e=0
+  rnmos   g8 (io_i, io_i_tmp, vcc);  //-- added for down scale to weak level; i has higher priority than io_e
+  nmos #0.1 g9 (io, io_i, vcc);
+
+  always @(io or e_tmp or pu_tmp or pd_tmp or pscn_tmp or ieb)
+  begin
+    if (pscn_tmp == 1'b0)
+      o <= 1'bx;
+    else
+      o = io | ieb; 
+  end
+
+  always @(e_tmp or pu_tmp or pd_tmp or pscn_tmp)
+  begin
+    ->Event_DisableAll;
+    if (pscn_tmp == 1'b0)
+    begin
+      if (io == 1'b1)
+        io_e <= 1'b1;
+      else
+      begin
+        if (io_e !== 1'bz)
+          io_e <= 1'bz;
+        else
+        begin
+          #0 ->Event_PU;
+        end 
+      end
+    end
+    else
+    begin
+      if (e_tmp == 1'b0)
+      begin
+        case ({pu_tmp,pd_tmp,pscn_tmp})
+          3'b101 :
+          begin
+            if (io == 1'b1)
+              io_e <= 1'b1;
+            else
+            begin
+              if (io_e !== 1'bz)
+                io_e <= 1'bz;
+              else
+              begin
+  	      #0 ->Event_PU;
+              end 
+            end
+          end
+          3'b011 :
+          begin
+            if (io == 1'b0)
+              io_e <= 1'b0;
+            else
+            begin
+              if (io_e !== 1'bz)
+                io_e <= 1'bz;
+              else
+              begin
+                #0 ->Event_PD;
+              end
+            end
+          end
+          3'b001,
+          3'b111 :
+          begin
+            io_e <= 1'bz; 
+          end
+          default : 
+  	  begin
+            io_e <= 1'bx; 	 
+  	  end
+        endcase 
+      end
+    end
+  end
+
+  always @(io)
+  begin
+    if (pscn_tmp == 1'b0)
+    begin
+      if (io == 1'b1)
+      begin
+        disable BlockPU;
+        io_e = 1'b1;
+      end
+      else if (io == 1'b0)
+      begin
+        disable BlockPU;
+        io_e = 1'bz;
+      end
+      else if (io===1'bz)
+      begin
+        disable BlockPU;
+        io_e = 1'bz;
+        #0 ->Event_PU;
+      end
+    end
+    else
+    begin
+      if (e_tmp==1'b0)
+      begin
+        case ({pu_tmp,pd_tmp,pscn_tmp})
+          3'b101 :
+          begin
+            if (io===1'b1)
+            begin
+              disable BlockPU;
+              io_e = 1'b1;
+            end
+            else if (io===1'b0)
+            begin
+              disable BlockPU;
+              io_e = 1'bz;
+            end
+            else if (io===1'bx)
+            begin
+              disable BlockPU;
+              io_e = 1'bz;
+            end
+            else if (io===1'bz)
+            begin
+              disable BlockPU;
+              io_e = 1'bz;
+              #0 ->Event_PU;
+            end
+          end
+          3'b011 :
+          begin
+            if (io===1'b0)
+            begin
+              disable BlockPD;
+              io_e = 1'b0;
+            end
+            else if (io===1'b1)
+            begin
+              disable BlockPD;
+              io_e = 1'bz;
+            end
+            else if (io===1'bx)
+            begin
+              disable BlockPD;
+              io_e = 1'bz;
+            end
+            else if (io===1'bz)
+            begin
+              disable BlockPD;
+              io_e = 1'bz;
+              #0 ->Event_PD;
+            end
+          end
+          3'b001,
+          3'b111 :
+          begin
+            // do nothing;
+          end
+          default : 
+          begin
+  	  io_e = 1'bx; 	 
+          end
+        endcase
+      end
+    end
+  end
+
+  always @(Event_DisableAll)
+  begin:BlockDisableAll
+    disable BlockPU;
+    disable BlockPD;
+  end
+
+  always @(Event_PU)
+  begin:BlockPU
+    io_e = #THZ 1'b1;
+  end
+
+  always @(Event_PD)
+  begin:BlockPD
+    io_e = #THZ 1'b0;
+  end
+
+`endif
+`endprotect
+endmodule
+///////////////////////////////////////////////
+// Cell Name : pullup_down_IO
+// Cell Type : Primitive
+// Version   : 1.4
+// Revised on: 3/19 '03
+///////////////////////////////////////////////
+module  pullup_down_IO (io, i, e, pu, pd);
+
+   input i, e, pu, pd;
+   inout io;
+   wire io1_tmp;
+
+`protect
+
+`ifdef ftc_gatelevel
+   supply1 vcc;
+
+   bufif1 g1(io1, i, e);
+   not    g2(pub, pu);
+   not    g3(pdb, pd);
+   and    g4(pupd, pu, pd);
+   and    g5(pu_pd_, pub, pdb);
+   or     g6(pcon, pupd, pu_pd_);
+   or     g7(pull_down1, pdb, pu);
+   rpmos  g8(io1_tmp, pull_down1, pcon);  //-- pull level
+   rnmos  g9(io1, io1_tmp, vcc);  //-- added for down scale to weak level   
+   nmos   ga(io,io1,vcc);
+`else
+
+`ifdef ftc_verify
+   parameter THZ   = 4;
+`else
+   parameter THZ   = 399999.9;
+`endif
+
+  supply1 vcc;
+  reg  io_e;
+  wire io_i, ne;
+  wire e_tmp,pu_tmp,pd_tmp;
+  wire io_i_tmp;
+
+  event Event_PU,
+        Event_PD,
+        Event_DisableAll;
+
+  buf  g1 (pu_tmp, pu);
+  buf  g2 (pd_tmp, pd);
+  buf  g3 (e_tmp, e);
+
+  bufif1  g4 (io_i, i, e_tmp);
+  not     g5 (ne, e_tmp);
+  rnmos   g6 (io_i_tmp, io_e, ne);  //-- pull level
+  rnmos   g7 (io_i, io_i_tmp, vcc);  //-- added for down scale to weak level   
+  nmos #0.1 g8 (io,   io_i, vcc);
+
+  always @(e_tmp or pu_tmp or pd_tmp)
+  begin
+    ->Event_DisableAll;
+    if (e_tmp == 1'b0)
+    begin
+      case ({pu_tmp,pd_tmp})
+        2'b10 :
+        begin
+          if (io == 1'b1)
+            io_e <= 1'b1;
+          else
+          begin
+            if (io_e !== 1'bz)
+              io_e <= 1'bz;
+            else
+            begin
+	      #0 ->Event_PU;
+            end 
+          end
+        end
+        2'b01 :
+        begin
+          if (io == 1'b0)
+            io_e <= 1'b0;
+          else
+          begin
+            if (io_e !== 1'bz)
+              io_e <= 1'bz;
+            else
+            begin
+              #0 ->Event_PD;
+            end
+          end
+        end
+        2'b00,
+        2'b11 :
+        begin
+          io_e <= 1'bz; 
+        end
+        default : 
+	begin
+          io_e <= 1'bx; 	 
+	end
+      endcase 
+    end
+  end
+
+  always @(io)
+  begin 
+    if (e_tmp==1'b0)
+    begin
+      case ({pu_tmp,pd_tmp})
+        2'b10 :
+        begin
+          if (io===1'b1)
+          begin
+            disable BlockPU;
+            io_e = 1'b1;
+          end
+          else if (io===1'b0)
+          begin
+            disable BlockPU;
+            io_e = 1'bz;
+          end
+          else if (io===1'bx)
+          begin
+            disable BlockPU;
+            io_e = 1'bz;
+          end
+          else if (io===1'bz)
+          begin
+            disable BlockPU;
+            io_e = 1'bz;
+            #0 ->Event_PU;
+          end
+        end
+        2'b01 :
+        begin
+          if (io===1'b0)
+          begin
+            disable BlockPD;
+            io_e = 1'b0;
+          end
+          else if (io===1'b1)
+          begin
+            disable BlockPD;
+            io_e = 1'bz;
+          end
+          else if (io===1'bx)
+          begin
+            disable BlockPD;
+            io_e = 1'bz;
+          end
+          else if (io===1'bz)
+          begin
+            disable BlockPD;
+            io_e = 1'bz;
+            #0 ->Event_PD;
+          end
+        end
+        2'b00,
+        2'b11 :
+        begin
+          // do nothing;
+        end
+        default : 
+        begin
+	  io_e = 1'bx; 	 
+        end
+      endcase
+    end
+  end
+
+  always @(Event_DisableAll)
+  begin:BlockDisableAll
+    disable BlockPU;
+    disable BlockPD;
+  end
+
+  always @(Event_PU)
+  begin:BlockPU
+    io_e = #THZ 1'b1;
+  end
+
+  always @(Event_PD)
+  begin:BlockPD
+    io_e = #THZ 1'b0;
+  end
+
+`endif
+`endprotect
+endmodule
+///////////////////////////////////////////////
+// Cell Name : pullup_down_keep_IO
+// Cell Type : Primitive
+// Version   : 1.5
+// Revised on: 5/12 '03
+///////////////////////////////////////////////
+
+module  pullup_down_keep_IO_03us (io, i, e, pu, pd);
+
+   input i, e, pu, pd;
+   inout io;
+   wire io1_tmp;
+
+`protect
+
+`ifdef ftc_gatelevel
+   supply1 vcc;
+
+   bufif1 g1(io1, i, e);
+   not    g2(pub, pu);
+   not    g3(pdb, pd);
+   and    g4(pupd, pu, pd);
+   and    g5(pu_pd_, pub, pdb);
+   or     g6(pcon, pupd, pu_pd_);
+   or     g7(pull_down1, pdb, pu);
+   rpmos  g8(io1_tmp, pull_down1, pcon);  //-- pull level
+   rnmos  g9(io1, io1_tmp, vcc);  //-- added for down scale to weak level   
+
+   //-- bus holder for keep function --//
+   buf    g10 (z,io1);
+   buf    g11 (H,z);
+   rnmos  g12 (io1, H, pupd);
+
+   nmos   g13(io,io1,vcc);
+`else
+
+`ifdef ftc_verify
+   parameter THZ   = 4;
+   parameter THZ_PD   = 4;
+`else
+   parameter THZ   = 399999.9;
+   parameter THZ_PD   = 30000.0;
+`endif
+
+   supply1 vcc;
+   reg  io_e;
+   wire io_i, ne;
+   wire e_tmp,pu_tmp,pd_tmp;
+   wire io_i_tmp;
+
+   event Event_PU,
+         Event_PD,
+         Event_KEEP,
+         Event_DisableAll;
+
+   buf  g1 (pu_tmp, pu);
+   buf  g2 (pd_tmp, pd);
+   buf  g3 (e_tmp, e);
+
+   bufif1  g4 (io_i, i, e_tmp);
+   not     g5 (ne, e_tmp);
+   rnmos   g6 (io_i_tmp, io_e, ne);  //-- pull level
+   rnmos   g7 (io_i, io_i_tmp, vcc);  //-- added for down scale to weak level   
+   nmos #0.1 g8 (io,   io_i, vcc);
+
+   always @(e_tmp or pu_tmp or pd_tmp)
+   begin
+     ->Event_DisableAll;
+     if (e_tmp == 1'b0)
+     begin
+       case ({pu_tmp,pd_tmp})
+         2'b10 :
+         begin
+           if (io == 1'b1)
+             io_e <= 1'b1;
+           else
+           begin
+             if (io_e !== 1'bz)
+               io_e <= 1'bz;
+             else
+             begin
+               #0 ->Event_PU;
+             end 
+           end
+         end
+         2'b01 :
+         begin
+           if (io == 1'b0)
+             io_e <= 1'b0;
+           else
+           begin
+             if (io_e !== 1'bz)
+               io_e <= 1'bz;
+             else
+             begin
+               #0 ->Event_PD;
+             end
+           end
+         end
+         2'b00 :
+         begin
+           io_e <= 1'bz;
+         end
+         2'b11 :
+         begin
+           #0 ->Event_KEEP;
+         end
+         default : 
+	 begin
+	   io_e <= 1'bx; 	 
+	 end
+       endcase 
+     end
+   end
+
+   always @(io)
+   begin 
+     if (e_tmp==1'b0)
+     begin
+       case ({pu_tmp,pd_tmp})
+         2'b10 :
+         begin
+           if (io===1'b1)
+           begin
+             disable BlockPU;
+             io_e = 1'b1;
+           end
+           else if (io===1'b0)
+           begin
+             disable BlockPU;
+             io_e = 1'bz;
+           end
+           else if (io===1'bx)
+           begin
+             disable BlockPU;
+             io_e = 1'bz;
+           end
+           else if (io===1'bz)
+           begin
+             disable BlockPU;
+             io_e = 1'bz;
+             #0 ->Event_PU;
+           end
+         end
+         2'b01 :
+         begin
+           if (io===1'b0)
+           begin
+             disable BlockPD;
+             io_e = 1'b0;
+           end
+           else if (io===1'b1)
+           begin
+             disable BlockPD;
+             io_e = 1'bz;
+           end
+           else if (io===1'bx)
+           begin
+             disable BlockPD;
+             io_e = 1'bz;
+           end
+           else if (io===1'bz)
+           begin
+             disable BlockPD;
+             io_e = 1'bz;
+             #0 ->Event_PD;
+           end
+         end
+         2'b00 :
+         begin
+           io_e <= 1'bz;
+         end
+         2'b11 :
+         begin
+           #0 ->Event_KEEP;
+         end
+         default : 
+	 begin
+	   io_e = 1'bx; 	 
+	 end
+       endcase
+     end
+   end
+
+   always @(Event_DisableAll)
+   begin:BlockDisableAll
+     disable BlockPU;
+     disable BlockPD;
+     disable BlockKEEP;
+   end
+
+   always @(Event_PU)
+   begin:BlockPU
+     io_e = #THZ 1'b1;
+   end
+
+   always @(Event_PD)
+   begin:BlockPD
+     io_e = #THZ_PD 1'b0;
+   end
+
+   always @(Event_KEEP)
+   begin:BlockKEEP
+     io_e = io;
+   end
+
+`endif
+`endprotect
+endmodule
+///////////////////////////////////////////////
+// Cell Name : pullup_down_keep_IO_IE
+// Cell Type : Primitive
+// Version   : 1.2
+// Revised on: 5/12 '03
+///////////////////////////////////////////////
+
+module  pullup_down_keep_IO_IE (io, i, e, ie, pu, pd);
+
+   input i, e, ie, pu, pd;
+   inout io;
+
+`protect
+
+`ifdef ftc_gatelevel
+
+`else
+
+  `ifdef ftc_verify
+     parameter THZ   = 4;
+  `else
+     parameter THZ   = 399999.9;
+  `endif
+
+   supply1 vcc;
+   reg  io_e;
+   wire io_i, ne;
+   wire e_tmp,pu_tmp,pd_tmp;
+   wire io_i_tmp;
+
+   event Event_PU,
+         Event_PD,
+         Event_KEEP,
+         Event_DisableAll;
+
+   buf  b1 (pu_tmp, pu);
+   buf  b2 (pd_tmp, pd);
+   buf  b3 (e_tmp, e);
+   buf  b4 (ie_tmp, ie);
+
+   bufif1  g4 (io_i, i, e_tmp);
+   not     g5 (ne, e_tmp);
+   rnmos   g6 (io_i_tmp, io_e, ne);  //-- pull level
+   rnmos   g7 (io_i, io_i_tmp, vcc);  //-- added for down scale to weak level   
+   nmos #0.1 g8 (io,   io_i, vcc);
+
+   always @(e_tmp or ie_tmp or pu_tmp or pd_tmp)
+   begin
+     ->Event_DisableAll;
+     if (e_tmp == 1'b0)
+     begin
+       case ({pu_tmp,pd_tmp,ie_tmp})
+         3'b100 ,
+	 3'b101 ,
+         3'b10z ,
+	 3'b10x :
+	 begin
+           if (io == 1'b1)
+             io_e <= 1'b1;
+           else
+           begin
+             if (io_e !== 1'bz)
+               io_e <= 1'bz;
+             else
+             begin
+               #0 ->Event_PU;
+             end 
+           end
+         end
+         3'b010 ,
+	 3'b011 ,
+         3'b01z ,
+	 3'b01x ,
+	 3'b110 :
+         begin
+           if (io == 1'b0)
+             io_e <= 1'b0;
+           else
+           begin
+             if (io_e !== 1'bz)
+               io_e <= 1'bz;
+             else
+             begin
+               #0 ->Event_PD;
+             end
+           end
+         end
+         3'b000 ,
+	 3'b001 ,
+         3'b00z ,
+	 3'b00x :
+         begin
+           io_e <= 1'bz;
+         end
+         3'b111 :
+         begin
+           #0 ->Event_KEEP;
+         end
+         default : 
+	 begin
+	   io_e <= 1'bx; 	 
+	 end
+       endcase 
+     end
+   end
+
+   always @(io)
+   begin 
+     if (e_tmp==1'b0)
+     begin
+       case ({pu_tmp,pd_tmp,ie_tmp})
+         3'b100 ,
+	 3'b101 ,
+         3'b10z ,
+	 3'b10x :
+         begin
+           if (io===1'b1)
+           begin
+             disable BlockPU;
+             io_e = 1'b1;
+           end
+           else if (io===1'b0)
+           begin
+             disable BlockPU;
+             io_e = 1'bz;
+           end
+           else if (io===1'bx)
+           begin
+             disable BlockPU;
+             io_e = 1'bz;
+           end
+           else if (io===1'bz)
+           begin
+             disable BlockPU;
+             io_e = 1'bz;
+             #0 ->Event_PU;
+           end
+         end
+         3'b010 ,
+	 3'b011 ,
+         3'b01z ,
+	 3'b01x ,
+	 3'b110 :
+         begin
+           if (io===1'b0)
+           begin
+             disable BlockPD;
+             io_e = 1'b0;
+           end
+           else if (io===1'b1)
+           begin
+             disable BlockPD;
+             io_e = 1'bz;
+           end
+           else if (io===1'bx)
+           begin
+             disable BlockPD;
+             io_e = 1'bz;
+           end
+           else if (io===1'bz)
+           begin
+             disable BlockPD;
+             io_e = 1'bz;
+             #0 ->Event_PD;
+           end
+         end
+         3'b000 ,
+	 3'b001 ,
+         3'b00z ,
+	 3'b00x :
+         begin
+           io_e <= 1'bz;
+         end
+         3'b111 :
+         begin
+           #0 ->Event_KEEP;
+         end
+         default : 
+	 begin
+	   io_e = 1'bx; 	 
+	 end
+       endcase
+     end
+   end
+
+   always @(Event_DisableAll)
+   begin:BlockDisableAll
+     disable BlockPU;
+     disable BlockPD;
+     disable BlockKEEP;
+   end
+
+   always @(Event_PU)
+   begin:BlockPU
+     io_e = #THZ 1'b1;
+   end
+
+   always @(Event_PD)
+   begin:BlockPD
+     io_e = #THZ 1'b0;
+   end
+
+   always @(Event_KEEP)
+   begin:BlockKEEP
+     io_e = io;
+   end
+
+`endif   
+`endprotect
+endmodule
+///////////////////////////////////////////////
+// Cell Name : pullup_down_keep_IO_IE
+// Cell Type : Primitive
+// Version   : 1.2
+// Revised on: 5/12 '03
+///////////////////////////////////////////////
+
+module  pullup_down_keep_IO_IG (io, i, e, ig, pu, pd);
+
+   input i, e, ig, pu, pd;
+   inout io;
+
+`protect
+
+`ifdef ftc_gatelevel
+
+`else
+
+  `ifdef ftc_verify
+     parameter THZ   = 4;
+  `else
+     parameter THZ   = 399999.9;
+  `endif
+
+   supply1 vcc;
+   reg  io_e;
+   wire io_i, ne;
+   wire e_tmp,pu_tmp,pd_tmp;
+   wire io_i_tmp;
+
+   event Event_PU,
+         Event_PD,
+         Event_KEEP,
+         Event_DisableAll;
+
+   buf  b1 (pu_tmp, pu);
+   buf  b2 (pd_tmp, pd);
+   buf  b3 (e_tmp, e);
+   buf  b4 (ig_tmp, ig);
+
+   bufif1  g4 (io_i, i, e_tmp);
+   not     g5 (ne, e_tmp);
+   rnmos   g6 (io_i_tmp, io_e, ne);  //-- pull level
+   rnmos   g7 (io_i, io_i_tmp, vcc);  //-- added for down scale to weak level   
+   nmos #0.1 g8 (io,   io_i, vcc);
+
+   always @(e_tmp or ig_tmp or pu_tmp or pd_tmp)
+   begin
+     ->Event_DisableAll;
+     if (e_tmp == 1'b0)
+     begin
+       case ({pu_tmp,pd_tmp,ig_tmp})
+         3'b100 ,
+	 3'b101 ,
+         3'b10z ,
+	 3'b10x :
+	 begin
+           if (io == 1'b1)
+             io_e <= 1'b1;
+           else
+           begin
+             if (io_e !== 1'bz)
+               io_e <= 1'bz;
+             else
+             begin
+               #0 ->Event_PU;
+             end 
+           end
+         end
+         3'b010 ,
+	 3'b011 ,
+         3'b01z ,
+	 3'b01x ,
+	 3'b111 :
+         begin
+           if (io == 1'b0)
+             io_e <= 1'b0;
+           else
+           begin
+             if (io_e !== 1'bz)
+               io_e <= 1'bz;
+             else
+             begin
+               #0 ->Event_PD;
+             end
+           end
+         end
+         3'b000 ,
+	 3'b001 ,
+         3'b00z ,
+	 3'b00x :
+         begin
+           io_e <= 1'bz;
+         end
+         3'b110 :
+         begin
+           #0 ->Event_KEEP;
+         end
+         default : 
+	 begin
+	   io_e <= 1'bx; 	 
+	 end
+       endcase 
+     end
+   end
+
+   always @(io)
+   begin 
+     if (e_tmp==1'b0)
+     begin
+       case ({pu_tmp,pd_tmp,ig_tmp})
+         3'b100 ,
+	 3'b101 ,
+         3'b10z ,
+	 3'b10x :
+         begin
+           if (io===1'b1)
+           begin
+             disable BlockPU;
+             io_e = 1'b1;
+           end
+           else if (io===1'b0)
+           begin
+             disable BlockPU;
+             io_e = 1'bz;
+           end
+           else if (io===1'bx)
+           begin
+             disable BlockPU;
+             io_e = 1'bz;
+           end
+           else if (io===1'bz)
+           begin
+             disable BlockPU;
+             io_e = 1'bz;
+             #0 ->Event_PU;
+           end
+         end
+         3'b010 ,
+	 3'b011 ,
+         3'b01z ,
+	 3'b01x ,
+	 3'b111 :
+         begin
+           if (io===1'b0)
+           begin
+             disable BlockPD;
+             io_e = 1'b0;
+           end
+           else if (io===1'b1)
+           begin
+             disable BlockPD;
+             io_e = 1'bz;
+           end
+           else if (io===1'bx)
+           begin
+             disable BlockPD;
+             io_e = 1'bz;
+           end
+           else if (io===1'bz)
+           begin
+             disable BlockPD;
+             io_e = 1'bz;
+             #0 ->Event_PD;
+           end
+         end
+         3'b000 ,
+	 3'b001 ,
+         3'b00z ,
+	 3'b00x :
+         begin
+           io_e <= 1'bz;
+         end
+         3'b110 :
+         begin
+           #0 ->Event_KEEP;
+         end
+         default : 
+	 begin
+	   io_e = 1'bx; 	 
+	 end
+       endcase
+     end
+   end
+
+   always @(Event_DisableAll)
+   begin:BlockDisableAll
+     disable BlockPU;
+     disable BlockPD;
+     disable BlockKEEP;
+   end
+
+   always @(Event_PU)
+   begin:BlockPU
+     io_e = #THZ 1'b1;
+   end
+
+   always @(Event_PD)
+   begin:BlockPD
+     io_e = #THZ 1'b0;
+   end
+
+   always @(Event_KEEP)
+   begin:BlockKEEP
+     io_e = io;
+   end
+
+`endif   
+`endprotect
+endmodule
+///////////////////////////////////////////////
+// Cell Name : pullup_down_keep_IO
+// Cell Type : Primitive
+// Version   : 1.5
+// Revised on: 5/12 '03
+///////////////////////////////////////////////
+
+module  pullup_down_keep_IO (io, i, e, pu, pd);
+
+   input i, e, pu, pd;
+   inout io;
+   wire io1_tmp;
+
+`protect
+
+`ifdef ftc_gatelevel
+   supply1 vcc;
+
+   bufif1 g1(io1, i, e);
+   not    g2(pub, pu);
+   not    g3(pdb, pd);
+   and    g4(pupd, pu, pd);
+   and    g5(pu_pd_, pub, pdb);
+   or     g6(pcon, pupd, pu_pd_);
+   or     g7(pull_down1, pdb, pu);
+   rpmos  g8(io1_tmp, pull_down1, pcon);  //-- pull level
+   rnmos  g9(io1, io1_tmp, vcc);  //-- added for down scale to weak level   
+
+   //-- bus holder for keep function --//
+   buf    g10 (z,io1);
+   buf    g11 (H,z);
+   rnmos  g12 (io1, H, pupd);
+
+   nmos   g13(io,io1,vcc);
+`else
+
+`ifdef ftc_verify
+   parameter THZ   = 4;
+`else
+   parameter THZ   = 399999.9;
+`endif
+
+   supply1 vcc;
+   reg  io_e;
+   wire io_i, ne;
+   wire e_tmp,pu_tmp,pd_tmp;
+   wire io_i_tmp;
+
+   event Event_PU,
+         Event_PD,
+         Event_KEEP,
+         Event_DisableAll;
+
+   buf  g1 (pu_tmp, pu);
+   buf  g2 (pd_tmp, pd);
+   buf  g3 (e_tmp, e);
+
+   bufif1  g4 (io_i, i, e_tmp);
+   not     g5 (ne, e_tmp);
+   rnmos   g6 (io_i_tmp, io_e, ne);  //-- pull level
+   rnmos   g7 (io_i, io_i_tmp, vcc);  //-- added for down scale to weak level   
+   nmos #0.1 g8 (io,   io_i, vcc);
+
+   always @(e_tmp or pu_tmp or pd_tmp)
+   begin
+     ->Event_DisableAll;
+     if (e_tmp == 1'b0)
+     begin
+       case ({pu_tmp,pd_tmp})
+         2'b10 :
+         begin
+           if (io == 1'b1)
+             io_e <= 1'b1;
+           else
+           begin
+             if (io_e !== 1'bz)
+               io_e <= 1'bz;
+             else
+             begin
+               #0 ->Event_PU;
+             end 
+           end
+         end
+         2'b01 :
+         begin
+           if (io == 1'b0)
+             io_e <= 1'b0;
+           else
+           begin
+             if (io_e !== 1'bz)
+               io_e <= 1'bz;
+             else
+             begin
+               #0 ->Event_PD;
+             end
+           end
+         end
+         2'b00 :
+         begin
+           io_e <= 1'bz;
+         end
+         2'b11 :
+         begin
+           #0 ->Event_KEEP;
+         end
+         default : 
+	 begin
+	   io_e <= 1'bx; 	 
+	 end
+       endcase 
+     end
+   end
+
+   always @(io)
+   begin 
+     if (e_tmp==1'b0)
+     begin
+       case ({pu_tmp,pd_tmp})
+         2'b10 :
+         begin
+           if (io===1'b1)
+           begin
+             disable BlockPU;
+             io_e = 1'b1;
+           end
+           else if (io===1'b0)
+           begin
+             disable BlockPU;
+             io_e = 1'bz;
+           end
+           else if (io===1'bx)
+           begin
+             disable BlockPU;
+             io_e = 1'bz;
+           end
+           else if (io===1'bz)
+           begin
+             disable BlockPU;
+             io_e = 1'bz;
+             #0 ->Event_PU;
+           end
+         end
+         2'b01 :
+         begin
+           if (io===1'b0)
+           begin
+             disable BlockPD;
+             io_e = 1'b0;
+           end
+           else if (io===1'b1)
+           begin
+             disable BlockPD;
+             io_e = 1'bz;
+           end
+           else if (io===1'bx)
+           begin
+             disable BlockPD;
+             io_e = 1'bz;
+           end
+           else if (io===1'bz)
+           begin
+             disable BlockPD;
+             io_e = 1'bz;
+             #0 ->Event_PD;
+           end
+         end
+         2'b00 :
+         begin
+           io_e <= 1'bz;
+         end
+         2'b11 :
+         begin
+           #0 ->Event_KEEP;
+         end
+         default : 
+	 begin
+	   io_e = 1'bx; 	 
+	 end
+       endcase
+     end
+   end
+
+   always @(Event_DisableAll)
+   begin:BlockDisableAll
+     disable BlockPU;
+     disable BlockPD;
+     disable BlockKEEP;
+   end
+
+   always @(Event_PU)
+   begin:BlockPU
+     io_e = #THZ 1'b1;
+   end
+
+   always @(Event_PD)
+   begin:BlockPD
+     io_e = #THZ 1'b0;
+   end
+
+   always @(Event_KEEP)
+   begin:BlockKEEP
+     io_e = io;
+   end
+
+`endif
+`endprotect
+endmodule
+///////////////////////////////////////////////
+// Cell Name : pullup_inv_IO
+// Cell Type : Primitive
+// Version   : 1.3
+// Revised on: 8/20 '02
+///////////////////////////////////////////////
+module  pullup_inv_IO (io, i, e);
+
+  input i, e;
+  inout io;
+
+`protect
+
+`ifdef ftc_gatelevel
+  tri1 io;
+
+  notif1 (io, i, e);
+`else
+
+  `ifdef ftc_verify
+     parameter THZ   = 4;
+  `else
+     parameter THZ   = 400000;
+  `endif
+
+   supply1 vcc;
+   reg  io_e, pre;
+   wire e_tmp, io_i, ne;
+   wire io_i_tmp;
+
+   event EventTHZ;
+
+// Function
+
+   buf      g1 (e_tmp, e);
+   notif1   g2 (io_i, i, e_tmp);
+   not      g3 (ne,   e_tmp);
+   rnmos    g4 (io_i_tmp, io_e, ne);  //-- pull level
+   rnmos    g5 (io_i, io_i_tmp, vcc);  //-- added for down scale to weak level   
+   nmos     g6 (io,   io_i, vcc);
+
+   always @(e_tmp)
+   begin
+     if (e_tmp == 1'b1)
+     begin
+       disable BlockTHZ;
+     end
+     else if (e_tmp == 1'b0)
+     begin
+       if (io == 1'b1)
+         io_e <= 1'b1;
+       else
+       begin
+         io_e <= 1'bz;
+       end
+     end
+   end
+
+   always @(io)
+   begin
+     if (e_tmp==1'b0)
+     begin
+       if (io===1'b1)
+       begin
+         disable BlockTHZ;
+         io_e = 1'b1;
+       end
+       else if (io===1'b0)
+       begin
+         disable BlockTHZ;
+         io_e = 1'bz;
+       end
+       else if (io===1'bx)
+       begin
+         disable BlockTHZ;
+         io_e = 1'bz;
+       end
+       else if (io===1'bz)
+       begin
+         disable BlockTHZ;
+         io_e = 1'bz;
+         #0 ->EventTHZ;
+       end
+     end
+   end
+
+   always @(EventTHZ)
+   begin:BlockTHZ
+     io_e = #THZ 1'b1;
+   end
+
+`endif
+`endprotect
+endmodule
+///////////////////////////////////////////////
+// Cell Name : pullup_IO
+// Cell Type : Primitive
+// Version   : 1.3
+// Revised on: 8/20 '02
+///////////////////////////////////////////////
+module  pullup_IO (io, i, e);
+
+  input i, e;
+  inout io;
+
+`protect
+
+`ifdef ftc_gatelevel
+  tri1 io;
+
+  bufif1 (io, i, e);
+`else
+
+  `ifdef ftc_verify
+     parameter THZ   = 4;
+  `else
+     parameter THZ   = 400000;
+  `endif
+
+   supply1 vcc;
+   reg  io_e, pre;
+   wire e_tmp, io_i, ne;
+   wire io_i_tmp;
+
+   event EventTHZ;
+
+// Function
+
+   buf      g1 (e_tmp, e);
+   bufif1   g2 (io_i, i, e_tmp);
+   not      g3 (ne,   e_tmp);
+   rnmos    g4 (io_i_tmp, io_e, ne);  //-- pull level
+   rnmos    g5 (io_i, io_i_tmp, vcc);  //-- added for down scale to weak level   
+   nmos     g6 (io,   io_i, vcc);
+
+   always @(e_tmp)
+   begin
+     if (e_tmp == 1'b1)
+     begin
+       disable BlockTHZ;
+     end
+     else if (e_tmp == 1'b0)
+     begin
+       if (io == 1'b1)
+         io_e <= 1'b1;
+       else
+       begin
+         io_e <= 1'bz;
+       end
+     end
+   end
+
+   always @(io)
+   begin
+     if (e_tmp==1'b0)
+     begin
+       if (io===1'b1)
+       begin
+         disable BlockTHZ;
+         io_e = 1'b1;
+       end
+       else if (io===1'b0)
+       begin
+         disable BlockTHZ;
+         io_e = 1'bz;
+       end
+       else if (io===1'bx)
+       begin
+         disable BlockTHZ;
+         io_e = 1'bz;
+       end
+       else if (io===1'bz)
+       begin
+         disable BlockTHZ;
+         io_e = 1'bz;
+         #0 ->EventTHZ;
+       end
+     end
+   end
+
+   always @(EventTHZ)
+   begin:BlockTHZ
+     io_e = #THZ 1'b1;
+   end
+`endif
+`endprotect
+endmodule
+///////////////////////////////////////////////
+// Cell Name : tffrb_udp
+// Cell Type : Primitive
+// Version   : 1.3
+// Date      : 11/02 2001
+// Reason    :
+//      1.3  : Modify protection method 
+//      1.2  : Deal with unknown ck.
+//      1.1  : Initial
+///////////////////////////////////////////////
+
+primitive   tffrb_udp (q, ck, rb, flag);
+//
+// TOGGLE FLIP FLOP WITH CLEAR/STANDARD DRIVE
+   output q;
+   reg q;
+   input ck, rb, flag;// Clock.
+
+
+`protect
+   table
+//    CK    RB  FLAG :   Qt : Qt+1
+       r     1     ? :     0 :     1;// Toggle condition.
+       r     1     ? :     1 :     0;
+       r     x     ? :     1 :     0;
+    (?0)     1     ? :     ? :     -;
+
+       // deal with clk "x"
+       b  (?1)     ? :     ? :     -;
+
+       ?     0     ? :     ? :     0;
+       ?     ?     * :     ? :     x;
+   endtable
+`endprotect
+endprimitive
+
+///////////////////////////////////////////////
+// Cell Name : tffrsb_udp
+// Cell Type : Primitive
+// Version   : 1.3
+// Date      : 11/02 2001
+// Reason    :
+//      1.3  : Modify protection method
+//      1.2  : Deal with unknown ck.
+//      1.1  : Initial
+///////////////////////////////////////////////
+
+primitive   tffrsb_udp(q, ck, rb, sb, flag);
+
+// TOGGLE FLIP FLOP WITH SB & RB
+   output q;
+   reg q;
+   input ck, sb, rb, flag;
+
+`protect
+   table
+//    CK    RB    SB  FLAG :   Qt : Qt+1
+       r     1     1     ? :     0 :     1;
+       r     1     1     ? :     1 :     0;
+       r     1     x     ? :     0 :     1;
+       r     x     1     ? :     1 :     0;
+    (?0)     1     1     ? :     ? :     -;
+
+       ?     0     0     ? :     ? :     0;
+       ?     0     1     ? :     ? :     0;
+       ?     1     0     ? :     ? :     1;
+       ?     0     x     ? :     ? :     0;
+
+     // deal with clk "x"
+       b  (?1)     1     ? :     ? :     -;
+       b     1  (?1)     ? :     ? :     -;
+
+       ?     ?     ?     * :     ? :     x;
+   endtable
+`endprotect
+endprimitive
+///////////////////////////////////////////////
+// Cell Name : tffsb_udp
+// Cell Type : Primitive
+// Version   : 1.3
+// Date      : 11/02 2001
+// Reason    :
+//      1.3  : Modify protection method
+//      1.2  : Deal with unknown ck.
+//      1.1  : Initial
+///////////////////////////////////////////////
+
+primitive   tffsb_udp(q, ck, sb, flag);
+//
+// TOGGLE FLIP FLOP WITH SB
+   output q;
+   reg q;
+   input ck, sb, flag;// Clock.
+
+`protect
+   table
+//    CK    SB  FLAG :   Qt : Qt+1
+       r     1     ? :     0 :     1;// Toggle condition.
+       r     1     ? :     1 :     0;
+       r     x     ? :     0 :     1;
+    (?0)     1     ? :     ? :     -;
+
+     // deal with clk "x"
+       b  (?1)     ? :     ? :     -;
+
+       ?     0     ? :     ? :     1;
+       ?     ?     * :     ? :     x;
+   endtable
+`endprotect
+endprimitive

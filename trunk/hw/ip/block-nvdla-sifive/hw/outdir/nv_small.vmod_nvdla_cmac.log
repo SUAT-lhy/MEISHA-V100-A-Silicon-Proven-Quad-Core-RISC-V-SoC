@@ -1,0 +1,61 @@
+command: cd vmod/nvdla/cmac;make PROJECT=nv_small 
+make[1]: Entering directory '/work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/nvdla/cmac'
+../../../tools/bin/vcp -i NV_NVDLA_cmac.v -o ../../../outdir/nv_small/vmod/nvdla/cmac/NV_NVDLA_cmac.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/cmac/NV_NVDLA_cmac.v ../../../outdir/nv_small/vmod/nvdla/cmac/NV_NVDLA_cmac.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_CMAC_core.v -o ../../../outdir/nv_small/vmod/nvdla/cmac/NV_NVDLA_CMAC_core.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/cmac/NV_NVDLA_CMAC_core.v ../../../outdir/nv_small/vmod/nvdla/cmac/NV_NVDLA_CMAC_core.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_CMAC_CORE_active.v -o ../../../outdir/nv_small/vmod/nvdla/cmac/NV_NVDLA_CMAC_CORE_active.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/cmac/NV_NVDLA_CMAC_CORE_active.v ../../../outdir/nv_small/vmod/nvdla/cmac/NV_NVDLA_CMAC_CORE_active.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_CMAC_CORE_cfg.v -o ../../../outdir/nv_small/vmod/nvdla/cmac/NV_NVDLA_CMAC_CORE_cfg.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/cmac/NV_NVDLA_CMAC_CORE_cfg.v ../../../outdir/nv_small/vmod/nvdla/cmac/NV_NVDLA_CMAC_CORE_cfg.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_CMAC_CORE_mac.v -o ../../../outdir/nv_small/vmod/nvdla/cmac/NV_NVDLA_CMAC_CORE_mac.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/cmac/NV_NVDLA_CMAC_CORE_mac.v ../../../outdir/nv_small/vmod/nvdla/cmac/NV_NVDLA_CMAC_CORE_mac.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_CMAC_CORE_rt_in.v -o ../../../outdir/nv_small/vmod/nvdla/cmac/NV_NVDLA_CMAC_CORE_rt_in.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/cmac/NV_NVDLA_CMAC_CORE_rt_in.v ../../../outdir/nv_small/vmod/nvdla/cmac/NV_NVDLA_CMAC_CORE_rt_in.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_CMAC_CORE_rt_out.v -o ../../../outdir/nv_small/vmod/nvdla/cmac/NV_NVDLA_CMAC_CORE_rt_out.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/cmac/NV_NVDLA_CMAC_CORE_rt_out.v ../../../outdir/nv_small/vmod/nvdla/cmac/NV_NVDLA_CMAC_CORE_rt_out.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_CMAC_CORE_slcg.v -o ../../../outdir/nv_small/vmod/nvdla/cmac/NV_NVDLA_CMAC_CORE_slcg.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/cmac/NV_NVDLA_CMAC_CORE_slcg.v ../../../outdir/nv_small/vmod/nvdla/cmac/NV_NVDLA_CMAC_CORE_slcg.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_CMAC_reg.v -o ../../../outdir/nv_small/vmod/nvdla/cmac/NV_NVDLA_CMAC_reg.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/cmac/NV_NVDLA_CMAC_reg.v ../../../outdir/nv_small/vmod/nvdla/cmac/NV_NVDLA_CMAC_reg.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_CMAC_REG_dual.v -o ../../../outdir/nv_small/vmod/nvdla/cmac/NV_NVDLA_CMAC_REG_dual.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/cmac/NV_NVDLA_CMAC_REG_dual.v ../../../outdir/nv_small/vmod/nvdla/cmac/NV_NVDLA_CMAC_REG_dual.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_CMAC_REG_single.v -o ../../../outdir/nv_small/vmod/nvdla/cmac/NV_NVDLA_CMAC_REG_single.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/cmac/NV_NVDLA_CMAC_REG_single.v ../../../outdir/nv_small/vmod/nvdla/cmac/NV_NVDLA_CMAC_REG_single.v.vcp 
+==============================================
+files are generated under /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/outdir/nv_small/vmod/nvdla/cmac
+==============================================
+make[1]: Leaving directory '/work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/nvdla/cmac'
+Processing NV_NVDLA_cmac.v into ../../../outdir/nv_small/vmod/nvdla/cmac/NV_NVDLA_cmac.v.vcp
+../../../outdir/nv_small/vmod/nvdla/cmac/NV_NVDLA_cmac.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/cmac/NV_NVDLA_cmac.v modified.
+Processing NV_NVDLA_CMAC_core.v into ../../../outdir/nv_small/vmod/nvdla/cmac/NV_NVDLA_CMAC_core.v.vcp
+../../../outdir/nv_small/vmod/nvdla/cmac/NV_NVDLA_CMAC_core.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/cmac/NV_NVDLA_CMAC_core.v modified.
+Processing NV_NVDLA_CMAC_CORE_active.v into ../../../outdir/nv_small/vmod/nvdla/cmac/NV_NVDLA_CMAC_CORE_active.v.vcp
+../../../outdir/nv_small/vmod/nvdla/cmac/NV_NVDLA_CMAC_CORE_active.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/cmac/NV_NVDLA_CMAC_CORE_active.v modified.
+Processing NV_NVDLA_CMAC_CORE_cfg.v into ../../../outdir/nv_small/vmod/nvdla/cmac/NV_NVDLA_CMAC_CORE_cfg.v.vcp
+../../../outdir/nv_small/vmod/nvdla/cmac/NV_NVDLA_CMAC_CORE_cfg.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/cmac/NV_NVDLA_CMAC_CORE_cfg.v modified.
+Processing NV_NVDLA_CMAC_CORE_mac.v into ../../../outdir/nv_small/vmod/nvdla/cmac/NV_NVDLA_CMAC_CORE_mac.v.vcp
+../../../outdir/nv_small/vmod/nvdla/cmac/NV_NVDLA_CMAC_CORE_mac.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/cmac/NV_NVDLA_CMAC_CORE_mac.v modified.
+Processing NV_NVDLA_CMAC_CORE_rt_in.v into ../../../outdir/nv_small/vmod/nvdla/cmac/NV_NVDLA_CMAC_CORE_rt_in.v.vcp
+../../../outdir/nv_small/vmod/nvdla/cmac/NV_NVDLA_CMAC_CORE_rt_in.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/cmac/NV_NVDLA_CMAC_CORE_rt_in.v modified.
+Processing NV_NVDLA_CMAC_CORE_rt_out.v into ../../../outdir/nv_small/vmod/nvdla/cmac/NV_NVDLA_CMAC_CORE_rt_out.v.vcp
+../../../outdir/nv_small/vmod/nvdla/cmac/NV_NVDLA_CMAC_CORE_rt_out.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/cmac/NV_NVDLA_CMAC_CORE_rt_out.v modified.
+Processing NV_NVDLA_CMAC_CORE_slcg.v into ../../../outdir/nv_small/vmod/nvdla/cmac/NV_NVDLA_CMAC_CORE_slcg.v.vcp
+../../../outdir/nv_small/vmod/nvdla/cmac/NV_NVDLA_CMAC_CORE_slcg.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/cmac/NV_NVDLA_CMAC_CORE_slcg.v modified.
+Processing NV_NVDLA_CMAC_reg.v into ../../../outdir/nv_small/vmod/nvdla/cmac/NV_NVDLA_CMAC_reg.v.vcp
+../../../outdir/nv_small/vmod/nvdla/cmac/NV_NVDLA_CMAC_reg.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/cmac/NV_NVDLA_CMAC_reg.v modified.
+Processing NV_NVDLA_CMAC_REG_dual.v into ../../../outdir/nv_small/vmod/nvdla/cmac/NV_NVDLA_CMAC_REG_dual.v.vcp
+../../../outdir/nv_small/vmod/nvdla/cmac/NV_NVDLA_CMAC_REG_dual.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/cmac/NV_NVDLA_CMAC_REG_dual.v modified.
+Processing NV_NVDLA_CMAC_REG_single.v into ../../../outdir/nv_small/vmod/nvdla/cmac/NV_NVDLA_CMAC_REG_single.v.vcp
+../../../outdir/nv_small/vmod/nvdla/cmac/NV_NVDLA_CMAC_REG_single.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/cmac/NV_NVDLA_CMAC_REG_single.v modified.

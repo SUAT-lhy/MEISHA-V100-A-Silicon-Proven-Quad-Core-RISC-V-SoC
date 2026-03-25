@@ -1,0 +1,27 @@
+CAPI=2:
+# Vendor 		: 
+# Author 		: ling
+# Filename 	:  
+# Date Created: 2022.04.26 
+# Version		: V1.0
+# File description	:
+# Revision History :
+name: "lowrisc:dv:uart_bind_lib:0.1"
+description: "uart bind lib DV UVM test"
+filesets:
+  files_dv:
+    depend:
+      - lowrisc:dut:top_pkg:0.1
+      - lowrisc:dv:uart_agent
+      - lowrisc:dv:bind_abs:0.1
+    files:
+      - uart_bind_if.sv
+      - uart_port_info.sv: {is_include_file: true}
+      - uart_intf_c.sv: {is_include_file: true}
+      - uart_bind_lib_pkg.sv
+    file_type: systemVerilogSource
+
+targets:
+  default:
+    filesets:
+      - files_dv

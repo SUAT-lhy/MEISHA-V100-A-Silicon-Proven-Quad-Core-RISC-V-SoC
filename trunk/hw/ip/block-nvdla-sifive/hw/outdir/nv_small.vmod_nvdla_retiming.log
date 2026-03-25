@@ -1,0 +1,46 @@
+command: cd vmod/nvdla/retiming;make PROJECT=nv_small 
+make[1]: Entering directory '/work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/nvdla/retiming'
+../../../tools/bin/vcp -i NV_NVDLA_RT_cacc2glb.v -o ../../../outdir/nv_small/vmod/nvdla/retiming/NV_NVDLA_RT_cacc2glb.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/retiming/NV_NVDLA_RT_cacc2glb.v ../../../outdir/nv_small/vmod/nvdla/retiming/NV_NVDLA_RT_cacc2glb.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_RT_cmac_a2cacc.v -o ../../../outdir/nv_small/vmod/nvdla/retiming/NV_NVDLA_RT_cmac_a2cacc.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/retiming/NV_NVDLA_RT_cmac_a2cacc.v ../../../outdir/nv_small/vmod/nvdla/retiming/NV_NVDLA_RT_cmac_a2cacc.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_RT_cmac_b2cacc.v -o ../../../outdir/nv_small/vmod/nvdla/retiming/NV_NVDLA_RT_cmac_b2cacc.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/retiming/NV_NVDLA_RT_cmac_b2cacc.v ../../../outdir/nv_small/vmod/nvdla/retiming/NV_NVDLA_RT_cmac_b2cacc.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_RT_csb2cacc.v -o ../../../outdir/nv_small/vmod/nvdla/retiming/NV_NVDLA_RT_csb2cacc.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/retiming/NV_NVDLA_RT_csb2cacc.v ../../../outdir/nv_small/vmod/nvdla/retiming/NV_NVDLA_RT_csb2cacc.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_RT_csb2cmac.v -o ../../../outdir/nv_small/vmod/nvdla/retiming/NV_NVDLA_RT_csb2cmac.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/retiming/NV_NVDLA_RT_csb2cmac.v ../../../outdir/nv_small/vmod/nvdla/retiming/NV_NVDLA_RT_csb2cmac.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_RT_csc2cmac_a.v -o ../../../outdir/nv_small/vmod/nvdla/retiming/NV_NVDLA_RT_csc2cmac_a.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/retiming/NV_NVDLA_RT_csc2cmac_a.v ../../../outdir/nv_small/vmod/nvdla/retiming/NV_NVDLA_RT_csc2cmac_a.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_RT_csc2cmac_b.v -o ../../../outdir/nv_small/vmod/nvdla/retiming/NV_NVDLA_RT_csc2cmac_b.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/retiming/NV_NVDLA_RT_csc2cmac_b.v ../../../outdir/nv_small/vmod/nvdla/retiming/NV_NVDLA_RT_csc2cmac_b.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_RT_sdp2nocif.v -o ../../../outdir/nv_small/vmod/nvdla/retiming/NV_NVDLA_RT_sdp2nocif.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/retiming/NV_NVDLA_RT_sdp2nocif.v ../../../outdir/nv_small/vmod/nvdla/retiming/NV_NVDLA_RT_sdp2nocif.v.vcp 
+==============================================
+files are generated under /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/outdir/nv_small/vmod/nvdla/retiming
+==============================================
+make[1]: Leaving directory '/work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/nvdla/retiming'
+Processing NV_NVDLA_RT_cacc2glb.v into ../../../outdir/nv_small/vmod/nvdla/retiming/NV_NVDLA_RT_cacc2glb.v.vcp
+../../../outdir/nv_small/vmod/nvdla/retiming/NV_NVDLA_RT_cacc2glb.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/retiming/NV_NVDLA_RT_cacc2glb.v modified.
+Processing NV_NVDLA_RT_cmac_a2cacc.v into ../../../outdir/nv_small/vmod/nvdla/retiming/NV_NVDLA_RT_cmac_a2cacc.v.vcp
+../../../outdir/nv_small/vmod/nvdla/retiming/NV_NVDLA_RT_cmac_a2cacc.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/retiming/NV_NVDLA_RT_cmac_a2cacc.v modified.
+Processing NV_NVDLA_RT_cmac_b2cacc.v into ../../../outdir/nv_small/vmod/nvdla/retiming/NV_NVDLA_RT_cmac_b2cacc.v.vcp
+../../../outdir/nv_small/vmod/nvdla/retiming/NV_NVDLA_RT_cmac_b2cacc.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/retiming/NV_NVDLA_RT_cmac_b2cacc.v modified.
+Processing NV_NVDLA_RT_csb2cacc.v into ../../../outdir/nv_small/vmod/nvdla/retiming/NV_NVDLA_RT_csb2cacc.v.vcp
+../../../outdir/nv_small/vmod/nvdla/retiming/NV_NVDLA_RT_csb2cacc.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/retiming/NV_NVDLA_RT_csb2cacc.v modified.
+Processing NV_NVDLA_RT_csb2cmac.v into ../../../outdir/nv_small/vmod/nvdla/retiming/NV_NVDLA_RT_csb2cmac.v.vcp
+../../../outdir/nv_small/vmod/nvdla/retiming/NV_NVDLA_RT_csb2cmac.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/retiming/NV_NVDLA_RT_csb2cmac.v modified.
+Processing NV_NVDLA_RT_csc2cmac_a.v into ../../../outdir/nv_small/vmod/nvdla/retiming/NV_NVDLA_RT_csc2cmac_a.v.vcp
+../../../outdir/nv_small/vmod/nvdla/retiming/NV_NVDLA_RT_csc2cmac_a.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/retiming/NV_NVDLA_RT_csc2cmac_a.v modified.
+Processing NV_NVDLA_RT_csc2cmac_b.v into ../../../outdir/nv_small/vmod/nvdla/retiming/NV_NVDLA_RT_csc2cmac_b.v.vcp
+../../../outdir/nv_small/vmod/nvdla/retiming/NV_NVDLA_RT_csc2cmac_b.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/retiming/NV_NVDLA_RT_csc2cmac_b.v modified.
+Processing NV_NVDLA_RT_sdp2nocif.v into ../../../outdir/nv_small/vmod/nvdla/retiming/NV_NVDLA_RT_sdp2nocif.v.vcp
+../../../outdir/nv_small/vmod/nvdla/retiming/NV_NVDLA_RT_sdp2nocif.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/retiming/NV_NVDLA_RT_sdp2nocif.v modified.

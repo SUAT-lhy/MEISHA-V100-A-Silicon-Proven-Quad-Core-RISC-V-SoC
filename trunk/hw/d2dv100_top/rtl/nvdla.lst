@@ -1,0 +1,3 @@
+//${MEISHAV100_ROOT}/hw/ip/block-nvdla-sifive/hw/syn/nvdla_syn_output/net/NV_nvdla.gv
+//-f ${MEISHAV100_ROOT}/hw/ip/block-nvdla-sifive/vsrc/small/src_files.lst
+-f ${MEISHAV100_ROOT}/hw/ip/block-nvdla-sifive/vsrc/small/src_files.new.lst

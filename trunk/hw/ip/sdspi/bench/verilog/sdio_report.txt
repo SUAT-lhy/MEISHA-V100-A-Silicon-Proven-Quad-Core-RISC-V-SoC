@@ -1,0 +1,181 @@
+
+Running all tests:
+----------------------------------------
+BLD-FAIL  2024/03/09 12:03:47 IVerilog  -- sdioio
+BLD-FAIL  2024/03/09 12:03:47 IVerilog  -- sdioddr
+BLD-FAIL  2024/03/09 12:03:47 IVerilog  -- sdio8x
+----------------------------------------
+Test run complete
+
+
+Running all tests:
+----------------------------------------
+BLD-FAIL  2024/03/09 12:12:08 IVerilog  -- sdioio
+BLD-FAIL  2024/03/09 12:12:08 IVerilog  -- sdioddr
+BLD-FAIL  2024/03/09 12:12:08 IVerilog  -- sdio8x
+----------------------------------------
+Test run complete
+
+
+Running all tests:
+----------------------------------------
+BLD-FAIL  2024/03/09 12:58:50 IVerilog  -- sdioio
+BLD-FAIL  2024/03/09 12:58:50 IVerilog  -- sdioddr
+BLD-FAIL  2024/03/09 12:58:50 IVerilog  -- sdio8x
+----------------------------------------
+Test run complete
+
+
+Running all tests:
+----------------------------------------
+BLD-FAIL  2024/03/09 13:07:22 IVerilog  -- sdioio
+BLD-FAIL  2024/03/09 13:07:22 IVerilog  -- sdioddr
+BLD-FAIL  2024/03/09 13:07:23 IVerilog  -- sdio8x
+----------------------------------------
+Test run complete
+
+
+Running all tests:
+----------------------------------------
+BLD-FAIL  2024/03/09 13:07:38 IVerilog  -- sdioio
+BLD-FAIL  2024/03/09 13:07:38 IVerilog  -- sdioddr
+BLD-FAIL  2024/03/09 13:07:38 IVerilog  -- sdio8x
+----------------------------------------
+Test run complete
+
+
+Running all tests:
+----------------------------------------
+BLD-FAIL  2024/03/09 13:07:56 IVerilog  -- sdioio
+BLD-FAIL  2024/03/09 13:07:56 IVerilog  -- sdioddr
+BLD-FAIL  2024/03/09 13:07:56 IVerilog  -- sdio8x
+----------------------------------------
+Test run complete
+
+
+Running all tests:
+----------------------------------------
+BLD-FAIL  2024/03/09 13:12:52 IVerilog  -- sdioio
+BLD-FAIL  2024/03/09 13:12:56 IVerilog  -- sdioddr
+BLD-FAIL  2024/03/09 13:12:59 IVerilog  -- sdio8x
+----------------------------------------
+Test run complete
+
+
+Running all tests:
+----------------------------------------
+BLD-FAIL  2024/03/09 13:16:11 IVerilog  -- sdioio
+BLD-FAIL  2024/03/09 13:16:15 IVerilog  -- sdioddr
+BLD-FAIL  2024/03/09 13:16:19 IVerilog  -- sdio8x
+----------------------------------------
+Test run complete
+
+
+Running all tests:
+----------------------------------------
+BLD-FAIL  2024/03/09 13:18:17 IVerilog  -- sdioio
+BLD-FAIL  2024/03/09 13:18:21 IVerilog  -- sdioddr
+BLD-FAIL  2024/03/09 13:18:24 IVerilog  -- sdio8x
+----------------------------------------
+Test run complete
+
+
+Running all tests:
+----------------------------------------
+BLD-FAIL  2024/03/09 13:20:33 IVerilog  -- sdioio
+BLD-FAIL  2024/03/09 13:20:38 IVerilog  -- sdioddr
+BLD-FAIL  2024/03/09 13:20:43 IVerilog  -- sdio8x
+----------------------------------------
+Test run complete
+
+
+Running all tests:
+----------------------------------------
+BLD-FAIL  2024/03/09 13:30:59 IVerilog  -- sdioio
+----------------------------------------
+Test run complete
+
+
+Running all tests:
+----------------------------------------
+BLD-FAIL  2024/03/09 13:31:26 IVerilog  -- sdioio
+----------------------------------------
+Test run complete
+
+
+Running all tests:
+----------------------------------------
+BLD-FAIL  2024/03/09 13:33:30 IVerilog  -- sdioio
+----------------------------------------
+Test run complete
+
+
+Running all tests:
+----------------------------------------
+BLD-FAIL  2024/03/09 13:37:30 IVerilog  -- sdioio
+----------------------------------------
+Test run complete
+
+
+Running all tests:
+----------------------------------------
+BLD-FAIL  2024/03/09 15:21:29 IVerilog  -- sdioio
+----------------------------------------
+Test run complete
+
+
+Running all tests:
+----------------------------------------
+BLD-FAIL  2024/03/09 15:23:36 IVerilog  -- sdioio
+----------------------------------------
+Test run complete
+
+
+Running all tests:
+----------------------------------------
+BLD-FAIL  2024/03/09 15:26:55 IVerilog  -- sdioio
+----------------------------------------
+Test run complete
+
+
+Running all tests:
+----------------------------------------
+BLD-FAIL  2024/03/09 15:27:11 IVerilog  -- sdioio
+----------------------------------------
+Test run complete
+
+
+Running all tests:
+----------------------------------------
+BLD-FAIL  2024/03/09 15:28:36 IVerilog  -- sdioio
+----------------------------------------
+Test run complete
+
+
+Running all tests:
+----------------------------------------
+BLD-FAIL  2024/03/09 15:31:46 IVerilog  -- sdioio
+----------------------------------------
+Test run complete
+
+
+Running all tests:
+----------------------------------------
+BLD-FAIL  2024/03/09 15:36:14 IVerilog  -- sdioio
+----------------------------------------
+Test run complete
+
+
+Running all tests:
+----------------------------------------
+BLD-FAIL  2024/03/09 15:39:10 IVerilog  -- sdioio
+----------------------------------------
+Test run complete
+
+
+Running all tests:
+----------------------------------------
+BLD-FAIL  2024/03/09 15:39:29 IVerilog  -- sdioio
+----------------------------------------
+Test run complete
+

@@ -1,0 +1,11 @@
+command: cd vmod/nvdla/cbuf;make PROJECT=nv_small 
+make[1]: Entering directory '/work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/nvdla/cbuf'
+../../../tools/bin/vcp -i NV_NVDLA_cbuf.v -o ../../../outdir/nv_small/vmod/nvdla/cbuf/NV_NVDLA_cbuf.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/cbuf/NV_NVDLA_cbuf.v ../../../outdir/nv_small/vmod/nvdla/cbuf/NV_NVDLA_cbuf.v.vcp 
+==============================================
+files are generated under /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/outdir/nv_small/vmod/nvdla/cbuf
+==============================================
+make[1]: Leaving directory '/work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/nvdla/cbuf'
+Processing NV_NVDLA_cbuf.v into ../../../outdir/nv_small/vmod/nvdla/cbuf/NV_NVDLA_cbuf.v.vcp
+../../../outdir/nv_small/vmod/nvdla/cbuf/NV_NVDLA_cbuf.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/cbuf/NV_NVDLA_cbuf.v modified.

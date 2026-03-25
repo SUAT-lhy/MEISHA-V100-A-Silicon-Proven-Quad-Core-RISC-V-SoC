@@ -1,0 +1,27 @@
+// Vendor 		: 
+// Author 		: ling
+// Filename 	: bus_checker 
+// Date Created: 2022.04.26 
+// Version		: V1.0
+// File description	:
+// Revision History :
+{
+  name: "axi_xbar"
+  // import_testplans: ["hw/dv/tools/dvsim/testplans/csr_testplan.hjson",
+  //                    "hw/dv/tools/dvsim/testplans/intr_test_testplan.hjson",
+  //                    "hw/dv/tools/dvsim/testplans/stress_all_with_reset_testplan.hjson",
+  //                    "hw/dv/tools/dvsim/testplans/tl_device_access_types_testplan.hjson"]
+  testpoints: [
+    {
+      name: random
+      desc: '''axi_xbar random test performs following steps for number of iterations
+            - Program zero to CTRL.active* Register(deactivate timer)
+            - Program random legal values in CFG*, TIMER_V_*, COMPARE_*, INTR_ENABLE*
+            - Program one to CTRL.active* (activate timer)
+            - Wait for number of cycles to have mTime>= mTimeCmp
+            - Check Interrupt state register and Interrupt signal (scoreboard logic)'''
+      milestone: V1
+      tests: ["axi_base_test"]
+    }
+  ]
+}

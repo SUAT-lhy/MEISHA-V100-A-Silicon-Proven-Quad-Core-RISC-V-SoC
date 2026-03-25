@@ -1,0 +1,12 @@
+command: cd spec/defs;make PROJECT=nv_small 
+make[1]: Entering directory '/work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/spec/defs'
+/usr/bin/cpp-4.8 -undef -nostdinc -P -C nv_small.spec -o /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/outdir/nv_small/spec/defs/project.def
+/usr/bin/python ../../tools/bin/defgen -i /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/outdir/nv_small/spec/defs/project.def -o /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/outdir/nv_small/spec/defs/project.h -b c
+/usr/bin/python ../../tools/bin/defgen -i /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/outdir/nv_small/spec/defs/project.def -o /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/outdir/nv_small/spec/defs/project.vh -b v
+/usr/bin/python ../../tools/bin/defgen -i /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/outdir/nv_small/spec/defs/project.def -o /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/outdir/nv_small/spec/defs/project.py -b py
+/usr/bin/python ../../tools/bin/defgen -i /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/outdir/nv_small/spec/defs/project.def -o /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/outdir/nv_small/spec/defs/project.mk -b mk
+/usr/bin/python ../../tools/bin/defgen -i /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/outdir/nv_small/spec/defs/project.def -o /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/outdir/nv_small/spec/defs/project.pm -b pm
+==============================================
+files are generated under /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/outdir/nv_small/spec/defs
+==============================================
+make[1]: Leaving directory '/work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/spec/defs'

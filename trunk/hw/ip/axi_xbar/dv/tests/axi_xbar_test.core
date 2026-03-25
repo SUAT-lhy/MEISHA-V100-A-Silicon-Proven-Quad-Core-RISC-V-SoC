@@ -1,0 +1,24 @@
+CAPI=2:
+# Vendor 		: 
+# Author 		: ling
+# Filename 	:  
+# Date Created: 2022.04.26 
+# Version		: V1.0
+# File description	:
+# Revision History :
+name: "lowrisc:dv:axi_xbar_test:0.1"
+description: "axi_xbar test DV UVM test"
+filesets:
+  files_dv:
+    depend:
+      - lowrisc:dv:amba_lib:0.1
+      - lowrisc:dv:bind_abs:0.1
+    files:
+      - axi_test_pkg.sv
+      - axi_base_test.sv: {is_include_file: true}
+    file_type: systemVerilogSource
+
+targets:
+  default:
+    filesets:
+      - files_dv

@@ -1,0 +1,101 @@
+command: cd vmod/fifos;make PROJECT=nv_small 
+make[1]: Entering directory '/work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/fifos'
+../../tools/bin/vcp -i NV_NVDLA_CDMA_WT_8ATMM_fifo.v -o ../../outdir/nv_small/vmod/fifos/NV_NVDLA_CDMA_WT_8ATMM_fifo.v.vcp -imacros ../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../vmod/plugins -Meperl ../../tools/bin/eperl -o ../../outdir/nv_small/vmod/fifos/NV_NVDLA_CDMA_WT_8ATMM_fifo.v ../../outdir/nv_small/vmod/fifos/NV_NVDLA_CDMA_WT_8ATMM_fifo.v.vcp 
+../../tools/bin/vcp -i NV_NVDLA_CDP_DP_data_fifo.v -o ../../outdir/nv_small/vmod/fifos/NV_NVDLA_CDP_DP_data_fifo.v.vcp -imacros ../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../vmod/plugins -Meperl ../../tools/bin/eperl -o ../../outdir/nv_small/vmod/fifos/NV_NVDLA_CDP_DP_data_fifo.v ../../outdir/nv_small/vmod/fifos/NV_NVDLA_CDP_DP_data_fifo.v.vcp 
+../../tools/bin/vcp -i NV_NVDLA_CDP_DP_intpinfo_fifo.v -o ../../outdir/nv_small/vmod/fifos/NV_NVDLA_CDP_DP_intpinfo_fifo.v.vcp -imacros ../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../vmod/plugins -Meperl ../../tools/bin/eperl -o ../../outdir/nv_small/vmod/fifos/NV_NVDLA_CDP_DP_intpinfo_fifo.v ../../outdir/nv_small/vmod/fifos/NV_NVDLA_CDP_DP_intpinfo_fifo.v.vcp 
+../../tools/bin/vcp -i NV_NVDLA_CDP_DP_sumpd_fifo.v -o ../../outdir/nv_small/vmod/fifos/NV_NVDLA_CDP_DP_sumpd_fifo.v.vcp -imacros ../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../vmod/plugins -Meperl ../../tools/bin/eperl -o ../../outdir/nv_small/vmod/fifos/NV_NVDLA_CDP_DP_sumpd_fifo.v ../../outdir/nv_small/vmod/fifos/NV_NVDLA_CDP_DP_sumpd_fifo.v.vcp 
+../../tools/bin/vcp -i NV_NVDLA_CDP_RDMA_lat_fifo.v -o ../../outdir/nv_small/vmod/fifos/NV_NVDLA_CDP_RDMA_lat_fifo.v.vcp -imacros ../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../vmod/plugins -Meperl ../../tools/bin/eperl -o ../../outdir/nv_small/vmod/fifos/NV_NVDLA_CDP_RDMA_lat_fifo.v ../../outdir/nv_small/vmod/fifos/NV_NVDLA_CDP_RDMA_lat_fifo.v.vcp 
+../../tools/bin/vcp -i NV_NVDLA_CDP_RDMA_ro_fifo.v -o ../../outdir/nv_small/vmod/fifos/NV_NVDLA_CDP_RDMA_ro_fifo.v.vcp -imacros ../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../vmod/plugins -Meperl ../../tools/bin/eperl -o ../../outdir/nv_small/vmod/fifos/NV_NVDLA_CDP_RDMA_ro_fifo.v ../../outdir/nv_small/vmod/fifos/NV_NVDLA_CDP_RDMA_ro_fifo.v.vcp 
+../../tools/bin/vcp -i NV_NVDLA_CDP_WDMA_dat_fifo.v -o ../../outdir/nv_small/vmod/fifos/NV_NVDLA_CDP_WDMA_dat_fifo.v.vcp -imacros ../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../vmod/plugins -Meperl ../../tools/bin/eperl -o ../../outdir/nv_small/vmod/fifos/NV_NVDLA_CDP_WDMA_dat_fifo.v ../../outdir/nv_small/vmod/fifos/NV_NVDLA_CDP_WDMA_dat_fifo.v.vcp 
+../../tools/bin/vcp -i NV_NVDLA_PDP_RDMA_lat_fifo.v -o ../../outdir/nv_small/vmod/fifos/NV_NVDLA_PDP_RDMA_lat_fifo.v.vcp -imacros ../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../vmod/plugins -Meperl ../../tools/bin/eperl -o ../../outdir/nv_small/vmod/fifos/NV_NVDLA_PDP_RDMA_lat_fifo.v ../../outdir/nv_small/vmod/fifos/NV_NVDLA_PDP_RDMA_lat_fifo.v.vcp 
+../../tools/bin/vcp -i NV_NVDLA_PDP_RDMA_ro_fifo.v -o ../../outdir/nv_small/vmod/fifos/NV_NVDLA_PDP_RDMA_ro_fifo.v.vcp -imacros ../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../vmod/plugins -Meperl ../../tools/bin/eperl -o ../../outdir/nv_small/vmod/fifos/NV_NVDLA_PDP_RDMA_ro_fifo.v ../../outdir/nv_small/vmod/fifos/NV_NVDLA_PDP_RDMA_ro_fifo.v.vcp 
+../../tools/bin/vcp -i NV_NVDLA_PDP_SDPIN_ro_fifo.v -o ../../outdir/nv_small/vmod/fifos/NV_NVDLA_PDP_SDPIN_ro_fifo.v.vcp -imacros ../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../vmod/plugins -Meperl ../../tools/bin/eperl -o ../../outdir/nv_small/vmod/fifos/NV_NVDLA_PDP_SDPIN_ro_fifo.v ../../outdir/nv_small/vmod/fifos/NV_NVDLA_PDP_SDPIN_ro_fifo.v.vcp 
+../../tools/bin/vcp -i NV_NVDLA_PDP_WDMA_DAT_fifo.v -o ../../outdir/nv_small/vmod/fifos/NV_NVDLA_PDP_WDMA_DAT_fifo.v.vcp -imacros ../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../vmod/plugins -Meperl ../../tools/bin/eperl -o ../../outdir/nv_small/vmod/fifos/NV_NVDLA_PDP_WDMA_DAT_fifo.v ../../outdir/nv_small/vmod/fifos/NV_NVDLA_PDP_WDMA_DAT_fifo.v.vcp 
+../../tools/bin/vcp -i NV_NVDLA_SDP_BRDMA_cq_lib.v -o ../../outdir/nv_small/vmod/fifos/NV_NVDLA_SDP_BRDMA_cq_lib.v.vcp -imacros ../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../vmod/plugins -Meperl ../../tools/bin/eperl -o ../../outdir/nv_small/vmod/fifos/NV_NVDLA_SDP_BRDMA_cq_lib.v ../../outdir/nv_small/vmod/fifos/NV_NVDLA_SDP_BRDMA_cq_lib.v.vcp 
+../../tools/bin/vcp -i NV_NVDLA_SDP_BRDMA_lat_fifo_lib.v -o ../../outdir/nv_small/vmod/fifos/NV_NVDLA_SDP_BRDMA_lat_fifo_lib.v.vcp -imacros ../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../vmod/plugins -Meperl ../../tools/bin/eperl -o ../../outdir/nv_small/vmod/fifos/NV_NVDLA_SDP_BRDMA_lat_fifo_lib.v ../../outdir/nv_small/vmod/fifos/NV_NVDLA_SDP_BRDMA_lat_fifo_lib.v.vcp 
+../../tools/bin/vcp -i NV_NVDLA_SDP_ERDMA_cq_lib.v -o ../../outdir/nv_small/vmod/fifos/NV_NVDLA_SDP_ERDMA_cq_lib.v.vcp -imacros ../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../vmod/plugins -Meperl ../../tools/bin/eperl -o ../../outdir/nv_small/vmod/fifos/NV_NVDLA_SDP_ERDMA_cq_lib.v ../../outdir/nv_small/vmod/fifos/NV_NVDLA_SDP_ERDMA_cq_lib.v.vcp 
+../../tools/bin/vcp -i NV_NVDLA_SDP_ERDMA_lat_fifo_lib.v -o ../../outdir/nv_small/vmod/fifos/NV_NVDLA_SDP_ERDMA_lat_fifo_lib.v.vcp -imacros ../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../vmod/plugins -Meperl ../../tools/bin/eperl -o ../../outdir/nv_small/vmod/fifos/NV_NVDLA_SDP_ERDMA_lat_fifo_lib.v ../../outdir/nv_small/vmod/fifos/NV_NVDLA_SDP_ERDMA_lat_fifo_lib.v.vcp 
+../../tools/bin/vcp -i NV_NVDLA_SDP_MRDMA_cq_lib.v -o ../../outdir/nv_small/vmod/fifos/NV_NVDLA_SDP_MRDMA_cq_lib.v.vcp -imacros ../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../vmod/plugins -Meperl ../../tools/bin/eperl -o ../../outdir/nv_small/vmod/fifos/NV_NVDLA_SDP_MRDMA_cq_lib.v ../../outdir/nv_small/vmod/fifos/NV_NVDLA_SDP_MRDMA_cq_lib.v.vcp 
+../../tools/bin/vcp -i NV_NVDLA_SDP_MRDMA_EG_lat_fifo_lib.v -o ../../outdir/nv_small/vmod/fifos/NV_NVDLA_SDP_MRDMA_EG_lat_fifo_lib.v.vcp -imacros ../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../vmod/plugins -Meperl ../../tools/bin/eperl -o ../../outdir/nv_small/vmod/fifos/NV_NVDLA_SDP_MRDMA_EG_lat_fifo_lib.v ../../outdir/nv_small/vmod/fifos/NV_NVDLA_SDP_MRDMA_EG_lat_fifo_lib.v.vcp 
+../../tools/bin/vcp -i NV_NVDLA_SDP_NRDMA_cq_lib.v -o ../../outdir/nv_small/vmod/fifos/NV_NVDLA_SDP_NRDMA_cq_lib.v.vcp -imacros ../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../vmod/plugins -Meperl ../../tools/bin/eperl -o ../../outdir/nv_small/vmod/fifos/NV_NVDLA_SDP_NRDMA_cq_lib.v ../../outdir/nv_small/vmod/fifos/NV_NVDLA_SDP_NRDMA_cq_lib.v.vcp 
+../../tools/bin/vcp -i NV_NVDLA_SDP_NRDMA_lat_fifo_lib.v -o ../../outdir/nv_small/vmod/fifos/NV_NVDLA_SDP_NRDMA_lat_fifo_lib.v.vcp -imacros ../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../vmod/plugins -Meperl ../../tools/bin/eperl -o ../../outdir/nv_small/vmod/fifos/NV_NVDLA_SDP_NRDMA_lat_fifo_lib.v ../../outdir/nv_small/vmod/fifos/NV_NVDLA_SDP_NRDMA_lat_fifo_lib.v.vcp 
+==============================================
+files are generated under /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/outdir/nv_small/vmod/fifos
+==============================================
+make[1]: Leaving directory '/work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/fifos'
+Processing NV_NVDLA_CDMA_WT_8ATMM_fifo.v into ../../outdir/nv_small/vmod/fifos/NV_NVDLA_CDMA_WT_8ATMM_fifo.v.vcp
+../../outdir/nv_small/vmod/fifos/NV_NVDLA_CDMA_WT_8ATMM_fifo.v.vcp successfully written
+eperl: ../../outdir/nv_small/vmod/fifos/NV_NVDLA_CDMA_WT_8ATMM_fifo.v modified.
+Processing NV_NVDLA_CDP_DP_data_fifo.v into ../../outdir/nv_small/vmod/fifos/NV_NVDLA_CDP_DP_data_fifo.v.vcp
+../../outdir/nv_small/vmod/fifos/NV_NVDLA_CDP_DP_data_fifo.v.vcp successfully written
+eperl: ../../outdir/nv_small/vmod/fifos/NV_NVDLA_CDP_DP_data_fifo.v modified.
+Processing NV_NVDLA_CDP_DP_intpinfo_fifo.v into ../../outdir/nv_small/vmod/fifos/NV_NVDLA_CDP_DP_intpinfo_fifo.v.vcp
+../../outdir/nv_small/vmod/fifos/NV_NVDLA_CDP_DP_intpinfo_fifo.v.vcp successfully written
+eperl: ../../outdir/nv_small/vmod/fifos/NV_NVDLA_CDP_DP_intpinfo_fifo.v modified.
+Processing NV_NVDLA_CDP_DP_sumpd_fifo.v into ../../outdir/nv_small/vmod/fifos/NV_NVDLA_CDP_DP_sumpd_fifo.v.vcp
+../../outdir/nv_small/vmod/fifos/NV_NVDLA_CDP_DP_sumpd_fifo.v.vcp successfully written
+eperl: ../../outdir/nv_small/vmod/fifos/NV_NVDLA_CDP_DP_sumpd_fifo.v modified.
+Processing NV_NVDLA_CDP_RDMA_lat_fifo.v into ../../outdir/nv_small/vmod/fifos/NV_NVDLA_CDP_RDMA_lat_fifo.v.vcp
+../../outdir/nv_small/vmod/fifos/NV_NVDLA_CDP_RDMA_lat_fifo.v.vcp successfully written
+eperl: ../../outdir/nv_small/vmod/fifos/NV_NVDLA_CDP_RDMA_lat_fifo.v modified.
+Processing NV_NVDLA_CDP_RDMA_ro_fifo.v into ../../outdir/nv_small/vmod/fifos/NV_NVDLA_CDP_RDMA_ro_fifo.v.vcp
+../../outdir/nv_small/vmod/fifos/NV_NVDLA_CDP_RDMA_ro_fifo.v.vcp successfully written
+eperl: ../../outdir/nv_small/vmod/fifos/NV_NVDLA_CDP_RDMA_ro_fifo.v modified.
+Processing NV_NVDLA_CDP_WDMA_dat_fifo.v into ../../outdir/nv_small/vmod/fifos/NV_NVDLA_CDP_WDMA_dat_fifo.v.vcp
+../../outdir/nv_small/vmod/fifos/NV_NVDLA_CDP_WDMA_dat_fifo.v.vcp successfully written
+eperl: ../../outdir/nv_small/vmod/fifos/NV_NVDLA_CDP_WDMA_dat_fifo.v modified.
+Processing NV_NVDLA_PDP_RDMA_lat_fifo.v into ../../outdir/nv_small/vmod/fifos/NV_NVDLA_PDP_RDMA_lat_fifo.v.vcp
+../../outdir/nv_small/vmod/fifos/NV_NVDLA_PDP_RDMA_lat_fifo.v.vcp successfully written
+eperl: ../../outdir/nv_small/vmod/fifos/NV_NVDLA_PDP_RDMA_lat_fifo.v modified.
+Processing NV_NVDLA_PDP_RDMA_ro_fifo.v into ../../outdir/nv_small/vmod/fifos/NV_NVDLA_PDP_RDMA_ro_fifo.v.vcp
+../../outdir/nv_small/vmod/fifos/NV_NVDLA_PDP_RDMA_ro_fifo.v.vcp successfully written
+eperl: ../../outdir/nv_small/vmod/fifos/NV_NVDLA_PDP_RDMA_ro_fifo.v modified.
+Processing NV_NVDLA_PDP_SDPIN_ro_fifo.v into ../../outdir/nv_small/vmod/fifos/NV_NVDLA_PDP_SDPIN_ro_fifo.v.vcp
+../../outdir/nv_small/vmod/fifos/NV_NVDLA_PDP_SDPIN_ro_fifo.v.vcp successfully written
+eperl: ../../outdir/nv_small/vmod/fifos/NV_NVDLA_PDP_SDPIN_ro_fifo.v modified.
+Processing NV_NVDLA_PDP_WDMA_DAT_fifo.v into ../../outdir/nv_small/vmod/fifos/NV_NVDLA_PDP_WDMA_DAT_fifo.v.vcp
+../../outdir/nv_small/vmod/fifos/NV_NVDLA_PDP_WDMA_DAT_fifo.v.vcp successfully written
+eperl: ../../outdir/nv_small/vmod/fifos/NV_NVDLA_PDP_WDMA_DAT_fifo.v modified.
+Processing NV_NVDLA_SDP_BRDMA_cq_lib.v into ../../outdir/nv_small/vmod/fifos/NV_NVDLA_SDP_BRDMA_cq_lib.v.vcp
+../../outdir/nv_small/vmod/fifos/NV_NVDLA_SDP_BRDMA_cq_lib.v.vcp successfully written
+eperl: ../../outdir/nv_small/vmod/fifos/NV_NVDLA_SDP_BRDMA_cq_lib.v modified.
+Processing NV_NVDLA_SDP_BRDMA_lat_fifo_lib.v into ../../outdir/nv_small/vmod/fifos/NV_NVDLA_SDP_BRDMA_lat_fifo_lib.v.vcp
+../../outdir/nv_small/vmod/fifos/NV_NVDLA_SDP_BRDMA_lat_fifo_lib.v.vcp successfully written
+eperl: ../../outdir/nv_small/vmod/fifos/NV_NVDLA_SDP_BRDMA_lat_fifo_lib.v modified.
+Processing NV_NVDLA_SDP_ERDMA_cq_lib.v into ../../outdir/nv_small/vmod/fifos/NV_NVDLA_SDP_ERDMA_cq_lib.v.vcp
+../../outdir/nv_small/vmod/fifos/NV_NVDLA_SDP_ERDMA_cq_lib.v.vcp successfully written
+eperl: ../../outdir/nv_small/vmod/fifos/NV_NVDLA_SDP_ERDMA_cq_lib.v modified.
+Processing NV_NVDLA_SDP_ERDMA_lat_fifo_lib.v into ../../outdir/nv_small/vmod/fifos/NV_NVDLA_SDP_ERDMA_lat_fifo_lib.v.vcp
+../../outdir/nv_small/vmod/fifos/NV_NVDLA_SDP_ERDMA_lat_fifo_lib.v.vcp successfully written
+eperl: ../../outdir/nv_small/vmod/fifos/NV_NVDLA_SDP_ERDMA_lat_fifo_lib.v modified.
+Processing NV_NVDLA_SDP_MRDMA_cq_lib.v into ../../outdir/nv_small/vmod/fifos/NV_NVDLA_SDP_MRDMA_cq_lib.v.vcp
+../../outdir/nv_small/vmod/fifos/NV_NVDLA_SDP_MRDMA_cq_lib.v.vcp successfully written
+eperl: ../../outdir/nv_small/vmod/fifos/NV_NVDLA_SDP_MRDMA_cq_lib.v modified.
+Processing NV_NVDLA_SDP_MRDMA_EG_lat_fifo_lib.v into ../../outdir/nv_small/vmod/fifos/NV_NVDLA_SDP_MRDMA_EG_lat_fifo_lib.v.vcp
+../../outdir/nv_small/vmod/fifos/NV_NVDLA_SDP_MRDMA_EG_lat_fifo_lib.v.vcp successfully written
+eperl: ../../outdir/nv_small/vmod/fifos/NV_NVDLA_SDP_MRDMA_EG_lat_fifo_lib.v modified.
+Processing NV_NVDLA_SDP_NRDMA_cq_lib.v into ../../outdir/nv_small/vmod/fifos/NV_NVDLA_SDP_NRDMA_cq_lib.v.vcp
+../../outdir/nv_small/vmod/fifos/NV_NVDLA_SDP_NRDMA_cq_lib.v.vcp successfully written
+eperl: ../../outdir/nv_small/vmod/fifos/NV_NVDLA_SDP_NRDMA_cq_lib.v modified.
+Processing NV_NVDLA_SDP_NRDMA_lat_fifo_lib.v into ../../outdir/nv_small/vmod/fifos/NV_NVDLA_SDP_NRDMA_lat_fifo_lib.v.vcp
+../../outdir/nv_small/vmod/fifos/NV_NVDLA_SDP_NRDMA_lat_fifo_lib.v.vcp successfully written
+eperl: ../../outdir/nv_small/vmod/fifos/NV_NVDLA_SDP_NRDMA_lat_fifo_lib.v modified.

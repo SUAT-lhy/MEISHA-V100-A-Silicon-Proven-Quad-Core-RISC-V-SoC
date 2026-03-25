@@ -1,0 +1,41 @@
+command: cd vmod/nvdla/bdma;make PROJECT=nv_small 
+make[1]: Entering directory '/work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/nvdla/bdma'
+../../../tools/bin/vcp -i NV_NVDLA_bdma.v -o ../../../outdir/nv_small/vmod/nvdla/bdma/NV_NVDLA_bdma.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/bdma/NV_NVDLA_bdma.v ../../../outdir/nv_small/vmod/nvdla/bdma/NV_NVDLA_bdma.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_BDMA_cq.v -o ../../../outdir/nv_small/vmod/nvdla/bdma/NV_NVDLA_BDMA_cq.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/bdma/NV_NVDLA_BDMA_cq.v ../../../outdir/nv_small/vmod/nvdla/bdma/NV_NVDLA_BDMA_cq.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_BDMA_csb.v -o ../../../outdir/nv_small/vmod/nvdla/bdma/NV_NVDLA_BDMA_csb.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/bdma/NV_NVDLA_BDMA_csb.v ../../../outdir/nv_small/vmod/nvdla/bdma/NV_NVDLA_BDMA_csb.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_BDMA_gate.v -o ../../../outdir/nv_small/vmod/nvdla/bdma/NV_NVDLA_BDMA_gate.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/bdma/NV_NVDLA_BDMA_gate.v ../../../outdir/nv_small/vmod/nvdla/bdma/NV_NVDLA_BDMA_gate.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_BDMA_load.v -o ../../../outdir/nv_small/vmod/nvdla/bdma/NV_NVDLA_BDMA_load.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/bdma/NV_NVDLA_BDMA_load.v ../../../outdir/nv_small/vmod/nvdla/bdma/NV_NVDLA_BDMA_load.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_BDMA_reg.v -o ../../../outdir/nv_small/vmod/nvdla/bdma/NV_NVDLA_BDMA_reg.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/bdma/NV_NVDLA_BDMA_reg.v ../../../outdir/nv_small/vmod/nvdla/bdma/NV_NVDLA_BDMA_reg.v.vcp 
+../../../tools/bin/vcp -i NV_NVDLA_BDMA_store.v -o ../../../outdir/nv_small/vmod/nvdla/bdma/NV_NVDLA_BDMA_store.v.vcp -imacros ../../../outdir/nv_small/spec/defs/project.h -inc /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/include -inc ../../../outdir/nv_small/spec/manual -cpp /usr/bin/cpp-4.8
+/usr/bin/perl -I ../../../vmod/plugins -Meperl ../../../tools/bin/eperl -o ../../../outdir/nv_small/vmod/nvdla/bdma/NV_NVDLA_BDMA_store.v ../../../outdir/nv_small/vmod/nvdla/bdma/NV_NVDLA_BDMA_store.v.vcp 
+==============================================
+files are generated under /work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/outdir/nv_small/vmod/nvdla/bdma
+==============================================
+make[1]: Leaving directory '/work/svn/riscv/trunk/hw/ip/block-nvdla-sifive/hw/vmod/nvdla/bdma'
+Processing NV_NVDLA_bdma.v into ../../../outdir/nv_small/vmod/nvdla/bdma/NV_NVDLA_bdma.v.vcp
+../../../outdir/nv_small/vmod/nvdla/bdma/NV_NVDLA_bdma.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/bdma/NV_NVDLA_bdma.v modified.
+Processing NV_NVDLA_BDMA_cq.v into ../../../outdir/nv_small/vmod/nvdla/bdma/NV_NVDLA_BDMA_cq.v.vcp
+../../../outdir/nv_small/vmod/nvdla/bdma/NV_NVDLA_BDMA_cq.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/bdma/NV_NVDLA_BDMA_cq.v modified.
+Processing NV_NVDLA_BDMA_csb.v into ../../../outdir/nv_small/vmod/nvdla/bdma/NV_NVDLA_BDMA_csb.v.vcp
+../../../outdir/nv_small/vmod/nvdla/bdma/NV_NVDLA_BDMA_csb.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/bdma/NV_NVDLA_BDMA_csb.v modified.
+Processing NV_NVDLA_BDMA_gate.v into ../../../outdir/nv_small/vmod/nvdla/bdma/NV_NVDLA_BDMA_gate.v.vcp
+../../../outdir/nv_small/vmod/nvdla/bdma/NV_NVDLA_BDMA_gate.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/bdma/NV_NVDLA_BDMA_gate.v modified.
+Processing NV_NVDLA_BDMA_load.v into ../../../outdir/nv_small/vmod/nvdla/bdma/NV_NVDLA_BDMA_load.v.vcp
+../../../outdir/nv_small/vmod/nvdla/bdma/NV_NVDLA_BDMA_load.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/bdma/NV_NVDLA_BDMA_load.v modified.
+Processing NV_NVDLA_BDMA_reg.v into ../../../outdir/nv_small/vmod/nvdla/bdma/NV_NVDLA_BDMA_reg.v.vcp
+../../../outdir/nv_small/vmod/nvdla/bdma/NV_NVDLA_BDMA_reg.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/bdma/NV_NVDLA_BDMA_reg.v modified.
+Processing NV_NVDLA_BDMA_store.v into ../../../outdir/nv_small/vmod/nvdla/bdma/NV_NVDLA_BDMA_store.v.vcp
+../../../outdir/nv_small/vmod/nvdla/bdma/NV_NVDLA_BDMA_store.v.vcp successfully written
+eperl: ../../../outdir/nv_small/vmod/nvdla/bdma/NV_NVDLA_BDMA_store.v modified.

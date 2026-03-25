@@ -1,0 +1,25 @@
+CAPI=2:
+# Vendor 		: 
+# Author 		: zbc
+# Filename 	:  
+# Date Created: 2024.05.14 
+# Version		: V1.0
+# File description	:
+# Revision History :
+name: "lowrisc:dv:jtaga_test:0.1"
+description: "UART UVM test"
+filesets:
+  files_dv:
+    depend:
+      - lowrisc:dv:tlul_base_env_pkg
+      - lowrisc:dv:jtaga_base_env
+    files:
+      - test/jtag_test_pkg.sv
+      - test/jtag_test.sv: {is_include_file: true}
+      #- test/uart_macros.svh: {is_include_file: true}
+    file_type: systemVerilogSource
+
+targets:
+  default:
+    filesets:
+      - files_dv

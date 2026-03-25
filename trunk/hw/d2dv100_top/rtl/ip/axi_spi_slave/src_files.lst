@@ -1,0 +1,9 @@
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/ip/axi_spi_slave/axi_spi_slave.sv
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/ip/axi_spi_slave/spi_slave_axi_plug.sv
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/ip/axi_spi_slave/spi_slave_cmd_parser.sv
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/ip/axi_spi_slave/spi_slave_controller.sv
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/ip/axi_spi_slave/spi_slave_dc_fifo.sv
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/ip/axi_spi_slave/spi_slave_regs.sv
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/ip/axi_spi_slave/spi_slave_rx.sv
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/ip/axi_spi_slave/spi_slave_syncro.sv
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/ip/axi_spi_slave/spi_slave_tx.sv

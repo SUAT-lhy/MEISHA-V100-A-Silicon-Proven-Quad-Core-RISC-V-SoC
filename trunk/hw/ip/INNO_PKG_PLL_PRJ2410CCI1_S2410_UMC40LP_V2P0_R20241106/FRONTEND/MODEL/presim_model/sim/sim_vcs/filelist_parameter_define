@@ -1,0 +1,6 @@
++define+CLK_VCO_DET
+../../testbench/test_top.v
+
+// rtl
+../../rtl/vcs/INNO_FNPLL_TOP.vp
+

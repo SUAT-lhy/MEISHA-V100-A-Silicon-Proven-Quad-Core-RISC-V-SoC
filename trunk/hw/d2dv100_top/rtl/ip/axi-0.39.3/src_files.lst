@@ -1,0 +1,13 @@
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/ip/axi-0.39.3/include/axi/assign.svh
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/ip/axi-0.39.3/include/axi/port.svh
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/ip/axi-0.39.3/include/axi/typedef.svh
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/ip/axi-0.39.3/src/axi_pkg.sv
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/ip/axi-0.39.3/src/axi_intf.sv
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/ip/axi-0.39.3/src/axi_to_detailed_mem.sv
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/ip/axi-0.39.3/src/axi_dw_downsizer.sv
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/ip/axi-0.39.3/src/axi_demux_simple.sv
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/ip/axi-0.39.3/src/axi_to_mem.sv
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/ip/axi-0.39.3/src/axi_atop_filter.sv
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/ip/axi-0.39.3/src/axi_err_slv.sv
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/ip/axi-0.39.3/src/axi_demux.sv
+${MEISHAV100_ROOT}/hw/d2dv100_top/rtl/ip/axi-0.39.3/src/axi_to_mem_interleaved.sv

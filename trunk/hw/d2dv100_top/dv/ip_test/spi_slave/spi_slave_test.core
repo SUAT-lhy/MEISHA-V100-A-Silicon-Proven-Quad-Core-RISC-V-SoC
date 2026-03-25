@@ -1,0 +1,25 @@
+CAPI=2:
+# Vendor 		: 
+# Author 		: zjl
+# Filename 	:  
+# Date Created: 2024.07.18 
+# Version		: V1.0
+# File description : from spi-slave read/write mem or reg without assistance of cpu
+# Revision History :
+name: "lowrisc:dv:spi_slave_test:0.1"
+description: "SPI UVM test"
+filesets:
+  files_dv:
+    depend:
+      #- lowrisc:dv:tlul_base_env_pkg
+      #- lowrisc:dv:spi_device_env
+      - lowrisc:dv:spi_slave_base_agent
+    files:
+      #- tb_spi_pkg.sv
+      #- spi_device_test_pkg.sv
+    file_type: systemVerilogSource
+
+targets:
+  default:
+    filesets:
+      - files_dv

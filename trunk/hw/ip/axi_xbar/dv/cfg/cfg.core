@@ -1,0 +1,22 @@
+CAPI=2:
+# Vendor 		: 
+# Author 		: ling
+# Filename 	:  
+# Date Created: 2022.04.26 
+# Version		: V1.0
+# File description	:
+# Revision History :
+name: "lowrisc:dut:top_pkg:0.1"
+description: "axi bind DV UVM test"
+filesets:
+  files_dv:
+    depend:
+      # - lowrisc:dut:top_pkg:0.1
+    files:
+      # - top_pkg.sv
+    file_type: systemVerilogSource
+
+targets:
+  default:
+    filesets:
+      - files_dv

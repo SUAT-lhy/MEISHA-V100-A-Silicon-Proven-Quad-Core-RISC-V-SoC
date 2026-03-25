@@ -1,0 +1,29 @@
+CAPI=2:
+# Vendor 		: 
+# Author 		: zjl
+# Filename 	:  
+# Date Created: 2024.03.10 
+# Version		: V1.0
+# File description	:
+# Revision History :
+name: "lowrisc:dv:spi_test:0.1"
+description: "SPI UVM test"
+filesets:
+  files_dv:
+    depend:
+      - lowrisc:dv:tlul_base_env_pkg
+      - lowrisc:dv:spi_base_env
+    files:
+      - test/spi_test_pkg.sv
+      - test/spi_test.sv: {is_include_file: true}
+      - test/spi_macros.svh: {is_include_file: true}
+      - rtl/spi_counter.v
+      - rtl/RAM.v
+      - rtl/SPI_SLAVE.v
+      - rtl/SPI_Wrapper.v
+    file_type: systemVerilogSource
+
+targets:
+  default:
+    filesets:
+      - files_dv
